@@ -4,6 +4,7 @@
 
 
  @use 'abstracts/colors';
+ @use 'abstracts/_typography.scss';
 // @use 'abstracts/mixins';
 // @use 'abstracts/functions';
 // @use 'abstracts/breakpoints';
@@ -13,7 +14,7 @@
 // ─────────────────────────────────────────────────────────────
 
 @use 'base/reset';
-// @use 'base/global';
+@use 'base/global';
 // @use 'base/animations';
 // @use 'base/utilities';
 
