@@ -1,0 +1,146 @@
+/* ==============================
+   Overlay (Block)
+============================== */
+
+.network-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgba(0, 0, 0, 0.6);
+  backdrop-filter: blur(2px);
+
+  /* Prevent scroll + improve UX */
+  overscroll-behavior: contain;
+}
+
+/* ==============================
+   Banner (Block)
+============================== */
+
+.network-banner {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 1rem;
+
+  max-width: 520px;
+  width: calc(100% - 2rem);
+
+  padding: 1.25rem 1.5rem;
+  border-radius: 12px;
+
+  background-color: #ffffff;
+  color: #111827;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+
+  animation: network-banner-fade-in 180ms ease-out;
+
+  /* Performance hint */
+  will-change: transform, opacity;
+}
+
+/* ==============================
+   Elements
+============================== */
+
+.network-banner__icon {
+  font-size: 2rem;
+  line-height: 1;
+}
+
+.network-banner__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.network-banner__title {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+}
+
+.network-banner__description {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  color: #374151;
+}
+
+/* ==============================
+   Loader (CRITICAL FIX)
+============================== */
+
+.network-banner__loader {
+  margin-top: 0.75rem;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.network-banner__spinner {
+  width: 28px;
+  height: 28px;
+
+  border-radius: 50%;
+  border: 3px solid #e5e7eb;
+  border-top-color: #dc2626;
+
+  /* 🔴 THIS is what makes it spin */
+  animation: network-spinner 0.9s linear infinite;
+
+  /* GPU acceleration */
+  transform: translateZ(0);
+}
+
+.network-banner__loading-text {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: #6b7280;
+}
+
+/* ==============================
+   Animations
+============================== */
+
+@keyframes network-spinner {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes network-banner-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* ==============================
+   Accessibility
+============================== */
+
+@media (prefers-reduced-motion: reduce) {
+  .network-banner {
+    animation: none;
+  }
+
+  .network-banner__spinner {
+    animation: none;
+  }
+}

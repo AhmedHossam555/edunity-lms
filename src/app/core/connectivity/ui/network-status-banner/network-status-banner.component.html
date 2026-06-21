@@ -1,0 +1,47 @@
+@if (store.isOffline()) {
+  <div
+    class="network-overlay"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="network-status-title"
+    aria-describedby="network-status-desc"
+  >
+    <section
+      class="network-banner"
+      role="status"
+      aria-live="assertive"
+      aria-atomic="true"
+    >
+      <span class="network-banner__icon" aria-hidden="true">
+        ⚠️
+      </span>
+
+      <div class="network-banner__content">
+        <h2
+          id="network-status-title"
+          class="network-banner__title"
+        >
+          You’re offline
+        </h2>
+
+        <p
+          id="network-status-desc"
+          class="network-banner__description"
+        >
+          Please check your internet connection.
+          Some features may be unavailable.
+        </p>
+
+        <div
+          class="network-banner__loader"
+          aria-hidden="true"
+        >
+          <span class="network-banner__spinner"></span>
+          <span class="network-banner__loading-text">
+            Reconnecting…
+          </span>
+        </div>
+      </div>
+    </section>
+  </div>
+}

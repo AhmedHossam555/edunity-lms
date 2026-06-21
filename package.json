@@ -1,0 +1,70 @@
+{
+  "name": "agro-teba-international",
+  "version": "0.0.0",
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "clean:cache": "node -e \"const fs=require('fs'); ['dist','.angular/cache'].forEach(p=>{try{fs.rmSync(p,{recursive:true,force:true})}catch(e){}})\"",
+    "build": "npm run clean:cache && ng build",
+    "watch": "ng build --watch --configuration=development",
+    "test": "ng test",
+    "build:local": "npm run clean:cache && ng build --configuration=local",
+    "build:test": "npm run clean:cache && ng build --configuration=test",
+    "build:development": "npm run clean:cache && ng build --configuration=development",
+    "build:uat": "npm run clean:cache && ng build --configuration=uat",
+    "build:live": "npm run clean:cache && ng build --configuration=live",
+    "build:ssr:local": "npm run clean:cache && ng build --configuration=local",
+    "build:ssr:test": "npm run clean:cache && ng build --configuration=test",
+    "build:ssr:development": "npm run clean:cache && ng build --configuration=development",
+    "build:ssr:uat": "npm run clean:cache && ng build --configuration=uat",
+    "build:ssr:live": "npm run clean:cache && ng build --configuration=live",
+    "serve:ssr": "node dist/agro-teba-international/server/server.mjs",
+    "ssr:local": "npm run build:ssr:local && npm run serve:ssr",
+    "ssr:test": "npm run build:ssr:test && npm run serve:ssr",
+    "ssr:development": "npm run build:ssr:development && npm run serve:ssr",
+    "ssr:uat": "npm run build:ssr:uat && npm run serve:ssr",
+    "ssr:live": "npm run build:ssr:live && npm run serve:ssr"
+  },
+  "prettier": {
+    "printWidth": 100,
+    "singleQuote": true,
+    "overrides": [
+      {
+        "files": "*.html",
+        "options": {
+          "parser": "angular"
+        }
+      }
+    ]
+  },
+  "private": true,
+  "dependencies": {
+    "@angular/common": "^21.1.2",
+    "@angular/compiler": "^21.1.2",
+    "@angular/core": "^21.1.2",
+    "@angular/forms": "^21.1.2",
+    "@angular/platform-browser": "^21.1.2",
+    "@angular/platform-server": "^21.1.2",
+    "@angular/router": "^21.1.2",
+    "@angular/ssr": "^21.1.2",
+    "@vercel/speed-insights": "^2.0.0",
+    "express": "^5.1.0",
+    "rxjs": "~7.8.0",
+    "tslib": "^2.3.0"
+  },
+  "devDependencies": {
+    "@angular/build": "^21.1.2",
+    "@angular/cli": "^21.1.2",
+    "@angular/compiler-cli": "^21.1.2",
+    "@types/express": "^5.0.1",
+    "@types/jasmine": "~5.1.0",
+    "@types/node": "^20.17.19",
+    "jasmine-core": "~5.9.0",
+    "karma": "~6.4.0",
+    "karma-chrome-launcher": "~3.2.0",
+    "karma-coverage": "~2.2.0",
+    "karma-jasmine": "~5.1.0",
+    "karma-jasmine-html-reporter": "~2.1.0",
+    "typescript": "~5.9.2"
+  }
+}
