@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "agro-teba-international": {
+    "edunity-lms": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -32,9 +32,7 @@
                 "output": "assets"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ],
+            "styles": ["src/styles.scss"],
             "server": "src/main.server.ts",
             "outputMode": "server",
             "ssr": {
@@ -110,19 +108,19 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "local": {
-              "buildTarget": "agro-teba-international:build:local"
+              "buildTarget": "edunity-lms:build:local"
             },
             "test": {
-              "buildTarget": "agro-teba-international:build:test"
+              "buildTarget": "edunity-lms:build:test"
             },
             "development": {
-              "buildTarget": "agro-teba-international:build:development"
+              "buildTarget": "edunity-lms:build:development"
             },
             "uat": {
-              "buildTarget": "agro-teba-international:build:uat"
+              "buildTarget": "edunity-lms:build:uat"
             },
             "live": {
-              "buildTarget": "agro-teba-international:build:live"
+              "buildTarget": "edunity-lms:build:live"
             }
           },
           "defaultConfiguration": "development"
@@ -141,9 +139,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/styles.scss"
-            ]
+            "styles": ["src/styles.scss"]
           }
         }
       }

@@ -86,7 +86,7 @@ app.use((req, res, next) => {
  * Home Redirects
  */
 app.get(['/Home', '/home', '/index.html'], (_req, res) => {
-  return res.redirect(301, 'https://agro-teba-international.net/');
+  return res.redirect(301, 'https://edunity-lms.net/');
 });
 
 /**

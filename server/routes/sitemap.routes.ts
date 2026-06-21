@@ -10,7 +10,7 @@ export function createSitemapRouter(distFolder: string): Router {
 
   // Main sitemap index
   router.get('/sitemap.xml', (req, res) => {
-    const base = 'https://agro-teba-international.net';
+    const base = 'https://edunity-lms.net';
     const xml = generateSitemapIndex([
       `${base}/sitemaps/local.xml`,
     ]);

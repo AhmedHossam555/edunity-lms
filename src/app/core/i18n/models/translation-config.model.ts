@@ -25,8 +25,8 @@ export const DEFAULT_TRANSLATION_CACHE_CONFIG: ITranslationCacheConfig = {
 };
 
 export const TRANSLATION_KEYS = {
-  STORAGE_AR: 'agro-teba-international-site-translations-ar-storage',
-  STORAGE_EN: 'agro-teba-international-site-translations-en-storage',
+  STORAGE_AR: 'edunity-lms-site-translations-ar-storage',
+  STORAGE_EN: 'edunity-lms-site-translations-en-storage',
 } as const;
 
 export const AVAILABLE_LANGUAGES: ILanguageItem[] = [
