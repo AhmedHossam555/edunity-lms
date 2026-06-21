@@ -1,85 +1,158 @@
+// ─────────────────────────────────────────────────────────────
+// Design Tokens
+// ─────────────────────────────────────────────────────────────
+
+:host {
+  --footer-bg: #11111d;
+  --footer-surface: #171723;
+  --footer-border: rgb(255 255 255 / 10%);
+  --footer-text: #f4f4f4;
+  --footer-muted: rgb(244 244 244 / 70%);
+  --footer-accent: #fc6441;
+  --footer-contact-bg: rgb(255 255 255 / 4%);
+}
+
+// ─────────────────────────────────────────────────────────────
+// Footer
+// ─────────────────────────────────────────────────────────────
+
 .footer {
-  background-color: #1a1a1a;
-  color: #f4f4f4;
-  padding: 3rem 2rem;
-
-  // Contact section using Auto-fit Grid
+  background: #0E2A46;
+  color: var(--footer-text);
+  background-image: url('/assets/images/main-site-footer/bg/footer-bg.webp');
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
   &__contact {
+    border-bottom: 1px solid var(--footer-border);
+  }
+
+  &__contact-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 2rem;
-    border-bottom: 1px solid #4d5756;
-    padding-bottom: 2rem;
-    margin-bottom: 2rem;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(18rem, 1fr)
+    );
   }
 
-  // Main content using 12-column Grid
-  &__main {
+  &__contact-item {
     display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 2rem;
+    grid-template-columns: 4.5rem 1fr;
+    align-items: center;
+    gap: 1rem;
+    padding: 2rem;
+    border-inline-end: 1px solid var(--footer-border);
+  }
 
-    @media (max-width: 992px) {
-      grid-template-columns: repeat(6, 1fr);
+  &__contact-icon {
+    width: 4rem;
+    height: 4rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 8%);
+    border: 1px solid rgb(255 255 255 / 20%);
+  }
+
+  &__grid {
+    display: grid;
+    gap: 3rem;
+    padding-block: 4rem;
+
+    grid-template-columns: 1fr;
+
+    @media (width >= 768px) {
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
     }
 
-    @media (max-width: 576px) {
-      grid-template-columns: 1fr;
+    @media (width >= 1200px) {
+      grid-template-columns:
+        1.5fr
+        1fr
+        1fr
+        1fr;
     }
   }
 
-  // Layout Spans
-  &__brand { grid-column: span 3; }
-  &__services { grid-column: span 3; }
-  &__gallery { grid-column: span 3; }
-  &__subscribe { grid-column: span 3; }
-
-  @media (max-width: 992px) {
-    &__brand, &__services, &__gallery, &__subscribe {
-      grid-column: span 6;
-    }
+  &__title {
+    margin-bottom: 1.5rem;
+    font-size: 1.25rem;
   }
 
-  @media (max-width: 576px) {
-    &__brand, &__services, &__gallery, &__subscribe {
-      grid-column: span 1;
-    }
+  &__description {
+    color: var(--footer-muted);
+    line-height: 1.8;
+    margin-block: 1.5rem;
   }
 
-  // Typography & Elements
-  h3 {
-    font-size: 22px;
-    font-weight: bold;
-    color: #ffffff;
-    margin-bottom: 1rem;
+  &__socials {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: start;
+    gap: 0.5rem;
   }
 
-  a {
-    font-size: 17px;
-    text-decoration: none;
-    color: #f4f4f4;
-    transition: color 0.3s ease;
-    &:hover { color: #FC6441; }
+  &__social-link {
+    width: 2.75rem;
+    height: 2.75rem;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 10%);
   }
 
-  &__subscribe button {
-    background-color: #FC6441;
-    border: none;
-    color: #ffffff;
-    padding: 0.8rem 1.5rem;
-    cursor: pointer;
+  &__gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.5rem;
+  }
+
+  &__gallery img {
     width: 100%;
-    margin-top: 1rem;
+    display: block;
   }
 
-  .sr-only {
-    position: absolute;
-    width: 1px;
-    height: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip: rect(0, 0, 0, 0);
-    border: 0;
+  &__form {
+    display: grid;
+    gap: 1rem;
   }
+
+  &__input {
+    height: 3rem;
+    padding-inline: 1rem;
+  }
+
+  &__button {
+    height: 3rem;
+    border: none;
+    cursor: pointer;
+    background: var(--footer-accent);
+    color: #fff;
+  }
+
+  &__copyright {
+    text-align: center;
+    padding: 1.25rem;
+    border-top: 1px solid var(--footer-border);
+    background: #151515;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────
+// Utilities
+// ─────────────────────────────────────────────────────────────
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+}
+
+.footer__link {
+  display: flex;
+  gap: 20px;
+  margin-bottom: 10px !important;
 }
