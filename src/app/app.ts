@@ -5,25 +5,23 @@ import { NetworkStatusBannerComponent } from '@core/connectivity/ui/network-stat
 
 import { APP_STATE, AppState } from './core/connectivity';
 import { NetworkStatusStore } from './core/connectivity/application/network-status.store';
+import { MainSiteFooter } from './layout/components/main-site-footer/main-site-footer';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NetworkStatusBannerComponent],
+  imports: [RouterOutlet, NetworkStatusBannerComponent, MainSiteFooter],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class App {
   // ─── constants ───────────────────────────────────────────────────────────
-
   protected readonly APP_STATE = APP_STATE;
 
   // ─── dependencies ────────────────────────────────────────────────────────
-
   private readonly networkStore = inject(NetworkStatusStore);
 
   // ─── computed state ──────────────────────────────────────────────────────
-
   protected readonly appState = computed<AppState>(() =>
     this.networkStore.isOffline() ? APP_STATE.OFFLINE : APP_STATE.READY,
   );

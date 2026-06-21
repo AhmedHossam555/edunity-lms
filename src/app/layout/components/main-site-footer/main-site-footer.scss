@@ -1,0 +1,85 @@
+.footer {
+  background-color: #1a1a1a;
+  color: #f4f4f4;
+  padding: 3rem 2rem;
+
+  // Contact section using Auto-fit Grid
+  &__contact {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    border-bottom: 1px solid #4d5756;
+    padding-bottom: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  // Main content using 12-column Grid
+  &__main {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: 2rem;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  // Layout Spans
+  &__brand { grid-column: span 3; }
+  &__services { grid-column: span 3; }
+  &__gallery { grid-column: span 3; }
+  &__subscribe { grid-column: span 3; }
+
+  @media (max-width: 992px) {
+    &__brand, &__services, &__gallery, &__subscribe {
+      grid-column: span 6;
+    }
+  }
+
+  @media (max-width: 576px) {
+    &__brand, &__services, &__gallery, &__subscribe {
+      grid-column: span 1;
+    }
+  }
+
+  // Typography & Elements
+  h3 {
+    font-size: 22px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 1rem;
+  }
+
+  a {
+    font-size: 17px;
+    text-decoration: none;
+    color: #f4f4f4;
+    transition: color 0.3s ease;
+    &:hover { color: #FC6441; }
+  }
+
+  &__subscribe button {
+    background-color: #FC6441;
+    border: none;
+    color: #ffffff;
+    padding: 0.8rem 1.5rem;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 1rem;
+  }
+
+  .sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    border: 0;
+  }
+}

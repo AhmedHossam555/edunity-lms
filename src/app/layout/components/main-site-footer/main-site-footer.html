@@ -1,0 +1,56 @@
+<footer class="footer">
+  <div class="footer__contact">
+    <address class="footer__contact-item">
+      <span class="sr-only">Address:</span>
+      {{ config().address }}
+    </address>
+    <div class="footer__contact-item">
+      <span class="sr-only">Phone:</span>
+      {{ config().phone }}
+    </div>
+    <div class="footer__contact-item">
+      <span class="sr-only">Email:</span>
+      {{ config().email }}
+    </div>
+  </div>
+
+  <div class="footer__main">
+    <section class="footer__brand">
+      <img src="assets/brand-logo.svg" alt="Edunity Logo" />
+      <p>{{ config().description }}</p>
+      <div class="footer__socials">
+        @for (social of config().socials; track social.platform) {
+          <a [href]="social.url" [attr.aria-label]="social.platform">
+            <img [src]="'assets/icons/' + social.icon + '.svg'" [alt]="social.platform" />
+          </a>
+        }
+      </div>
+    </section>
+
+    <nav class="footer__services">
+      <h3>Our Services:</h3>
+      <ul>
+        @for (service of config().services; track service.label) {
+          <li>
+            <a [href]="service.url">{{ service.label }}</a>
+          </li>
+        }
+      </ul>
+    </nav>
+
+    <section class="footer__gallery">
+      <h3>Gallery</h3>
+      <div class="footer__gallery-grid"></div>
+    </section>
+
+    <section class="footer__subscribe">
+      <h3>Subscribe</h3>
+      <form class="footer__form">
+        <input type="email" placeholder="Enter your email" aria-label="Email address" />
+        <button type="submit">SUBSCRIBE NOW</button>
+      </form>
+    </section>
+  </div>
+
+  <div class="footer__copyright">Copyright © {{ currentYear }} Edunity | All Rights Reserved</div>
+</footer>
