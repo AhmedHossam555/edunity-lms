@@ -5,11 +5,11 @@ import { NetworkStatusBannerComponent } from '@core/connectivity/ui/network-stat
 
 import { APP_STATE, AppState } from './core/connectivity';
 import { NetworkStatusStore } from './core/connectivity/application/network-status.store';
-import { MainSiteHeader } from "./layout";
+import { MainSiteHeader, MainSiteFooter } from "./layout";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NetworkStatusBannerComponent, MainSiteHeader],
+  imports: [RouterOutlet, NetworkStatusBannerComponent, MainSiteHeader, MainSiteFooter],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

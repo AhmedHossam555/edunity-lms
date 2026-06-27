@@ -1,0 +1,12 @@
+import { Routes } from '@angular/router';
+
+export const HOME_ROUTES: Routes = [
+  {
+    path: '',
+    loadComponent: () => import('../pages/home').then((m) => m.Home),
+    title: 'Home',
+    data: {
+      breadcrumb: 'Home',
+    },
+  },
+];
