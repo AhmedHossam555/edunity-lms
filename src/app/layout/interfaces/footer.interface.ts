@@ -1,19 +1,24 @@
+import { SocialPlatform } from '../enums';
+
 // ─────────────────────────────────────────────────────────────
-// Footer Types
-
-import { SocialPlatform } from "../enums/footer.enum";
-
+// Footer Links
 // ─────────────────────────────────────────────────────────────
 export interface IFooterLink {
   readonly label: string;
   readonly url: string;
 }
 
+// ─────────────────────────────────────────────────────────────
+// Footer Gallery
+// ─────────────────────────────────────────────────────────────
 export interface IFooterGalleryItem {
   readonly image: string;
   readonly alt: string;
 }
 
+// ─────────────────────────────────────────────────────────────
+// Footer Contact
+// ─────────────────────────────────────────────────────────────
 export interface IFooterContactItem {
   readonly label: string;
   readonly value: string;
@@ -23,6 +28,10 @@ export interface IFooterContactItem {
 export interface IFooterContact {
   readonly items: readonly IFooterContactItem[];
 }
+
+// ─────────────────────────────────────────────────────────────
+// Footer Social Links
+// ─────────────────────────────────────────────────────────────
 export interface IFooterSocialLink {
   readonly platform: SocialPlatform;
   readonly url: string;
@@ -30,8 +39,9 @@ export interface IFooterSocialLink {
   readonly svg: string;
 }
 
-
-
+// ─────────────────────────────────────────────────────────────
+// Footer Internationalization
+// ─────────────────────────────────────────────────────────────
 export interface IFooterI18n {
   readonly servicesTitle: string;
   readonly galleryTitle: string;
@@ -45,6 +55,9 @@ export interface IFooterI18n {
   readonly brandName: string;
 }
 
+// ─────────────────────────────────────────────────────────────
+// Footer Configuration
+// ─────────────────────────────────────────────────────────────
 export interface IFooterConfig {
   readonly contact: IFooterContact;
   readonly description: string;

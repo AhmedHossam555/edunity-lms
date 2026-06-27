@@ -6,6 +6,7 @@ import {
   FOOTER_I18N,
 } from '@app/layout/configs';
 import { IFooterContactItem } from '@app/layout/interfaces';
+import { FOOTER_SVGS } from '@app/layout/constants/footer.constants';
 
 @Component({
   selector: 'app-main-site-footer',
@@ -39,6 +40,26 @@ export class MainSiteFooter {
   protected readonly currentYear = signal(
     FOOTER_CONFIG.copyrightYear,
   ).asReadonly();
+
+  // ─────────────────────────────────────────────────────────────
+  // SVG Icons (sanitized for template use)
+  // ─────────────────────────────────────────────────────────────
+
+  protected readonly addressSvg = this.sanitizer.bypassSecurityTrustHtml(
+    FOOTER_SVGS.address
+  );
+
+  protected readonly phoneSvg = this.sanitizer.bypassSecurityTrustHtml(
+    FOOTER_SVGS.phone
+  );
+
+  protected readonly emailSvg = this.sanitizer.bypassSecurityTrustHtml(
+    FOOTER_SVGS.email
+  );
+
+  protected readonly serviceArrowSvg = this.sanitizer.bypassSecurityTrustHtml(
+    FOOTER_SVGS.serviceArrow
+  );
 
   // ─────────────────────────────────────────────────────────────
   // Helpers

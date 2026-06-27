@@ -1,3 +1,6 @@
+// ─────────────────────────────────────────────────────────────
+// Social Platforms
+// ─────────────────────────────────────────────────────────────
 export enum SocialPlatform {
   Facebook = 'facebook',
   Instagram = 'instagram',
