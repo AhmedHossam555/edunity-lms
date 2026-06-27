@@ -1,0 +1,177 @@
+:host {
+  display: block;
+}
+
+.header {
+  width: 100%;
+}
+
+/* ========================================= */
+/* Top Bar                                   */
+/* ========================================= */
+
+.top-bar {
+  background: #17254e;
+  color: #fff;
+  font-size: 17px;
+  font-weight: 400;
+}
+
+.top-bar .container {
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.top-left,
+.top-right {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.info-item,
+.login {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.login {
+  color: inherit;
+  text-decoration: none;
+}
+
+.icon {
+  width: 14px;
+  height: 14px;
+  color: #ff5d5d;
+}
+
+.socials {
+  display: flex;
+  gap: 14px;
+}
+
+.social-icon {
+  width: 15px;
+  height: 15px;
+  color: white;
+  transition: 0.3s;
+}
+
+.social-icon:hover {
+  color: #29d6bf;
+}
+
+/* ========================================= */
+/* Navbar                                    */
+/* ========================================= */
+
+.navbar {
+  background: white;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.08);
+}
+
+.navbar .container {
+  height: 70px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo img {
+  height: 45px;
+}
+
+.menu {
+  display: flex;
+  gap: 34px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu a {
+  text-decoration: none;
+  color: #0e2a46;
+  font-size: 17px;
+  font-weight: 400;
+  transition: 0.25s;
+}
+
+.menu a:hover,
+.menu .active {
+  color: #27d3b5;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.search-btn {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+}
+
+.search-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.contact-btn {
+  border: none;
+  cursor: pointer;
+  background: #2FC7A1;
+  color: white;
+  border-radius: 40px;
+  padding: 0;
+  padding-inline-start: 25px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-weight: 600;
+}
+
+.arrow {
+  width: 58px;
+  height: 58px;
+  border-radius: 50%;
+  background: #35D7AE;
+  display: grid;
+  place-items: center;
+}
+
+.arrow svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* ========================================= */
+/* Responsive                                */
+/* ========================================= */
+
+@media (max-width: 992px) {
+  .menu {
+    display: none;
+  }
+
+  .top-left {
+    display: none;
+  }
+
+  .top-bar .container {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .contact-btn {
+    display: none;
+  }
+}
