@@ -6,3 +6,4 @@ export function safeSvg(
 ): SafeHtml {
   return sanitizer.bypassSecurityTrustHtml(svg);
 }
+ 

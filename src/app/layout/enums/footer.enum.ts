@@ -6,6 +6,6 @@ export enum SocialPlatform {
   Instagram = 'instagram',
   Pinterest = 'pinterest',
   Twitter = 'twitter',
-  Linkedin = 'linkedin',
+  LinkedIn = 'linkedin',
   Youtube = 'youtube',
 }

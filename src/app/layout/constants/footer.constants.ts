@@ -135,4 +135,4 @@ export const FOOTER_SVGS = {
 // Type Definitions
 // ─────────────────────────────────────────────────────────────
 
-export type FooterSvgKey = keyof typeof FOOTER_SVGS;9
+export type FooterSvgKey = keyof typeof FOOTER_SVGS;

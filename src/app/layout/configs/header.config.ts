@@ -1,0 +1,106 @@
+import { NavLinkId, SocialPlatform, TopBarIconId } from "../enums";
+import { IHeaderConfig } from "../interfaces";
+
+// ─────────────────────────────────────────────────────────────
+//  Header Configuration
+// ─────────────────────────────────────────────────────────────
+
+export const HEADER_CONFIG: IHeaderConfig = {
+
+  // ─────────────────────────────────────────────────────────────
+  //  Logo
+  // ─────────────────────────────────────────────────────────────
+  logo: {
+    src: '/assets/images/logos/white/edunity-logo/edunity-logo.svg',
+    alt: 'Edunity',
+    width: 237,
+    height: 54,
+    href: '#',
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  //  Top Bar
+  // ─────────────────────────────────────────────────────────────
+  topBar: {
+
+    // ─────────────────────────────────────────────────────────────
+    //  Contact / Information Items
+    // ─────────────────────────────────────────────────────────────
+    infoItems: [
+      {
+        id: TopBarIconId.Clock,
+        iconKey: TopBarIconId.Clock,
+        label: 'Working : Monday - Friday, 9:00 AM - 5:00 PM',
+      },
+      {
+        id: TopBarIconId.Location,
+        iconKey: TopBarIconId.Location,
+        label: 'Hudson, Wisconsin(WI), 54016',
+      },
+    ],
+
+    // ─────────────────────────────────────────────────────────────
+    //  Authentication Link
+    // ─────────────────────────────────────────────────────────────
+    loginLink: {
+      label: 'Login / Register',
+      href: '#',
+      externalRef:
+        'https://www.figma.com/design/5NFuduWyIWOjRg87SYmccq/CourseHub---University--Online-Courses--School---Education-Figma-Template--Community-?node-id=6-1519',
+    },
+
+    // ─────────────────────────────────────────────────────────────
+    //  Social Media Links
+    // ─────────────────────────────────────────────────────────────
+    socials: [
+      {
+        platform: SocialPlatform.Facebook,
+        href: '#',
+        ariaLabel: 'Facebook',
+      },
+      {
+        platform: SocialPlatform.Twitter,
+        href: '#',
+        ariaLabel: 'Twitter',
+      },
+      {
+        platform: SocialPlatform.Instagram,
+        href: '#',
+        ariaLabel: 'Instagram',
+      },
+      {
+        platform: SocialPlatform.LinkedIn,
+        href: '#',
+        ariaLabel: 'LinkedIn',
+        externalRef:
+          'https://www.figma.com/design/Nx4sNsAeWJfmVVOXuDSmxJ?node-id=2-828',
+      },
+    ],
+  },
+
+  // ─────────────────────────────────────────────────────────────
+  //  Navigation Bar
+  // ─────────────────────────────────────────────────────────────
+  navbar: {
+
+    // ─────────────────────────────────────────────────────────────
+    //  Navigation Links
+    // ─────────────────────────────────────────────────────────────
+    links: [
+      { id: NavLinkId.Home, label: 'Home', href: '#', active: true },
+      { id: NavLinkId.AboutUs, label: 'About Us', href: '#' },
+      { id: NavLinkId.Courses, label: 'Courses', href: '#' },
+      { id: NavLinkId.Pages, label: 'Pages', href: '#' },
+      { id: NavLinkId.Blog, label: 'Blog', href: '#' },
+      { id: NavLinkId.Contact, label: 'Contact', href: '#' },
+    ],
+
+    // ─────────────────────────────────────────────────────────────
+    //  Primary CTA Button
+    // ─────────────────────────────────────────────────────────────
+    contactButton: {
+      label: 'Contact Us',
+      href: '#',
+    },
+  },
+};
