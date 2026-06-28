@@ -1,44 +1,68 @@
-// ─────────────────────────────────────────────────────────────
-// ABSTRACTS
-// ─────────────────────────────────────────────────────────────
-
-
- @use 'abstracts/colors';
- @use 'abstracts/_typography.scss';
-// @use 'abstracts/mixins';
-// @use 'abstracts/functions';
-// @use 'abstracts/breakpoints';
+import { HeroCardPosition, HeroDotPosition, HeroStudentSize } from '../enums';
 
 // ─────────────────────────────────────────────────────────────
-// THEMES
+// Hero Student Image
 // ─────────────────────────────────────────────────────────────
 
-@use 'themes/light';
-@use 'themes/dark';
+export interface IHeroStudentImage {
+  size: HeroStudentSize;
+  src: string;
+  alt: string;
+}
 
 // ─────────────────────────────────────────────────────────────
-// BASE
+// Hero Statistic Card
 // ─────────────────────────────────────────────────────────────
 
-@use 'base/reset';
-@use 'base/global';
-// @use 'base/animations';
-// @use 'base/utilities';
+export interface IHeroStatCard {
+  position: HeroCardPosition;
+  title: string;
+  subtitle: string;
+}
 
 // ─────────────────────────────────────────────────────────────
-// LAYOUT
+// Hero Decorative Dot
 // ─────────────────────────────────────────────────────────────
 
-@use 'layout/container';
-
-
+export interface IHeroDot {
+  position: HeroDotPosition;
+}
 
 // ─────────────────────────────────────────────────────────────
-// COMPONENTS
+// Hero Search Configuration
 // ─────────────────────────────────────────────────────────────
 
-// @use 'components/buttons';
-// @use 'components/cards';
-// @use 'components/forms';
+export interface IHeroSearchConfig {
+  placeholder: string;
+  ariaLabel: string;
+}
 
+// ─────────────────────────────────────────────────────────────
+// Hero Content
+// ─────────────────────────────────────────────────────────────
 
+export interface IHeroContent {
+  badgeText: string;
+  title: string;
+  subtitle: string;
+  search: IHeroSearchConfig;
+}
+
+// ─────────────────────────────────────────────────────────────
+// Hero Visual Configuration
+// ─────────────────────────────────────────────────────────────
+
+export interface IHeroVisualConfig {
+  students: IHeroStudentImage[];
+  cards: IHeroStatCard[];
+  dots: IHeroDot[];
+}
+
+// ─────────────────────────────────────────────────────────────
+// Hero Section Configuration
+// ─────────────────────────────────────────────────────────────
+
+export interface IHeroSectionConfig {
+  content: IHeroContent;
+  visual: IHeroVisualConfig;
+}
