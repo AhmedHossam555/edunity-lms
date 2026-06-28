@@ -134,3 +134,11 @@ Configuration is provided by `vercel.json`:
   - `npm run clean:cache`
 - Build/watch:
   - `npm run watch`
+
+
+
+
+----------
+hero-section
+about-section
+featured-courses-section
