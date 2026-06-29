@@ -21,7 +21,7 @@
 // ─────────────────────────────────────────────────────────────
 
 .footer {
-  background: #0e2a46;
+  background: var(--color-secondary);
   color: var(--footer-text);
   background-image: url('/assets/images/main-site-footer/bg/footer-bg.webp');
   background-repeat: no-repeat;

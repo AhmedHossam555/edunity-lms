@@ -1,0 +1,241 @@
+:host {
+  display: block;
+}
+
+.about {
+  padding: 6rem 0;
+  background: #fff;
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: center;
+  }
+
+  /* ========================= */
+  /* Gallery */
+  /* ========================= */
+
+  &__gallery {
+    position: relative;
+    display: grid;
+    grid-template-columns: 0.42fr 0.58fr;
+    gap: 18px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__image {
+    width: 100%;
+    object-fit: fill;
+    border-radius: 4px;
+
+    &--large {
+      grid-row: span 2;
+      height: 500px;
+    }
+
+    &--small {
+      height: 100%;
+    }
+  }
+
+  &__experience {
+    background: white;
+    border: 1px dashed #f1d8d8;
+    border-top: 3px solid #ff4a52;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.8rem;
+
+    .circle {
+      width: 86px;
+      height: 86px;
+      border-radius: 50%;
+      border: 4px solid #ff3344;
+      border-left-color: #edf2f7;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: #162d4b;
+      }
+    }
+
+    h4 {
+      margin: 0;
+      font-size: 0.95rem;
+      color: #4b5563;
+      text-align: center;
+      font-weight: 600;
+    }
+  }
+
+  /* Decorative shape */
+
+  &__shape {
+    position: absolute;
+    left: -30px;
+    top: -20px;
+
+    span {
+      display: block;
+      width: 28px;
+      height: 8px;
+      background: #3ed3b8;
+      border-radius: 20px;
+      margin-bottom: 6px;
+      transform-origin: left;
+    }
+
+    span:nth-child(1) {
+      transform: rotate(-35deg);
+    }
+
+    span:nth-child(2) {
+      transform: rotate(12deg);
+      width: 34px;
+    }
+
+    span:nth-child(3) {
+      transform: rotate(45deg);
+      width: 22px;
+    }
+  }
+
+  /* ========================= */
+  /* Content */
+  /* ========================= */
+
+  &__tag {
+    display: inline-block;
+    color: #ff5b4d;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.08em;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    font-size: clamp(2rem, 3vw, 3rem);
+    line-height: 1.15;
+    color: #13294b;
+    font-weight: 800;
+    margin-bottom: 1.5rem;
+    max-width: 560px;
+
+    span {
+      color: #ff4d43;
+    }
+  }
+
+  &__description {
+    color: #6b7280;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    max-width: 560px;
+  }
+
+  &__features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+    margin-bottom: 2.5rem;
+
+    .feature {
+      h4 {
+        margin-bottom: 0.8rem;
+        font-size: 1rem;
+        color: #102b4e;
+        font-weight: 700;
+      }
+
+      p {
+        color: #6b7280;
+        line-height: 1.8;
+        font-size: 0.95rem;
+      }
+    }
+  }
+
+  &__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 14px 14px 14px 28px;
+    border: none;
+    border-radius: 999px;
+    background: #33d6b3;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+
+    span {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #22c7a5;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 1.2rem;
+    }
+
+    &:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  /* ========================= */
+  /* Responsive */
+  /* ========================= */
+
+  @media (max-width: 992px) {
+    &__container {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+
+    &__gallery {
+      margin: auto;
+    }
+  }
+
+  @media (max-width: 768px) {
+    padding: 4rem 0;
+
+    &__gallery {
+      grid-template-columns: 1fr;
+      grid-template-rows: auto;
+      max-width: 340px;
+    }
+
+    &__image--large,
+    &__image--small {
+      grid-row: auto;
+      height: auto;
+    }
+
+    &__features {
+      grid-template-columns: 1fr;
+    }
+
+    &__title {
+      font-size: 2rem;
+    }
+
+    &__shape {
+      left: -10px;
+      top: -10px;
+    }
+  }
+}
