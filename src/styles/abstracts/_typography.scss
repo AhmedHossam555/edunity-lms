@@ -3,7 +3,6 @@
 // ─────────────────────────────────────────────────────────────
 
 @font-face {
-
   font-family: 'Sora';
 
   src: url('/assets/fonts/sora/Sora-Light.woff2') format('woff2');
@@ -15,9 +14,7 @@
   font-display: swap;
 }
 
-
 @font-face {
-
   font-family: 'Sora';
 
   src: url('/assets/fonts/sora/Sora-Regular.woff2') format('woff2');
@@ -29,9 +26,7 @@
   font-display: swap;
 }
 
-
 @font-face {
-
   font-family: 'Sora';
 
   src: url('/assets/fonts/sora/Sora-SemiBold.woff2') format('woff2');
@@ -43,9 +38,7 @@
   font-display: swap;
 }
 
-
 @font-face {
-
   font-family: 'Sora';
 
   src: url('/assets/fonts/sora/Sora-Bold.woff2') format('woff2');
@@ -57,9 +50,7 @@
   font-display: swap;
 }
 
-
 @font-face {
-
   font-family: 'Sora';
 
   src: url('/assets/fonts/sora/Sora-ExtraBold.woff2') format('woff2');
@@ -71,13 +62,11 @@
   font-display: swap;
 }
 
-
 // ─────────────────────────────────────────────────────────────
 // TYPOGRAPHY TOKENS
 // ─────────────────────────────────────────────────────────────
 
 :root {
-
   --font-family-base: 'Sora', sans-serif;
 
   --font-weight-light: 300;
@@ -85,5 +74,4 @@
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
   --font-weight-extra-bold: 800;
-
 }
