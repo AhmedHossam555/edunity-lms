@@ -1,106 +1,145 @@
 <section class="featured-courses section-padding">
   <div class="container">
 
-    <!-- Header -->
+    <!-- ========================================= -->
+    <!-- Header                                    -->
+    <!-- ========================================= -->
     <div class="featured-courses__header">
       <div class="featured-courses__heading">
+
         <span class="featured-courses__subtitle">
-          Top Popular Course
+          <span [innerHTML]="icons().subtitleIcon"></span>
+          {{ subtitle() }}
         </span>
 
         <h2 class="featured-courses__title">
-          Check Out Educate Features <br />
-          Win Any Exam
+          {{ title() }} <br />
+          {{ titleBreak() }}
         </h2>
+
       </div>
 
-      <app-button
-        [text]="'Browse Eduinity Courses'">
-      </app-button>
+      <app-button [text]="buttonText()" />
     </div>
 
-    <!-- Cards -->
+    <!-- ========================================= -->
+    <!-- Featured Courses Grid                     -->
+    <!-- ========================================= -->
     <div class="featured-courses__grid">
 
-      <article class="featured-courses__card">
+      @for (course of courses(); track trackByCourseId($index, course)) {
 
-        <div class="featured-courses__image-wrapper">
-          <img
-            class="featured-courses__image"
-            src=""
-            alt="Course">
+        <!-- ========================================= -->
+        <!-- Course Card                               -->
+        <!-- ========================================= -->
+        <article class="featured-courses__card">
 
-          <span class="featured-courses__badge">
-            Development
-          </span>
-        </div>
-
-        <div class="featured-courses__content">
-
-          <div class="featured-courses__rating">
-            ★★★★★
-            <span>(4.7)</span>
+          <!-- ========================================= -->
+          <!-- Course Thumbnail                          -->
+          <!-- ========================================= -->
+          <div class="featured-courses__image-wrapper">
+            <img
+              class="featured-courses__image"
+              [src]="course.imageSrc"
+              [alt]="course.imageAlt"
+            />
+            <span class="featured-courses__badge">
+              {{ course.badge }}
+            </span>
           </div>
 
-          <h3 class="featured-courses__course-title">
-            IT Statistics Data Science And Business Analysis
-          </h3>
+          <!-- ========================================= -->
+          <!-- Course Content                            -->
+          <!-- ========================================= -->
+          <div class="featured-courses__content">
 
-          <div class="featured-courses__meta">
-
-            <div class="featured-courses__meta-item">
-              <i></i>
-              Lesson 10
+            <!-- ========================================= -->
+            <!-- Rating                                   -->
+            <!-- ========================================= -->
+            <div class="featured-courses__rating">
+              <span
+                [innerHTML]="icons().ratingStars"
+                [attr.aria-label]="'Rating: ' + course.rating + ' out of 5'"
+              ></span>
+              <span>{{ course.ratingLabel }}</span>
             </div>
 
-            <div class="featured-courses__meta-item">
-              <i></i>
-              19h 30m
+            <!-- ========================================= -->
+            <!-- Course Title                             -->
+            <!-- ========================================= -->
+            <h3 class="featured-courses__course-title">
+              {{ course.title }}
+            </h3>
+
+            <!-- ========================================= -->
+            <!-- Course Meta                              -->
+            <!-- ========================================= -->
+            <div class="featured-courses__meta">
+              <div class="featured-courses__meta-item">
+                <span [innerHTML]="icons().lessonIcon"></span>
+                <span class="featured-courses__meta-item-text">
+                  {{ lessonLabel(course) }}
+                </span>
+
+                <span [innerHTML]="icons().clockIcon"></span>
+              </div>
+
+              <div class="featured-courses__meta-item">
+                <span class="featured-courses__meta-item-text">
+                  {{ course.meta.duration }}
+                </span>
+
+                <span [innerHTML]="icons().personIcon"></span>
+              </div>
+
+              <div class="featured-courses__meta-item">
+                <span class="featured-courses__meta-item-text">
+                  {{ studentLabel(course) }}
+                </span>
+              </div>
             </div>
 
-            <div class="featured-courses__meta-item">
-              <i></i>
-              Students 20+
-            </div>
-
-          </div>
-
-          <div class="featured-courses__divider"></div>
-
-          <div class="featured-courses__footer">
-
+            <!-- ========================================= -->
+            <!-- Course Author                            -->
+            <!-- ========================================= -->
             <div class="featured-courses__author">
               <img
                 class="featured-courses__avatar"
-                src=""
-                alt="Angela">
-
+                [src]="course.author.avatarSrc"
+                [alt]="course.author.avatarAlt"
+                width="30"
+                height="30"
+              />
               <span>
-                By <strong>Angela</strong> in Development
+                By <strong>{{ course.author.name }}</strong> in
+                {{ course.author.category }}
               </span>
             </div>
 
-            <div class="featured-courses__price">
-              <span class="featured-courses__price-current">
-                $60
-              </span>
+            <!-- ========================================= -->
+            <!-- Course Footer                             -->
+            <!-- ========================================= -->
+            <div class="featured-courses__footer">
+              <div class="featured-courses__price">
+                <span class="featured-courses__price-current">
+                  {{ formatPrice(course.price.current, course.price.currency) }}
+                </span>
 
-              <span class="featured-courses__price-old">
-                $120
-              </span>
+                <span class="featured-courses__price-old">
+                  {{ formatPrice(course.price.old, course.price.currency) }}
+                </span>
+              </div>
+
+              <button class="featured-courses__cart" type="button">
+                <span [innerHTML]="icons().cartIcon"></span>
+                Add To Cart
+              </button>
             </div>
-
-            <button class="featured-courses__cart">
-              Add To Cart
-            </button>
 
           </div>
-
-        </div>
-
-      </article>
+        </article>
+      }
 
     </div>
-
   </div>
 </section>
