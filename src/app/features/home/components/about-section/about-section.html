@@ -1,38 +1,49 @@
-<section class="about">
+<section class="about section-padding">
   <div class="container about__container">
-
     <!-- ===================== -->
     <!-- Left Images -->
     <!-- ===================== -->
 
     <div class="about__gallery">
-
       <div class="about__shape">
-        <span></span>
-        <span></span>
-        <span></span>
+        <img
+          class="about__shape-image"
+          [src]="config().images[imageKey.StarBurstDecor].src"
+          [alt]="config().images[imageKey.StarBurstDecor].alt"
+          loading="lazy"
+          [width]="config().images[imageKey.StarBurstDecor].width"
+          [height]="config().images[imageKey.StarBurstDecor].height"
+        />
       </div>
 
       <img
-        src="/assets/images/home/about-section/images/student-profile-about.webp"
-        alt="Student"
         class="about__image about__image--large"
+        [src]="config().images[imageKey.StudentProfile].src"
+        [alt]="config().images[imageKey.StudentProfile].alt"
+        loading="lazy"
+        [width]="config().images[imageKey.StudentProfile].width"
+        [height]="config().images[imageKey.StudentProfile].height"
       />
 
       <div class="about__experience">
-        <div class="circle">
-          <span>35+</span>
-        </div>
-
-        <h4>Years Experience</h4>
+        <img
+          class="about__image about__image--badge"
+          [src]="config().images[imageKey.ExperienceBadge].src"
+          [alt]="config().images[imageKey.ExperienceBadge].alt"
+          loading="lazy"
+          [width]="config().images[imageKey.ExperienceBadge].width"
+          [height]="config().images[imageKey.ExperienceBadge].height"
+        />
       </div>
 
       <img
-        src="/assets/images/home/about-section/images/students-collaborating-about.webp"
-        alt="Students"
         class="about__image about__image--small"
+        [src]="config().images[imageKey.StudentsCollaborating].src"
+        [alt]="config().images[imageKey.StudentsCollaborating].alt"
+        loading="lazy"
+        [width]="config().images[imageKey.StudentsCollaborating].width"
+        [height]="config().images[imageKey.StudentsCollaborating].height"
       />
-
     </div>
 
     <!-- ===================== -->
@@ -40,56 +51,30 @@
     <!-- ===================== -->
 
     <div class="about__content">
-
       <span class="about__tag">
-        ABOUT US
+        <span [innerHTML]="tagIconSvg"></span>
+        <span class="about__tag-text">{{ config().tagText }}</span>
       </span>
 
       <h2 class="about__title">
-        Benefit From Our Online
-        Learning Expertise Earn
-        <span>Professional</span>
+        {{ config().title }}
+        <span class="about__title-highlight">{{ config().titleHighlight }}</span>
       </h2>
 
       <p class="about__description">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
-        eiusmod tempor incididunt ut labore.
+        {{ config().description }}
       </p>
 
       <div class="about__features">
-
-        <div class="feature">
-          <h4>OUR MISSION:</h4>
-
-          <p>
-            Suspendisse ultrice gravida dictum fusce placerat ultricies
-            integer quis auctor elit sed vulputate mi sit.
-          </p>
-        </div>
-
-        <div class="feature">
-          <h4>OUR VISSION:</h4>
-
-          <p>
-            Suspendisse ultrice gravida dictum fusce placerat ultricies
-            integer quis auctor elit sed vulputate mi sit.
-          </p>
-        </div>
-
+        @for (feature of config().features; track feature.title) {
+          <div class="about__feature">
+            <h4 class="about__feature-title">{{ feature.title }}</h4>
+            <p class="about__feature-text">{{ feature.text }}</p>
+          </div>
+        }
       </div>
 
-      <button class="about__btn">
-        Admission Open
-
-        <span>
-          →
-        </span>
-      </button>
-
+      <app-button [text]="config().cta.text"></app-button>
     </div>
-
   </div>
 </section>
-
-
-<app-button [text]="'oaofewo'"></app-button>
