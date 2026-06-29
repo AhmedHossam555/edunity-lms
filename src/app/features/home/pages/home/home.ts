@@ -1,9 +1,8 @@
 import { Component } from '@angular/core';
-import { HeroSection, AboutSection } from "../../components";
-
+import { HeroSection, AboutSection, FeaturedCoursesSection } from "../../components";
 @Component({
   selector: 'app-home',
-  imports: [HeroSection, AboutSection],
+  imports: [HeroSection, AboutSection, FeaturedCoursesSection],
   templateUrl: './home.html',
   styleUrl: './home.scss',
 })
