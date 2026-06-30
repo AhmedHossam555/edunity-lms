@@ -1,4 +1,25 @@
-<app-hero-section/>
-<app-about-section/>
-<app-featured-courses-section/>
-<app-stats-section/>
+<app-hero-section />
+
+@defer (on viewport; prefetch on idle) {
+  <app-about-section />
+} @placeholder {
+  <section class="section-padding"></section>
+}
+
+@defer (on viewport; prefetch on idle) {
+  <app-featured-courses-section />
+} @placeholder {
+  <section class="section-padding"></section>
+}
+
+@defer (on viewport; prefetch on idle) {
+  <app-stats-section />
+} @placeholder {
+  <section class="section-padding"></section>
+}
+
+@defer (on viewport; prefetch on idle) {
+  <app-feature-section />
+} @placeholder {
+  <section class="section-padding"></section>
+}

@@ -1,0 +1,126 @@
+.features {
+  position: relative;
+  overflow: hidden;
+  background:
+    #f2f2f2
+    url('/assets/images/home/feature-section/bg/feature-section-bg.png')
+    center / cover no-repeat;
+
+  &__header {
+    position: relative;
+    margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    text-align: center;
+    z-index: 2;
+  }
+
+  &__subtitle {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.125rem;
+    margin-bottom: 0.625rem;
+
+    color: #2fc7a1;
+    font-size: 0.875rem;
+    font-weight: 400;
+    line-height: 2rem;
+    text-transform: uppercase;
+  }
+
+  &__title {
+    margin-bottom: clamp(2.5rem, 5vw, 3.75rem);
+
+    color: #0e2a46;
+    font-size: clamp(2rem, 4vw, 2.625rem);
+    font-weight: 700;
+    line-height: 1.18;
+    text-transform: capitalize;
+  }
+
+  &__grid {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1.5rem, 3vw, 2rem);
+    z-index: 2;
+  }
+}
+
+.feature-card {
+  padding: clamp(2rem, 4vw, 2.5rem) clamp(1.5rem, 3vw, 2rem);
+
+  background: #fff;
+  text-align: center;
+
+  box-shadow: 0 0.625rem 2.1875rem rgba(0, 0, 0, 0.08);
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 1.25rem 2.8125rem rgba(0, 0, 0, 0.12);
+  }
+
+  &__icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 5.625rem;
+    height: 5.625rem;
+    margin: 0 auto 1.5rem;
+
+    border-radius: 50%;
+    background-color: #2fc7a1;
+
+    outline: 0.0625rem dashed #2fc7a1;
+    outline-offset: 0.625rem;
+  }
+
+  &__title {
+    margin-bottom: clamp(1.25rem, 3vw, 2.125rem);
+
+    color: #0e2a46;
+    font-size: clamp(1.25rem, 2vw, 1.375rem);
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  &__description {
+    margin-bottom: clamp(1.5rem, 3vw, 1.875rem);
+
+    color: #4d5756;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.875;
+  }
+}
+
+/* ================= Responsive ================= */
+
+@media (max-width: 75rem) {
+  .features {
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (max-width: 48rem) {
+  .features {
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__title {
+      br {
+        display: none;
+      }
+    }
+  }
+
+  .feature-card {
+    max-width: 26.25rem;
+    margin-inline: auto;
+  }
+}

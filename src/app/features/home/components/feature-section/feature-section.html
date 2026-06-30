@@ -1,0 +1,52 @@
+<!-- ========================================= -->
+<!-- Features Section                          -->
+<!-- ========================================= -->
+<section class="features section-padding">
+  <div class="container">
+
+    <!-- ========================================= -->
+    <!-- Section Header                            -->
+    <!-- ========================================= -->
+    <div class="features__header">
+      <span class="features__subtitle">
+        <span [innerHTML]="subtitleIcon"></span>
+        {{ config().subtitleText }}
+        <span [innerHTML]="subtitleIcon"></span>
+      </span>
+
+      <h2 class="features__title">
+        {{ config().titleLine1 }}
+        <br />
+        {{ config().titleLine2 }}
+      </h2>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Features Grid                             -->
+    <!-- ========================================= -->
+    <div class="features__grid">
+      @for (item of cards(); track trackById($index, item)) {
+
+        <!-- ========================================= -->
+        <!-- Feature Card                              -->
+        <!-- ========================================= -->
+        <article class="feature-card">
+          <div
+            class="feature-card__icon"
+            [innerHTML]="item.icon"
+          ></div>
+
+          <h3 class="feature-card__title">
+            {{ item.title }}
+          </h3>
+
+          <p class="feature-card__description">
+            {{ item.description }}
+          </p>
+
+          <app-button [text]="item.buttonText" />
+        </article>
+      }
+    </div>
+  </div>
+</section>
