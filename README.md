@@ -1,4 +1,5 @@
 # edunity-lms
+
 A modern Learning Management System (LMS) built with Angular 21, designed to deliver a seamless online learning experience. The platform includes course management, instructor profiles, interactive quizzes, student dashboards, progress tracking, and responsive UI components.
 
 The application leverages Angular 21 with Server-Side Rendering (SSR) for improved performance, SEO, and faster initial page loads, powered by an Express.js server. It follows a scalable, component-based architecture and modern Angular best practices to ensure maintainability, accessibility, and an optimized user experience across all devices.
@@ -135,3 +136,13 @@ Configuration is provided by `vercel.json`:
   - `npm run clean:cache`
 - Build/watch:
   - `npm run watch`
+
+  ***
+
+├── call-to-action-section/
+├── exam-preparation-section/
+├── testimonials-section/
+├── upcoming-events-section/
+├── instructors-section/
+├── latest-blog-section/
+└── newsletter-section/

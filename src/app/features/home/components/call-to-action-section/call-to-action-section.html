@@ -1,0 +1,33 @@
+<section class="cta section-padding">
+  <div class="container">
+    <div class="cta__wrapper">
+      <!-- ========================================= -->
+      <!-- CTA Content                              -->
+      <!-- ========================================= -->
+      <div class="cta__content">
+        <span class="cta__subtitle">
+          {{ vm().subtitle }}
+        </span>
+
+        <h2 class="cta__title">
+          {{ vm().title }}
+          <br />
+          {{ vm().phoneNumber }}
+        </h2>
+
+        <app-button [text]="vm().button.text" />
+      </div>
+
+      <!-- ========================================= -->
+      <!-- CTA Video                                -->
+      <!-- ========================================= -->
+      <div class="cta__video">
+        <button type="button" class="cta__play" aria-label="Play video">▶</button>
+
+        <a href="#" class="cta__watch">
+          {{ vm().watchLabel }}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
