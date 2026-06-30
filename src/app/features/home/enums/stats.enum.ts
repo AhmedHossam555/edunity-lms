@@ -1,8 +1,6 @@
-/**
- * stats.types.ts
- * Enums and interfaces for the "Stats" section.
- * Interface naming convention: all interfaces are prefixed with `I`.
- */
+// ─────────────────────────────────────────────────────────────
+// Stats progress keys
+// ─────────────────────────────────────────────────────────────
 
 /** Keys used to identify each progress metric (avoids magic strings in templates/config). */
 export enum StatsProgressKey {
@@ -11,4 +9,3 @@ export enum StatsProgressKey {
   Engaging = 'engaging',
   StudentCommunity = 'studentCommunity',
 }
-

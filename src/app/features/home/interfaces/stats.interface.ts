@@ -1,11 +1,19 @@
 import { StatsProgressKey } from "../enums";
 
+// ─────────────────────────────────────────────────────────────
+// Progress
+// ─────────────────────────────────────────────────────────────
+
 /** A single animated progress bar entry. */
 export interface IStatsProgressItem {
   key: StatsProgressKey;
   label: string;
-  value: number; // 0 - 100
+  value: number; // 0–100
 }
+
+// ─────────────────────────────────────────────────────────────
+// Image
+// ─────────────────────────────────────────────────────────────
 
 /** Right-side image block (image + decorative frame). */
 export interface IStatsImage {
@@ -13,7 +21,11 @@ export interface IStatsImage {
   alt: string;
 }
 
-/** Full textual + visual content for the Stats section. */
+// ─────────────────────────────────────────────────────────────
+// Section content
+// ─────────────────────────────────────────────────────────────
+
+/** Full textual and visual content for the Stats section. */
 export interface IStatsContent {
   subtitle: string;
   title: string;
