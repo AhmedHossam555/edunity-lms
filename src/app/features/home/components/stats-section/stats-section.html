@@ -2,63 +2,37 @@
   <div class="container stats__container">
     <!-- Left Content -->
     <div class="stats__content">
-      <span class="stats__subtitle">OUR STATUS VALUES</span>
+      <span class="stats__subtitle">
+        <span [innerHTML]="subtitleIcon"></span>
+        {{ content().subtitle }}
+      </span>
 
       <h2 class="stats__title">
-        Our Classroom Is A Very Different
-        <span>School</span>
-        Than All The Others
+        {{ content().title }}
+        <span>{{ content().titleHighlight }}</span>
+        {{ content().titleSuffix }}
       </h2>
 
       <p class="stats__description">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-        tempor incididunt ut labore.
+        {{ content().description }}
       </p>
 
       <div class="stats__progress-list">
-        <div class="stats__progress">
-          <div class="stats__progress-header">
-            <span>Case study success</span>
-            <span>90%</span>
-          </div>
+        @for (item of progressList(); track trackByProgressKey($index, item)) {
+          <div class="stats__progress">
+            <div class="stats__progress-header">
+              <span class="stats__progress-label">{{ item.label }}</span>
+              <span class="stats__progress-value">{{ item.value }}%</span>
+            </div>
 
-          <div class="stats__progress-bar">
-            <span style="width: 90%"></span>
+            <div class="stats__progress-bar">
+              <span
+                class="stats__progress-fill"
+                [style.width.%]="item.value"
+              ></span>
+            </div>
           </div>
-        </div>
-
-        <div class="stats__progress">
-          <div class="stats__progress-header">
-            <span>Happy student</span>
-            <span>75%</span>
-          </div>
-
-          <div class="stats__progress-bar">
-            <span style="width: 75%"></span>
-          </div>
-        </div>
-
-        <div class="stats__progress">
-          <div class="stats__progress-header">
-            <span>Engaging</span>
-            <span>89%</span>
-          </div>
-
-          <div class="stats__progress-bar">
-            <span style="width: 89%"></span>
-          </div>
-        </div>
-
-        <div class="stats__progress">
-          <div class="stats__progress-header">
-            <span>Student Community</span>
-            <span>85%</span>
-          </div>
-
-          <div class="stats__progress-bar">
-            <span style="width: 85%"></span>
-          </div>
-        </div>
+        }
       </div>
     </div>
 
@@ -68,8 +42,8 @@
 
       <img
         class="stats__image"
-        src="/assets/images/home/stats-section/image/students_on_stairs.webp"
-        alt="Students"
+        [src]="content().image.src"
+        [alt]="content().image.alt"
         loading="lazy"
       />
     </div>
