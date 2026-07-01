@@ -1,0 +1,63 @@
+<section class="exam section-padding">
+  <div class="container">
+    <!-- ========================================= -->
+    <!-- Section Header                            -->
+    <!-- ========================================= -->
+    <div class="exam__header">
+      <span class="exam__subtitle">
+        <span class="exam__subtitle-icon" [innerHTML]="subtitleIcon()"></span>
+        {{ header().subtitle }}
+        <span class="exam__subtitle-icon" [innerHTML]="subtitleIcon()"></span>
+      </span>
+
+      <h2 class="exam__title">{{ header().title }}</h2>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Exam Cards                                -->
+    <!-- ========================================= -->
+    <div class="exam__cards">
+      @for (card of cards(); track card.image) {
+        <article
+          class="exam-card"
+          [class.exam-card--dark]="card.variant === ExamCardVariant.Dark"
+          [class.exam-card--green]="card.variant === ExamCardVariant.Green"
+        >
+          <!-- ========================================= -->
+          <!-- Card Content                               -->
+          <!-- ========================================= -->
+          <div class="exam-card__content">
+            <p class="exam-card__small">{{ card.smallText }}</p>
+
+            <h3
+              class="exam-card__heading"
+              [innerHTML]="sanitizeHeading(card.heading)"
+            ></h3>
+
+            <!-- ========================================= -->
+            <!-- Card Action                               -->
+            <!-- ========================================= -->
+            @if (card.button.background && card.button.backgroundIcon) {
+              <app-button
+                [text]="card.button.text"
+                [background]="card.button.background"
+                [backgroundIcon]="card.button.backgroundIcon"
+              />
+            } @else {
+              <app-button [text]="card.button.text" />
+            }
+          </div>
+
+          <!-- ========================================= -->
+          <!-- Card Image                                 -->
+          <!-- ========================================= -->
+          <img
+            [src]="card.image"
+            [alt]="card.imageAlt"
+            class="exam-card__image"
+          />
+        </article>
+      }
+    </div>
+  </div>
+</section>
