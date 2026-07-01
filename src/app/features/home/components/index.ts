@@ -5,3 +5,4 @@ export * from './stats-section';
 export * from './feature-section';
 export * from './call-to-action-section';
 export * from './exam-preparation-section';
+export * from './testimonials-section';

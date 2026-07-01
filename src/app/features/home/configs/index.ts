@@ -5,3 +5,4 @@ export * from './stats.config';
 export * from './feature-section.config';
 export * from './call-to-action-section.config';
 export * from './exam-preparation-section.config';
+export * from './testimonials-section.config';

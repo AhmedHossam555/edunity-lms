@@ -1,0 +1,80 @@
+<section class="testimonials">
+  <!-- ========================================= -->
+  <!-- Top Strip                                 -->
+  <!-- ========================================= -->
+  <div class="testimonials__strip">
+    <div class="testimonials__strip-track">
+      @for (item of marqueeItems(); track $index) {
+        <span>{{ config().marquee.text }} {{ config().marquee.separator }}</span>
+      }
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="testimonials__wrapper">
+      <!-- ========================================= -->
+      <!-- Left Image                                -->
+      <!-- ========================================= -->
+      <div class="testimonials__image">
+        <img [src]="config().image.src" [alt]="config().image.alt" />
+      </div>
+
+      <!-- ========================================= -->
+      <!-- Testimonial Content                       -->
+      <!-- ========================================= -->
+      <div class="testimonials__content">
+        <!-- ========================================= -->
+        <!-- Background Shape                          -->
+        <!-- ========================================= -->
+        <div class="testimonials__shape"></div>
+
+        <!-- ========================================= -->
+        <!-- Testimonial Card                          -->
+        <!-- ========================================= -->
+        <div class="testimonials__card">
+          <!-- ========================================= -->
+          <!-- Quote Icon                                -->
+          <!-- ========================================= -->
+          <span class="testimonials__quote" [innerHTML]="quoteIcon"></span>
+
+          <!-- ========================================= -->
+          <!-- Testimonial Text                          -->
+          <!-- ========================================= -->
+          <p class="testimonials__text">
+            {{ config().testimonial.text }}
+          </p>
+
+          <!-- ========================================= -->
+          <!-- Author Information                        -->
+          <!-- ========================================= -->
+          <div class="testimonials__author">
+            <img
+              [src]="config().testimonial.author.avatarUrl"
+              class="testimonials__avatar"
+              [alt]="config().testimonial.author.name"
+            />
+
+            <div>
+              <h4 class="testimonials__name">
+                {{ config().testimonial.author.name }}
+              </h4>
+
+              <span class="testimonials__role">
+                {{ config().testimonial.author.role }}
+              </span>
+            </div>
+          </div>
+
+          <!-- ========================================= -->
+          <!-- Pagination Dots                           -->
+          <!-- ========================================= -->
+          <div class="testimonials__dots">
+            @for (dot of dotsArray(); track $index) {
+              <span [class.active]="$index === config().dots.activeIndex"></span>
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

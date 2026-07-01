@@ -1,0 +1,208 @@
+.testimonials {
+  position: relative;
+  overflow: hidden;
+  background: #08233d;
+  background-image: url('/assets/images/home/testimonials-section/bgs/testimonials-section-bg.png');
+  background-size: cover;
+
+  &__strip {
+    height: 6.25rem; // 100px
+    background: #fe543d;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  &__strip-track {
+    display: flex;
+    gap: clamp(2.5rem, 4vw, 4.375rem); // 40px → 70px
+    white-space: nowrap;
+    color: #fff;
+    font-weight: 400;
+    font-size: clamp(1.75rem, 2.5vw, 2.1875rem); // 28px → 35px
+    line-height: 6.25rem; // 100px
+    animation: marquee 18s linear infinite;
+  }
+
+  &__wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-height: clamp(34rem, 45vw, 40rem); // 544px → 640px
+  }
+
+  /* ---------------- image ---------------- */
+
+  &__image {
+    width: 43%;
+    z-index: 1;
+
+    img {
+      width: 100%;
+      display: block;
+    }
+  }
+
+  /* ---------------- content ---------------- */
+
+  &__content {
+    position: relative;
+    flex: 1;
+    margin-left: -4.375rem; // -70px
+    display: flex;
+    justify-content: center;
+    z-index: 2;
+  }
+
+  /* green triangle */
+
+  &__shape {
+    position: absolute;
+    right: -1.875rem; // -30px
+    bottom: -1.875rem; // -30px
+
+    width: 0;
+    height: 0;
+
+    border-style: solid;
+    border-width: 0 0 18.75rem 20rem; // 300px 320px
+    border-color: transparent transparent #39d8b8 transparent;
+  }
+
+  /* ---------------- card ---------------- */
+
+  &__card {
+    position: relative;
+    width: min(100%, 49.375rem); // 790px
+    background: url('/assets/images/home/testimonials-section/bgs/testemation-card-bg.png');
+    padding: clamp(1.75rem, 2vw, 2.625rem) clamp(1.75rem, 2vw, 2.625rem) clamp(1.5rem, 2vw, 2.25rem);
+    overflow: hidden;
+    border-radius: 0.125rem; // 2px
+    z-index: 2;
+  }
+
+  &__quote {
+    position: relative;
+    z-index: 2;
+    color: rgba(255, 255, 255, 0.35);
+    font-size: clamp(2rem, 3vw, 2.5rem); // 32px → 40px
+    line-height: 1;
+  }
+
+  &__text {
+    position: relative;
+    z-index: 2;
+    margin: 1.125rem 0 2.125rem; // 18px 34px
+    color: rgba(255, 255, 255, 0.88);
+    line-height: 2rem;
+    max-width: 38.773rem; // 620.37px
+    font-size: clamp(0.9375rem, 1vw, 1.0625rem); // 15px → 17px
+  }
+
+  &__author {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    gap: 0.875rem; // 14px
+  }
+
+  &__avatar {
+    width: clamp(3rem, 4vw, 3.625rem); // 48px → 58px
+    height: clamp(3rem, 4vw, 3.625rem);
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__name {
+    color: #fff;
+    font-size: clamp(1rem, 1.5vw, 1.0625rem); // 16px → 17px
+    margin-bottom: 0.25rem; // 4px
+  }
+
+  &__role {
+    color: #bdbdbd;
+    font-size: clamp(0.75rem, 1vw, 0.8125rem); // 12px → 13px
+  }
+
+  /* ---------------- dots ---------------- */
+
+  &__dots {
+    position: absolute;
+    right: 1.375rem; // 22px
+    bottom: 1.125rem; // 18px
+    display: flex;
+    gap: 0.5rem; // 8px
+    z-index: 3;
+
+    span {
+      width: 0.5rem; // 8px
+      height: 0.5rem;
+      border-radius: 50%;
+      border: 0.0625rem solid #fff; // 1px
+    }
+
+    .active {
+      background: #fff;
+    }
+  }
+}
+
+/* marquee */
+
+@keyframes marquee {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* responsive */
+
+@media (max-width: 61.9375rem) {
+  // 991px
+  .testimonials {
+    &__wrapper {
+      flex-direction: column;
+      padding: 4.375rem 0; // 70px
+    }
+
+    &__image {
+      width: 100%;
+    }
+
+    &__content {
+      width: 100%;
+      margin-left: 0;
+      margin-top: -5rem; // -80px
+    }
+
+    &__card {
+      width: 100%;
+    }
+
+    &__shape {
+      display: none;
+    }
+  }
+}
+
+@media (max-width: 48rem) {
+  // 768px
+  .testimonials {
+    &__card {
+      padding: 1.875rem; // 30px
+    }
+
+    &__card::after {
+      width: 9.375rem; // 150px
+    }
+
+    &__text {
+      max-width: 100%;
+    }
+  }
+}
