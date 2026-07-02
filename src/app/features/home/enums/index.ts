@@ -7,3 +7,4 @@ export * from './exam-preparation-section.enum';
 export * from './testimonials-section.enum';
 export * from './events-section.enum';
 export * from './instructors-section.enum';
+export * from './blogs-section.enum';

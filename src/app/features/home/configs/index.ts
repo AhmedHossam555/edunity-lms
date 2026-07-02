@@ -8,3 +8,4 @@ export * from './exam-preparation-section.config';
 export * from './testimonials-section.config';
 export * from './events-section.config';
 export * from './instructors-section.config';
+export * from './blogs-section.config';
