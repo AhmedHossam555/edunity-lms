@@ -140,7 +140,5 @@ Configuration is provided by `vercel.json`:
   ***
 
 
-├── upcoming-events-section/
-├── instructors-section/
-├── latest-blog-section/
-└── newsletter-section/
+├── blog-section/
+ 

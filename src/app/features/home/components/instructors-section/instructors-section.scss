@@ -1,0 +1,166 @@
+.instructors {
+  position: relative;
+  min-height: 619.09px;
+  display: flex;
+  justify-content: center;
+  background-color: #118a80;
+  background-image: url('/assets/images/home/instructors-section/bg/instructors-section-bg.webp');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  .container {
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    text-align: center;
+
+    @media (max-width: 1200px) {
+      position: relative;
+      z-index: 2;
+    }
+  }
+
+  /* ---------------- Header ---------------- */
+
+  &__header {
+    text-align: center;
+    margin-bottom: clamp(2.5rem, 5vw, 3.75rem); /* 40-60px */
+  }
+
+  &__subtitle {
+    display: inline-flex;
+    align-items: center;
+    color: #fe543d;
+    font-size: clamp(0.75rem, 1vw, 0.875rem); /* 12-14px */
+    font-weight: 400;
+    text-transform: uppercase;
+    line-height: 2rem; /* 32px */
+    margin-bottom: clamp(0.75rem, 1.5vw, 1.25rem); /* 12-20px */
+  }
+
+  &__title {
+    color: #fff;
+    font-size: clamp(2rem, 4vw, 2.8125rem); /* 32-45px */
+    font-weight: 700;
+    line-height: clamp(2.2rem, 4.5vw, 3.09375rem); /* 35.2-49.5px */
+    margin-bottom: clamp(2rem, 4vw, 3.5rem); /* 32-56px */
+  }
+
+  /* ---------------- Grid ---------------- */
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem); /* 16-24px */
+  }
+
+  /* ---------------- Card ---------------- */
+
+  &__card {
+    border-radius: 0.3125rem; /* 5px */
+    overflow: hidden;
+    transition: 0.35s;
+    box-shadow: 0 1.25rem 2.1875rem rgba(0, 0, 0, 0.08); /* 20px 35px */
+
+    &:hover {
+      transform: translateY(-0.5rem); /* -8px */
+
+      .instructors__image {
+        display: block;
+        transform: scale(1.05);
+      }
+
+      .instructors__share {
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  &__image-wrapper {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    overflow: hidden;
+    line-height: 0;
+  }
+
+  &__image {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transform: scale(1.01);
+    transition: 0.4s;
+  }
+
+  /* ---------------- Footer / Content ---------------- */
+
+  &__content {
+    position: relative;
+    background: #0e2a46;
+    text-align: center;
+    padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1rem, 2vw, 1.25rem) clamp(1rem, 2vw, 1.5rem); /* 24-36px, 16-20px, 16-24px */
+  }
+
+  &__share {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    transform: translate(-50%, -50%);
+    width: clamp(2.5rem, 4vw, 2.5rem); /* 40px */
+    height: clamp(2.5rem, 4vw, 2.5rem); /* 40px */
+    border: none;
+    border-radius: 50%;
+    background: #fe543d;
+    color: #fff;
+    cursor: pointer;
+    transition: 0.35s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: clamp(1rem, 1.5vw, 1.125rem); /* 16-18px */
+    font-weight: 700;
+
+    svg {
+      width: clamp(0.75rem, 1.2vw, 0.9375rem); /* 12-15px */
+      height: clamp(0.75rem, 1.2vw, 1.0625rem); /* 12-17px */
+    }
+  }
+
+  &__name {
+    margin-bottom: 0.5rem; /* 8px */
+    color: #fff;
+    font-size: clamp(1rem, 1.5vw, 1.125rem); /* 16-18px */
+    font-weight: 700;
+    line-height: 1.5rem; /* 24px */
+    text-transform: uppercase;
+  }
+
+  &__role {
+    color: #fe543d;
+    font-size: clamp(0.875rem, 1.2vw, 0.9375rem); /* 14-15px */
+    font-weight: 400;
+    line-height: auto;
+  }
+
+  /* ---------------- Responsive ---------------- */
+
+  @media (max-width: 992px) {
+    &__grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  @media (max-width: 576px) {
+    padding: 4.375rem 0; /* 70px */
+
+    &__grid {
+      grid-template-columns: 1fr;
+    }
+
+    &__title {
+      font-size: 2rem; /* Kept as specified in original */
+    }
+  }
+}

@@ -1,0 +1,68 @@
+<!-- ========================================= -->
+<!-- Instructors Section                       -->
+<!-- ========================================= -->
+<section class="instructors section-padding">
+  <div class="container">
+
+    <!-- ========================================= -->
+    <!-- Section Heading                           -->
+    <!-- ========================================= -->
+    <div class="instructors__header">
+      <span class="instructors__subtitle">
+        <span [innerHTML]="decorativeIconLeft"></span>
+        {{ content.subtitle }}
+        <span [innerHTML]="decorativeIconRight"></span>
+      </span>
+
+      <h2 class="instructors__title">
+        {{ content.title }}
+      </h2>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Instructors Grid                          -->
+    <!-- ========================================= -->
+    <div class="instructors__grid">
+      @for (instructor of instructors(); track instructor.id) {
+
+        <!-- ========================================= -->
+        <!-- Instructor Card                           -->
+        <!-- ========================================= -->
+        <article class="instructors__card">
+
+          <!-- Image -->
+          <div class="instructors__image-wrapper">
+            <img
+              [src]="instructor.image"
+              [alt]="instructor.alt"
+              class="instructors__image"
+            />
+          </div>
+
+          <!-- Content -->
+          <div class="instructors__content">
+
+            <!-- Share Button -->
+            <button class="instructors__share">
+              <span [innerHTML]="shareIcon"></span>
+            </button>
+
+            <!-- Name -->
+            <h3 class="instructors__name">
+              {{ instructor.name }}
+            </h3>
+
+            <!-- Role -->
+            <span class="instructors__role">
+              {{ instructor.role }}
+            </span>
+
+          </div>
+        </article>
+      }
+    </div>
+
+  </div>
+</section>
+
+<div class="section-padding"></div>

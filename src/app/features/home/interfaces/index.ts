@@ -7,3 +7,4 @@ export * from './call-to-action-section.interface';
 export * from './exam-preparation-section.interface';
 export * from './testimonials-section.interface';
 export * from './events-section.interface';
+export * from './instructors-section.interface';

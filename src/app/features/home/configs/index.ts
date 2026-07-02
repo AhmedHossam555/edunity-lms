@@ -7,3 +7,4 @@ export * from './call-to-action-section.config';
 export * from './exam-preparation-section.config';
 export * from './testimonials-section.config';
 export * from './events-section.config';
+export * from './instructors-section.config';
