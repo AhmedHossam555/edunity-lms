@@ -139,9 +139,7 @@ Configuration is provided by `vercel.json`:
 
   ***
 
-├── call-to-action-section/
-├── exam-preparation-section/
-├── testimonials-section/
+
 ├── upcoming-events-section/
 ├── instructors-section/
 ├── latest-blog-section/

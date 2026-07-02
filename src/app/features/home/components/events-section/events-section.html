@@ -1,0 +1,47 @@
+<section class="events section-padding">
+  <div class="container">
+    <div class="events__wrapper">
+
+      <!-- ========================================= -->
+      <!-- Content                                   -->
+      <!-- ========================================= -->
+      <div class="events__content">
+        <span class="events__subtitle">
+          <span
+            class="events__subtitle-icon"
+            [innerHTML]="subtitleIconHtml"
+          ></span>
+          {{ config().content.subtitle.text }}
+        </span>
+
+        <h2 class="events__title">{{ config().content.title }}</h2>
+
+        <p class="events__intro">{{ config().content.intro }}</p>
+
+        <p class="events__description">
+          {{ config().content.description }}
+        </p>
+
+        <app-button [text]="config().content.buttonText"></app-button>
+      </div>
+
+      <!-- ========================================= -->
+      <!-- Media                                     -->
+      <!-- ========================================= -->
+      <div class="events__media">
+        <img
+          [src]="config().media.imageSrc"
+          [alt]="config().media.imageAlt"
+          class="events__image"
+        />
+
+        <div
+          class="events__image-decoration"
+          aria-hidden="true"
+          [innerHTML]="decorationIconHtml"
+        ></div>
+      </div>
+
+    </div>
+  </div>
+</section>

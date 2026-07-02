@@ -6,3 +6,4 @@ export * from './feature-section';
 export * from './call-to-action-section';
 export * from './exam-preparation-section';
 export * from './testimonials-section';
+export * from './events-section';
