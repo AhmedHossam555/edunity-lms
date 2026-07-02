@@ -138,7 +138,4 @@ Configuration is provided by `vercel.json`:
   - `npm run watch`
 
   ***
-
-
-├── blog-section/
  

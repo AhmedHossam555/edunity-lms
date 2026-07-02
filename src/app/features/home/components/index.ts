@@ -8,3 +8,4 @@ export * from './exam-preparation-section';
 export * from './testimonials-section';
 export * from './events-section';
 export * from './instructors-section';
+export * from './blogs-section';
