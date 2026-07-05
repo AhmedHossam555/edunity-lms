@@ -1,7 +1,15 @@
+// ==========================================
+// Block: cta
+// ==========================================
+
 .cta {
   background:
     url('/assets/images/home/call-to-action-section/bg/cta-bg.png')
     center / cover no-repeat;
+
+  // ==========================================
+  // Element: wrapper
+  // ==========================================
 
   &__wrapper {
     position: relative;
@@ -11,70 +19,118 @@
     gap: clamp(2rem, 5vw, 5rem);
     min-height: 20rem;
     overflow: hidden;
+
+    @media (max-width: 62rem) {
+      flex-direction: column;
+      justify-content: center;
+      text-align: center;
+    }
+
+    @media (max-width: 36rem) {
+      gap: 2rem;
+    }
   }
+
+  // ==========================================
+  // Element: content
+  // ==========================================
 
   &__content {
     flex: 1;
     max-width: 43.75rem;
     z-index: 1;
+    animation: ctaFadeInLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+
+    @media (max-width: 62rem) {
+      max-width: 100%;
+    }
   }
+
+  // ==========================================
+  // Element: subtitle
+  // ==========================================
 
   &__subtitle {
     display: inline-block;
     margin-bottom: clamp(1rem, 2vw, 1.875rem);
-
     color: var(--color-accent);
     font-size: clamp(1rem, 1vw + 0.8rem, 1.4375rem);
     font-weight: 600;
     line-height: 1.4;
     text-transform: uppercase;
+    animation: ctaFadeInUp 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.15s both;
   }
+
+  // ==========================================
+  // Element: title
+  // ==========================================
 
   &__title {
     max-width: 43.5rem;
     margin-bottom: clamp(1.5rem, 2vw, 2rem);
-
     color: #fff;
     font-size: clamp(2rem, 3vw + 1rem, 3.4375rem);
     font-weight: 600;
     line-height: 1.3;
+    animation: ctaFadeInUp 1.1s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s both;
+
+    @media (max-width: 62rem) {
+      max-width: 100%;
+    }
   }
+
+  // ==========================================
+  // Element: video
+  // ==========================================
 
   &__video {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 1rem;
-
     flex-shrink: 0;
     z-index: 1;
+    animation: ctaFadeInRight 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s both;
+
+    @media (max-width: 36rem) {
+      gap: 0.875rem;
+    }
   }
+
+  // ==========================================
+  // Element: play
+  // ==========================================
 
   &__play {
     display: grid;
     place-items: center;
-
     width: clamp(3.75rem, 6vw, 4.625rem);
     aspect-ratio: 1;
-
     border: none;
     border-radius: 50%;
-
     background-color: #fff;
     color: var(--color-accent);
-
     font-size: clamp(1rem, 2vw, 1.375rem);
     cursor: pointer;
-
     box-shadow: 0 0.75rem 1.875rem rgb(0 0 0 / 25%);
     transition:
-      transform 0.3s ease,
-      box-shadow 0.3s ease;
+      transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+      box-shadow 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 
     &:hover {
       transform: scale(1.08);
+      box-shadow: 0 1rem 2.5rem rgb(0 0 0 / 35%);
+    }
+
+    &:focus-visible {
+      outline: 0.125rem solid var(--color-accent);
+      outline-offset: 0.25rem;
     }
   }
+
+  // ==========================================
+  // Element: watch
+  // ==========================================
 
   &__watch {
     color: #fff;
@@ -82,35 +138,106 @@
     font-weight: 500;
     text-decoration: underline;
     text-transform: capitalize;
-  }
-}
+    transition: color 0.3s ease;
 
-@media (max-width: 62rem) {
-  .cta {
-    &__wrapper {
-      flex-direction: column;
-      justify-content: center;
-      text-align: center;
-    }
-
-    &__content {
-      max-width: 100%;
-    }
-
-    &__title {
-      max-width: 100%;
+    &:hover {
+      color: var(--color-accent);
     }
   }
 }
 
-@media (max-width: 36rem) {
+// ==========================================
+// App Button (external component override)
+// ==========================================
+
+app-button {
+  display: inline-block;
+  animation: ctaFadeInUp 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s both;
+}
+
+// ==========================================
+// Keyframes
+// ==========================================
+
+// ==========================================
+// Keyframes: ctaFadeInUp
+// ==========================================
+
+@keyframes ctaFadeInUp {
+  0% {
+    opacity: 0;
+    transform: translate3d(0, 50px, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// ==========================================
+// Keyframes: ctaFadeInLeft
+// ==========================================
+
+@keyframes ctaFadeInLeft {
+  0% {
+    opacity: 0;
+    transform: translate3d(-60px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// ==========================================
+// Keyframes: ctaFadeInRight
+// ==========================================
+
+@keyframes ctaFadeInRight {
+  0% {
+    opacity: 0;
+    transform: translate3d(60px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// ==========================================
+// Reduced Motion Preferences
+// ==========================================
+
+@media (prefers-reduced-motion: reduce) {
   .cta {
-    &__wrapper {
-      gap: 2rem;
+    &__content,
+    &__subtitle,
+    &__title,
+    &__video,
+    &__play,
+    &__watch {
+      animation: none !important;
+      opacity: 1 !important;
     }
 
-    &__video {
-      gap: 0.875rem;
+    &__play {
+      transition: none !important;
+
+      &:hover {
+        transform: none !important;
+      }
     }
+
+    &__watch {
+      transition: none !important;
+
+      &:hover {
+        color: #fff !important;
+      }
+    }
+  }
+
+  app-button {
+    animation: none !important;
   }
 }
