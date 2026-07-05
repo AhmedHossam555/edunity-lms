@@ -1,0 +1,152 @@
+<!-- ========================================= -->
+<!-- Sidebar Overlay                           -->
+<!-- ========================================= -->
+
+<div
+  class="sidebar-overlay"
+  [class.sidebar-overlay--open]="isMobileMenuOpen()"
+  (click)="handleOverlayClick()"
+></div>
+
+<!-- ========================================= -->
+<!-- Sidebar Container                         -->
+<!-- ========================================= -->
+
+<aside
+  class="sidebar"
+  [class.sidebar--open]="isMobileMenuOpen()"
+  role="navigation"
+  aria-label="Sidebar navigation"
+>
+
+  <!-- ========================================= -->
+  <!-- Sidebar Header                            -->
+  <!-- ========================================= -->
+
+  <div class="sidebar__header">
+    <a class="sidebar__logo" [href]="config().logo.href">
+      <img
+        class="sidebar__logo-image"
+        [src]="config().logo.src"
+        [alt]="config().logo.alt"
+        [width]="config().logo.width"
+        [height]="config().logo.height"
+      />
+    </a>
+
+    <button
+      type="button"
+      class="sidebar__close-btn"
+      aria-label="Close sidebar"
+      (click)="closeSidebar.emit()"
+    >
+      <span class="sidebar__close-icon" aria-hidden="true">&times;</span>
+    </button>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- Search Bar                                -->
+  <!-- ========================================= -->
+
+  <!-- <div class="sidebar__search">
+    <div class="sidebar__search-container">
+      <span
+        class="sidebar__search-icon"
+        aria-hidden="true"
+        [innerHTML]="searchIconSafe()"
+      ></span>
+      <input
+        type="search"
+        class="sidebar__search-input"
+        placeholder="Search..."
+        aria-label="Search"
+      />
+    </div>
+  </div> -->
+
+  <!-- ========================================= -->
+  <!-- Navigation Menu                           -->
+  <!-- ========================================= -->
+
+  <nav class="sidebar__nav" aria-label="Main navigation">
+    <ul class="sidebar__menu">
+      @for (link of navLinks(); track trackByLinkId($index, link)) {
+        <li class="sidebar__menu-item">
+          <a
+            class="sidebar__link"
+            [class.sidebar__link--active]="isActiveLink(link.id)"
+            [href]="link.href"
+            [attr.aria-current]="isActiveLink(link.id) ? 'page' : null"
+            (click)="onNavLinkClick(link); $event.preventDefault()"
+          >
+            <span class="sidebar__link-icon" aria-hidden="true">
+              <!-- Add appropriate icon for each link -->
+              <span class="sidebar__link-bullet"></span>
+            </span>
+            <span class="sidebar__link-label">{{ link.label }}</span>
+            <span class="sidebar__link-arrow" aria-hidden="true">→</span>
+          </a>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <!-- ========================================= -->
+  <!-- Top Bar Info (Mobile)                    -->
+  <!-- ========================================= -->
+
+  <div class="sidebar__info">
+    <div class="sidebar__info-items">
+      @for (item of config().topBar.infoItems; track item.id) {
+        <div class="sidebar__info-item">
+          <span
+            class="sidebar__info-icon"
+            aria-hidden="true"
+            [innerHTML]="topBarIconsSafe()[item.iconKey]"
+          ></span>
+          <span class="sidebar__info-label">{{ item.label }}</span>
+        </div>
+      }
+    </div>
+  </div>
+
+  <!-- ========================================= -->
+  <!-- Actions and Social Links                  -->
+  <!-- ========================================= -->
+
+  <div class="sidebar__footer">
+    <!-- Login Link -->
+    <a
+      class="sidebar__login"
+      [href]="config().topBar.loginLink.href"
+      [attr.aria-label]="config().topBar.loginLink.label"
+    >
+      <span class="sidebar__login-icon" aria-hidden="true" [innerHTML]="loginIconSafe()"></span>
+      <span class="sidebar__login-label">{{ config().topBar.loginLink.label }}</span>
+    </a>
+
+    <!-- Contact Button -->
+    <button type="button" class="sidebar__contact-btn">
+      <span class="sidebar__contact-label">{{ config().navbar.contactButton.label }}</span>
+      <span class="sidebar__contact-arrow" aria-hidden="true" [innerHTML]="arrowIconSafe()"></span>
+    </button>
+
+    <!-- Social Links -->
+    <div class="sidebar__socials">
+      @for (social of config().topBar.socials; track social.platform) {
+        <a
+          class="sidebar__social-link"
+          [href]="social.href"
+          [attr.aria-label]="social.ariaLabel"
+        >
+          <span
+            class="sidebar__social-icon"
+            aria-hidden="true"
+            [innerHTML]="socialIconsSafe()[social.platform]"
+          ></span>
+        </a>
+      }
+    </div>
+  </div>
+
+</aside>

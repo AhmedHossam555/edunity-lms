@@ -107,4 +107,16 @@
       </div>
     </div>
   </nav>
+
+  <!-- ========================================= -->
+  <!-- Sidebar (Mobile Menu)                     -->
+  <!-- ========================================= -->
+
+  <app-sidebar
+    [isOpen]="isMobileMenuOpen()"
+    [config]="config()"
+    [currentPath]="currentPath()"
+    (closeSidebar)="closeSidebar()"
+    (navigate)="onNavigate($event)"
+  />
 </header>

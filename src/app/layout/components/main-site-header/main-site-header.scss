@@ -269,15 +269,25 @@
 
     &--open {
       display: flex;
+      background: white;
       flex-direction: column;
+      background: url('/assets/images/home/hero-section/bgs/hero-section-bg.webp');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
       position: absolute;
       top: 100%;
       left: 0;
       right: 0;
-      background: white;
       padding: 1rem 1.5rem;
       box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
       z-index: 20;
+      top: 0;
+      height: 100vh;
+      width: 55%;
+      border-radius: 12px;
+      margin: 10px;
+      height: calc(100vh - 20px);
     }
   }
 

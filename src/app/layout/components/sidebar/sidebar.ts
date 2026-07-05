@@ -1,14 +1,14 @@
-import { 
-  ChangeDetectionStrategy, 
-  Component, 
-  computed, 
-  inject, 
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
   signal,
   input,
-  output
+  output,
+  effect,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Sidebar } from '@app/layout/components/sidebar/sidebar';
 import { HEADER_CONFIG } from '@app/layout/configs';
 import {
   ARROW_ICON,
@@ -22,28 +22,34 @@ import { IHeaderConfig, INavLink } from '@app/layout/interfaces';
 import { safeSvg } from '@app/shared/utils/svg.util';
 
 @Component({
-  selector: 'app-main-site-header',
-  imports: [Sidebar],
-  templateUrl: './main-site-header.html',
-  styleUrl: './main-site-header.scss',
+  selector: 'app-sidebar',
+  standalone: true,
+  templateUrl: './sidebar.html',
+  styleUrls: ['./sidebar.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class MainSiteHeader {
+export class Sidebar {
   private readonly sanitizer = inject(DomSanitizer);
 
   // ─────────────────────────────────────────────────────────────
   //  Inputs
   // ─────────────────────────────────────────────────────────────
 
-  /** Current page path for active link detection */
-  currentPath = input<string>('');
+  /** Controls sidebar open/closed state */
+  isOpen = input<boolean>(false);
 
   /** Optional custom configuration */
   config = input<IHeaderConfig>(HEADER_CONFIG);
 
+  /** Current page path for active link detection */
+  currentPath = input<string>('');
+
   // ─────────────────────────────────────────────────────────────
   //  Outputs
   // ─────────────────────────────────────────────────────────────
+
+  /** Emitted when sidebar should close */
+  closeSidebar = output<void>();
 
   /** Emitted when a navigation link is clicked */
   navigate = output<INavLink>();
@@ -52,11 +58,19 @@ export class MainSiteHeader {
   //  Component state
   // ─────────────────────────────────────────────────────────────
 
-  /** Controls mobile menu visibility and aria-expanded state. */
   protected readonly isMobileMenuOpen = signal(false);
 
   // ─────────────────────────────────────────────────────────────
-  //  Sanitized top bar icons
+  //  Effects
+  // ─────────────────────────────────────────────────────────────
+
+  /** Sync sidebar open state with internal menu state */
+  private readonly syncOpenState = effect(() => {
+    this.isMobileMenuOpen.set(this.isOpen());
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  //  Sanitized icons
   // ─────────────────────────────────────────────────────────────
 
   protected readonly topBarIconsSafe = computed<Record<string, SafeHtml>>(() => {
@@ -69,10 +83,6 @@ export class MainSiteHeader {
     return result;
   });
 
-  // ─────────────────────────────────────────────────────────────
-  //  Sanitized social media icons
-  // ─────────────────────────────────────────────────────────────
-
   protected readonly socialIconsSafe = computed<Record<string, SafeHtml>>(() => {
     const result: Record<string, SafeHtml> = {};
 
@@ -83,43 +93,50 @@ export class MainSiteHeader {
     return result;
   });
 
-  // ─────────────────────────────────────────────────────────────
-  //  Sanitized standalone icons
-  // ─────────────────────────────────────────────────────────────
-  protected readonly loginIconSafe = computed<SafeHtml>(() => safeSvg(this.sanitizer, LOGIN_ICON));
-  protected readonly searchIconSafe = computed<SafeHtml>(() =>
-    safeSvg(this.sanitizer, SEARCH_ICON),
+  protected readonly loginIconSafe = computed<SafeHtml>(() =>
+    safeSvg(this.sanitizer, LOGIN_ICON)
   );
-  protected readonly arrowIconSafe = computed<SafeHtml>(() => safeSvg(this.sanitizer, ARROW_ICON));
+  protected readonly searchIconSafe = computed<SafeHtml>(() =>
+    safeSvg(this.sanitizer, SEARCH_ICON)
+  );
+  protected readonly arrowIconSafe = computed<SafeHtml>(() =>
+    safeSvg(this.sanitizer, ARROW_ICON)
+  );
 
   // ─────────────────────────────────────────────────────────────
   //  Derived navigation data
   // ─────────────────────────────────────────────────────────────
-  protected readonly navLinks = computed<INavLink[]>(() => this.config().navbar.links);
+
+  protected readonly navLinks = computed<INavLink[]>(
+    () => this.config().navbar.links
+  );
 
   // ─────────────────────────────────────────────────────────────
   //  Public methods
   // ─────────────────────────────────────────────────────────────
 
-  /** Toggle mobile menu open/closed state */
+  /** Toggle the mobile menu state */
   protected toggleMobileMenu(): void {
     this.isMobileMenuOpen.update((open) => !open);
+    if (!this.isMobileMenuOpen()) {
+      this.closeSidebar.emit();
+    }
   }
 
-  /** Close the mobile menu */
-  protected closeSidebar(): void {
-    this.isMobileMenuOpen.set(false);
-  }
-
-  /** Handle navigation events from sidebar */
-  protected onNavigate(link: INavLink): void {
-    this.navigate.emit(link);
-    this.closeSidebar();
+  /** Close sidebar when overlay is clicked */
+  protected handleOverlayClick(): void {
+    this.closeSidebar.emit();
   }
 
   /** Check if a navigation link is active */
   protected isActiveLink(id: NavLinkId): boolean {
     return this.navLinks().some((link) => link.id === id && link.active);
+  }
+
+  /** Handle navigation link click */
+  protected onNavLinkClick(link: INavLink): void {
+    this.navigate.emit(link);
+    this.closeSidebar.emit();
   }
 
   /** Track function for navigation links */
