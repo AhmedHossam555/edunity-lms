@@ -1,3 +1,7 @@
+// ==========================================
+// Block: exam
+// ==========================================
+
 .exam {
   position: relative;
   overflow: hidden;
@@ -5,130 +9,258 @@
     url("/assets/images/home/exam-preparation-section/bgs/exam-section-bg.png")
       center / cover no-repeat #fff;
 
+  // ==========================================
+  // Element: header
+  // ==========================================
+
   &__header {
     margin-bottom: clamp(2.5rem, 5vw, 4rem);
     text-align: center;
+    animation: examFadeInUp 0.9s ease-out both;
   }
+
+  // ==========================================
+  // Element: subtitle
+  // ==========================================
 
   &__subtitle {
     display: inline-flex;
     align-items: center;
     gap: 0.3125rem;
-
     margin-bottom: 0.625rem;
-
     color: var(--color-primary);
     font-size: clamp(0.875rem, 0.82rem + 0.2vw, 0.875rem);
     font-weight: 400;
     line-height: 2rem;
     text-transform: uppercase;
+    animation: examFadeInUp 0.8s ease-out 0.1s both;
   }
 
+  // ==========================================
+  // Element: subtitle-icon
+  // ==========================================
+
+  &__subtitle-icon {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  // ==========================================
+  // Element: title
+  // ==========================================
 
   &__title {
     margin: 0;
-
     color: var(--color-secondary);
     font-size: clamp(1.875rem, 1.3rem + 2vw, 2.75rem);
     font-weight: 700;
     line-height: 1.33;
+    animation: examFadeInUp 1s ease-out 0.2s both;
   }
+
+  // ==========================================
+  // Element: cards
+  // ==========================================
 
   &__cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: clamp(1rem, 2vw, 1.5rem);
-  }
-}
+    animation: examFadeInUp 1.1s ease-out 0.15s both;
 
-.exam-card {
-  position: relative;
-
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  overflow: hidden;
-
-  min-height: 16.25rem;
-  padding: clamp(2rem, 3vw, 2.5rem);
-  border-radius: 0.5rem;
-
-  background-repeat: no-repeat;
-  background-position: center;
-  background-size: cover;
-
-  &--dark {
-    background-image: url("/assets/images/home/exam-preparation-section/bgs/card-exam-one-bg.png");
-  }
-
-  &--green {
-    background-image: url("/assets/images/home/exam-preparation-section/bgs/card-exam-two-bg.png");
-  }
-
-  &__content {
-    position: relative;
-    z-index: 2;
-    max-width: 16.25rem;
-    color: #fff;
-  }
-
-  &__small {
-    margin-bottom: 1rem;
-
-    font-size: clamp(1rem, 0.95rem + 0.35vw, 1.25rem);
-    font-weight: 400;
-    line-height: 1.6;
-  }
-
-  &__heading {
-    margin-bottom: 1rem;
-
-    font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
-    font-weight: 700;
-    line-height: 1.6;
-  }
-
-  &__image {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-
-    z-index: 1;
-
-    height: 100%;
-    object-fit: contain;
-  }
-}
-
-@media (max-width: 62rem) {
-  .exam {
-    &__cards {
+    @media (max-width: 62rem) {
       grid-template-columns: 1fr;
     }
   }
 
-  .exam-card {
-    min-height: 14.375rem;
-  }
-}
+  // ==========================================
+  // Element: card
+  // ==========================================
 
-@media (max-width: 48rem) {
-  .exam-card {
-    flex-direction: column;
-    justify-content: flex-start;
+  &__card {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    min-height: 16.25rem;
+    padding: clamp(2rem, 3vw, 2.5rem);
+    border-radius: 0.5rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    opacity: 0;
+    animation: examFadeInUp 1.2s ease-out forwards;
 
-    padding: 2rem;
-    text-align: center;
+    // ==========================================
+    // Modifier: dark
+    // ==========================================
 
-    &__content {
-      max-width: 100%;
+    &--dark {
+      background-image: url("/assets/images/home/exam-preparation-section/bgs/card-exam-one-bg.png");
     }
 
-    &__image {
+    // ==========================================
+    // Modifier: green
+    // ==========================================
+
+    &--green {
+      background-image: url("/assets/images/home/exam-preparation-section/bgs/card-exam-two-bg.png");
+    }
+
+    // ==========================================
+    // Card animation delays
+    // ==========================================
+
+    &:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: 0.4s;
+    }
+
+    @media (max-width: 62rem) {
+      min-height: 14.375rem;
+    }
+
+    @media (max-width: 48rem) {
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 2rem;
+      text-align: center;
+    }
+  }
+
+  // ==========================================
+  // Element: card-content
+  // ==========================================
+
+  &__card-content {
+    position: relative;
+    z-index: 2;
+    max-width: 16.25rem;
+    color: #fff;
+    animation: examFadeInUp 0.9s ease-out 0.3s both;
+
+    @media (max-width: 48rem) {
+      max-width: 100%;
+    }
+  }
+
+  // ==========================================
+  // Element: card-small
+  // ==========================================
+
+  &__card-small {
+    margin-bottom: 1rem;
+    font-size: clamp(1rem, 0.95rem + 0.35vw, 1.25rem);
+    font-weight: 400;
+    line-height: 1.6;
+    animation: examFadeInUp 0.9s ease-out 0.4s both;
+  }
+
+  // ==========================================
+  // Element: card-heading
+  // ==========================================
+
+  &__card-heading {
+    margin-bottom: 1rem;
+    font-size: clamp(1.125rem, 1.05rem + 0.35vw, 1.25rem);
+    font-weight: 700;
+    line-height: 1.6;
+    animation: examFadeInUp 1s ease-out 0.5s both;
+  }
+
+  // ==========================================
+  // Element: card-image
+  // ==========================================
+
+  &__card-image {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    height: 100%;
+    object-fit: contain;
+    animation: examFadeInRight 1.2s ease-out 0.6s both;
+
+    @media (max-width: 48rem) {
       position: static;
       margin-top: 2rem;
       height: 13.75rem;
     }
+  }
+}
+
+// ==========================================
+// App Button (external component override)
+// ==========================================
+
+app-button {
+  display: inline-block;
+  animation: examFadeInUp 1.1s ease-out 0.7s both;
+}
+
+// ==========================================
+// Keyframes
+// ==========================================
+
+// ==========================================
+// Keyframes: examFadeInUp
+// ==========================================
+
+@keyframes examFadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// ==========================================
+// Keyframes: examFadeInRight
+// ==========================================
+
+@keyframes examFadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(40px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// ==========================================
+// Reduced Motion Preferences
+// ==========================================
+
+@media (prefers-reduced-motion: reduce) {
+  .exam {
+    &__header,
+    &__subtitle,
+    &__title,
+    &__cards,
+    &__card,
+    &__card-content,
+    &__card-small,
+    &__card-heading,
+    &__card-image {
+      animation: none !important;
+      opacity: 1 !important;
+    }
+
+    &__card {
+      transition: none !important;
+    }
+  }
+
+  app-button {
+    animation: none !important;
   }
 }

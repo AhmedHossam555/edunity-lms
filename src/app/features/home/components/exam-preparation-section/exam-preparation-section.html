@@ -19,18 +19,18 @@
     <div class="exam__cards">
       @for (card of cards(); track card.image) {
         <article
-          class="exam-card"
-          [class.exam-card--dark]="card.variant === ExamCardVariant.Dark"
-          [class.exam-card--green]="card.variant === ExamCardVariant.Green"
+          class="exam__card"
+          [class.exam__card--dark]="card.variant === ExamCardVariant.Dark"
+          [class.exam__card--green]="card.variant === ExamCardVariant.Green"
         >
           <!-- ========================================= -->
           <!-- Card Content                               -->
           <!-- ========================================= -->
-          <div class="exam-card__content">
-            <p class="exam-card__small">{{ card.smallText }}</p>
+          <div class="exam__card-content">
+            <p class="exam__card-small">{{ card.smallText }}</p>
 
             <h3
-              class="exam-card__heading"
+              class="exam__card-heading"
               [innerHTML]="sanitizeHeading(card.heading)"
             ></h3>
 
@@ -54,7 +54,7 @@
           <img
             [src]="card.image"
             [alt]="card.imageAlt"
-            class="exam-card__image"
+            class="exam__card-image"
           />
         </article>
       }
