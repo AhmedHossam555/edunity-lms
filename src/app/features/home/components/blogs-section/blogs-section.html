@@ -6,8 +6,8 @@
     <div class="blogs__header">
       <div class="blogs__heading">
         <span class="blogs__subtitle">
-          <span [innerHTML]="subtitleIcon"></span>
-          {{ copy.subtitle }}
+          <span class="blogs__subtitle-icon" [innerHTML]="subtitleIcon"></span>
+          <span class="blogs__subtitle-text">{{ copy.subtitle }}</span>
         </span>
 
         <h2 class="blogs__title">{{ copy.title }}</h2>
@@ -38,14 +38,14 @@
             <!-- Card Meta                                 -->
             <!-- ========================================= -->
             <div class="blogs__meta">
-              <span>
-                <span [innerHTML]="dateIcon"></span>
-                {{ card.publishedDate }}
+              <span class="blogs__meta-item">
+                <span class="blogs__meta-icon" [innerHTML]="dateIcon"></span>
+                <span class="blogs__meta-text">{{ card.publishedDate }}</span>
               </span>
 
-              <span>
-                <span [innerHTML]="commentIcon"></span>
-                {{ formatCommentLabel(card.commentCount) }}
+              <span class="blogs__meta-item">
+                <span class="blogs__meta-icon" [innerHTML]="commentIcon"></span>
+                <span class="blogs__meta-text">{{ formatCommentLabel(card.commentCount) }}</span>
               </span>
             </div>
 
