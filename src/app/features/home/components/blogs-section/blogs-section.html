@@ -6,8 +6,7 @@
     <div class="blogs__header">
       <div class="blogs__heading">
         <span class="blogs__subtitle">
-          <span class="blogs__subtitle-icon" [innerHTML]="subtitleIcon"></span>
-          <span class="blogs__subtitle-text">{{ copy.subtitle }}</span>
+          <app-section-tag-header [text]="copy.subtitle" />
         </span>
 
         <h2 class="blogs__title">{{ copy.title }}</h2>
@@ -21,19 +20,13 @@
     <!-- ========================================= -->
     <div class="blogs__grid">
       @for (card of blogCards(); track card.id) {
-
         <!-- ========================================= -->
         <!-- Blog Card                                 -->
         <!-- ========================================= -->
         <article class="blogs__card">
-          <img
-            [src]="card.imageSrc"
-            [alt]="card.imageAlt"
-            class="blogs__image"
-          />
+          <img [src]="card.imageSrc" [alt]="card.imageAlt" class="blogs__image" />
 
           <div class="blogs__content">
-
             <!-- ========================================= -->
             <!-- Card Meta                                 -->
             <!-- ========================================= -->
@@ -58,7 +51,6 @@
             <!-- Card Action                               -->
             <!-- ========================================= -->
             <app-button [text]="buttonLabel.ReadMore"></app-button>
-
           </div>
         </article>
       }

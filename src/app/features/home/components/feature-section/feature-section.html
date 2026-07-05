@@ -3,15 +3,12 @@
 <!-- ========================================= -->
 <section class="features section-padding">
   <div class="container">
-
     <!-- ========================================= -->
     <!-- Section Header                            -->
     <!-- ========================================= -->
     <div class="features__header">
       <span class="features__subtitle">
-        <span class="features__subtitle-icon" [innerHTML]="subtitleIcon"></span>
-        <span class="features__subtitle-text">{{ config().subtitleText }}</span>
-        <span class="features__subtitle-icon" [innerHTML]="subtitleIcon"></span>
+        <app-section-tag-header [text]="config().subtitleText" [hasIcon]="true" />
       </span>
 
       <h2 class="features__title">
@@ -26,15 +23,11 @@
     <!-- ========================================= -->
     <div class="features__grid">
       @for (item of cards(); track trackById($index, item)) {
-
         <!-- ========================================= -->
         <!-- Feature Card                              -->
         <!-- ========================================= -->
         <article class="features__card">
-          <div
-            class="features__card-icon"
-            [innerHTML]="item.icon"
-          ></div>
+          <div class="features__card-icon" [innerHTML]="item.icon"></div>
 
           <h3 class="features__card-title">
             {{ item.title }}

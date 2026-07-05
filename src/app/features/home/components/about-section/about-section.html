@@ -52,8 +52,7 @@
 
     <div class="about__content">
       <span class="about__tag">
-        <span [innerHTML]="tagIconSvg"></span>
-        <span class="about__tag-text">{{ config().tagText }}</span>
+        <app-section-tag-header [text]="config().tagText" [color]="'#FE543D'"/>
       </span>
 
       <h2 class="about__title">

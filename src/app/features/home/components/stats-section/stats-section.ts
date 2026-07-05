@@ -6,14 +6,14 @@ import {
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 
-import { safeSvg } from '@app/shared'; 
+import { safeSvg, SectionTagHeader } from '@app/shared'; 
 import { STATS_CONTENT } from '../../configs';
 import { STATS_SUBTITLE_ICON_SVG } from '../../constants';
 import { IStatsContent, IStatsProgressItem } from '../../interfaces';
 
 @Component({
   selector: 'app-stats-section',
-  imports: [],
+  imports: [SectionTagHeader],
   templateUrl: './stats-section.html',
   styleUrl: './stats-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

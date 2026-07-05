@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Button, safeSvg } from '@app/shared';
+import { Button, safeSvg, SectionTagHeader } from '@app/shared';
 import { FEATURED_COURSES_CONFIG } from '../../configs/featured-courses-section.config';
 import { COURSE_SVG_ICONS } from '../../constants';
 import { CurrencySymbol } from '../../enums';
@@ -12,7 +12,7 @@ import {
 
 @Component({
   selector: 'app-featured-courses-section',
-  imports: [Button],
+  imports: [Button, SectionTagHeader],
   templateUrl: './featured-courses-section.html',
   styleUrl: './featured-courses-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

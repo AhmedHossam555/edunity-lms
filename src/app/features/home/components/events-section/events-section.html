@@ -1,17 +1,12 @@
 <section class="events section-padding">
   <div class="container">
     <div class="events__wrapper">
-
       <!-- ========================================= -->
       <!-- Content                                   -->
       <!-- ========================================= -->
       <div class="events__content">
         <span class="events__subtitle">
-          <span
-            class="events__subtitle-icon"
-            [innerHTML]="subtitleIconHtml"
-          ></span>
-          {{ config().content.subtitle.text }}
+          <app-section-tag-header [text]="config().content.subtitle.text" />
         </span>
 
         <h2 class="events__title">{{ config().content.title }}</h2>
@@ -41,7 +36,6 @@
           [innerHTML]="decorationIconHtml"
         ></div>
       </div>
-
     </div>
   </div>
-</section> 
+</section>

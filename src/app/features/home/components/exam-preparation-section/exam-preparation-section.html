@@ -5,9 +5,7 @@
     <!-- ========================================= -->
     <div class="exam__header">
       <span class="exam__subtitle">
-        <span class="exam__subtitle-icon" [innerHTML]="subtitleIcon()"></span>
-        {{ header().subtitle }}
-        <span class="exam__subtitle-icon" [innerHTML]="subtitleIcon()"></span>
+        <app-section-tag-header [text]="header().subtitle" [hasIcon]="true" />
       </span>
 
       <h2 class="exam__title">{{ header().title }}</h2>
@@ -29,10 +27,7 @@
           <div class="exam__card-content">
             <p class="exam__card-small">{{ card.smallText }}</p>
 
-            <h3
-              class="exam__card-heading"
-              [innerHTML]="sanitizeHeading(card.heading)"
-            ></h3>
+            <h3 class="exam__card-heading" [innerHTML]="sanitizeHeading(card.heading)"></h3>
 
             <!-- ========================================= -->
             <!-- Card Action                               -->
@@ -51,11 +46,7 @@
           <!-- ========================================= -->
           <!-- Card Image                                 -->
           <!-- ========================================= -->
-          <img
-            [src]="card.image"
-            [alt]="card.imageAlt"
-            class="exam__card-image"
-          />
+          <img [src]="card.image" [alt]="card.imageAlt" class="exam__card-image" />
         </article>
       }
     </div>

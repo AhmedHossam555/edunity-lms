@@ -1,22 +1,18 @@
 <section class="featured-courses section-padding">
   <div class="container">
-
     <!-- ========================================= -->
     <!-- Header                                    -->
     <!-- ========================================= -->
     <div class="featured-courses__header">
       <div class="featured-courses__heading">
-
         <span class="featured-courses__subtitle">
-          <span [innerHTML]="icons().subtitleIcon"></span>
-          {{ subtitle() }}
+          <app-section-tag-header [text]="subtitle()"  />
         </span>
 
         <h2 class="featured-courses__title">
           {{ title() }} <br />
           {{ titleBreak() }}
         </h2>
-
       </div>
 
       <app-button [text]="buttonText()" />
@@ -26,23 +22,16 @@
     <!-- Featured Courses Grid                     -->
     <!-- ========================================= -->
     <div class="featured-courses__grid">
-
       @for (course of courses(); track trackByCourseId($index, course)) {
-
         <!-- ========================================= -->
         <!-- Course Card                               -->
         <!-- ========================================= -->
         <article class="featured-courses__card">
-
           <!-- ========================================= -->
           <!-- Course Thumbnail                          -->
           <!-- ========================================= -->
           <div class="featured-courses__image-wrapper">
-            <img
-              class="featured-courses__image"
-              [src]="course.imageSrc"
-              [alt]="course.imageAlt"
-            />
+            <img class="featured-courses__image" [src]="course.imageSrc" [alt]="course.imageAlt" />
             <span class="featured-courses__badge">
               {{ course.badge }}
             </span>
@@ -52,7 +41,6 @@
           <!-- Course Content                            -->
           <!-- ========================================= -->
           <div class="featured-courses__content">
-
             <!-- ========================================= -->
             <!-- Rating                                   -->
             <!-- ========================================= -->
@@ -135,11 +123,9 @@
                 Add To Cart
               </button>
             </div>
-
           </div>
         </article>
       }
-
     </div>
   </div>
 </section>

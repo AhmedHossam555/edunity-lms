@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import { safeSvg } from '@app/shared';
+import { safeSvg, SectionTagHeader } from '@app/shared';
 import { Button } from '@app/shared/components/button/button';
 
 import { ABOUT_SECTION_CONFIG } from '../../configs';
@@ -11,7 +11,7 @@ import { IAboutConfig } from '../../interfaces';
 
 @Component({
   selector: 'app-about-section',
-  imports: [Button],
+  imports: [Button, SectionTagHeader],
   templateUrl: './about-section.html',
   styleUrl: './about-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

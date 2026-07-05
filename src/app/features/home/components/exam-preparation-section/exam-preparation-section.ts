@@ -6,7 +6,7 @@ import {
   Signal,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Button } from '@app/shared';
+import { Button, SectionTagHeader } from '@app/shared';
 import { safeSvg } from '@app/shared/utils/svg.util';
 import { IExamCard, IExamHeader } from '../../interfaces';
 import { EXAM_CARDS_CONFIG, EXAM_HEADER_CONFIG } from '../../configs';
@@ -15,7 +15,7 @@ import { ExamCardVariant } from '../../enums';
 
 @Component({
   selector: 'app-exam-preparation-section',
-  imports: [Button],
+  imports: [Button, SectionTagHeader],
   templateUrl: './exam-preparation-section.html',
   styleUrl: './exam-preparation-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

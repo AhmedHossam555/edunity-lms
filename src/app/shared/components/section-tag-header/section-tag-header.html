@@ -1,0 +1,18 @@
+<span class="section-tag" [style.color]="color()">
+  <span class="section-tag__icon" aria-hidden="true" role="presentation" [innerHTML]="iconSvg">
+  </span>
+
+  <span class="section-tag__label">
+    {{ text() }}
+  </span>
+
+  @if (hasIcon()) {
+    <span
+      class="section-tag__icon section-tag__icon--end"
+      aria-hidden="true"
+      role="presentation"
+      [innerHTML]="iconSvg"
+    >
+    </span>
+  }
+</span>

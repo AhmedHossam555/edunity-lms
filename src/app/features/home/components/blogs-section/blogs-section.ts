@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Button } from '@app/shared';
+import { Button, SectionTagHeader } from '@app/shared';
 import { safeSvg } from '@app/shared/utils/svg.util';
 import { IBlogCard, IBlogSectionCopy } from '../../interfaces';
 import { BLOG_CARDS, BLOG_SECTION_COPY } from '../../configs';
@@ -13,7 +13,7 @@ import {
 
 @Component({
   selector: 'app-blogs-section',
-  imports: [Button],
+  imports: [Button, SectionTagHeader],
   templateUrl: './blogs-section.html',
   styleUrl: './blogs-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

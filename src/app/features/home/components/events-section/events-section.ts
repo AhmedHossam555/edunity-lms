@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { Button, safeSvg } from '@app/shared';
+import { Button, safeSvg, SectionTagHeader } from '@app/shared';
 import { EVENTS_SECTION_CONFIG } from '../../configs';
 import { EVENTS_SECTION_ICONS } from '../../constants';
 import { IEventsSectionConfig } from '../../interfaces';
 
 @Component({
   selector: 'app-events-section',
-  imports: [Button],
+  imports: [Button,SectionTagHeader],
   templateUrl: './events-section.html',
   styleUrl: './events-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

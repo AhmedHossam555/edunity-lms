@@ -1,0 +1,32 @@
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+
+  font-size: clamp(0.7rem, 1vw, 0.875rem);
+  font-weight: 400;
+  line-height: 1;
+  text-transform: uppercase;
+
+  &__label {
+    letter-spacing: 0.2em;
+    white-space: nowrap;
+  }
+
+  &__icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    svg {
+      inline-size: clamp(1.1rem, 1.5vw, 1.4375rem);
+      block-size: clamp(0.8rem, 1.2vw, 1.0625rem);
+      display: block;
+    }
+
+    &--end {
+      transform: scaleX(-1); // إذا أردت تمييز الأيقونة الثانية
+    }
+  }
+}
