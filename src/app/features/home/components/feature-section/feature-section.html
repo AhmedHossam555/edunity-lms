@@ -9,9 +9,9 @@
     <!-- ========================================= -->
     <div class="features__header">
       <span class="features__subtitle">
-        <span [innerHTML]="subtitleIcon"></span>
-        {{ config().subtitleText }}
-        <span [innerHTML]="subtitleIcon"></span>
+        <span class="features__subtitle-icon" [innerHTML]="subtitleIcon"></span>
+        <span class="features__subtitle-text">{{ config().subtitleText }}</span>
+        <span class="features__subtitle-icon" [innerHTML]="subtitleIcon"></span>
       </span>
 
       <h2 class="features__title">
@@ -30,17 +30,17 @@
         <!-- ========================================= -->
         <!-- Feature Card                              -->
         <!-- ========================================= -->
-        <article class="feature-card">
+        <article class="features__card">
           <div
-            class="feature-card__icon"
+            class="features__card-icon"
             [innerHTML]="item.icon"
           ></div>
 
-          <h3 class="feature-card__title">
+          <h3 class="features__card-title">
             {{ item.title }}
           </h3>
 
-          <p class="feature-card__description">
+          <p class="features__card-description">
             {{ item.description }}
           </p>
 
