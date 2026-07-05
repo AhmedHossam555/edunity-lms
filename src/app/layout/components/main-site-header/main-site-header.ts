@@ -1,11 +1,11 @@
-import { 
-  ChangeDetectionStrategy, 
-  Component, 
-  computed, 
-  inject, 
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
   signal,
   input,
-  output
+  output,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { Sidebar } from '@app/layout/components/sidebar/sidebar';
@@ -18,7 +18,7 @@ import {
   TOP_BAR_ICONS,
 } from '@app/layout/constants';
 import { NavLinkId } from '@app/layout/enums';
-import { IHeaderConfig, INavLink } from '@app/layout/interfaces';
+import { IHeaderConfig, INavLink, ITopBarInfoItem } from '@app/layout/interfaces';
 import { safeSvg } from '@app/shared/utils/svg.util';
 
 @Component({
@@ -125,5 +125,12 @@ export class MainSiteHeader {
   /** Track function for navigation links */
   protected trackByLinkId(_index: number, link: INavLink): NavLinkId {
     return link.id;
+  }
+
+  /** Handle location click */
+  protected onLocationClick(item: ITopBarInfoItem): void {
+    if (item.clickType === 'location' && item.href) {
+      window.open(item.href, '_blank');
+    }
   }
 }

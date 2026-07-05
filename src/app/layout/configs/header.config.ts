@@ -1,12 +1,11 @@
-import { NavLinkId, SocialPlatform, TopBarIconId } from "../enums";
-import { IHeaderConfig } from "../interfaces";
+import { NavLinkId, SocialPlatform, TopBarIconId } from '../enums';
+import { IHeaderConfig } from '../interfaces';
 
 // ─────────────────────────────────────────────────────────────
 //  Header Configuration
 // ─────────────────────────────────────────────────────────────
 
 export const HEADER_CONFIG: IHeaderConfig = {
-
   // ─────────────────────────────────────────────────────────────
   //  Logo
   // ─────────────────────────────────────────────────────────────
@@ -22,7 +21,6 @@ export const HEADER_CONFIG: IHeaderConfig = {
   //  Top Bar
   // ─────────────────────────────────────────────────────────────
   topBar: {
-
     // ─────────────────────────────────────────────────────────────
     //  Contact / Information Items
     // ─────────────────────────────────────────────────────────────
@@ -31,11 +29,14 @@ export const HEADER_CONFIG: IHeaderConfig = {
         id: TopBarIconId.Clock,
         iconKey: TopBarIconId.Clock,
         label: 'Working : Monday - Friday, 9:00 AM - 5:00 PM',
+        clickType: 'none', // Not clickable
       },
       {
         id: TopBarIconId.Location,
         iconKey: TopBarIconId.Location,
         label: 'Hudson, Wisconsin(WI), 54016',
+        href: 'https://www.google.com/maps/search/?api=1&query=Hudson+Wisconsin+54016', // Google Maps link
+        clickType: 'location', // Clickable
       },
     ],
 
@@ -72,8 +73,7 @@ export const HEADER_CONFIG: IHeaderConfig = {
         platform: SocialPlatform.LinkedIn,
         href: '#',
         ariaLabel: 'LinkedIn',
-        externalRef:
-          'https://www.figma.com/design/Nx4sNsAeWJfmVVOXuDSmxJ?node-id=2-828',
+        externalRef: 'https://www.figma.com/design/Nx4sNsAeWJfmVVOXuDSmxJ?node-id=2-828',
       },
     ],
   },
@@ -82,7 +82,6 @@ export const HEADER_CONFIG: IHeaderConfig = {
   //  Navigation Bar
   // ─────────────────────────────────────────────────────────────
   navbar: {
-
     // ─────────────────────────────────────────────────────────────
     //  Navigation Links
     // ─────────────────────────────────────────────────────────────

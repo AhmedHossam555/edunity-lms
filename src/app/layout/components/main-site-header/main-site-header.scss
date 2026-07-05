@@ -13,12 +13,13 @@
 .header__top-bar {
   background: #17254e;
   color: #fff;
-  font-size: clamp(0.875rem, 1.5vw, 1.0625rem); /* 14px → 17px */
+  font-size: clamp(0.875rem, 1.5vw, 1.0625rem);
   font-weight: 400;
+  line-height: 1;
 }
 
 .header__top-bar-container {
-  height: clamp(2.5rem, 5vw, 3.125rem); /* 40px → 50px */
+  height: clamp(2.5rem, 5vw, 3.125rem);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -28,20 +29,38 @@
 .header__top-bar-right {
   display: flex;
   align-items: center;
-  gap: clamp(0.75rem, 2vw, 1.5rem); /* 12px → 24px */
+  gap: clamp(0.75rem, 2vw, 1.5rem);
 }
 
-.header__top-bar-info-item,
+.header__top-bar-info-item {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.25rem, 0.8vw, 0.5rem);
+  white-space: nowrap;
+  line-height: 1;
+}
+
+.header__top-bar-info-link {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.25rem, 0.8vw, 0.5rem);
+  color: inherit;
+  text-decoration: none;
+  line-height: 1;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+}
+
 .header__top-bar-login {
   display: inline-flex;
   align-items: center;
-  gap: clamp(0.25rem, 0.8vw, 0.5rem); /* 4px → 8px */
-  white-space: nowrap;
-}
-
-.header__top-bar-login {
+  gap: clamp(0.25rem, 0.8vw, 0.5rem);
   color: inherit;
   text-decoration: none;
+  line-height: 1;
 }
 
 .header__top-bar-icon {
@@ -49,26 +68,30 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  width: clamp(0.75rem, 1.2vw, 0.875rem); /* 12px → 14px */
+  width: clamp(0.75rem, 1.2vw, 0.875rem);
   height: clamp(0.75rem, 1.2vw, 0.875rem);
   color: #ff5d5d;
+  line-height: 0; /* Remove extra spacing around inline SVG */
 
   svg {
     display: block;
     width: 100%;
     height: 100%;
+    /* Remove vertical-align since parent is inline-flex */
   }
 }
 
 .header__top-bar-socials {
   display: flex;
-  gap: clamp(0.5rem, 1.2vw, 0.875rem); /* 8px → 14px */
+  align-items: center;
+  gap: clamp(0.5rem, 1.2vw, 0.875rem);
 }
 
 .header__top-bar-social-link {
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  line-height: 0;
   transition:
     color 0.3s ease,
     transform 0.3s ease;
@@ -90,12 +113,22 @@
   width: clamp(0.75rem, 1.3vw, 0.9375rem);
   height: clamp(0.75rem, 1.3vw, 0.9375rem);
   color: #fff;
+  line-height: 0;
 
   svg {
+    display: block;
     width: 100%;
     height: 100%;
     transition: inherit;
+    /* Remove vertical-align since parent is inline-flex */
   }
+}
+
+.header__top-bar-info-label,
+.header__top-bar-login-label {
+  display: inline-block;
+  line-height: 1.2;
+  /* Remove vertical-align since display: inline-block handles alignment via parent flex */
 }
 
 /* ========================================= */
@@ -108,11 +141,12 @@
 }
 
 .header__navbar-container {
-  height: clamp(3.5rem, 6vw, 4.375rem); /* 56px → 70px */
+  height: clamp(3.5rem, 6vw, 4.375rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+
 /* ========================================= */
 /* Logo                                      */
 /* ========================================= */
@@ -123,17 +157,19 @@
   justify-content: center;
   flex-shrink: 0;
   text-decoration: none;
+  line-height: 0;
 }
 
 .header__navbar-logo-image {
   display: block;
   width: auto;
-  height: clamp(2.25rem, 4vw, 3rem); /* 36px → 48px */
+  height: clamp(2.25rem, 4vw, 3rem);
   max-width: 100%;
   object-fit: contain;
   transition:
     transform 0.3s ease,
     opacity 0.3s ease;
+  /* Remove vertical-align since display: block */
 }
 
 .header__navbar-logo:hover .header__navbar-logo-image {
@@ -146,7 +182,8 @@
 
 .header__navbar-menu {
   display: flex;
-  gap: clamp(1rem, 3vw, 2.125rem); /* 16px → 34px */
+  align-items: center;
+  gap: clamp(1rem, 3vw, 2.125rem);
   list-style: none;
   margin: 0;
   padding: 0;
@@ -154,14 +191,18 @@
 
 .header__navbar-menu-item {
   list-style: none;
+  line-height: 1;
 }
 
 .header__navbar-link {
   text-decoration: none;
   color: var(--color-secondary);
-  font-size: clamp(0.875rem, 1.5vw, 1.0625rem); /* 14px → 17px */
+  font-size: clamp(0.875rem, 1.5vw, 1.0625rem);
   font-weight: 400;
   transition: 0.25s;
+  display: inline-block;
+  line-height: 1.2;
+  /* Remove vertical-align since display: inline-block */
 
   &:hover,
   &--active {
@@ -172,7 +213,7 @@
 .header__navbar-actions {
   display: flex;
   align-items: center;
-  gap: clamp(0.75rem, 1.5vw, 1.125rem); /* 12px → 18px */
+  gap: clamp(0.75rem, 1.5vw, 1.125rem);
 }
 
 .header__navbar-search-btn {
@@ -180,12 +221,23 @@
   background: transparent;
   cursor: pointer;
   padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
 }
 
 .header__navbar-search-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 0;
+
   svg {
-    width: clamp(1rem, 1.8vw, 1.25rem); /* 16px → 20px */
+    display: block;
+    width: clamp(1rem, 1.8vw, 1.25rem);
     height: clamp(1rem, 1.8vw, 1.25rem);
+    /* Remove vertical-align since parent is inline-flex */
   }
 }
 
@@ -197,12 +249,13 @@
   border-radius: 40px;
   padding: 0;
   padding-inline-start: clamp(1rem, 2.2vw, 1.5625rem);
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: clamp(0.5rem, 1.2vw, 0.875rem);
   font-weight: 600;
   font-size: clamp(0.875rem, 1.2vw, 1rem);
   overflow: hidden;
+  line-height: 1;
 
   transition:
     background-color 0.3s ease,
@@ -220,17 +273,28 @@
   }
 }
 
+.header__navbar-contact-label {
+  display: inline-block;
+  line-height: 1.2;
+  /* Remove vertical-align since display: inline-block */
+}
+
 .header__navbar-contact-arrow {
-  width: clamp(2.5rem, 5vw, 3.625rem); /* 40px → 58px */
+  width: clamp(2.5rem, 5vw, 3.625rem);
   height: clamp(2.5rem, 5vw, 3.625rem);
   border-radius: 50%;
   background: #35d7ae;
-  display: grid;
-  place-items: center;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  line-height: 0;
 
   svg {
-    width: clamp(0.75rem, 1.4vw, 1rem); /* 12px → 16px */
+    display: block;
+    width: clamp(0.75rem, 1.4vw, 1rem);
     height: clamp(0.75rem, 1.4vw, 1rem);
+    /* Remove vertical-align since parent is inline-flex */
   }
 }
 
@@ -249,6 +313,7 @@
   background: transparent;
   cursor: pointer;
   padding: 0;
+  line-height: 0;
 }
 
 .header__navbar-menu-toggle-bar {

@@ -6,11 +6,12 @@ import { NavLinkId, SocialPlatform, TopBarIconId } from "../enums";
 
 export interface ITopBarInfoItem {
   id: TopBarIconId;
-
-  /** Raw SVG markup key — resolved via TOP_BAR_ICONS in header.constants.ts */
   iconKey: TopBarIconId;
-
   label: string;
+  /** Optional URL for location links or other clickable items */
+  href?: string;
+  /** Optional click handler type */
+  clickType?: 'location' | 'none';
 }
 
 export interface ILoginLink {

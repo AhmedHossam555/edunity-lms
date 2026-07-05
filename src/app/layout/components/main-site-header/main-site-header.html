@@ -5,15 +5,34 @@
 
   <div class="header__top-bar">
     <div class="header__top-bar-container container">
+      <!-- main-site-header.html -->
+
       <div class="header__top-bar-left">
         @for (item of config().topBar.infoItems; track item.id) {
           <div class="header__top-bar-info-item">
-            <span
-              class="header__top-bar-icon"
-              aria-hidden="true"
-              [innerHTML]="topBarIconsSafe()[item.iconKey]"
-            ></span>
-            <span class="header__top-bar-info-label">{{ item.label }}</span>
+            @if (item.clickType === 'location') {
+              <a
+                class="header__top-bar-info-link"
+                [href]="item.href"
+                target="_blank"
+                rel="noopener noreferrer"
+                (click)="onLocationClick(item)"
+              >
+                <span
+                  class="header__top-bar-icon"
+                  aria-hidden="true"
+                  [innerHTML]="topBarIconsSafe()[item.iconKey]"
+                ></span>
+                <span class="header__top-bar-info-label">{{ item.label }}</span>
+              </a>
+            } @else {
+              <span
+                class="header__top-bar-icon"
+                aria-hidden="true"
+                [innerHTML]="topBarIconsSafe()[item.iconKey]"
+              ></span>
+              <span class="header__top-bar-info-label">{{ item.label }}</span>
+            }
           </div>
         }
       </div>
@@ -24,15 +43,19 @@
           [href]="config().topBar.loginLink.href"
           [attr.aria-label]="config().topBar.loginLink.label"
         >
-          <span class="header__top-bar-icon" aria-hidden="true" [innerHTML]="loginIconSafe()"></span>
+          <span
+            class="header__top-bar-icon"
+            aria-hidden="true"
+            [innerHTML]="loginIconSafe()"
+          ></span>
           <span class="header__top-bar-login-label">{{ config().topBar.loginLink.label }}</span>
         </a>
 
         <div class="header__top-bar-socials">
           @for (social of config().topBar.socials; track social.platform) {
-            <a 
+            <a
               class="header__top-bar-social-link"
-              [href]="social.href" 
+              [href]="social.href"
               [attr.aria-label]="social.ariaLabel"
             >
               <span
@@ -79,12 +102,12 @@
       </ul>
 
       <div class="header__navbar-actions">
-        <button
-          type="button"
-          class="header__navbar-search-btn"
-          aria-label="Open search"
-        >
-          <span class="header__navbar-search-icon" aria-hidden="true" [innerHTML]="searchIconSafe()"></span>
+        <button type="button" class="header__navbar-search-btn" aria-label="Open search">
+          <span
+            class="header__navbar-search-icon"
+            aria-hidden="true"
+            [innerHTML]="searchIconSafe()"
+          ></span>
         </button>
 
         <button
@@ -101,8 +124,14 @@
         </button>
 
         <button type="button" class="header__navbar-contact-btn">
-          <span class="header__navbar-contact-label">{{ config().navbar.contactButton.label }}</span>
-          <span class="header__navbar-contact-arrow" aria-hidden="true" [innerHTML]="arrowIconSafe()"></span>
+          <span class="header__navbar-contact-label">{{
+            config().navbar.contactButton.label
+          }}</span>
+          <span
+            class="header__navbar-contact-arrow"
+            aria-hidden="true"
+            [innerHTML]="arrowIconSafe()"
+          ></span>
         </button>
       </div>
     </div>
