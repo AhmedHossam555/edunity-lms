@@ -93,23 +93,17 @@ export class Sidebar {
     return result;
   });
 
-  protected readonly loginIconSafe = computed<SafeHtml>(() =>
-    safeSvg(this.sanitizer, LOGIN_ICON)
-  );
+  protected readonly loginIconSafe = computed<SafeHtml>(() => safeSvg(this.sanitizer, LOGIN_ICON));
   protected readonly searchIconSafe = computed<SafeHtml>(() =>
-    safeSvg(this.sanitizer, SEARCH_ICON)
+    safeSvg(this.sanitizer, SEARCH_ICON),
   );
-  protected readonly arrowIconSafe = computed<SafeHtml>(() =>
-    safeSvg(this.sanitizer, ARROW_ICON)
-  );
+  protected readonly arrowIconSafe = computed<SafeHtml>(() => safeSvg(this.sanitizer, ARROW_ICON));
 
   // ─────────────────────────────────────────────────────────────
   //  Derived navigation data
   // ─────────────────────────────────────────────────────────────
 
-  protected readonly navLinks = computed<INavLink[]>(
-    () => this.config().navbar.links
-  );
+  protected readonly navLinks = computed<INavLink[]>(() => this.config().navbar.links);
 
   // ─────────────────────────────────────────────────────────────
   //  Public methods
@@ -143,4 +137,26 @@ export class Sidebar {
   protected trackByLinkId(_index: number, link: INavLink): NavLinkId {
     return link.id;
   }
+
+  /** Handle info item click */
+  protected onInfoItemClick(item: any): void {
+    // If it's a location item, handle it specially
+    if (item.clickType === 'location' && item.href) {
+      // Optional: You can add analytics or other logic here
+      console.log('Location clicked:', item.label);
+      // The anchor tag will handle the navigation
+      // Close sidebar after clicking (optional)
+      this.closeSidebar.emit();
+    }
+  }
+
+  // Add to Sidebar component
+  protected readonly infoItems = computed(() => {
+    return this.config().topBar.infoItems.map((item) => ({
+      ...item,
+      isClickable: item.clickType === 'location',
+      target: item.clickType === 'location' ? '_blank' : undefined,
+      rel: item.clickType === 'location' ? 'noopener noreferrer' : undefined,
+    }));
+  });
 }

@@ -98,14 +98,33 @@
   <div class="sidebar__info">
     <div class="sidebar__info-items">
       @for (item of config().topBar.infoItems; track item.id) {
-        <div class="sidebar__info-item">
-          <span
-            class="sidebar__info-icon"
-            aria-hidden="true"
-            [innerHTML]="topBarIconsSafe()[item.iconKey]"
-          ></span>
-          <span class="sidebar__info-label">{{ item.label }}</span>
-        </div>
+        @if (item.clickType === 'location') {
+          <!-- Clickable Location Item -->
+          <a
+            class="sidebar__info-item sidebar__info-item--clickable"
+            [href]="item.href"
+            target="_blank"
+            rel="noopener noreferrer"
+            (click)="onInfoItemClick(item); $event.stopPropagation()"
+          >
+            <span
+              class="sidebar__info-icon"
+              aria-hidden="true"
+              [innerHTML]="topBarIconsSafe()[item.iconKey]"
+            ></span>
+            <span class="sidebar__info-label">{{ item.label }}</span>
+          </a>
+        } @else {
+          <!-- Non-clickable Info Item -->
+          <div class="sidebar__info-item">
+            <span
+              class="sidebar__info-icon"
+              aria-hidden="true"
+              [innerHTML]="topBarIconsSafe()[item.iconKey]"
+            ></span>
+            <span class="sidebar__info-label">{{ item.label }}</span>
+          </div>
+        }
       }
     </div>
   </div>
