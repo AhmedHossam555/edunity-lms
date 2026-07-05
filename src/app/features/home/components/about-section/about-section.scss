@@ -1,20 +1,34 @@
-:host {
-  display: block;
-}
+// ==========================================
+// Block: about
+// ==========================================
 
 .about {
+  display: block;
   background: #fff;
+
+  // ==========================================
+  // Element: container
+  // ==========================================
 
   &__container {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: clamp(2rem, 5vw, 5rem);
     align-items: center;
+
+    @media (max-width: 992px) {
+      grid-template-columns: 1fr;
+      gap: 4rem;
+    }
+
+    @media (max-width: 768px) {
+      gap: 2.5rem;
+    }
   }
 
-  /* ========================= */
-  /* Gallery */
-  /* ========================= */
+  // ==========================================
+  // Element: gallery
+  // ==========================================
 
   &__gallery {
     position: relative;
@@ -23,172 +37,101 @@
     gap: clamp(0.75rem, 1.5vw, 1.125rem);
     justify-content: center;
     align-items: center;
-  }
 
-  &__image {
-    width: 100%;
-    object-fit: cover;
-    border-radius: 0.25rem;
-
-    &--large {
-      grid-row: span 2;
-      height: clamp(18.75rem, 40vw, 31.25rem);
-    }
-
-    &--small {
-      height: 100%;
-    }
-
-    &--badge {
-      width: clamp(8.75rem, 20vw, 15rem);
-      height: clamp(8.75rem, 20vw, 15rem);
-    }
-  }
-
-  &__experience {
-    img {
-      width: clamp(8.75rem, 20vw, 15rem);
-      height: clamp(8.75rem, 20vw, 15rem);
-    }
-  }
-
-  /* Decorative shape */
-
-  &__shape {
-    position: absolute;
-    left: clamp(-4.625rem, -6vw, -2.5rem);
-    top: 0;
-    &-image {
-      display: block;
-      width: clamp(2.5rem, 5vw, 4rem);
-      height: clamp(2.625rem, 5.5vw, 4.25rem);
-    }
-  }
-
-  /* ========================= */
-  /* Content */
-  /* ========================= */
-
-  &__tag {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.125rem;
-
-    margin-bottom: 1rem;
-
-    color: var(--color-accent);
-    font-size: clamp(0.7rem, 1vw, 0.875rem);
-    font-weight: 400;
-    text-transform: uppercase;
-  }
-
-  &__tag-icon {
-    flex-shrink: 0;
-
-    inline-size: clamp(1.1rem, 1.5vw, 1.4375rem);
-    block-size: clamp(0.8rem, 1.2vw, 1.0625rem);
-  }
-
-  &__tag-text {
-    letter-spacing: 0.2em;
-  }
-
-  &__title {
-    font-size: clamp(1.5rem, 4vw, 2.625rem);
-    line-height: clamp(1.8rem, 4.5vw, 3.09375rem);
-    color: var(--color-secondary);
-    font-weight: 700;
-    margin-bottom: clamp(1rem, 2.5vw, 1.875rem);
-    max-width: 34.215625rem;
-
-    &-highlight {
-      color: var(--color-accent);
-    }
-  }
-
-  &__description {
-    color: #4d5756;
-    line-height: clamp(1.5rem, 2.5vw, 2rem);
-    margin-bottom: clamp(1.2rem, 2.5vw, 2rem);
-    max-width: 35rem;
-    font-size: clamp(0.85rem, 1.2vw, 1.0625rem);
-    font-weight: 400;
-  }
-
-  &__features {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: clamp(1rem, 2vw, 2rem);
-    margin-bottom: clamp(1.5rem, 2.5vw, 2.1875rem);
-  }
-
-  &__feature {
-    &-title {
-      font-size: clamp(0.8rem, 1vw, 1rem);
-      color: var(--color-secondary);
-      font-weight: 700;
-      line-height: clamp(1rem, 1.2vw, 1.0625rem);
-      margin-bottom: 0.5rem;
-    }
-
-    &-text {
-      color: #333931;
-      line-height: clamp(1.5rem, 2.5vw, 2.01875rem);
-      font-size: clamp(0.85rem, 1.2vw, 1.0625rem);
-      font-weight: 400;
-    }
-  }
-
-  /* ========================= */
-  /* Responsive */
-  /* ========================= */
-
-  @media (max-width: 992px) {
-    &__container {
-      grid-template-columns: 1fr;
-      gap: 4rem;
-    }
-
-    &__gallery {
+    @media (max-width: 992px) {
       margin: auto;
     }
-  }
 
-  @media (max-width: 768px) {
-    padding: clamp(2.5rem, 4vw, 3rem) 0;
-
-    &__container {
-      gap: 2.5rem;
-    }
-
-    &__gallery {
+    @media (max-width: 768px) {
       grid-template-columns: 1fr;
       grid-template-rows: auto;
       max-width: 20rem;
       gap: 0.75rem;
     }
 
-    &__image {
-      &--large {
+    @media (max-width: 480px) {
+      max-width: 17.5rem;
+    }
+  }
+
+  // ==========================================
+  // Element: image
+  // ==========================================
+
+  &__image {
+    width: 100%;
+    object-fit: cover;
+    border-radius: 0.25rem;
+
+    // ==========================================
+    // Modifier: large
+    // ==========================================
+
+    &--large {
+      grid-row: span 2;
+      height: clamp(18.75rem, 40vw, 31.25rem);
+      animation: aboutFadeInUp 1.2s ease-out both;
+
+      @media (max-width: 768px) {
         grid-row: auto;
         height: auto;
         max-height: 23.75rem;
       }
+    }
 
-      &--small {
+    // ==========================================
+    // Modifier: small
+    // ==========================================
+
+    &--small {
+      height: 100%;
+      animation: 
+        aboutFadeInUp 1.2s ease-out 0.3s both,
+        aboutFloat 5s ease-in-out 1.5s infinite;
+
+      @media (max-width: 768px) {
         grid-row: auto;
         height: auto;
         max-height: 18.75rem;
       }
+    }
 
-      &--badge {
+    // ==========================================
+    // Modifier: badge
+    // ==========================================
+
+    &--badge {
+      width: clamp(8.75rem, 20vw, 15rem);
+      height: clamp(8.75rem, 20vw, 15rem);
+
+      @media (max-width: 768px) {
         width: clamp(8.75rem, 25vw, 11.25rem);
         height: clamp(8.75rem, 25vw, 11.25rem);
         margin: 0 auto;
       }
+
+      @media (max-width: 480px) {
+        width: clamp(7.5rem, 30vw, 8.75rem);
+        height: clamp(7.5rem, 30vw, 8.75rem);
+      }
+    }
+  }
+
+  // ==========================================
+  // Element: experience
+  // ==========================================
+
+  &__experience {
+    animation: 
+      aboutFadeInUp 1.2s ease-out 0.6s both,
+      aboutBadgePulse 3s ease-in-out 1.8s infinite;
+
+    img {
+      width: clamp(8.75rem, 20vw, 15rem);
+      height: clamp(8.75rem, 20vw, 15rem);
     }
 
-    &__experience {
+    @media (max-width: 768px) {
       display: flex;
       justify-content: center;
 
@@ -198,7 +141,37 @@
       }
     }
 
-    &__shape {
+    @media (max-width: 480px) {
+      img {
+        width: clamp(7.5rem, 30vw, 8.75rem);
+        height: clamp(7.5rem, 30vw, 8.75rem);
+      }
+    }
+  }
+
+  // ==========================================
+  // Element: shape
+  // ==========================================
+
+  &__shape {
+    position: absolute;
+    left: clamp(-4.625rem, -6vw, -2.5rem);
+    top: 0;
+    animation: 
+      aboutFadeInUp 1.2s ease-out 0.9s both,
+      aboutRotateShape 20s linear 2.1s infinite;
+
+    // ==========================================
+    // Element: shape-image
+    // ==========================================
+
+    &-image {
+      display: block;
+      width: clamp(2.5rem, 5vw, 4rem);
+      height: clamp(2.625rem, 5.5vw, 4.25rem);
+    }
+
+    @media (max-width: 768px) {
       left: clamp(-2.5rem, -5vw, -1.5rem);
       top: clamp(-1.875rem, -4vw, -1rem);
 
@@ -208,53 +181,7 @@
       }
     }
 
-    &__features {
-      grid-template-columns: 1fr;
-      gap: 1.5rem;
-      margin-bottom: 1.75rem;
-    }
-
-    &__title {
-      max-width: 100%;
-      font-size: clamp(1.75rem, 5vw, 2.5rem);
-      line-height: clamp(2.1rem, 5.5vw, 3rem);
-    }
-
-    &__description {
-      max-width: 100%;
-      font-size: clamp(0.9rem, 2.5vw, 1rem);
-      line-height: clamp(1.6rem, 4vw, 1.8rem);
-    }
-
-    &__feature {
-      &-text {
-        font-size: clamp(0.9rem, 2.5vw, 1rem);
-        line-height: clamp(1.6rem, 4vw, 1.8rem);
-      }
-    }
-  }
-
-  /* Extra small screens */
-  @media (max-width: 480px) {
-    &__gallery {
-      max-width: 17.5rem;
-    }
-
-    &__image {
-      &--badge {
-        width: clamp(7.5rem, 30vw, 8.75rem);
-        height: clamp(7.5rem, 30vw, 8.75rem);
-      }
-    }
-
-    &__experience {
-      img {
-        width: clamp(7.5rem, 30vw, 8.75rem);
-        height: clamp(7.5rem, 30vw, 8.75rem);
-      }
-    }
-
-    &__shape {
+    @media (max-width: 480px) {
       left: clamp(-2rem, -6vw, -1.5rem);
       top: clamp(-1.5rem, -5vw, -1rem);
 
@@ -263,45 +190,308 @@
         height: clamp(2.125rem, 6.5vw, 2.625rem);
       }
     }
+  }
 
-    &__tag {
+  // ==========================================
+  // Element: content
+  // ==========================================
+
+  &__content {
+    // No additional styles - kept for BEM completeness
+  }
+
+  // ==========================================
+  // Element: tag
+  // ==========================================
+
+  &__tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.125rem;
+    margin-bottom: 1rem;
+    color: var(--color-accent);
+    font-size: clamp(0.7rem, 1vw, 0.875rem);
+    font-weight: 400;
+    text-transform: uppercase;
+    animation: aboutFadeInUp 0.8s ease-out both;
+
+    @media (max-width: 480px) {
       font-size: clamp(0.65rem, 2vw, 0.7rem);
       gap: 0.25rem;
     }
+  }
 
-    &__tag-icon {
+  // ==========================================
+  // Element: tag-icon
+  // ==========================================
+
+  &__tag-icon {
+    flex-shrink: 0;
+    inline-size: clamp(1.1rem, 1.5vw, 1.4375rem);
+    block-size: clamp(0.8rem, 1.2vw, 1.0625rem);
+
+    @media (max-width: 480px) {
       inline-size: clamp(0.9rem, 3vw, 1.1rem);
       block-size: clamp(0.65rem, 2.5vw, 0.8rem);
     }
+  }
 
-    &__title {
+  // ==========================================
+  // Element: tag-text
+  // ==========================================
+
+  &__tag-text {
+    letter-spacing: 0.2em;
+  }
+
+  // ==========================================
+  // Element: title
+  // ==========================================
+
+  &__title {
+    font-size: clamp(1.5rem, 4vw, 2.625rem);
+    line-height: clamp(1.8rem, 4.5vw, 3.09375rem);
+    color: var(--color-secondary);
+    font-weight: 700;
+    margin-bottom: clamp(1rem, 2.5vw, 1.875rem);
+    max-width: 34.215625rem;
+    animation: aboutFadeInUp 0.9s ease-out 0.2s both;
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+      font-size: clamp(1.75rem, 5vw, 2.5rem);
+      line-height: clamp(2.1rem, 5.5vw, 3rem);
+    }
+
+    @media (max-width: 480px) {
       font-size: clamp(1.25rem, 4vw, 1.5rem);
       line-height: clamp(1.5rem, 4.5vw, 1.8rem);
       margin-bottom: clamp(0.75rem, 2vw, 1rem);
     }
 
-    &__description {
+    // ==========================================
+    // Element: title-highlight
+    // ==========================================
+
+    &-highlight {
+      color: var(--color-accent);
+    }
+  }
+
+  // ==========================================
+  // Element: description
+  // ==========================================
+
+  &__description {
+    color: #4d5756;
+    line-height: clamp(1.5rem, 2.5vw, 2rem);
+    margin-bottom: clamp(1.2rem, 2.5vw, 2rem);
+    max-width: 35rem;
+    font-size: clamp(0.85rem, 1.2vw, 1.0625rem);
+    font-weight: 400;
+    animation: aboutFadeInUp 1s ease-out 0.4s both;
+
+    @media (max-width: 768px) {
+      max-width: 100%;
+      font-size: clamp(0.9rem, 2.5vw, 1rem);
+      line-height: clamp(1.6rem, 4vw, 1.8rem);
+    }
+
+    @media (max-width: 480px) {
       font-size: clamp(0.75rem, 2.5vw, 0.85rem);
       line-height: clamp(1.3rem, 4vw, 1.5rem);
       margin-bottom: clamp(1rem, 3vw, 1.2rem);
     }
+  }
 
-    &__features {
+  // ==========================================
+  // Element: features
+  // ==========================================
+
+  &__features {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(1rem, 2vw, 2rem);
+    margin-bottom: clamp(1.5rem, 2.5vw, 2.1875rem);
+    animation: aboutFadeInUp 1.1s ease-out 0.6s both;
+
+    @media (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    @media (max-width: 480px) {
       gap: clamp(0.75rem, 2vw, 1rem);
       margin-bottom: clamp(1rem, 3vw, 1.5rem);
     }
+  }
 
-    &__feature {
-      &-title {
+  // ==========================================
+  // Element: feature
+  // ==========================================
+
+  &__feature {
+    transition: 0.35s;
+
+    &:hover {
+      transform: translateY(-6px);
+    }
+
+    // ==========================================
+    // Element: feature-title
+    // ==========================================
+
+    &-title {
+      font-size: clamp(0.8rem, 1vw, 1rem);
+      color: var(--color-secondary);
+      font-weight: 700;
+      line-height: clamp(1rem, 1.2vw, 1.0625rem);
+      margin-bottom: 0.5rem;
+
+      @media (max-width: 480px) {
         font-size: clamp(0.7rem, 2vw, 0.8rem);
         line-height: clamp(1rem, 3vw, 1.2rem);
         margin-bottom: 0.25rem;
       }
+    }
 
-      &-text {
+    // ==========================================
+    // Element: feature-text
+    // ==========================================
+
+    &-text {
+      color: #333931;
+      line-height: clamp(1.5rem, 2.5vw, 2.01875rem);
+      font-size: clamp(0.85rem, 1.2vw, 1.0625rem);
+      font-weight: 400;
+
+      @media (max-width: 768px) {
+        font-size: clamp(0.9rem, 2.5vw, 1rem);
+        line-height: clamp(1.6rem, 4vw, 1.8rem);
+      }
+
+      @media (max-width: 480px) {
         font-size: clamp(0.75rem, 2.5vw, 0.85rem);
         line-height: clamp(1.3rem, 4vw, 1.5rem);
       }
     }
+
+    // ==========================================
+    // Feature animation delays
+    // ==========================================
+
+    &:nth-child(1) {
+      animation: aboutFadeInUp 1.1s ease-out 0.7s both;
+    }
+
+    &:nth-child(2) {
+      animation: aboutFadeInUp 1.1s ease-out 0.9s both;
+    }
+  }
+
+  // ==========================================
+  // Responsive: 768px (additional)
+  // ==========================================
+
+  @media (max-width: 768px) {
+    padding: clamp(2.5rem, 4vw, 3rem) 0;
+  }
+}
+
+// ==========================================
+// App Button (external component)
+// ==========================================
+
+app-button {
+  display: inline-block;
+  animation: aboutFadeInUp 1.2s ease-out 1.1s both;
+}
+
+// ==========================================
+// Keyframes
+// ==========================================
+
+// ==========================================
+// Keyframes: aboutFloat
+// ==========================================
+
+@keyframes aboutFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+// ==========================================
+// Keyframes: aboutBadgePulse
+// ==========================================
+
+@keyframes aboutBadgePulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}
+
+// ==========================================
+// Keyframes: aboutRotateShape
+// ==========================================
+
+@keyframes aboutRotateShape {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+// ==========================================
+// Keyframes: aboutFadeInUp
+// ==========================================
+
+@keyframes aboutFadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// ==========================================
+// Reduced Motion Preferences
+// ==========================================
+
+@media (prefers-reduced-motion: reduce) {
+  .about {
+    &__image,
+    &__experience,
+    &__shape,
+    &__tag,
+    &__title,
+    &__description,
+    &__features,
+    &__feature {
+      animation: none !important;
+      transition: none !important;
+    }
+
+    &__feature:hover {
+      transform: none !important;
+    }
+  }
+
+  app-button {
+    animation: none !important;
   }
 }
