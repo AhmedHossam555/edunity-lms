@@ -1,3 +1,7 @@
+// ==========================================
+// Block: testimonials
+// ==========================================
+
 .testimonials {
   position: relative;
   overflow: hidden;
@@ -5,13 +9,22 @@
   background-image: url('/assets/images/home/testimonials-section/bgs/testimonials-section-bg.png');
   background-size: cover;
 
+  // ==========================================
+  // Element: strip
+  // ==========================================
+
   &__strip {
     height: 6.25rem; // 100px
     background: var(--color-accent);
     display: flex;
     align-items: center;
     overflow: hidden;
+    animation: testimonialsFadeIn 1s ease-out both;
   }
+
+  // ==========================================
+  // Element: strip-track
+  // ==========================================
 
   &__strip-track {
     display: flex;
@@ -24,26 +37,57 @@
     animation: marquee 18s linear infinite;
   }
 
+  // ==========================================
+  // Element: strip-item
+  // ==========================================
+
+  &__strip-item {
+    display: inline-block;
+  }
+
+  // ==========================================
+  // Element: wrapper
+  // ==========================================
+
   &__wrapper {
     position: relative;
     display: flex;
     align-items: center;
     min-height: clamp(34rem, 45vw, 40rem); // 544px → 640px
+    animation: testimonialsFadeIn 1.2s ease-out 0.15s both;
+
+    @media (max-width: 61.9375rem) {
+      flex-direction: column;
+      padding: 4.375rem 0; // 70px
+    }
   }
 
-  /* ---------------- image ---------------- */
+  // ==========================================
+  // Element: image
+  // ==========================================
 
   &__image {
     width: 43%;
     z-index: 1;
+    animation: testimonialsFadeInLeft 1.2s ease-out 0.3s both;
 
-    img {
+    @media (max-width: 61.9375rem) {
       width: 100%;
-      display: block;
     }
   }
 
-  /* ---------------- content ---------------- */
+  // ==========================================
+  // Element: image-img
+  // ==========================================
+
+  &__image-img {
+    width: 100%;
+    display: block;
+  }
+
+  // ==========================================
+  // Element: content
+  // ==========================================
 
   &__content {
     position: relative;
@@ -52,24 +96,38 @@
     display: flex;
     justify-content: center;
     z-index: 2;
+    animation: testimonialsFadeInRight 1.2s ease-out 0.4s both;
+
+    @media (max-width: 61.9375rem) {
+      width: 100%;
+      margin-left: 0;
+      margin-top: -5rem; // -80px
+    }
   }
 
-  /* green triangle */
+  // ==========================================
+  // Element: shape
+  // ==========================================
 
   &__shape {
     position: absolute;
     right: -1.875rem; // -30px
     bottom: -1.875rem; // -30px
-
     width: 0;
     height: 0;
-
     border-style: solid;
     border-width: 0 0 18.75rem 20rem; // 300px 320px
     border-color: transparent transparent #39d8b8 transparent;
+    animation: testimonialsFadeIn 1s ease-out 0.6s both;
+
+    @media (max-width: 61.9375rem) {
+      display: none;
+    }
   }
 
-  /* ---------------- card ---------------- */
+  // ==========================================
+  // Element: card
+  // ==========================================
 
   &__card {
     position: relative;
@@ -79,7 +137,20 @@
     overflow: hidden;
     border-radius: 0.125rem; // 2px
     z-index: 2;
+    animation: testimonialsFadeInUp 1s ease-out 0.5s both;
+
+    @media (max-width: 48rem) {
+      padding: 1.875rem; // 30px
+    }
+
+    @media (max-width: 61.9375rem) {
+      width: 100%;
+    }
   }
+
+  // ==========================================
+  // Element: quote
+  // ==========================================
 
   &__quote {
     position: relative;
@@ -87,7 +158,12 @@
     color: rgba(255, 255, 255, 0.35);
     font-size: clamp(2rem, 3vw, 2.5rem); // 32px → 40px
     line-height: 1;
+    animation: testimonialsFadeIn 0.9s ease-out 0.6s both;
   }
+
+  // ==========================================
+  // Element: text
+  // ==========================================
 
   &__text {
     position: relative;
@@ -97,7 +173,16 @@
     line-height: 2rem;
     max-width: 38.773rem; // 620.37px
     font-size: clamp(0.9375rem, 1vw, 1.0625rem); // 15px → 17px
+    animation: testimonialsFadeIn 1s ease-out 0.7s both;
+
+    @media (max-width: 48rem) {
+      max-width: 100%;
+    }
   }
+
+  // ==========================================
+  // Element: author
+  // ==========================================
 
   &__author {
     position: relative;
@@ -105,7 +190,21 @@
     display: flex;
     align-items: center;
     gap: 0.875rem; // 14px
+    animation: testimonialsFadeIn 1.1s ease-out 0.8s both;
   }
+
+  // ==========================================
+  // Element: author-info
+  // ==========================================
+
+  &__author-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  // ==========================================
+  // Element: avatar
+  // ==========================================
 
   &__avatar {
     width: clamp(3rem, 4vw, 3.625rem); // 48px → 58px
@@ -114,18 +213,28 @@
     object-fit: cover;
   }
 
+  // ==========================================
+  // Element: name
+  // ==========================================
+
   &__name {
     color: #fff;
     font-size: clamp(1rem, 1.5vw, 1.0625rem); // 16px → 17px
     margin-bottom: 0.25rem; // 4px
   }
 
+  // ==========================================
+  // Element: role
+  // ==========================================
+
   &__role {
     color: #bdbdbd;
     font-size: clamp(0.75rem, 1vw, 0.8125rem); // 12px → 13px
   }
 
-  /* ---------------- dots ---------------- */
+  // ==========================================
+  // Element: dots
+  // ==========================================
 
   &__dots {
     position: absolute;
@@ -134,75 +243,133 @@
     display: flex;
     gap: 0.5rem; // 8px
     z-index: 3;
+    animation: testimonialsFadeIn 1.2s ease-out 0.9s both;
+  }
 
-    span {
-      width: 0.5rem; // 8px
-      height: 0.5rem;
-      border-radius: 50%;
-      border: 0.0625rem solid #fff; // 1px
-    }
+  // ==========================================
+  // Element: dot
+  // ==========================================
 
-    .active {
+  &__dot {
+    width: 0.5rem; // 8px
+    height: 0.5rem;
+    border-radius: 50%;
+    border: 0.0625rem solid #fff; // 1px
+    cursor: pointer;
+    transition: background 0.3s ease;
+
+    // ==========================================
+    // Modifier: active
+    // ==========================================
+
+    &--active {
       background: #fff;
     }
   }
 }
 
-/* marquee */
+// ==========================================
+// Keyframes
+// ==========================================
+
+// ==========================================
+// Keyframes: marquee
+// ==========================================
 
 @keyframes marquee {
   from {
     transform: translateX(0);
   }
-
   to {
     transform: translateX(-50%);
   }
 }
 
-/* responsive */
+// ==========================================
+// Keyframes: testimonialsFadeIn
+// ==========================================
 
-@media (max-width: 61.9375rem) {
-  // 991px
-  .testimonials {
-    &__wrapper {
-      flex-direction: column;
-      padding: 4.375rem 0; // 70px
-    }
-
-    &__image {
-      width: 100%;
-    }
-
-    &__content {
-      width: 100%;
-      margin-left: 0;
-      margin-top: -5rem; // -80px
-    }
-
-    &__card {
-      width: 100%;
-    }
-
-    &__shape {
-      display: none;
-    }
+@keyframes testimonialsFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }
 
-@media (max-width: 48rem) {
-  // 768px
+// ==========================================
+// Keyframes: testimonialsFadeInUp
+// ==========================================
+
+@keyframes testimonialsFadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// ==========================================
+// Keyframes: testimonialsFadeInLeft
+// ==========================================
+
+@keyframes testimonialsFadeInLeft {
+  from {
+    opacity: 0;
+    transform: translate3d(-50px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// ==========================================
+// Keyframes: testimonialsFadeInRight
+// ==========================================
+
+@keyframes testimonialsFadeInRight {
+  from {
+    opacity: 0;
+    transform: translate3d(50px, 0, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// ==========================================
+// Reduced Motion Preferences
+// ==========================================
+
+@media (prefers-reduced-motion: reduce) {
   .testimonials {
-    &__card {
-      padding: 1.875rem; // 30px
+    &__strip,
+    &__wrapper,
+    &__image,
+    &__content,
+    &__shape,
+    &__card,
+    &__quote,
+    &__text,
+    &__author,
+    &__dots,
+    &__dot {
+      animation: none !important;
+      opacity: 1 !important;
     }
 
-    &__card::after {
-      width: 9.375rem; // 150px
+    &__strip-track {
+      animation: none !important;
     }
 
-    &__text {
-      max-width: 100%;
+    &__dot {
+      transition: none !important;
     }
   }
 }

@@ -5,7 +5,7 @@
   <div class="testimonials__strip">
     <div class="testimonials__strip-track">
       @for (item of marqueeItems(); track $index) {
-        <span>{{ config().marquee.text }} {{ config().marquee.separator }}</span>
+        <span class="testimonials__strip-item">{{ config().marquee.text }} {{ config().marquee.separator }}</span>
       }
     </div>
   </div>
@@ -16,7 +16,7 @@
       <!-- Left Image                                -->
       <!-- ========================================= -->
       <div class="testimonials__image">
-        <img [src]="config().image.src" [alt]="config().image.alt" />
+        <img class="testimonials__image-img" [src]="config().image.src" [alt]="config().image.alt" />
       </div>
 
       <!-- ========================================= -->
@@ -54,7 +54,7 @@
               [alt]="config().testimonial.author.name"
             />
 
-            <div>
+            <div class="testimonials__author-info">
               <h4 class="testimonials__name">
                 {{ config().testimonial.author.name }}
               </h4>
@@ -70,7 +70,7 @@
           <!-- ========================================= -->
           <div class="testimonials__dots">
             @for (dot of dotsArray(); track $index) {
-              <span [class.active]="$index === config().dots.activeIndex"></span>
+              <span class="testimonials__dot" [class.testimonials__dot--active]="$index === config().dots.activeIndex"></span>
             }
           </div>
         </div>
