@@ -7,7 +7,7 @@
 
   &__strip {
     height: 6.25rem; // 100px
-    background: #fe543d;
+    background: var(--color-accent);
     display: flex;
     align-items: center;
     overflow: hidden;

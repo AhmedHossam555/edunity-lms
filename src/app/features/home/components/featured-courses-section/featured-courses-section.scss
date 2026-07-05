@@ -28,7 +28,7 @@
     display: inline-flex;
     align-items: center;
     gap: 0.3125rem; // 5px
-    color: #2FC7A1;
+    color: var(--color-primary);
     font-size: clamp(0.75rem, 1vw, 0.875rem); // 12px - 14px
     font-weight: 400;
     line-height: clamp(1.5rem, 2.5vw, 2rem); // 24px - 32px
@@ -37,7 +37,7 @@
 
   &__title {
     max-width: 40rem;
-    color: #0E2A46;
+    color: var(--color-secondary);
     font-weight: 700;
     font-size: clamp(1.75rem, 4vw, 2.625rem); // 28px - 42px
     line-height: clamp(2.25rem, 4.5vw, 3.09375rem); // 36px - 49.5px
@@ -93,7 +93,7 @@
     top: clamp(0.5rem, 1vw, 1rem); // 8px - 16px
     left: clamp(0.5rem, 1vw, 1rem); // 8px - 16px
     z-index: 1;
-    background-color: #FE543D;
+    background-color: var(--color-accent);
     font-size: clamp(0.8125rem, 1vw, 0.9375rem); // 13px - 15px
     font-weight: 400;
     line-height: clamp(1.5rem, 2.5vw, 2rem); // 24px - 32px
@@ -187,7 +187,7 @@
 
   &__price-current {
     font-weight: 700;
-    color: #0E2A46;
+    color: var(--color-secondary);
   }
 
   &__price-old {

@@ -17,7 +17,7 @@
     line-height: 2rem; /* 32px → 2rem */
     font-weight: 400;
     text-transform: uppercase;
-    color: #2FC7A1;
+    color: var(--color-primary);
     margin-bottom: clamp(0.5rem, 1vw, 0.625rem); /* 10px → 0.625rem */
   }
 
@@ -26,7 +26,7 @@
     font-size: clamp(1.75rem, 5vw, 2.8125rem); /* 45px → 2.8125rem */
     font-weight: 700;
     line-height: clamp(2rem, 5.5vw, 3.09375rem); /* 49.5px → 3.09375rem */
-    color: #0E2A46;
+    color: var(--color-secondary);
   }
 
   &__grid {
@@ -75,7 +75,7 @@
     margin-bottom: clamp(0.75rem, 2vw, 1.25rem); /* 20px → 1.25rem */
     font-size: clamp(1rem, 2vw, 1.1875rem); /* 19px → 1.1875rem */
     line-height: clamp(1.25rem, 2.5vw, 1.6625rem); /* 26.6px → 1.6625rem */
-    color: #0E2A46;
+    color: var(--color-secondary);
     font-weight: 600;
   }
 }

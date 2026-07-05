@@ -1,0 +1,29 @@
+<button
+  type="button"
+  [class]="buttonClasses()"
+  [attr.aria-label]="resolvedConfig().ariaLabel"
+  [attr.tabindex]="isVisible() ? 0 : -1"
+  [attr.aria-hidden]="!isVisible()"
+  (click)="scrollToTop()"
+  (mouseenter)="onMouseEnter()"
+  (mouseleave)="onMouseLeave()"
+  (focus)="onFocus()"
+  (blur)="onBlur()"
+  (mousedown)="onMouseDown()"
+  (mouseup)="onMouseUp()"
+>
+  <svg
+    class="scroll-to-top__icon"
+    xmlns="http://www.w3.org/2000/svg"
+    [attr.viewBox]="icon.viewBox"
+    fill="none"
+    stroke="currentColor"
+    [attr.stroke-width]="icon.strokeWidth"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    @for (d of icon.paths; track d) {
+      <path [attr.d]="d" />
+    }
+  </svg>
+</button>

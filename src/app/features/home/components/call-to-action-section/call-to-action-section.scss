@@ -23,7 +23,7 @@
     display: inline-block;
     margin-bottom: clamp(1rem, 2vw, 1.875rem);
 
-    color: #fe543d;
+    color: var(--color-accent);
     font-size: clamp(1rem, 1vw + 0.8rem, 1.4375rem);
     font-weight: 600;
     line-height: 1.4;
@@ -61,7 +61,7 @@
     border-radius: 50%;
 
     background-color: #fff;
-    color: #fe543d;
+    color: var(--color-accent);
 
     font-size: clamp(1rem, 2vw, 1.375rem);
     cursor: pointer;

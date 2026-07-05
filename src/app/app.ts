@@ -6,10 +6,11 @@ import { NetworkStatusBannerComponent } from '@core/connectivity/ui/network-stat
 import { APP_STATE, AppState } from './core/connectivity';
 import { NetworkStatusStore } from './core/connectivity/application/network-status.store';
 import { MainSiteHeader, MainSiteFooter } from "./layout";
+import { ScrollToTop } from './shared';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NetworkStatusBannerComponent, MainSiteHeader, MainSiteFooter],
+  imports: [RouterOutlet, NetworkStatusBannerComponent, MainSiteHeader, MainSiteFooter, ScrollToTop],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
