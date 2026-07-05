@@ -1,3 +1,7 @@
+// ==========================================
+// Block: instructors
+// ==========================================
+
 .instructors {
   position: relative;
   min-height: 619.09px;
@@ -14,6 +18,7 @@
     z-index: 2;
     width: 100%;
     text-align: center;
+    animation: instructorsFadeIn 1s ease-out both;
 
     @media (max-width: 1200px) {
       position: relative;
@@ -21,53 +26,102 @@
     }
   }
 
-  /* ---------------- Header ---------------- */
+  // ==========================================
+  // Element: header
+  // ==========================================
 
   &__header {
     text-align: center;
-    margin-bottom: clamp(2.5rem, 5vw, 3.75rem); /* 40-60px */
+    margin-bottom: clamp(2.5rem, 5vw, 3.75rem); // 40-60px
+    animation: instructorsFadeIn 0.9s ease-out both;
   }
+
+  // ==========================================
+  // Element: subtitle
+  // ==========================================
 
   &__subtitle {
     display: inline-flex;
     align-items: center;
     color: var(--color-accent);
-    font-size: clamp(0.75rem, 1vw, 0.875rem); /* 12-14px */
+    font-size: clamp(0.75rem, 1vw, 0.875rem); // 12-14px
     font-weight: 400;
     text-transform: uppercase;
-    line-height: 2rem; /* 32px */
-    margin-bottom: clamp(0.75rem, 1.5vw, 1.25rem); /* 12-20px */
+    line-height: 2rem; // 32px
+    margin-bottom: clamp(0.75rem, 1.5vw, 1.25rem); // 12-20px
+    animation: instructorsFadeIn 0.8s ease-out 0.1s both;
   }
+
+  // ==========================================
+  // Element: subtitle-icon
+  // ==========================================
+
+  &__subtitle-icon {
+    display: inline-flex;
+    align-items: center;
+  }
+
+  // ==========================================
+  // Element: subtitle-text
+  // ==========================================
+
+  &__subtitle-text {
+    // No additional styles - kept for BEM completeness
+  }
+
+  // ==========================================
+  // Element: title
+  // ==========================================
 
   &__title {
     color: #fff;
-    font-size: clamp(2rem, 4vw, 2.8125rem); /* 32-45px */
+    font-size: clamp(2rem, 4vw, 2.8125rem); // 32-45px
     font-weight: 700;
-    line-height: clamp(2.2rem, 4.5vw, 3.09375rem); /* 35.2-49.5px */
-    margin-bottom: clamp(2rem, 4vw, 3.5rem); /* 32-56px */
+    line-height: clamp(2.2rem, 4.5vw, 3.09375rem); // 35.2-49.5px
+    margin-bottom: clamp(2rem, 4vw, 3.5rem); // 32-56px
+    animation: instructorsFadeIn 1s ease-out 0.2s both;
+
+    @media (max-width: 576px) {
+      font-size: 2rem;
+    }
   }
 
-  /* ---------------- Grid ---------------- */
+  // ==========================================
+  // Element: grid
+  // ==========================================
 
   &__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: clamp(1rem, 2vw, 1.5rem); /* 16-24px */
+    gap: clamp(1rem, 2vw, 1.5rem); // 16-24px
+    animation: instructorsFadeIn 1.1s ease-out 0.15s both;
+
+    @media (max-width: 992px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 576px) {
+      grid-template-columns: 1fr;
+    }
   }
 
-  /* ---------------- Card ---------------- */
+  // ==========================================
+  // Element: card
+  // ==========================================
 
   &__card {
-    border-radius: 0.3125rem; /* 5px */
+    border-radius: 0.3125rem; // 5px
     overflow: hidden;
-    transition: 0.35s;
-    box-shadow: 0 1.25rem 2.1875rem rgba(0, 0, 0, 0.08); /* 20px 35px */
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    box-shadow: 0 1.25rem 2.1875rem rgba(0, 0, 0, 0.08); // 20px 35px
+    opacity: 0;
+    animation: instructorsFadeInUp 1.2s ease-out forwards;
 
     &:hover {
-      transform: translateY(-0.5rem); /* -8px */
+      transform: translateY(-0.5rem); // -8px
+      box-shadow: 0 1.5rem 2.5rem rgba(0, 0, 0, 0.15);
 
       .instructors__image {
-        display: block;
         transform: scale(1.05);
       }
 
@@ -75,7 +129,47 @@
         transform: rotate(45deg);
       }
     }
+
+    // ==========================================
+    // Card animation delays
+    // ==========================================
+
+    &:nth-child(1) {
+      animation-delay: 0.2s;
+    }
+
+    &:nth-child(2) {
+      animation-delay: 0.35s;
+    }
+
+    &:nth-child(3) {
+      animation-delay: 0.5s;
+    }
+
+    &:nth-child(4) {
+      animation-delay: 0.65s;
+    }
+
+    &:nth-child(5) {
+      animation-delay: 0.8s;
+    }
+
+    &:nth-child(6) {
+      animation-delay: 0.95s;
+    }
+
+    &:nth-child(7) {
+      animation-delay: 1.1s;
+    }
+
+    &:nth-child(8) {
+      animation-delay: 1.25s;
+    }
   }
+
+  // ==========================================
+  // Element: image-wrapper
+  // ==========================================
 
   &__image-wrapper {
     position: relative;
@@ -84,6 +178,10 @@
     line-height: 0;
   }
 
+  // ==========================================
+  // Element: image
+  // ==========================================
+
   &__image {
     position: absolute;
     inset: 0;
@@ -91,76 +189,176 @@
     height: 100%;
     object-fit: cover;
     transform: scale(1.01);
-    transition: 0.4s;
+    transition: transform 0.4s ease;
   }
 
-  /* ---------------- Footer / Content ---------------- */
+  // ==========================================
+  // Element: content
+  // ==========================================
 
   &__content {
     position: relative;
     background: var(--color-secondary);
     text-align: center;
-    padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1rem, 2vw, 1.25rem) clamp(1rem, 2vw, 1.5rem); /* 24-36px, 16-20px, 16-24px */
+    padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1rem, 2vw, 1.25rem) clamp(1rem, 2vw, 1.5rem); // 24-36px, 16-20px, 16-24px
   }
+
+  // ==========================================
+  // Element: share
+  // ==========================================
 
   &__share {
     position: absolute;
     left: 50%;
     top: 0;
     transform: translate(-50%, -50%);
-    width: clamp(2.5rem, 4vw, 2.5rem); /* 40px */
-    height: clamp(2.5rem, 4vw, 2.5rem); /* 40px */
+    width: clamp(2.5rem, 4vw, 2.5rem); // 40px
+    height: clamp(2.5rem, 4vw, 2.5rem); // 40px
     border: none;
     border-radius: 50%;
     background: var(--color-accent);
     color: #fff;
     cursor: pointer;
-    transition: 0.35s;
+    transition: transform 0.35s ease, background 0.35s ease;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: clamp(1rem, 1.5vw, 1.125rem); /* 16-18px */
+    font-size: clamp(1rem, 1.5vw, 1.125rem); // 16-18px
     font-weight: 700;
 
-    svg {
-      width: clamp(0.75rem, 1.2vw, 0.9375rem); /* 12-15px */
-      height: clamp(0.75rem, 1.2vw, 1.0625rem); /* 12-17px */
+    &:hover {
+      background: #2abfa0;
+    }
+
+    &:focus-visible {
+      outline: 0.125rem solid var(--color-accent);
+      outline-offset: 0.25rem;
     }
   }
 
+  // ==========================================
+  // Element: share-icon
+  // ==========================================
+
+  &__share-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    svg {
+      width: clamp(0.75rem, 1.2vw, 0.9375rem); // 12-15px
+      height: clamp(0.75rem, 1.2vw, 1.0625rem); // 12-17px
+    }
+  }
+
+  // ==========================================
+  // Element: name
+  // ==========================================
+
   &__name {
-    margin-bottom: 0.5rem; /* 8px */
+    margin-bottom: 0.5rem; // 8px
     color: #fff;
-    font-size: clamp(1rem, 1.5vw, 1.125rem); /* 16-18px */
+    font-size: clamp(1rem, 1.5vw, 1.125rem); // 16-18px
     font-weight: 700;
-    line-height: 1.5rem; /* 24px */
+    line-height: 1.5rem; // 24px
     text-transform: uppercase;
   }
 
+  // ==========================================
+  // Element: role
+  // ==========================================
+
   &__role {
     color: var(--color-accent);
-    font-size: clamp(0.875rem, 1.2vw, 0.9375rem); /* 14-15px */
+    font-size: clamp(0.875rem, 1.2vw, 0.9375rem); // 14-15px
     font-weight: 400;
     line-height: auto;
   }
 
-  /* ---------------- Responsive ---------------- */
-
-  @media (max-width: 992px) {
-    &__grid {
-      grid-template-columns: repeat(2, 1fr);
-    }
-  }
+  // ==========================================
+  // Responsive: 576px (additional)
+  // ==========================================
 
   @media (max-width: 576px) {
-    padding: 4.375rem 0; /* 70px */
+    padding: 4.375rem 0; // 70px
+  }
+}
 
-    &__grid {
-      grid-template-columns: 1fr;
+// ==========================================
+// Keyframes
+// ==========================================
+
+// ==========================================
+// Keyframes: instructorsFadeIn
+// ==========================================
+
+@keyframes instructorsFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// ==========================================
+// Keyframes: instructorsFadeInUp
+// ==========================================
+
+@keyframes instructorsFadeInUp {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 40px, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+// ==========================================
+// Reduced Motion Preferences
+// ==========================================
+
+@media (prefers-reduced-motion: reduce) {
+  .instructors {
+    .container,
+    &__header,
+    &__subtitle,
+    &__title,
+    &__grid,
+    &__card,
+    &__share {
+      animation: none !important;
+      opacity: 1 !important;
     }
 
-    &__title {
-      font-size: 2rem; /* Kept as specified in original */
+    &__card {
+      transition: none !important;
+
+      &:hover {
+        transform: none !important;
+      }
+    }
+
+    &__image {
+      transition: none !important;
+
+      .instructors__card:hover & {
+        transform: none !important;
+      }
+    }
+
+    &__share {
+      transition: none !important;
+
+      &:hover {
+        transform: none !important;
+      }
+
+      .instructors__card:hover & {
+        transform: none !important;
+      }
     }
   }
 }

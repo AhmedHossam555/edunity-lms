@@ -9,9 +9,9 @@
     <!-- ========================================= -->
     <div class="instructors__header">
       <span class="instructors__subtitle">
-        <span [innerHTML]="decorativeIconLeft"></span>
-        {{ content.subtitle }}
-        <span [innerHTML]="decorativeIconRight"></span>
+        <span class="instructors__subtitle-icon" [innerHTML]="decorativeIconLeft"></span>
+        <span class="instructors__subtitle-text">{{ content.subtitle }}</span>
+        <span class="instructors__subtitle-icon" [innerHTML]="decorativeIconRight"></span>
       </span>
 
       <h2 class="instructors__title">
@@ -43,8 +43,8 @@
           <div class="instructors__content">
 
             <!-- Share Button -->
-            <button class="instructors__share">
-              <span [innerHTML]="shareIcon"></span>
+            <button class="instructors__share" aria-label="Share instructor profile">
+              <span class="instructors__share-icon" [innerHTML]="shareIcon"></span>
             </button>
 
             <!-- Name -->
