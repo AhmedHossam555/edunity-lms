@@ -1,0 +1,10 @@
+<app-page-banner [title]="pageBannerTitle()" [currentPage]="pageBannerCurrentPage()" />
+
+<!-- ========================================= -->
+<!-- About Section                            -->
+<!-- ========================================= -->
+@defer (on viewport; prefetch on idle) {
+  <app-about-section />
+} @placeholder {
+  <section class="section-padding"></section>
+}

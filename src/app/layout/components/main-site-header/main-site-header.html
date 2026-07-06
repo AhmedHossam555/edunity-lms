@@ -91,9 +91,11 @@
           <li class="header__navbar-menu-item">
             <a
               class="header__navbar-link"
-              [class.header__navbar-link--active]="isActiveLink(link.id)"
-              [href]="link.href"
-              [attr.aria-current]="isActiveLink(link.id) ? 'page' : null"
+              [routerLink]="link.href"
+              routerLinkActive="header__navbar-link--active"
+              [routerLinkActiveOptions]="{ exact: link.href === '/' }"
+              #rla="routerLinkActive"
+              [attr.aria-current]="rla.isActive ? 'page' : null"
             >
               {{ link.label }}
             </a>

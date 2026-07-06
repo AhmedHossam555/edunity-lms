@@ -80,7 +80,5 @@ export const appConfig: ApplicationConfig = {
         return languageManager.currentLanguage() === 'ar' ? 'ar-EG' : 'en-US';
       },
     },
-
-
   ],
 };

@@ -86,8 +86,8 @@ export const HEADER_CONFIG: IHeaderConfig = {
     //  Navigation Links
     // ─────────────────────────────────────────────────────────────
     links: [
-      { id: NavLinkId.Home, label: 'Home', href: '#', active: true },
-      { id: NavLinkId.AboutUs, label: 'About Us', href: '#' },
+      { id: NavLinkId.Home, label: 'Home', href: '/', active: true },
+      { id: NavLinkId.AboutUs, label: 'About Us', href: '/about' },
       { id: NavLinkId.Courses, label: 'Courses', href: '#' },
       { id: NavLinkId.Pages, label: 'Pages', href: '#' },
       { id: NavLinkId.Blog, label: 'Blog', href: '#' },

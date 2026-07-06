@@ -8,6 +8,7 @@ import {
   output,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { Sidebar } from '@app/layout/components/sidebar/sidebar';
 import { HEADER_CONFIG } from '@app/layout/configs';
 import {
@@ -23,7 +24,7 @@ import { safeSvg } from '@app/shared/utils/svg.util';
 
 @Component({
   selector: 'app-main-site-header',
-  imports: [Sidebar],
+  imports: [Sidebar, RouterLink, RouterLinkActive],
   templateUrl: './main-site-header.html',
   styleUrl: './main-site-header.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

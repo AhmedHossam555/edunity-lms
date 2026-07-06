@@ -1,0 +1,54 @@
+<section class="page-banner section-padding" role="banner">
+  <div class="container">
+
+    <!-- ========================================= -->
+    <!-- Banner Content                            -->
+    <!-- ========================================= -->
+    <div class="page-banner__content">
+
+      <!-- ========================================= -->
+      <!-- Page Title                               -->
+      <!-- ========================================= -->
+      <h1 class="page-banner__title">
+        {{ title() }}
+      </h1>
+
+      <!-- ========================================= -->
+      <!-- Breadcrumb Navigation                    -->
+      <!-- ========================================= -->
+      <nav
+        class="page-banner__breadcrumb"
+        aria-label="Breadcrumb">
+
+        <!-- ========================================= -->
+        <!-- Home Link                                -->
+        <!-- ========================================= -->
+        <a
+          routerLink="/"
+          class="page-banner__breadcrumb-link">
+          {{ homeLabel() }}
+        </a>
+
+        <!-- ========================================= -->
+        <!-- Breadcrumb Separator                     -->
+        <!-- ========================================= -->
+        <span
+          class="page-banner__breadcrumb-separator"
+          aria-hidden="true">
+          //
+        </span>
+
+        <!-- ========================================= -->
+        <!-- Current Page                             -->
+        <!-- ========================================= -->
+        <span
+          class="page-banner__breadcrumb-current"
+          aria-current="page">
+          {{ currentPage() }}
+        </span>
+
+      </nav>
+
+    </div>
+  </div>
+</section>
