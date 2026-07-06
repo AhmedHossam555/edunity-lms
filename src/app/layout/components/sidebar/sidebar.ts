@@ -9,6 +9,7 @@ import {
   effect,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { HEADER_CONFIG } from '@app/layout/configs';
 import {
   ARROW_ICON,
@@ -24,6 +25,7 @@ import { safeSvg } from '@app/shared/utils/svg.util';
 @Component({
   selector: 'app-sidebar',
   standalone: true,
+  imports: [RouterLink, RouterLinkActive],
   templateUrl: './sidebar.html',
   styleUrls: ['./sidebar.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
