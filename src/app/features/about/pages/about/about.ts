@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { AboutSection } from "@app/features/home/components";
 import { PageBanner } from "@app/shared";
 
@@ -7,6 +7,7 @@ import { PageBanner } from "@app/shared";
   imports: [AboutSection, PageBanner],
   templateUrl: './about.html',
   styleUrl: './about.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class About {
   protected readonly pageBannerTitle = signal('About Us');
