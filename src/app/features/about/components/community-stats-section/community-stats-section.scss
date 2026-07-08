@@ -1,0 +1,207 @@
+// ==========================================================================
+// Community Stats + Testimonials — BEM block: `.community-stats`
+// ==========================================================================
+
+$banner-bg: #fc6441; // Orange
+$text-dark: #0e2a46; // Deep Navy Blue
+$text-light-purple: #704fe6; // Purple for roles
+$bg-light: #f9f9fd; // Very light background
+$card-border: #17254e;
+$tag-bg: #e9e2ff;
+$review-color: #333931;
+$white: #fff;
+
+.community-stats {
+  background-color: $bg-light;
+  background-image: url('/assets/images/about/community-stats-section/bgs/light-abstract-bg.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+
+  // ---- Banner -------------------------------------------------------
+
+  &__banner {
+    position: absolute;
+    top: -80px;
+    left: 50%;
+    transform: translateX(-50%);
+
+    width: min(100%, 1320px);
+
+    background-color: $banner-bg;
+    background-image: url('/assets/images/about/community-stats-section/bgs/clean-stats-bg.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+
+    border-radius: 999px;
+
+    padding: clamp(24px, 2vw + 8px, 55px) clamp(20px, 4vw, 70px);
+
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: clamp(16px, 2vw, 20px);
+
+    z-index: 2;
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+      row-gap: clamp(20px, 4vw, 32px);
+    }
+
+    @media (max-width: 480px) {
+      grid-template-columns: 1fr;
+      margin-top: clamp(24px, 6vw, 100px);
+    }
+  }
+
+  &__stat {
+    display: flex;
+    gap: clamp(12px, 1.5vw, 20px);
+    align-items: flex-start;
+  }
+
+  &__icon-wrapper {
+    width: clamp(56px, 5vw, 78px);
+    height: clamp(56px, 5vw, 78px);
+    border-radius: 50%;
+    background-color: $white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+
+    svg {
+      width: 65%;
+      height: 65%;
+    }
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__value {
+    color: $text-dark;
+    font-size: clamp(24px, 1.6rem + 1vw, 39px);
+    line-height: 1;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  &__label {
+    color: $text-dark;
+    font-size: clamp(14px, 0.85rem + 0.3vw, 17px);
+    font-weight: 400;
+    margin: 0;
+  }
+
+  // ---- Testimonials ---------------------------------------------------
+
+  &__testimonials {
+    margin-inline: auto;
+    text-align: center;
+    padding-block-start: clamp(60px, 6vw, 90px);
+
+    @media (max-width: 480px) {
+      padding-block-start: 0;
+    }
+  }
+
+  &__header {
+    margin-bottom: clamp(28px, 4vw, 50px);
+  }
+
+  &__tag {
+    display: inline-block;
+    background-color: $tag-bg;
+    color: $text-light-purple;
+    font-size: clamp(12px, 0.8rem, 14px);
+    font-weight: 400;
+    line-height: 32px;
+    padding-inline: 20px;
+    border-radius: 5px;
+    margin-bottom: clamp(16px, 2vw, 24px);
+  }
+
+  &__title {
+    font-size: clamp(24px, 1.75rem + 1.6vw, 45px);
+    color: $text-dark;
+    line-height: 1.3;
+    font-weight: 700;
+    margin: 0;
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(20px, 2vw, 30px);
+
+    @media (max-width: 900px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    @media (max-width: 600px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__card {
+    background-color: transparent;
+    border: 1px solid $card-border;
+    border-radius: 12px;
+    padding: clamp(16px, 2vw, 20px);
+    text-align: left;
+    position: relative;
+  }
+
+  &__quote-icon {
+    position: absolute;
+    top: -30px;
+    left: 0;
+
+    width: 70px;
+    height: 46px;
+
+    background: url('/assets/images/about/community-stats-section/icon/quote-icon.png') center /
+      contain no-repeat;
+  }
+
+  &__review {
+    font-size: clamp(15px, 0.9rem + 0.2vw, 17px);
+    line-height: 1.6;
+    color: $review-color;
+    margin-bottom: 16px;
+    font-weight: 400;
+  }
+
+  &__author {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  &__author-name {
+    margin: 0;
+    font-size: clamp(14px, 0.9rem, 16px);
+    font-weight: 700;
+    color: $text-dark;
+  }
+
+  &__author-role {
+    font-size: clamp(14px, 0.9rem + 0.2vw, 17px);
+    line-height: 1.6;
+    font-weight: 400;
+    color: $text-light-purple;
+  }
+}
+
+@media (max-width: 1200px) {
+  .community-stats__banner {
+    position: relative !important;
+    border-radius: clamp(24px, 3vw, 999px);
+  }
+}

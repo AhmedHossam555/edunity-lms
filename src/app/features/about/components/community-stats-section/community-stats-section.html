@@ -1,0 +1,44 @@
+<section class="community-stats section-padding">
+  <div class="community-stats__container container">
+    <!-- Orange stats banner -->
+    <div class="community-stats__banner container">
+      @for (stat of stats(); track stat.id) {
+        <div class="community-stats__stat">
+          <div class="community-stats__icon-wrapper" [innerHTML]="iconFor(stat.id)"></div>
+          <div class="community-stats__text">
+            <h3 class="community-stats__value">{{ stat.value }}</h3>
+            <p class="community-stats__label">{{ stat.label }}</p>
+          </div>
+        </div>
+      }
+    </div>
+
+    <!-- Testimonials -->
+    <div class="community-stats__testimonials">
+      <div class="community-stats__header">
+        <span class="community-stats__tag">{{ testimonialsHeader().tag }}</span>
+        <h2 class="community-stats__title">
+          @for (line of testimonialsHeader().titleLines; track $index) {
+            {{ line }}
+            @if (!$last) {
+              <br />
+            }
+          }
+        </h2>
+      </div>
+
+      <div class="community-stats__grid">
+        @for (testimonial of testimonials(); track testimonial.id) {
+          <div class="community-stats__card">
+            <div class="community-stats__quote-icon"></div>
+            <p class="community-stats__review">"{{ testimonial.reviewText }}"</p>
+            <div class="community-stats__author">
+              <h4 class="community-stats__author-name">{{ testimonial.author.name }}</h4>
+              <span class="community-stats__author-role">{{ testimonial.author.role }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </div>
+  </div>
+</section>

@@ -138,4 +138,8 @@ Configuration is provided by `vercel.json`:
   - `npm run watch`
 
   ***
- 
+
+  │ ├── community-stats-section/
+  │ ├── testimonials-section/
+  │ ├── featured-courses-section/
+  │ └── instructors-section/
