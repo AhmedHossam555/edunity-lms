@@ -8,10 +8,11 @@ import { ABOUT_SECTION_CONFIG } from '../../configs';
 import { ABOUT_TAG_ICON_SVG } from '../../constants';
 import { AboutImageKey } from '../../enums';
 import { IAboutConfig } from '../../interfaces';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-about-section',
-  imports: [Button, SectionTagHeader],
+  imports: [Button, SectionTagHeader,NgOptimizedImage ],
   templateUrl: './about-section.html',
   styleUrl: './about-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

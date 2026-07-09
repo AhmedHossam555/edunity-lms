@@ -26,7 +26,14 @@
         />
 
         <button class="hero__search-button" type="submit">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <svg
+            width="18"
+            height="18"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+          >
             <circle cx="11" cy="11" r="7"></circle>
             <path d="M20 20L16.65 16.65"></path>
           </svg>
@@ -45,7 +52,14 @@
 
       @if (getStudentBySize(StudentSize.Small); as small) {
         <div class="hero__student hero__student--small">
-          <img class="hero__student-image" [src]="small.src" [alt]="small.alt" />
+          <img
+            [ngSrc]="small.src"
+            [alt]="small.alt"
+            width="237"
+            height="429"
+            loading="lazy"
+            class="hero__student-image"
+          />
         </div>
       }
 
@@ -55,7 +69,14 @@
 
       @if (getStudentBySize(StudentSize.Large); as large) {
         <div class="hero__student hero__student--large">
-          <img class="hero__student-image" [src]="large.src" [alt]="large.alt" />
+          <img
+            [ngSrc]="large.src"
+            [alt]="large.alt"
+            width="327"
+            height="592"
+            priority
+            class="hero__student-image"
+          />
         </div>
       }
 

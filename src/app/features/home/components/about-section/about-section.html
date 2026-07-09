@@ -8,27 +8,29 @@
       <div class="about__shape">
         <img
           class="about__shape-image"
-          [src]="config().images[imageKey.StarBurstDecor].src"
+          [ngSrc]="config().images[imageKey.StarBurstDecor].src"
           [alt]="config().images[imageKey.StarBurstDecor].alt"
           loading="lazy"
           [width]="config().images[imageKey.StarBurstDecor].width"
           [height]="config().images[imageKey.StarBurstDecor].height"
+          priority="false"
         />
       </div>
 
       <img
         class="about__image about__image--large"
-        [src]="config().images[imageKey.StudentProfile].src"
+        [ngSrc]="config().images[imageKey.StudentProfile].src"
         [alt]="config().images[imageKey.StudentProfile].alt"
         loading="lazy"
         [width]="config().images[imageKey.StudentProfile].width"
         [height]="config().images[imageKey.StudentProfile].height"
+        priority="true"
       />
 
       <div class="about__experience">
         <img
           class="about__image about__image--badge"
-          [src]="config().images[imageKey.ExperienceBadge].src"
+          [ngSrc]="config().images[imageKey.ExperienceBadge].src"
           [alt]="config().images[imageKey.ExperienceBadge].alt"
           loading="lazy"
           [width]="config().images[imageKey.ExperienceBadge].width"
@@ -38,7 +40,7 @@
 
       <img
         class="about__image about__image--small"
-        [src]="config().images[imageKey.StudentsCollaborating].src"
+        [ngSrc]="config().images[imageKey.StudentsCollaborating].src"
         [alt]="config().images[imageKey.StudentsCollaborating].alt"
         loading="lazy"
         [width]="config().images[imageKey.StudentsCollaborating].width"
@@ -52,7 +54,7 @@
 
     <div class="about__content">
       <span class="about__tag">
-        <app-section-tag-header [text]="config().tagText" [color]="'#FE543D'"/>
+        <app-section-tag-header [text]="config().tagText" [color]="'#FE543D'" />
       </span>
 
       <h2 class="about__title">

@@ -2,12 +2,14 @@ import { ChangeDetectionStrategy, Component, signal, computed } from '@angular/c
 import { HeroCardPosition, HeroDotPosition, HeroStudentSize } from '../../enums';
 import { HERO_CONFIG } from '../../configs';
 import { IHeroDot, IHeroSectionConfig, IHeroStatCard, IHeroStudentImage } from '../../interfaces';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-hero-section',
-  imports: [],
+  standalone: true,
   templateUrl: './hero-section.html',
   styleUrl: './hero-section.scss',
+  imports: [NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HeroSection {
