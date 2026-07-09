@@ -10,10 +10,11 @@ import {
   BLOG_DATE_ICON,
   BLOG_SUBTITLE_ICON,
 } from '../../constants';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-blogs-section',
-  imports: [Button, SectionTagHeader],
+  imports: [Button, SectionTagHeader,NgOptimizedImage],
   templateUrl: './blogs-section.html',
   styleUrl: './blogs-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

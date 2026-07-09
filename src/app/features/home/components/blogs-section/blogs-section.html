@@ -24,8 +24,14 @@
         <!-- Blog Card                                 -->
         <!-- ========================================= -->
         <article class="blogs__card">
-          <img [src]="card.imageSrc" [alt]="card.imageAlt" class="blogs__image" />
-
+          <img
+            class="blogs__image"
+            [ngSrc]="card.imageSrc"
+            [alt]="card.imageAlt"
+            [width]="728"
+            [height]="416"
+            loading="lazy"
+          />
           <div class="blogs__content">
             <!-- ========================================= -->
             <!-- Card Meta                                 -->
