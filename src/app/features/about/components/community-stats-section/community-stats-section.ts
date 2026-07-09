@@ -1,11 +1,15 @@
 import { ChangeDetectionStrategy, Component, computed, inject, Signal } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { ICommunityStatsConfig, ISectionHeader, IStatItem, ITestimonial } from '../../interfaces';
+import {
+  ICommunityStatsConfig,
+  ISectionHeader,
+  IStatItem,
+  ITestimonial,
+} from '../../interfaces';
 import { COMMUNITY_STATS_CONFIG } from '../../configs';
 import { STAT_ICON_SVGS } from '../../constants';
 import { StatIconKey } from '../../enums';
 import { safeSvg } from '@app/shared';
-
 
 @Component({
   selector: 'app-community-stats-section',
@@ -15,10 +19,23 @@ import { safeSvg } from '@app/shared';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommunityStatsSection {
+
+  // ─────────────────────────────────────────────────────────────
+  // Dependencies
+  // ─────────────────────────────────────────────────────────────
+
   private readonly sanitizer = inject(DomSanitizer);
+
+  // ─────────────────────────────────────────────────────────────
+  // Configuration
+  // ─────────────────────────────────────────────────────────────
 
   /** Full section config (stats, testimonial header, testimonials). */
   private readonly config: ICommunityStatsConfig = COMMUNITY_STATS_CONFIG;
+
+  // ─────────────────────────────────────────────────────────────
+  // Reactive State
+  // ─────────────────────────────────────────────────────────────
 
   /** Stat cards for the orange banner. */
   protected readonly stats: Signal<readonly IStatItem[]> = computed(() => this.config.stats);
@@ -39,11 +56,17 @@ export class CommunityStatsSection {
    */
   protected readonly iconMap: Signal<ReadonlyMap<StatIconKey, SafeHtml>> = computed(() => {
     const map = new Map<StatIconKey, SafeHtml>();
+
     for (const key of Object.values(StatIconKey)) {
       map.set(key, safeSvg(this.sanitizer, STAT_ICON_SVGS[key]));
     }
+
     return map;
   });
+
+  // ─────────────────────────────────────────────────────────────
+  // Template Helpers
+  // ─────────────────────────────────────────────────────────────
 
   /** Template helper: resolve a stat's sanitized icon markup. */
   protected iconFor(id: StatIconKey): SafeHtml | undefined {

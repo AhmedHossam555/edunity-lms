@@ -1,13 +1,21 @@
-import { StatIconKey } from "../enums";
+import { StatIconKey } from '../enums';
 
-/** A single stat displayed in the orange stats banner. */
+// ─────────────────────────────────────────────────────────────
+// Statistics
+// ─────────────────────────────────────────────────────────────
+
+/** A single stat displayed in the orange statistics banner. */
 export interface IStatItem {
   readonly id: StatIconKey;
   readonly value: string;
   readonly label: string;
 }
 
-/** Author byline shown under a testimonial quote. */
+// ─────────────────────────────────────────────────────────────
+// Testimonials
+// ─────────────────────────────────────────────────────────────
+
+/** Author information displayed below a testimonial quote. */
 export interface ITestimonialAuthor {
   readonly name: string;
   readonly role: string;
@@ -20,14 +28,23 @@ export interface ITestimonial {
   readonly author: ITestimonialAuthor;
 }
 
-/** Small "tag + heading" header used above the testimonials grid. */
+// ─────────────────────────────────────────────────────────────
+// Section Header
+// ─────────────────────────────────────────────────────────────
+
+/** Header displayed above the testimonials grid. */
 export interface ISectionHeader {
   readonly tag: string;
-  /** Each entry renders as its own line (mirrors the original <br /> break). */
+
+  /** Each entry renders on its own line (mirrors the original <br />). */
   readonly titleLines: readonly string[];
 }
 
-/** Root config shape for the whole Community Stats + Testimonials section. */
+// ─────────────────────────────────────────────────────────────
+// Community Stats Section Configuration
+// ─────────────────────────────────────────────────────────────
+
+/** Root configuration for the Community Stats and Testimonials section. */
 export interface ICommunityStatsConfig {
   readonly stats: readonly IStatItem[];
   readonly testimonialsHeader: ISectionHeader;
