@@ -1,0 +1,113 @@
+<section class="community-section section-padding">
+  <div class="container">
+
+    <!-- ========================================= -->
+    <!-- Section Header                            -->
+    <!-- ========================================= -->
+    <header class="section-header">
+      <div class="header-left">
+        <span class="badge">{{ config().badge }}</span>
+        <h2>{{ config().heading }}</h2>
+      </div>
+
+      <div class="header-right">
+        <button class="btn-explore" type="button">
+          {{ config().ctaLabel }}
+          <span [innerHTML]="arrowIcon"></span>
+        </button>
+      </div>
+    </header>
+
+    <!-- ========================================= -->
+    <!-- Courses Grid                              -->
+    <!-- ========================================= -->
+    <div class="courses-grid">
+      @for (course of courses(); track trackCourseById($index, course)) {
+
+        <!-- ========================================= -->
+        <!-- Course Card                               -->
+        <!-- ========================================= -->
+        <div class="course-card">
+
+          <!-- ========================================= -->
+          <!-- Course Image                              -->
+          <!-- ========================================= -->
+          <div class="card-image-wrapper">
+            <img [src]="course.imageUrl" [alt]="course.imageAlt" />
+            <span class="card-tag">{{ course.tag }}</span>
+          </div>
+
+          <!-- ========================================= -->
+          <!-- Course Content                            -->
+          <!-- ========================================= -->
+          <div class="card-content">
+
+            <!-- ========================================= -->
+            <!-- Course Rating                             -->
+            <!-- ========================================= -->
+            <div class="card-rating">
+              <span class="stars" [innerHTML]="starRatingIcon"></span>
+              <span class="rating-text">{{ course.rating.value }}</span>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- Course Title                              -->
+            <!-- ========================================= -->
+            <h3 class="card-title">{{ course.title }}</h3>
+
+            <!-- ========================================= -->
+            <!-- Course Metadata                           -->
+            <!-- ========================================= -->
+            <div class="card-meta">
+              <div class="meta-item">
+                <span class="meta-icon" [innerHTML]="lessonIcon"></span>
+                <span>Lesson {{ course.meta.lessons }}</span>
+              </div>
+
+              <div class="meta-item">
+                <span class="meta-icon" [innerHTML]="clockIcon"></span>
+                <span>{{ course.meta.duration }}</span>
+              </div>
+
+              <div class="meta-item">
+                <span class="meta-icon" [innerHTML]="studentsIcon"></span>
+                <span>Students {{ course.meta.students }}</span>
+              </div>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- Course Author                             -->
+            <!-- ========================================= -->
+            <div class="card-author">
+              <img [src]="course.author.avatarUrl" alt="Author" />
+              <span>
+                By <strong>{{ course.author.name }}</strong> in {{ course.category }}
+              </span>
+            </div>
+
+            <!-- ========================================= -->
+            <!-- Course Footer                             -->
+            <!-- ========================================= -->
+            <div class="card-footer">
+              <div class="card-price">
+                <span class="price-current">
+                  {{ course.price.currency }}{{ course.price.current | number: '1.2-2' }}
+                </span>
+
+                <span class="price-old">
+                  {{ course.price.currency }}{{ course.price.old | number: '1.2-2' }}
+                </span>
+              </div>
+
+              <button class="btn-cart" type="button">
+                <span [innerHTML]="cartIcon"></span>
+                Add To Cart
+              </button>
+            </div>
+
+          </div>
+        </div>
+      }
+    </div>
+  </div>
+</section>

@@ -139,7 +139,6 @@ Configuration is provided by `vercel.json`:
 
   ***
 
-  │ ├── community-stats-section/
-  │ ├── testimonials-section/
-  │ ├── featured-courses-section/
-  │ └── instructors-section/
+-community-events-section />
+
+-instructors-section />
