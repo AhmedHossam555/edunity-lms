@@ -1,1 +1,105 @@
-<p>instructors-section works!</p>
+<section class="instructors section-padding">
+  <div class="container">
+
+    <!-- ========================================= -->
+    <!-- Header                                    -->
+    <!-- ========================================= -->
+    <div class="instructors__header">
+      <div>
+        <span class="instructors__label">
+          <span class="label-icon" [innerHTML]="safeIcons.teacher"></span>
+          {{ CONFIG.label }}
+        </span>
+
+        <h2>{{ CONFIG.title }}</h2>
+      </div>
+
+      <div
+        class="instructors__controls"
+        role="group"
+        aria-label="Carousel controls">
+
+        <button
+          (click)="handleCarouselAction(ECarouselDirection.Prev)"
+          [disabled]="isPrevDisabled()"
+          [attr.aria-disabled]="isPrevDisabled()"
+          aria-label="Previous instructor"
+          type="button"
+          class="control-btn control-btn--prev"
+          [innerHTML]="safeIcons.prev">
+        </button>
+
+        <button
+          (click)="handleCarouselAction(ECarouselDirection.Next)"
+          [disabled]="isNextDisabled()"
+          [attr.aria-disabled]="isNextDisabled()"
+          aria-label="Next instructor"
+          type="button"
+          class="control-btn control-btn--next"
+          [innerHTML]="safeIcons.next">
+        </button>
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Carousel                                  -->
+    <!-- ========================================= -->
+    <div class="instructors__viewport" #viewport>
+      <div
+        class="instructors__track"
+        [style.transform]="translate()"
+        role="list"
+        aria-label="Instructors list">
+
+        <!-- ========================================= -->
+        <!-- Instructor Cards                          -->
+        <!-- ========================================= -->
+        @for (item of instructors(); track item.id; let i = $index) {
+          <article
+            class="card"
+            role="listitem"
+            [style.animation-delay.ms]="i * CONFIG.cardAnimationDelay">
+
+            <div class="card__image-wrap">
+              <img
+                [src]="item.image"
+                [alt]="item.name"
+                loading="lazy"
+                class="card__image" />
+            </div>
+
+            <div class="card__content">
+              <h4>{{ item.name }}</h4>
+
+              <span class="card__role">
+                {{ item.role }}
+              </span>
+
+              <button
+                class="card__share"
+                [attr.aria-label]="'Share ' + item.name + '\'s profile'"
+                type="button"
+                [innerHTML]="safeIcons.share">
+              </button>
+            </div>
+          </article>
+        }
+      </div>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Pagination Indicators                     -->
+    <!-- ========================================= -->
+    <div class="instructors__pagination" aria-hidden="true">
+      @for (item of instructors(); track item.id; let i = $index) {
+        <button
+          class="pagination-dot"
+          [class.active]="i >= currentIndex() && i < currentIndex() + cardsPerView()"
+          (click)="goToSlide(i)"
+          [attr.aria-label]="'Go to slide ' + (i + 1)">
+        </button>
+      }
+    </div>
+
+  </div>
+</section>
