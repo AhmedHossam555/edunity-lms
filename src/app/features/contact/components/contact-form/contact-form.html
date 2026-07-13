@@ -1,0 +1,224 @@
+<section class="contact-form" aria-labelledby="contact-form-title">
+  <h2 id="contact-form-title" class="contact-form__title">
+    <span class="contact-form__title-text">Contact Form</span>
+    @if (formSubmitted()) {
+      <span class="contact-form__success-badge" role="status" aria-live="polite">
+        ✓ Submitted
+      </span>
+    }
+  </h2>
+
+  @if (formSubmitted()) {
+    <div class="contact-form__success-message" role="alert">
+      <p>Your message has been sent successfully!</p>
+      <button type="button" class="contact-form__reset-button" (click)="resetForm()">
+        Send another message
+      </button>
+    </div>
+  }
+
+  <form
+    class="contact-form__form"
+    [formGroup]="form"
+    (ngSubmit)="submit()"
+    novalidate
+    autocomplete="on"
+  >
+    <!-- Name Field -->
+    <div class="contact-form__field">
+      <label for="name-input" class="contact-form__label">
+        <span class="contact-form__label-text">Name</span>
+        <span class="contact-form__required" aria-hidden="true">*</span>
+      </label>
+
+      <div class="contact-form__input-wrapper">
+        <span class="contact-form__icon" aria-hidden="true">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+            <circle cx="12" cy="7" r="4" />
+          </svg>
+        </span>
+
+        <input
+          id="name-input"
+          class="contact-form__input"
+          type="text"
+          placeholder="Enter your full name"
+          formControlName="name"
+          [attr.aria-invalid]="hasError('name') || null"
+          [attr.aria-describedby]="hasError('name') ? 'name-error' : null"
+          [attr.aria-required]="true"
+          autocomplete="name"
+          maxlength="100"
+        />
+      </div>
+
+      @if (hasError('name')) {
+        <small id="name-error" class="contact-form__error" role="alert">
+          {{ getErrorMessage('name') }}
+        </small>
+      }
+    </div>
+
+    <!-- Email Field -->
+    <div class="contact-form__field">
+      <label for="email-input" class="contact-form__label">
+        <span class="contact-form__label-text">Email</span>
+        <span class="contact-form__required" aria-hidden="true">*</span>
+      </label>
+
+      <div class="contact-form__input-wrapper">
+        <span class="contact-form__icon" aria-hidden="true">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
+            <polyline points="22,6 12,13 2,6" />
+          </svg>
+        </span>
+
+        <input
+          id="email-input"
+          class="contact-form__input"
+          type="email"
+          placeholder="Enter your email address"
+          formControlName="email"
+          [attr.aria-invalid]="hasError('email') || null"
+          [attr.aria-describedby]="hasError('email') ? 'email-error' : null"
+          [attr.aria-required]="true"
+          autocomplete="email"
+          inputmode="email"
+          maxlength="254"
+        />
+      </div>
+
+      @if (hasError('email')) {
+        <small id="email-error" class="contact-form__error" role="alert">
+          {{ getErrorMessage('email') }}
+        </small>
+      }
+    </div>
+
+    <!-- Subject Field -->
+    <div class="contact-form__field">
+      <label for="subject-input" class="contact-form__label">
+        <span class="contact-form__label-text">Subject</span>
+        <span class="contact-form__required" aria-hidden="true">*</span>
+      </label>
+
+      <div class="contact-form__input-wrapper">
+        <span class="contact-form__icon" aria-hidden="true">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+          </svg>
+        </span>
+
+        <input
+          id="subject-input"
+          class="contact-form__input"
+          type="text"
+          placeholder="Brief subject line"
+          formControlName="subject"
+          [attr.aria-invalid]="hasError('subject') || null"
+          [attr.aria-describedby]="hasError('subject') ? 'subject-error' : null"
+          [attr.aria-required]="true"
+          autocomplete="off"
+          maxlength="150"
+        />
+      </div>
+
+      @if (hasError('subject')) {
+        <small id="subject-error" class="contact-form__error" role="alert">
+          {{ getErrorMessage('subject') }}
+        </small>
+      }
+    </div>
+
+    <!-- Message Field -->
+    <div class="contact-form__field">
+      <label for="message-input" class="contact-form__label">
+        <span class="contact-form__label-text">Message</span>
+        <span class="contact-form__required" aria-hidden="true">*</span>
+      </label>
+
+      <div class="contact-form__input-wrapper">
+        <textarea
+          id="message-input"
+          class="contact-form__textarea"
+          rows="5"
+          placeholder="Write your message here..."
+          formControlName="message"
+          [attr.aria-invalid]="hasError('message') || null"
+          [attr.aria-describedby]="hasError('message') ? 'message-error' : 'message-counter'"
+          [attr.aria-required]="true"
+          maxlength="1000"
+        ></textarea>
+      </div>
+
+      <div class="contact-form__meta">
+        @if (hasError('message')) {
+          <small id="message-error" class="contact-form__error" role="alert">
+            {{ getErrorMessage('message') }}
+          </small>
+        }
+
+        <div
+          id="message-counter"
+          class="contact-form__counter"
+          [class.contact-form__counter--near-limit]="messageLength() > 900"
+          [class.contact-form__counter--at-limit]="messageLength() === 1000"
+          aria-live="polite"
+        >
+          <span class="contact-form__counter-current">{{ messageLength() }}</span>
+          <span aria-hidden="true"> / </span>
+          <span class="contact-form__counter-max">1000</span>
+          <span class="sr-only">characters used out of 1000 maximum</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Submit Button -->
+    <button
+      class="contact-form__button"
+      type="submit"
+      [disabled]="!canSubmit()"
+      [attr.aria-disabled]="!canSubmit() || null"
+    >
+      @if (isSubmitting()) {
+        <span class="contact-form__button-spinner" aria-hidden="true"></span>
+        <span>Sending...</span>
+      } @else {
+        <span>Submit</span>
+        <span class="sr-only">form</span>
+      }
+    </button>
+  </form>
+</section>

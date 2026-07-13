@@ -1,0 +1,21 @@
+<app-page-banner [title]="'GET IN TOUCH'" [currentPage]="'Contact Us'" />
+<section class="contact section-padding">
+  <div class="container">
+    <div class="contact__grid">
+      <!-- Main Content -->
+      <div class="contact__main">
+        <app-contact-form class="contact__form" />
+      </div>
+
+      <!-- Sidebar -->
+      <aside class="contact__sidebar">
+        <div class="contact__info-wrapper">
+          <app-contact-info class="contact__info" />
+        </div>
+        <div class="contact__map-wrapper">
+          <app-contact-map class="contact__map" [src]="mapSrc" />
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

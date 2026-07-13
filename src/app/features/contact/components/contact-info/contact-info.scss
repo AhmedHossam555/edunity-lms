@@ -1,0 +1,56 @@
+.info-container {
+  padding: 10px 0;
+}
+h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 20px;
+}
+.info-item {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+.icon-box {
+  width: 40px;
+  height: 40px;
+  background: #f4f4f4;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ff6b35;
+  font-size: 1.2rem;
+}
+h4 {
+  margin: 0 0 5px 0;
+  font-size: 14px;
+  color: #777;
+}
+p,
+a {
+  margin: 0;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+a:hover {
+  color: #ff6b35;
+}
+.social-links {
+  margin-top: 30px;
+}
+.icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 10px;
+}
+.icons a {
+  color: #333;
+  font-size: 1.2rem;
+  transition: 0.3s;
+}
+.icons a:hover {
+  color: #ff6b35;
+  transform: translateY(-2px);
+}

@@ -91,7 +91,7 @@ export const HEADER_CONFIG: IHeaderConfig = {
       { id: NavLinkId.Courses, label: 'Courses', href: '#' },
       { id: NavLinkId.Pages, label: 'Pages', href: '#' },
       { id: NavLinkId.Blog, label: 'Blog', href: '#' },
-      { id: NavLinkId.Contact, label: 'Contact', href: '#' },
+      { id: NavLinkId.Contact, label: 'Contact', href: '/contact-us' },
     ],
 
     // ─────────────────────────────────────────────────────────────
