@@ -1,0 +1,5 @@
+<div class="toast" role="region" aria-label="Notifications">
+  @for (toast of facade.toasts(); track toast.id) {
+    <app-toast-item [toast]="toast" />
+  }
+</div>

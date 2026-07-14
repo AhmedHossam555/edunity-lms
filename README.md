@@ -138,7 +138,3 @@ Configuration is provided by `vercel.json`:
   - `npm run watch`
 
   ***
-
--community-events-section />
-
--instructors-section />

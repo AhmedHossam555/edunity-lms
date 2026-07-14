@@ -7,10 +7,11 @@ import { APP_STATE, AppState } from './core/connectivity';
 import { NetworkStatusStore } from './core/connectivity/application/network-status.store';
 import { MainSiteHeader, MainSiteFooter } from "./layout";
 import { ScrollToTop } from './shared';
+import { Toast } from "./core/toast";
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NetworkStatusBannerComponent, MainSiteHeader, MainSiteFooter, ScrollToTop],
+  imports: [RouterOutlet, NetworkStatusBannerComponent, MainSiteHeader, MainSiteFooter, ScrollToTop, Toast],
   templateUrl: './app.html',
   styleUrl: './app.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

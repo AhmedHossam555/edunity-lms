@@ -1,22 +1,25 @@
 :root {
-
   // Brand
-  --color-primary: #2FC7A1;
-  --color-secondary: #0E2A46;
-  --color-accent: #FE543D;
-  --color-navy: #17254E;
-
+  --color-primary: #2fc7a1;
+  --color-secondary: #0e2a46;
+  --color-accent: #fe543d;
+  --color-navy: #17254e;
 
   // Background
-  --color-background: #FFFFFF;
-  --color-surface: #F8FAFC;
-
+  --color-background: #ffffff;
+  --color-surface: #f8fafc;
 
   // Text
-  --color-text-primary: #17254E;
-  --color-text-secondary: #64748B;
-
+  --color-text-primary: #17254e;
+  --color-text-secondary: #64748b;
 
   // Border
-  --color-border: #E2E8F0;
+  --color-border: #e2e8f0;
+
+  // Toast
+  --toast-success: #22c55e;
+  --toast-error: #ef4444;
+  --toast-warning: #f59e0b;
+  --toast-info: #3b82f6;
+  --toast-text: #f5f5f7;
 }
