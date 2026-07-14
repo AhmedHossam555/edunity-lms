@@ -1,13 +1,29 @@
-<div class="map-container">
-  @if (safeUrl) {
+<!-- ========================================= -->
+<!-- Contact Map                               -->
+<!-- ========================================= -->
+<section
+  class="contact-map"
+  role="region"
+  aria-labelledby="contact-map-title">
+
+  <!-- ========================================= -->
+  <!-- Hidden Section Title (Accessibility)      -->
+  <!-- ========================================= -->
+  <h2 id="contact-map-title" class="contact-map__title sr-only">
+    Office location
+  </h2>
+
+  <!-- ========================================= -->
+  <!-- Google Maps Embed                         -->
+  <!-- ========================================= -->
+  @if (safeUrl()) {
     <iframe
-      [src]="safeUrl"
-      width="100%"
-      height="100%"
-      style="border:0"
+      class="contact-map__frame"
+      [src]="safeUrl()"
+      title="Company office location on Google Maps"
       loading="lazy"
-      allowfullscreen
-      referrerpolicy="no-referrer-when-downgrade">
+      referrerpolicy="no-referrer-when-downgrade"
+      allowfullscreen>
     </iframe>
   }
-</div>
+</section>

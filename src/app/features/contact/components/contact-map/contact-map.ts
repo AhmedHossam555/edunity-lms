@@ -1,23 +1,34 @@
-import { isPlatformBrowser } from '@angular/common';
-import { Component, inject, Input, PLATFORM_ID, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, input } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-contact-map',
-  imports: [],
+  standalone: true,
   templateUrl: './contact-map.html',
   styleUrl: './contact-map.scss',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactMap {
- @Input({ required: true }) src!: string;
+  // ─────────────────────────────────────────────────────────────
+  // Input
+  // ─────────────────────────────────────────────────────────────
 
-  safeUrl!: SafeResourceUrl;
+  /** Google Maps embed URL */
+  readonly src = input.required<string>();
 
-  private sanitizer = inject(DomSanitizer);
+  // ─────────────────────────────────────────────────────────────
+  // Dependencies
+  // ─────────────────────────────────────────────────────────────
 
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['src']?.currentValue) {
-      this.safeUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.src);
-    }
-  }
+  /** Angular DOM sanitizer for trusted resource URLs */
+  private readonly sanitizer = inject(DomSanitizer);
+
+  // ─────────────────────────────────────────────────────────────
+  // Computed Signals
+  // ─────────────────────────────────────────────────────────────
+
+  /** Sanitized Google Maps embed URL */
+  readonly safeUrl = computed<SafeResourceUrl>(() =>
+    this.sanitizer.bypassSecurityTrustResourceUrl(this.src()),
+  );
 }
