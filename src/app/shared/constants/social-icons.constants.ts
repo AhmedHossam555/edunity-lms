@@ -41,3 +41,12 @@ export const TWITTER_SVG = `
       </g>
     </svg>
 `;
+
+
+/** Platform -> SVG lookup, keyed the same way ISocialLink.icon is populated. */
+export const SOCIAL_SVG_MAP: Readonly<Record<string, string>> = {
+  facebook: FACEBOOK_SVG,
+  twitter: TWITTER_SVG,
+  instagram: INSTAGRAM_SVG,
+  pinterest: PINTEREST_SVG,
+};

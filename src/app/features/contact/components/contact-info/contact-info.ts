@@ -1,39 +1,65 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { CONTACT_CONFIG, SOCIAL_LINKS } from '../../configs';
-import { safeSvg } from '@shared/utils/svg.util';
+
+import { CONTACT_CONFIG, SOCIAL_LINKS } from '../../configs/contact.config';
+import { IContactInfo, ISocialLink } from '../../interfaces';
+
 import {
-  FACEBOOK_SVG,
-  INSTAGRAM_SVG,
-  PINTEREST_SVG,
-  TWITTER_SVG,
-} from '@shared/constants/social-icons.constants';
+  ADDRESS_ICON,
+  EMAIL_ICON,
+  PHONE_ICON,
+  SOCIAL_SVG_MAP,
+} from '@app/shared';
+
+import { safeSvg } from '@shared/utils/svg.util';
 
 @Component({
   selector: 'app-contact-info',
-  imports: [],
   templateUrl: './contact-info.html',
-  styleUrl: './contact-info.scss',
+  styleUrls: ['./contact-info.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactInfo {
-  config = CONTACT_CONFIG;
-  socials = SOCIAL_LINKS;
+  // ─────────────────────────────────────────────────────────────
+  // Signals
+  // ─────────────────────────────────────────────────────────────
 
-  // Map social platform names to their SVG constants
-  private socialSvgs: { [key: string]: string } = {
-    facebook: FACEBOOK_SVG,
-    instagram: INSTAGRAM_SVG,
-    pinterest: PINTEREST_SVG,
-    twitter: TWITTER_SVG,
-  };
+  protected readonly config = signal<IContactInfo>(CONTACT_CONFIG);
+  protected readonly socials = signal<ISocialLink[]>(SOCIAL_LINKS);
 
-  constructor(public sanitizer: DomSanitizer) {}
+  // ─────────────────────────────────────────────────────────────
+  // Contact Icons
+  // ─────────────────────────────────────────────────────────────
 
-  getSocialSvg(platform: string): string {
-    return this.socialSvgs[platform] || '';
+  protected readonly addressIconSafe: SafeHtml;
+  protected readonly phoneIconSafe: SafeHtml;
+  protected readonly emailIconSafe: SafeHtml;
+
+  // ─────────────────────────────────────────────────────────────
+  // Private Properties
+  // ─────────────────────────────────────────────────────────────
+
+  private readonly socialSvgs: Readonly<Record<string, string>> = SOCIAL_SVG_MAP;
+
+  // ─────────────────────────────────────────────────────────────
+  // Constructor
+  // ─────────────────────────────────────────────────────────────
+
+   constructor(private readonly sanitizer: DomSanitizer) {
+    this.addressIconSafe = safeSvg(this.sanitizer, ADDRESS_ICON);
+    this.phoneIconSafe = safeSvg(this.sanitizer, PHONE_ICON);
+    this.emailIconSafe = safeSvg(this.sanitizer, EMAIL_ICON);
   }
 
-  getSocialSvgSafe(platform: string): SafeHtml {
+  // ─────────────────────────────────────────────────────────────
+  // protected Methods
+  // ─────────────────────────────────────────────────────────────
+
+  protected getSocialSvg(platform: string): string {
+    return this.socialSvgs[platform] ?? '';
+  }
+
+  protected getSocialSvgSafe(platform: string): SafeHtml {
     return safeSvg(this.sanitizer, this.getSocialSvg(platform));
   }
 }

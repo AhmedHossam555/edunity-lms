@@ -10,5 +10,5 @@ export const SOCIAL_LINKS: ISocialLink[] = [
   { icon: 'facebook', url: 'https://facebook.com', label: 'Facebook' },
   { icon: 'twitter', url: 'https://twitter.com', label: 'Twitter' },
   { icon: 'instagram', url: 'https://instagram.com', label: 'Instagram' },
-  { icon: 'pinterest', url: 'https://pinterest.com', label:'Pinterest'}
+  { icon: 'pinterest', url: 'https://pinterest.com', label: 'Pinterest' },
 ];
