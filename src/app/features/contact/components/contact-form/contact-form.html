@@ -1,6 +1,10 @@
 <section class="contact-form" aria-labelledby="contact-form-title">
+  <!-- ========================================= -->
+  <!-- Contact Form Header                       -->
+  <!-- ========================================= -->
   <h2 id="contact-form-title" class="contact-form__title">
     <span class="contact-form__title-text">Contact Form</span>
+
     @if (formSubmitted()) {
       <span class="contact-form__success-badge" role="status" aria-live="polite">
         ✓ Submitted
@@ -8,10 +12,18 @@
     }
   </h2>
 
+  <!-- ========================================= -->
+  <!-- Success Message                           -->
+  <!-- ========================================= -->
   @if (formSubmitted()) {
     <div class="contact-form__success-message" role="alert">
       <p>Your message has been sent successfully!</p>
-      <button type="button" class="contact-form__reset-button" (click)="resetForm()">
+
+      <button
+        type="button"
+        class="contact-form__reset-button"
+        (click)="resetForm()"
+      >
         Send another message
       </button>
     </div>
@@ -24,42 +36,33 @@
     novalidate
     autocomplete="on"
   >
-    <!-- Name Field -->
+    <!-- ========================================= -->
+    <!-- Name Field                                -->
+    <!-- ========================================= -->
     <div class="contact-form__field">
-      <label for="name-input" class="contact-form__label">
-        <span class="contact-form__label-text">Name</span>
+      <label [for]="fields.name.id" class="contact-form__label">
+        <span class="contact-form__label-text">{{ fields.name.label }}</span>
         <span class="contact-form__required" aria-hidden="true">*</span>
       </label>
 
       <div class="contact-form__input-wrapper">
-        <span class="contact-form__icon" aria-hidden="true">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-            <circle cx="12" cy="7" r="4" />
-          </svg>
-        </span>
+        <span
+          class="contact-form__icon"
+          [innerHTML]="nameIconSafe"
+          aria-hidden="true"
+        ></span>
 
         <input
-          id="name-input"
+          [id]="fields.name.id"
           class="contact-form__input"
           type="text"
-          placeholder="Enter your full name"
+          [placeholder]="fields.name.placeholder"
           formControlName="name"
           [attr.aria-invalid]="hasError('name') || null"
           [attr.aria-describedby]="hasError('name') ? 'name-error' : null"
           [attr.aria-required]="true"
-          autocomplete="name"
-          maxlength="100"
+          [autocomplete]="fields.name.autocomplete"
+          [maxLength]="fields.name.maxLength"
         />
       </div>
 
@@ -70,43 +73,34 @@
       }
     </div>
 
-    <!-- Email Field -->
+    <!-- ========================================= -->
+    <!-- Email Field                               -->
+    <!-- ========================================= -->
     <div class="contact-form__field">
-      <label for="email-input" class="contact-form__label">
-        <span class="contact-form__label-text">Email</span>
+      <label [for]="fields.email.id" class="contact-form__label">
+        <span class="contact-form__label-text">{{ fields.email.label }}</span>
         <span class="contact-form__required" aria-hidden="true">*</span>
       </label>
 
       <div class="contact-form__input-wrapper">
-        <span class="contact-form__icon" aria-hidden="true">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z" />
-            <polyline points="22,6 12,13 2,6" />
-          </svg>
-        </span>
+        <span
+          class="contact-form__icon"
+          [innerHTML]="emailIconSafe"
+          aria-hidden="true"
+        ></span>
 
         <input
-          id="email-input"
+          [id]="fields.email.id"
           class="contact-form__input"
-          type="email"
-          placeholder="Enter your email address"
+          [type]="fields.email.type"
+          [placeholder]="fields.email.placeholder"
           formControlName="email"
           [attr.aria-invalid]="hasError('email') || null"
           [attr.aria-describedby]="hasError('email') ? 'email-error' : null"
           [attr.aria-required]="true"
-          autocomplete="email"
-          inputmode="email"
-          maxlength="254"
+          [autocomplete]="fields.email.autocomplete"
+          [inputMode]="fields.email.inputMode"
+          [maxLength]="fields.email.maxLength"
         />
       </div>
 
@@ -117,41 +111,33 @@
       }
     </div>
 
-    <!-- Subject Field -->
+    <!-- ========================================= -->
+    <!-- Subject Field                             -->
+    <!-- ========================================= -->
     <div class="contact-form__field">
-      <label for="subject-input" class="contact-form__label">
-        <span class="contact-form__label-text">Subject</span>
+      <label [for]="fields.subject.id" class="contact-form__label">
+        <span class="contact-form__label-text">{{ fields.subject.label }}</span>
         <span class="contact-form__required" aria-hidden="true">*</span>
       </label>
 
       <div class="contact-form__input-wrapper">
-        <span class="contact-form__icon" aria-hidden="true">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="20"
-            height="20"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-          >
-            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
-          </svg>
-        </span>
+        <span
+          class="contact-form__icon"
+          [innerHTML]="subjectIconSafe"
+          aria-hidden="true"
+        ></span>
 
         <input
-          id="subject-input"
+          [id]="fields.subject.id"
           class="contact-form__input"
           type="text"
-          placeholder="Brief subject line"
+          [placeholder]="fields.subject.placeholder"
           formControlName="subject"
           [attr.aria-invalid]="hasError('subject') || null"
           [attr.aria-describedby]="hasError('subject') ? 'subject-error' : null"
           [attr.aria-required]="true"
-          autocomplete="off"
-          maxlength="150"
+          [autocomplete]="fields.subject.autocomplete"
+          [maxLength]="fields.subject.maxLength"
         />
       </div>
 
@@ -162,24 +148,26 @@
       }
     </div>
 
-    <!-- Message Field -->
+    <!-- ========================================= -->
+    <!-- Message Field                             -->
+    <!-- ========================================= -->
     <div class="contact-form__field">
-      <label for="message-input" class="contact-form__label">
-        <span class="contact-form__label-text">Message</span>
+      <label [for]="messageField.id" class="contact-form__label">
+        <span class="contact-form__label-text">{{ messageField.label }}</span>
         <span class="contact-form__required" aria-hidden="true">*</span>
       </label>
 
       <div class="contact-form__input-wrapper">
         <textarea
-          id="message-input"
+          [id]="messageField.id"
           class="contact-form__textarea"
-          rows="5"
-          placeholder="Write your message here..."
+          [rows]="messageField.rows"
+          [placeholder]="messageField.placeholder"
           formControlName="message"
           [attr.aria-invalid]="hasError('message') || null"
           [attr.aria-describedby]="hasError('message') ? 'message-error' : 'message-counter'"
           [attr.aria-required]="true"
-          maxlength="1000"
+          [maxLength]="messageField.maxLength"
         ></textarea>
       </div>
 
@@ -193,19 +181,23 @@
         <div
           id="message-counter"
           class="contact-form__counter"
-          [class.contact-form__counter--near-limit]="messageLength() > 900"
-          [class.contact-form__counter--at-limit]="messageLength() === 1000"
+          [class.contact-form__counter--near-limit]="messageLength() > counterNearLimit"
+          [class.contact-form__counter--at-limit]="messageLength() === messageMaxLength"
           aria-live="polite"
         >
           <span class="contact-form__counter-current">{{ messageLength() }}</span>
           <span aria-hidden="true"> / </span>
-          <span class="contact-form__counter-max">1000</span>
-          <span class="sr-only">characters used out of 1000 maximum</span>
+          <span class="contact-form__counter-max">{{ messageMaxLength }}</span>
+          <span class="sr-only">
+            characters used out of {{ messageMaxLength }} maximum
+          </span>
         </div>
       </div>
     </div>
 
-    <!-- Submit Button -->
+    <!-- ========================================= -->
+    <!-- Submit Button                             -->
+    <!-- ========================================= -->
     <button
       class="contact-form__button"
       type="submit"
@@ -213,7 +205,10 @@
       [attr.aria-disabled]="!canSubmit() || null"
     >
       @if (isSubmitting()) {
-        <span class="contact-form__button-spinner" aria-hidden="true"></span>
+        <span
+          class="contact-form__button-spinner"
+          aria-hidden="true"
+        ></span>
         <span>Sending...</span>
       } @else {
         <span>Submit</span>

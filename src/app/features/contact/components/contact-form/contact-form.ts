@@ -9,8 +9,7 @@ import {
   signal,
 } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-
-
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import {
   NonNullableFormBuilder,
@@ -19,6 +18,10 @@ import {
 } from '@angular/forms';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { IContactFormData } from '../../interfaces';
+import { safeSvg } from '@shared/utils/svg.util';
+import { EMAIL_ICON } from '@app/shared';
+import { CONTACT_FORM_FIELDS, MESSAGE_FIELD_CONFIG, CONTACT_FORM_COUNTER_NEAR_LIMIT, CONTACT_FORM_MESSAGE_MAX_LENGTH, CONTACT_FORM_VALIDATION_RULES, CONTACT_FORM_NAME_PATTERN, CONTACT_FORM_STORAGE_KEY, CONTACT_FORM_SUBMIT_DELAY_MS, VALIDATION_ERROR_MESSAGES } from '../../configs';
+import { NAME_ICON, SUBJECT_ICON } from '../../constants';
 
 
 @Component({
@@ -32,51 +35,65 @@ import { IContactFormData } from '../../interfaces';
 export class ContactForm {
   private readonly fb = inject(NonNullableFormBuilder);
   private readonly destroyRef = inject(DestroyRef);
+  private readonly sanitizer = inject(DomSanitizer);
 
-  readonly isSubmitting = signal(false);
-  readonly formSubmitted = signal(false);
+  protected readonly isSubmitting = signal(false);
+  protected readonly formSubmitted = signal(false);
   private readonly messageValue = signal('');
 
-  readonly form = this.fb.group({
+  // Config-driven metadata, exposed read-only to the template
+  readonly fields = CONTACT_FORM_FIELDS;
+  readonly messageField = MESSAGE_FIELD_CONFIG;
+  readonly counterNearLimit = CONTACT_FORM_COUNTER_NEAR_LIMIT;
+  readonly messageMaxLength = CONTACT_FORM_MESSAGE_MAX_LENGTH;
+
+  // Icons, sanitized once — same pattern as ContactInfo
+  readonly nameIconSafe: SafeHtml;
+  readonly emailIconSafe: SafeHtml;
+  readonly subjectIconSafe: SafeHtml;
+
+  protected readonly form = this.fb.group({
     name: this.fb.control('', [
       Validators.required,
-      Validators.minLength(3),
-      Validators.maxLength(100),
-      Validators.pattern(/^[a-zA-Z\s'-]+$/),
+      Validators.minLength(CONTACT_FORM_VALIDATION_RULES.name.minLength!),
+      Validators.maxLength(CONTACT_FORM_VALIDATION_RULES.name.maxLength),
+      Validators.pattern(CONTACT_FORM_NAME_PATTERN),
     ]),
     email: this.fb.control('', [
       Validators.required,
       Validators.email,
-      Validators.maxLength(254),
+      Validators.maxLength(CONTACT_FORM_VALIDATION_RULES.email.maxLength),
     ]),
     subject: this.fb.control('', [
       Validators.required,
-      Validators.minLength(5),
-      Validators.maxLength(150),
+      Validators.minLength(CONTACT_FORM_VALIDATION_RULES.subject.minLength!),
+      Validators.maxLength(CONTACT_FORM_VALIDATION_RULES.subject.maxLength),
     ]),
     message: this.fb.control('', [
       Validators.required,
-      Validators.minLength(10),
-      Validators.maxLength(1000),
+      Validators.minLength(CONTACT_FORM_VALIDATION_RULES.message.minLength!),
+      Validators.maxLength(CONTACT_FORM_VALIDATION_RULES.message.maxLength),
     ]),
   });
 
-  readonly messageLength = computed(() => this.messageValue().length);
+  protected readonly messageLength = computed(() => this.messageValue().length);
 
-  readonly canSubmit = computed(() => {
+  protected readonly canSubmit = computed(() => {
     // Keep original rules (valid + not submitting + not already submitted)
     // but avoid SSR hydration edge-cases where the form can briefly not settle.
     const valid = this.form.valid;
     return valid && !this.isSubmitting() && !this.formSubmitted();
   });
 
-
   constructor() {
+    this.nameIconSafe = safeSvg(this.sanitizer, NAME_ICON);
+    this.emailIconSafe = safeSvg(this.sanitizer, EMAIL_ICON);
+    this.subjectIconSafe = safeSvg(this.sanitizer, SUBJECT_ICON);
+
     const platformId = inject(PLATFORM_ID);
     const canUseStorage = isPlatformBrowser(platformId);
 
     // Track message value changes for counter
-
     this.form.controls.message.valueChanges
       .pipe(
         debounceTime(50),
@@ -100,17 +117,15 @@ export class ContactForm {
       .subscribe((value) => {
         if (canUseStorage && this.form.valid && !this.formSubmitted()) {
           try {
-            localStorage.setItem('contactFormDraft', JSON.stringify(value));
+            localStorage.setItem(CONTACT_FORM_STORAGE_KEY, JSON.stringify(value));
           } catch {
             // Ignore storage errors
           }
         }
-
       });
 
     // Restore draft
     this.restoreDraft(canUseStorage);
-
 
     // Effect to handle form enabled/disabled state based on submission
     effect(() => {
@@ -126,7 +141,7 @@ export class ContactForm {
     if (!canUseStorage) return;
 
     try {
-      const saved = localStorage.getItem('contactFormDraft');
+      const saved = localStorage.getItem(CONTACT_FORM_STORAGE_KEY);
       if (saved && !this.formSubmitted()) {
         const parsed = JSON.parse(saved) as Partial<IContactFormData>;
         this.form.patchValue(parsed);
@@ -137,8 +152,7 @@ export class ContactForm {
     }
   }
 
-
-  submit(): void {
+  protected submit(): void {
     if (this.form.invalid) {
       this.form.markAllAsTouched();
       this.focusFirstInvalid();
@@ -155,7 +169,6 @@ export class ContactForm {
   }
 
   private submitToApi(data: IContactFormData): void {
-
     // Simulate API call
     setTimeout(() => {
       console.log('Form submitted:', data);
@@ -165,7 +178,7 @@ export class ContactForm {
 
       // Clear draft
       try {
-        localStorage.removeItem('contactFormDraft');
+        localStorage.removeItem(CONTACT_FORM_STORAGE_KEY);
       } catch {
         // Ignore storage errors
       }
@@ -180,10 +193,10 @@ export class ContactForm {
       this.messageValue.set('');
 
       this.announceSuccess();
-    }, 1500);
+    }, CONTACT_FORM_SUBMIT_DELAY_MS);
   }
 
-  resetForm(): void {
+  protected resetForm(): void {
     this.formSubmitted.set(false);
     this.form.reset({
       name: '',
@@ -193,7 +206,7 @@ export class ContactForm {
     });
     this.messageValue.set('');
     try {
-      localStorage.removeItem('contactFormDraft');
+      localStorage.removeItem(CONTACT_FORM_STORAGE_KEY);
     } catch {
       // Ignore storage errors
     }
@@ -219,30 +232,31 @@ export class ContactForm {
     setTimeout(() => announcer.remove(), 1000);
   }
 
-  hasError(control: keyof ContactForm['form']['controls']): boolean {
+  protected hasError(control: keyof ContactForm['form']['controls']): boolean {
     const field = this.form.controls[control];
     return field.invalid && (field.touched || this.formSubmitted());
   }
 
-  getErrorMessage(control: keyof ContactForm['form']['controls']): string {
+  protected getErrorMessage(control: keyof ContactForm['form']['controls']): string {
     const field = this.form.controls[control];
     const errors = field.errors;
 
     if (!errors) return '';
 
+    const m = VALIDATION_ERROR_MESSAGES;
     const errorMessages: Record<string, string> = {
-      required: 'This field is required',
-      minlength: `Minimum ${errors['minlength']?.requiredLength || 3} characters required`,
-      maxlength: `Maximum ${errors['maxlength']?.requiredLength || 100} characters allowed`,
-      email: 'Please enter a valid email address',
-      pattern: 'Please enter a valid value',
+      required: m.required,
+      minlength: `${m.minlengthPrefix}${errors['minlength']?.requiredLength || 3}${m.minlengthSuffix}`,
+      maxlength: `${m.maxlengthPrefix}${errors['maxlength']?.requiredLength || 100}${m.maxlengthSuffix}`,
+      email: m.email,
+      pattern: m.pattern,
     };
 
     const errorKey = Object.keys(errors)[0];
     return errorMessages[errorKey] || 'Invalid input';
   }
 
-  trackByField(_index: number, field: string): string {
+  protected trackByField(_index: number, field: string): string {
     return field;
   }
 }
