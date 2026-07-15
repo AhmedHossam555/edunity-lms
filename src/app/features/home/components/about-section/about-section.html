@@ -13,19 +13,21 @@
           loading="lazy"
           [width]="config().images[imageKey.StarBurstDecor].width"
           [height]="config().images[imageKey.StarBurstDecor].height"
-          priority="false"
         />
       </div>
 
-      <img
-        class="about__image about__image--large"
-        [ngSrc]="config().images[imageKey.StudentProfile].src"
-        [alt]="config().images[imageKey.StudentProfile].alt"
-        loading="lazy"
-        [width]="config().images[imageKey.StudentProfile].width"
-        [height]="config().images[imageKey.StudentProfile].height"
-        priority="false"
-      />
+      <div class="about__image-wrapper">
+        <img
+          class="about__image about__image--large"
+          [ngSrc]="config().images[imageKey.StudentProfile].src"
+          [alt]="config().images[imageKey.StudentProfile].alt"
+          
+          loading="lazy"
+          [width]="config().images[imageKey.StudentProfile].width"
+          [height]="config().images[imageKey.StudentProfile].height"
+        />
+      </div>
+
 
       <div class="about__experience">
         <img

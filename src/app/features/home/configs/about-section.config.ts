@@ -48,7 +48,8 @@ export const ABOUT_SECTION_CONFIG: IAboutConfig = {
       src: '/assets/images/home/about-section/images/students-collaborating-about.webp',
       alt: 'Students',
       width: 318,
-      height: 403.8,
+      height: 404,
+
     },
   },
 

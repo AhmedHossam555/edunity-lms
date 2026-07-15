@@ -55,12 +55,34 @@
   }
 
   // ==========================================
+  // Image wrapper (used for fixed-height crop)
+  // ==========================================
+
+  &__image-wrapper {
+    position: relative;
+    overflow: hidden;
+
+    grid-row: span 2;
+    height: 23.75rem;
+
+    animation: aboutFadeInUp 1.2s ease-out both;
+
+    @media (max-width: 768px) {
+      grid-row: auto;
+      height: auto;
+      max-height: none;
+    }
+  }
+
+  // ==========================================
   // Element: image
   // ==========================================
 
   &__image {
+    display: block;
     width: 100%;
-    object-fit: cover;
+    height: auto;
+
     border-radius: 0.25rem;
 
     // ==========================================
@@ -68,14 +90,18 @@
     // ==========================================
 
     &--large {
-      grid-row: span 2;
-      height: clamp(18.75rem, 40vw, 31.25rem);
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+
       animation: aboutFadeInUp 1.2s ease-out both;
 
+      // Prevent NgOptimizedImage aspect-ratio mismatch when [width]/[height] are provided.
+      // Let the image preserve its intrinsic ratio and crop via object-fit on the wrapper.
       @media (max-width: 768px) {
-        grid-row: auto;
         height: auto;
-        max-height: 23.75rem;
+        max-height: none;
       }
     }
 
@@ -84,14 +110,14 @@
     // ==========================================
 
     &--small {
-      height: 100%;
-      animation: 
+      width: 100%;
+      height: auto;
+      animation:
         aboutFadeInUp 1.2s ease-out 0.3s both,
         aboutFloat 5s ease-in-out 1.5s infinite;
 
       @media (max-width: 768px) {
         grid-row: auto;
-        height: auto;
         max-height: 18.75rem;
       }
     }
@@ -101,19 +127,7 @@
     // ==========================================
 
     &--badge {
-      width: clamp(8.75rem, 20vw, 15rem);
-      height: clamp(8.75rem, 20vw, 15rem);
-
-      @media (max-width: 768px) {
-        width: clamp(8.75rem, 25vw, 11.25rem);
-        height: clamp(8.75rem, 25vw, 11.25rem);
-        margin: 0 auto;
-      }
-
-      @media (max-width: 480px) {
-        width: clamp(7.5rem, 30vw, 8.75rem);
-        height: clamp(7.5rem, 30vw, 8.75rem);
-      }
+      border-radius: 0.25rem;
     }
   }
 
@@ -122,30 +136,26 @@
   // ==========================================
 
   &__experience {
-    animation: 
+    animation:
       aboutFadeInUp 1.2s ease-out 0.6s both,
       aboutBadgePulse 3s ease-in-out 1.8s infinite;
 
+    width: clamp(8.75rem, 20vw, 15rem);
+    aspect-ratio: 1;
+
     img {
-      width: clamp(8.75rem, 20vw, 15rem);
-      height: clamp(8.75rem, 20vw, 15rem);
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
     }
 
     @media (max-width: 768px) {
-      display: flex;
-      justify-content: center;
-
-      img {
-        width: clamp(8.75rem, 25vw, 11.25rem);
-        height: clamp(8.75rem, 25vw, 11.25rem);
-      }
+      margin: 0 auto;
+      width: clamp(8.75rem, 25vw, 11.25rem);
     }
 
     @media (max-width: 480px) {
-      img {
-        width: clamp(7.5rem, 30vw, 8.75rem);
-        height: clamp(7.5rem, 30vw, 8.75rem);
-      }
+      width: clamp(7.5rem, 30vw, 8.75rem);
     }
   }
 
@@ -157,7 +167,7 @@
     position: absolute;
     left: clamp(-4.625rem, -6vw, -2.5rem);
     top: 0;
-    animation: 
+    animation:
       aboutFadeInUp 1.2s ease-out 0.9s both,
       aboutRotateShape 20s linear 2.1s infinite;
 
