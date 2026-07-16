@@ -10,10 +10,11 @@ import { safeSvg, SectionTagHeader } from '@app/shared';
 import { STATS_CONTENT } from '../../configs';
 import { STATS_SUBTITLE_ICON_SVG } from '../../constants';
 import { IStatsContent, IStatsProgressItem } from '../../interfaces';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-stats-section',
-  imports: [SectionTagHeader],
+  imports: [SectionTagHeader,NgOptimizedImage],
   templateUrl: './stats-section.html',
   styleUrl: './stats-section.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

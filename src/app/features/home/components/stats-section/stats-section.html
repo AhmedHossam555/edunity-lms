@@ -38,8 +38,10 @@
 
       <img
         class="stats__image"
-        [src]="content().image.src"
+        [ngSrc]="content().image.src"
         [alt]="content().image.alt"
+        width="448"
+        height="560"
         loading="lazy"
       />
     </div>
