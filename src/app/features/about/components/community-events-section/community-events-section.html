@@ -1,6 +1,5 @@
 <section class="community-section section-padding">
   <div class="container">
-
     <!-- ========================================= -->
     <!-- Section Header                            -->
     <!-- ========================================= -->
@@ -23,17 +22,24 @@
     <!-- ========================================= -->
     <div class="courses-grid">
       @for (course of courses(); track trackCourseById($index, course)) {
-
         <!-- ========================================= -->
         <!-- Course Card                               -->
         <!-- ========================================= -->
         <div class="course-card">
-
           <!-- ========================================= -->
           <!-- Course Image                              -->
           <!-- ========================================= -->
           <div class="card-image-wrapper">
-            <img [src]="course.imageUrl" [alt]="course.imageAlt" />
+            <img
+              [ngSrc]="course.imageUrl"
+              [alt]="course.imageAlt"
+              width="600"
+              height="400"
+              loading="lazy"
+              sizes="(max-width:768px) 100vw,
+         (max-width:1200px) 50vw,
+         33vw"
+            />
             <span class="card-tag">{{ course.tag }}</span>
           </div>
 
@@ -41,7 +47,6 @@
           <!-- Course Content                            -->
           <!-- ========================================= -->
           <div class="card-content">
-
             <!-- ========================================= -->
             <!-- Course Rating                             -->
             <!-- ========================================= -->
@@ -104,7 +109,6 @@
                 Add To Cart
               </button>
             </div>
-
           </div>
         </div>
       }

@@ -1,15 +1,29 @@
-import { ChangeDetectionStrategy, Component, Signal, computed, inject, signal } from '@angular/core';
-import { DecimalPipe } from '@angular/common';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  Signal,
+  computed,
+  inject,
+  signal,
+} from '@angular/core';
+import { DecimalPipe, NgOptimizedImage } from '@angular/common';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { COMMUNITY_EVENTS_SECTION_CONFIG } from '../../configs';
-import { STAR_RATING_ICON, LESSON_ICON, CLOCK_ICON, STUDENTS_ICON, CART_ICON, ARROW_ICON } from '../../constants';
+import {
+  STAR_RATING_ICON,
+  LESSON_ICON,
+  CLOCK_ICON,
+  STUDENTS_ICON,
+  CART_ICON,
+  ARROW_ICON,
+} from '../../constants';
 import { ICourseCard } from '../../interfaces';
 
 @Component({
   selector: 'app-community-events-section',
   templateUrl: './community-events-section.html',
   styleUrl: './community-events-section.scss',
-  imports: [DecimalPipe],
+  imports: [DecimalPipe, NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CommunityEventsSection {
