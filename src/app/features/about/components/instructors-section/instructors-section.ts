@@ -1,4 +1,3 @@
-// instructors-section.component.ts
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -13,8 +12,8 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { isPlatformBrowser } from '@angular/common';
+import { DomSanitizer } from '@angular/platform-browser';
+import { isPlatformBrowser, NgOptimizedImage } from '@angular/common';
 
 import { IInstructor, IBreakpoint, ICarouselState } from '../../interfaces';
 import { ECarouselDirection } from '../../enums';
@@ -27,6 +26,7 @@ import { ICON_MAP } from '../../constants';
   standalone: true,
   templateUrl: './instructors-section.html',
   styleUrls: ['./instructors-section.scss'],
+  imports: [NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InstructorsSection implements AfterViewInit {

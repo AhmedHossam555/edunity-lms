@@ -1,6 +1,5 @@
 <section class="instructors section-padding">
   <div class="container">
-
     <!-- ========================================= -->
     <!-- Header                                    -->
     <!-- ========================================= -->
@@ -14,11 +13,7 @@
         <h2>{{ CONFIG.title }}</h2>
       </div>
 
-      <div
-        class="instructors__controls"
-        role="group"
-        aria-label="Carousel controls">
-
+      <div class="instructors__controls" role="group" aria-label="Carousel controls">
         <button
           (click)="handleCarouselAction(ECarouselDirection.Prev)"
           [disabled]="isPrevDisabled()"
@@ -26,8 +21,8 @@
           aria-label="Previous instructor"
           type="button"
           class="control-btn control-btn--prev"
-          [innerHTML]="safeIcons.prev">
-        </button>
+          [innerHTML]="safeIcons.prev"
+        ></button>
 
         <button
           (click)="handleCarouselAction(ECarouselDirection.Next)"
@@ -36,8 +31,8 @@
           aria-label="Next instructor"
           type="button"
           class="control-btn control-btn--next"
-          [innerHTML]="safeIcons.next">
-        </button>
+          [innerHTML]="safeIcons.next"
+        ></button>
       </div>
     </div>
 
@@ -49,8 +44,8 @@
         class="instructors__track"
         [style.transform]="translate()"
         role="list"
-        aria-label="Instructors list">
-
+        aria-label="Instructors list"
+      >
         <!-- ========================================= -->
         <!-- Instructor Cards                          -->
         <!-- ========================================= -->
@@ -58,14 +53,21 @@
           <article
             class="card"
             role="listitem"
-            [style.animation-delay.ms]="i * CONFIG.cardAnimationDelay">
-
+            [style.animation-delay.ms]="i * CONFIG.cardAnimationDelay"
+          >
             <div class="card__image-wrap">
               <img
-                [src]="item.image"
+                class="card__image"
+                [ngSrc]="item.image"
                 [alt]="item.name"
+                width="300"
+                height="300"
                 loading="lazy"
-                class="card__image" />
+                sizes="(max-width: 600px) 100vw,
+         (max-width: 992px) 50vw,
+         (max-width: 1200px) 33vw,
+         25vw"
+              />
             </div>
 
             <div class="card__content">
@@ -79,8 +81,8 @@
                 class="card__share"
                 [attr.aria-label]="'Share ' + item.name + '\'s profile'"
                 type="button"
-                [innerHTML]="safeIcons.share">
-              </button>
+                [innerHTML]="safeIcons.share"
+              ></button>
             </div>
           </article>
         }
@@ -96,10 +98,9 @@
           class="pagination-dot"
           [class.active]="i >= currentIndex() && i < currentIndex() + cardsPerView()"
           (click)="goToSlide(i)"
-          [attr.aria-label]="'Go to slide ' + (i + 1)">
-        </button>
+          [attr.aria-label]="'Go to slide ' + (i + 1)"
+        ></button>
       }
     </div>
-
   </div>
 </section>
