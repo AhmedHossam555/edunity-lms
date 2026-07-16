@@ -1,5 +1,6 @@
-import { NavLinkId, SocialPlatform, TopBarIconId } from '../enums';
+import { SocialPlatform, TopBarIconId } from '../enums';
 import { IHeaderConfig } from '../interfaces';
+import { NAVBAR } from './navbar.config';
 
 // ─────────────────────────────────────────────────────────────
 //  Header Configuration
@@ -81,25 +82,5 @@ export const HEADER_CONFIG: IHeaderConfig = {
   // ─────────────────────────────────────────────────────────────
   //  Navigation Bar
   // ─────────────────────────────────────────────────────────────
-  navbar: {
-    // ─────────────────────────────────────────────────────────────
-    //  Navigation Links
-    // ─────────────────────────────────────────────────────────────
-    links: [
-      { id: NavLinkId.Home, label: 'Home', href: '/', active: true },
-      { id: NavLinkId.AboutUs, label: 'About Us', href: '/about' },
-      { id: NavLinkId.Courses, label: 'Courses', href: '#' },
-      { id: NavLinkId.Pages, label: 'Pages', href: '#' },
-      { id: NavLinkId.Blog, label: 'Blog', href: '#' },
-      { id: NavLinkId.Contact, label: 'Contact', href: '/contact-us' },
-    ],
-
-    // ─────────────────────────────────────────────────────────────
-    //  Primary CTA Button
-    // ─────────────────────────────────────────────────────────────
-    contactButton: {
-      label: 'Contact Us',
-      href: '#',
-    },
-  },
+  navbar: NAVBAR,
 };

@@ -10,7 +10,7 @@ export enum NavLinkId {
   AboutUs = 'about-us',
   Courses = 'courses',
   Pages = 'pages',
-  Blog = 'blog',
+  Blogs = 'blogs',
   Contact = 'contact',
 }
 
