@@ -1,0 +1,275 @@
+.pagination-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: center;
+
+  .pagination-summary {
+    font-size: 14px;
+    color: var(--text-secondary, #6c757d);
+    text-align: center;
+  }
+
+  .pagination-controls {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    flex-wrap: wrap;
+    justify-content: center;
+
+    // Sizes
+    &.small {
+      .page-btn,
+      .nav-btn {
+        padding: 4px 8px;
+        font-size: 12px;
+        min-width: 28px;
+        height: 28px;
+      }
+
+      .page-size-select {
+        padding: 2px 24px 2px 8px;
+        font-size: 12px;
+        height: 28px;
+      }
+    }
+
+    &.large {
+      .page-btn,
+      .nav-btn {
+        padding: 10px 16px;
+        font-size: 16px;
+        min-width: 44px;
+        height: 44px;
+      }
+
+      .page-size-select {
+        padding: 6px 32px 6px 12px;
+        font-size: 16px;
+        height: 44px;
+      }
+    }
+
+    // Common button styles
+    .page-btn,
+    .nav-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 6px 12px;
+      border: 1px solid var(--border-color, #e0e0e0);
+      border-radius: 6px;
+      background: var(--surface-color, #ffffff);
+      color: var(--text-primary, #212529);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      min-width: 36px;
+      height: 36px;
+      user-select: none;
+
+      &:hover:not(.disabled):not(.active) {
+        background: var(--hover-bg, #f5f5f5);
+        border-color: var(--border-hover, #b0b0b0);
+        transform: translateY(-1px);
+      }
+
+      &:focus-visible {
+        outline: 2px solid var(--primary-color, #1976d2);
+        outline-offset: 2px;
+        z-index: 1;
+      }
+
+      &:active:not(.disabled):not(.active) {
+        transform: scale(0.95);
+      }
+
+      &.active {
+        background: var(--primary-color, #1976d2);
+        border-color: var(--primary-color, #1976d2);
+        color: white;
+        box-shadow: 0 2px 8px rgba(25, 118, 210, 0.3);
+        cursor: default;
+      }
+
+      &.disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+        pointer-events: none;
+      }
+
+      &.nav-btn {
+        gap: 4px;
+
+        .btn-label {
+          @media (max-width: 480px) {
+            display: none;
+          }
+        }
+      }
+
+      // Page number ellipsis
+      &.disabled-ellipsis {
+        cursor: default;
+        border: none;
+        background: transparent;
+        color: var(--text-secondary, #6c757d);
+
+        &:hover {
+          background: transparent;
+          transform: none;
+        }
+      }
+    }
+
+    .page-numbers {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+    }
+
+    // Page Size Selector
+    .page-size-selector {
+      margin-left: 8px;
+
+      .page-size-select {
+        padding: 4px 28px 4px 10px;
+        border: 1px solid var(--border-color, #e0e0e0);
+        border-radius: 6px;
+        background: var(--surface-color, #ffffff);
+        color: var(--text-primary, #212529);
+        font-size: 14px;
+        cursor: pointer;
+        appearance: none;
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236c757d' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        background-repeat: no-repeat;
+        background-position: right 8px center;
+        height: 36px;
+        min-width: 60px;
+
+        &:focus {
+          outline: none;
+          border-color: var(--primary-color, #1976d2);
+          box-shadow: 0 0 0 3px rgba(25, 118, 210, 0.1);
+        }
+
+        &:disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+        }
+      }
+    }
+  }
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+// Dark mode
+@media (prefers-color-scheme: dark) {
+  .pagination-wrapper {
+    .pagination-controls {
+      .page-btn,
+      .nav-btn {
+        background: var(--surface-color, #1a1a1a);
+        border-color: var(--border-color, #333333);
+        color: var(--text-primary, #ffffff);
+
+        &:hover:not(.disabled):not(.active) {
+          background: var(--hover-bg, #2a2a2a);
+        }
+
+        &.active {
+          background: var(--primary-color, #1976d2);
+          border-color: var(--primary-color, #1976d2);
+          color: white;
+        }
+      }
+
+      .page-size-selector {
+        .page-size-select {
+          background-color: var(--surface-color, #1a1a1a);
+          border-color: var(--border-color, #333333);
+          color: var(--text-primary, #ffffff);
+          background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238a8a8a' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+        }
+      }
+    }
+
+    .pagination-summary {
+      color: var(--text-secondary, #8a8a8a);
+    }
+  }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .pagination-wrapper {
+    .pagination-controls {
+      gap: 4px;
+
+      .page-btn,
+      .nav-btn {
+        padding: 4px 8px;
+        font-size: 13px;
+        min-width: 32px;
+        height: 32px;
+      }
+
+      .page-size-selector {
+        margin-left: 4px;
+
+        .page-size-select {
+          font-size: 13px;
+          padding: 2px 24px 2px 8px;
+          height: 32px;
+          min-width: 50px;
+        }
+      }
+    }
+
+    .pagination-summary {
+      font-size: 13px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .pagination-wrapper {
+    .pagination-controls {
+      .page-btn,
+      .nav-btn {
+        font-size: 12px;
+        min-width: 28px;
+        height: 28px;
+        padding: 2px 6px;
+      }
+
+      .page-numbers {
+        gap: 2px;
+      }
+
+      .nav-btn .btn-label {
+        display: none;
+      }
+
+      .page-size-selector {
+        .page-size-select {
+          font-size: 12px;
+          padding: 2px 20px 2px 6px;
+          height: 28px;
+          min-width: 45px;
+        }
+      }
+    }
+  }
+}

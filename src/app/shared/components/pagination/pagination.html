@@ -1,0 +1,120 @@
+<div 
+  class="pagination-wrapper" 
+  [class]="getContainerClass()"
+  role="navigation"
+  aria-label="Pagination navigation"
+>
+  <!-- Summary -->
+  @if (showSummary && totalItems > 0) {
+    <div class="pagination-summary" aria-live="polite">
+      {{ getPageSummary() }}
+    </div>
+  }
+
+  <div class="pagination-controls">
+    <!-- First Page -->
+    @if (showFirstLast) {
+      <button
+        class="nav-btn first"
+        [class.disabled]="isFirstPage() || disabled"
+        (click)="goToFirstPage()"
+        [attr.aria-label]="'Go to first page'"
+        [disabled]="isFirstPage() || disabled"
+        type="button"
+      >
+        <span aria-hidden="true">«</span>
+        <span class="btn-label">First</span>
+      </button>
+    }
+
+    <!-- Previous Page -->
+    @if (showPrevNext) {
+      <button
+        class="nav-btn prev"
+        [class.disabled]="isFirstPage() || disabled"
+        (click)="goToPreviousPage()"
+        [attr.aria-label]="'Go to previous page'"
+        [disabled]="isFirstPage() || disabled"
+        type="button"
+      >
+        <span aria-hidden="true">‹</span>
+        <span class="btn-label">Prev</span>
+      </button>
+    }
+
+    <!-- Page Numbers -->
+    <div class="page-numbers" role="list">
+      @for (page of pages; track $index) {
+        <button
+          class="page-btn"
+          [class.active]="page === currentPage"
+          [class.disabled]="page === '...' || disabled"
+          (click)="goToPage(page)"
+          [attr.aria-label]="page === '...' ? 'More pages' : 'Go to page ' + page"
+          [attr.aria-current]="page === currentPage ? 'page' : null"
+          [disabled]="page === '...' || disabled"
+          type="button"
+        >
+          {{ page }}
+        </button>
+      }
+    </div>
+
+    <!-- Next Page -->
+    @if (showPrevNext) {
+      <button
+        class="nav-btn next"
+        [class.disabled]="isLastPage() || disabled"
+        (click)="goToNextPage()"
+        [attr.aria-label]="'Go to next page'"
+        [disabled]="isLastPage() || disabled"
+        type="button"
+      >
+        <span class="btn-label">Next</span>
+        <span aria-hidden="true">›</span>
+      </button>
+    }
+
+    <!-- Last Page -->
+    @if (showFirstLast) {
+      <button
+        class="nav-btn last"
+        [class.disabled]="isLastPage() || disabled"
+        (click)="goToLastPage()"
+        [attr.aria-label]="'Go to last page'"
+        [disabled]="isLastPage() || disabled"
+        type="button"
+      >
+        <span class="btn-label">Last</span>
+        <span aria-hidden="true">»</span>
+      </button>
+    }
+
+    <!-- Page Size Selector -->
+    @if (showPageSize) {
+      <div class="page-size-selector">
+        <label for="page-size-select" class="sr-only">{{ getPageSizeLabel() }}</label>
+        <select
+          id="page-size-select"
+          class="page-size-select"
+          [value]="pageSize"
+          (change)="onPageSizeChange($event)"
+          [disabled]="disabled"
+          aria-label="Items per page"
+        >
+          @for (size of getPageSizeOptions(); track size) {
+            <option [value]="size">{{ size }}</option>
+          }
+        </select>
+      </div>
+    }
+  </div>
+
+  <!-- Accessibility: Current page announcement -->
+  <div class="sr-only" aria-live="polite" aria-atomic="true">
+    Page {{ currentPage }} of {{ totalPages }}
+    @if (totalItems) {
+      , {{ getPageSummary() }}
+    }
+  </div>
+</div>
