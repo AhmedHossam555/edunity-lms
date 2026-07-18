@@ -10,9 +10,14 @@ export const routes: Routes = [
     loadChildren: () => import('./features/about/routes').then((m) => m.ABOUT_ROUTES),
   },
   {
+    path: 'courses',
+    loadChildren: () => import('./features/courses/routes').then((m) => m.COURSES_ROUTES),
+  },
+  {
     path: 'contact-us',
     loadChildren: () => import('./features/contact/routes').then((m) => m.CONTACT_ROUTES),
   },
+
   {
     path: '**',
     redirectTo: '',

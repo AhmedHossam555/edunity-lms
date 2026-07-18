@@ -1,0 +1,1 @@
+export { COURSES_ROUTES } from './courses.routes';

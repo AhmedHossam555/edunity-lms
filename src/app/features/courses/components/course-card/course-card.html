@@ -1,0 +1,97 @@
+<article 
+  class="course-card" 
+  (click)="onCourseClick()"
+  [attr.aria-label]="course.title"
+  [class.skeleton]="showSkeleton"
+>
+  <!-- Skeleton Loader -->
+  @if (showSkeleton) {
+    <div class="skeleton-container" aria-hidden="true">
+      <div class="skeleton-thumbnail"></div>
+      <div class="skeleton-content">
+        <div class="skeleton-title"></div>
+        <div class="skeleton-text"></div>
+        <div class="skeleton-text short"></div>
+        <div class="skeleton-footer">
+          <div class="skeleton-avatar"></div>
+          <div class="skeleton-name"></div>
+        </div>
+      </div>
+    </div>
+  } @else {
+    <!-- Course Content -->
+    <figure class="course-thumbnail">
+      <img 
+        [src]="course.thumbnail" 
+        [alt]="'Thumbnail for ' + course.title"
+        [loading]="priority ? 'eager' : 'lazy'"
+        [width]="300"
+        [height]="168"
+        class="thumbnail-image"
+      />
+      @if (course.isFree) {
+        <span class="free-badge" aria-label="Free course">FREE</span>
+      }
+      <span class="duration-badge" aria-label="Course duration">{{ durationFormatted }}</span>
+    </figure>
+
+    <div class="course-content">
+      <header>
+        <h3 class="course-title">{{ course.title }}</h3>
+        <div class="course-meta">
+          <span class="level-badge" [attr.data-level]="course.level">
+            {{ levelLabel }}
+          </span>
+          <span class="category-badge">{{ course.category }}</span>
+        </div>
+      </header>
+
+      <p class="course-description">{{ course.description | truncateText:100 }}</p>
+
+      <footer class="course-footer">
+        <div class="instructor-info">
+          <img 
+            [src]="course.instructor.avatar" 
+            [alt]="'Instructor ' + course.instructor.name"
+            class="instructor-avatar"
+            loading="lazy"
+          />
+          <span class="instructor-name">{{ course.instructor.name }}</span>
+        </div>
+        
+        <div class="course-stats">
+          <span class="rating" aria-label="Course rating">
+            <span class="stars">
+              @for (star of getStarArray(course.rating); track $index) {
+                <span class="star" [class.full]="star === 1" [class.half]="star === 0.5">
+                  ★
+                </span>
+              }
+            </span>
+            <span class="rating-number">{{ course.rating | number:'1.1-1' }}</span>
+          </span>
+          <span class="students" aria-label="Number of students">
+            👨‍🎓 {{ course.totalStudents | number }}
+          </span>
+        </div>
+
+        <div class="course-actions">
+          <span class="price">
+            @if (course.isFree) {
+              <span class="free">Free</span>
+            } @else {
+              <span class="amount">{{ course.price | currency:'USD' }}</span>
+            }
+          </span>
+          <button 
+            class="enroll-btn"
+            (click)="onEnrollClick($event)"
+            aria-label="Enroll in {{ course.title }}"
+          >
+            Enroll Now
+          </button>
+        </div>
+      </footer>
+    </div>
+  }
+</article>
