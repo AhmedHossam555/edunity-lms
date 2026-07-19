@@ -1,19 +1,31 @@
-import { Component, ChangeDetectionStrategy, input, output, computed, Injector, inject } from '@angular/core';
+import {
+  Component,
+  ChangeDetectionStrategy,
+  input,
+  output,
+  computed,
+  Injector,
+  inject,
+  signal,
+  linkedSignal,
+} from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ICourse } from '../../interfaces';
 import { COURSE_SVG_ICONS } from '../../constants';
+import { NgOptimizedImage } from '@angular/common';
+import { Gender } from '@app/shared';
 
 @Component({
   selector: 'app-course-card',
   templateUrl: './course-card.html',
   styleUrls: ['./course-card.scss'],
   standalone: true,
-  imports: [ RouterLink],
+  imports: [RouterLink, NgOptimizedImage],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CourseCard {
-   // ─────────────────────────────────────────────────────────────
+  // ─────────────────────────────────────────────────────────────
   // Inputs
   // ─────────────────────────────────────────────────────────────
 
@@ -41,8 +53,8 @@ export class CourseCard {
       Object.entries(COURSE_SVG_ICONS).map(([key, svg]) => [
         key,
         this.sanitizer.bypassSecurityTrustHtml(svg),
-      ])
-    )
+      ]),
+    ),
   );
 
   // ─────────────────────────────────────────────────────────────
@@ -137,7 +149,6 @@ export class CourseCard {
   protected readonly authorAvatar = computed(() => {
     const course = this.course();
 
-    // Use author if available (featured card)
     if (course.author?.avatarSrc) {
       return course.author.avatarSrc;
     }
@@ -145,16 +156,6 @@ export class CourseCard {
     return course.instructor?.avatar || '';
   });
 
-  protected readonly authorAvatarAlt = computed(() => {
-    const course = this.course();
-
-    // Use author if available (featured card)
-    if (course.author?.avatarAlt) {
-      return course.author.avatarAlt;
-    }
-
-    return `Avatar of ${this.authorName()}`;
-  });
 
   protected readonly authorCategory = computed(() => {
     const course = this.course();
@@ -209,6 +210,33 @@ export class CourseCard {
     return this.course().isInCart || false;
   });
 
+  private readonly fallbackImage = '/assets/images/courses/card/default-course.webp';
+
+  protected readonly imageUrl = linkedSignal(() => this.imageSource());
+  protected readonly avatarUrl = linkedSignal(() => this.authorAvatar());
+  protected readonly authorAvatarAlt = computed(() => {
+    const course = this.course();
+
+    // Use author if available (featured card)
+    if (course.author?.avatarAlt) {
+      return course.author.avatarAlt;
+    }
+
+    return `Avatar of ${this.authorName()}`;
+  });
+  protected onImageError(): void {
+    this.imageUrl.set(this.fallbackImage);
+  }
+
+  protected onAvatarError(): void {
+    const gender = this.course().instructor.gender;
+
+    this.avatarUrl.set(
+      gender === Gender.Female
+        ? '/assets/images/global/gender/female.webp'
+        : '/assets/images/global/gender/male.webp',
+    );
+  }
   // ─────────────────────────────────────────────────────────────
   // Private Methods
   // ─────────────────────────────────────────────────────────────

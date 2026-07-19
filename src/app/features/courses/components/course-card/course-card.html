@@ -8,7 +8,6 @@
   [attr.itemtype]="'https://schema.org/Course'"
   [attr.aria-labelledby]="'course-title-' + course().id"
 >
-
   <!-- ========================================= -->
   <!-- Course Image                              -->
   <!-- ========================================= -->
@@ -21,13 +20,13 @@
     >
       <img
         class="course-card__image"
-        [src]="imageSource()"
+        [ngSrc]="imageUrl()"
         [alt]="imageAltText()"
-        loading="lazy"
-        decoding="async"
         width="400"
-        height="260"
-        [attr.itemprop]="'image'"
+        height="225"
+        loading="lazy"
+        itemprop="image"
+        (error)="onImageError()"
       />
     </a>
 
@@ -43,18 +42,13 @@
   <!-- Course Content                            -->
   <!-- ========================================= -->
   <div class="course-card__body">
-
     <!-- Category -->
     <span class="course-card__category" aria-hidden="true">
       {{ course().category }}
     </span>
 
     <!-- Title -->
-    <h2
-      class="course-card__title"
-      [id]="'course-title-' + course().id"
-      [attr.itemprop]="'name'"
-    >
+    <h2 class="course-card__title" [id]="'course-title-' + course().id" [attr.itemprop]="'name'">
       <a
         class="course-card__title-link"
         [routerLink]="['/courses', course().id]"
@@ -129,19 +123,18 @@
         @if (authorAvatar()) {
           <img
             class="course-card__avatar"
-            [src]="authorAvatar()"
+            [src]="avatarUrl()"
             [alt]="authorAvatarAlt()"
             loading="lazy"
             width="30"
             height="30"
+            (error)="onAvatarError()"
           />
         }
         <span class="course-card__instructor-name">
           By <strong>{{ authorName() }}</strong>
           @if (authorCategory()) {
-            <span class="course-card__instructor-title">
-              in {{ authorCategory() }}
-            </span>
+            <span class="course-card__instructor-title"> in {{ authorCategory() }} </span>
           }
         </span>
       </div>
@@ -152,9 +145,7 @@
       <!-- Price -->
       <div class="course-card__price">
         @if (course().isFree) {
-          <span class="course-card__price--free" aria-label="Free course">
-            Free
-          </span>
+          <span class="course-card__price--free" aria-label="Free course"> Free </span>
         } @else {
           <span class="course-card__price--current" [attr.itemprop]="'price'">
             {{ displayPrice() }}
@@ -185,6 +176,5 @@
         }
       </button>
     </footer>
-
   </div>
 </article>

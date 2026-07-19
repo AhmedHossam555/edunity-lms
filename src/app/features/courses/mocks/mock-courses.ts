@@ -18,7 +18,8 @@ export const MOCK_COURSES: ICourse[] = [
     instructor: {
       id: 'i1',
       name: 'John Doe',
-      avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face',
       title: 'Senior Angular Engineer',
       bio: '10+ years building enterprise Angular applications.',
     },
@@ -38,24 +39,25 @@ export const MOCK_COURSES: ICourse[] = [
     imageAlt: 'Angular Mastery course thumbnail',
     author: {
       name: 'John Doe',
-      avatarSrc: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face',
+      avatarSrc:
+        'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face',
       avatarAlt: 'John Doe avatar',
-      category: 'Web Development'
+      category: 'Web Development',
     },
     meta: {
       duration: '25.5 Hours',
       lessonCount: 48,
       studentCount: 12500,
-      level: CourseLevel.Intermediate
+      level: CourseLevel.Intermediate,
     },
     priceObject: {
       current: 99.99,
       old: 149.99,
-      currency: '$'
+      currency: '$',
     },
     seoTitle: 'Angular Mastery - Complete Angular Course',
     seoDescription: 'Learn Angular from scratch to advanced concepts',
-    keywords: ['Angular', 'JavaScript', 'Frontend', 'RxJS']
+    keywords: ['Angular', 'JavaScript', 'Frontend', 'RxJS'],
   },
 
   // ─────────────────────────────────────────────
@@ -64,7 +66,8 @@ export const MOCK_COURSES: ICourse[] = [
   {
     id: '2',
     title: 'React Complete Guide 2024',
-    description: 'Learn React, Hooks, Context API, and modern frontend architecture with real-world projects.',
+    description:
+      'Learn React, Hooks, Context API, and modern frontend architecture with real-world projects.',
     slug: 'react-complete-guide',
     thumbnail: 'https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=800&h=450&fit=crop',
     category: CourseCategory.Development,
@@ -73,7 +76,8 @@ export const MOCK_COURSES: ICourse[] = [
     instructor: {
       id: 'i2',
       name: 'Sarah Wilson',
-      avatar: 'https://images.unsplash.com/photo-1494790108379-be9c2b0e5b41?w=200&h=200&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1494790108379-be9c2b0e5b41?w=200&h=200&fit=crop&crop=face',
       title: 'Frontend Architect',
       bio: 'React expert and JavaScript mentor.',
     },
@@ -92,24 +96,25 @@ export const MOCK_COURSES: ICourse[] = [
     imageAlt: 'React Complete Guide course thumbnail',
     author: {
       name: 'Sarah Wilson',
-      avatarSrc: 'https://images.unsplash.com/photo-1494790108379-be9c2b0e5b41?w=200&h=200&fit=crop&crop=face',
+      avatarSrc:
+        'https://images.unsplash.com/photo-1494790108379-be9c2b0e5b41?w=200&h=200&fit=crop&crop=face',
       avatarAlt: 'Sarah Wilson avatar',
-      category: 'Web Development'
+      category: 'Web Development',
     },
     meta: {
       duration: '22 Hours',
       lessonCount: 42,
       studentCount: 9800,
-      level: CourseLevel.Beginner
+      level: CourseLevel.Beginner,
     },
     priceObject: {
       current: 89.99,
       old: 129.99,
-      currency: '$'
+      currency: '$',
     },
     seoTitle: 'React Complete Guide - Modern React Course',
     seoDescription: 'Master React with hooks and context API',
-    keywords: ['React', 'Hooks', 'Context API', 'JavaScript']
+    keywords: ['React', 'Hooks', 'Context API', 'JavaScript'],
   },
 
   // ─────────────────────────────────────────────
@@ -118,7 +123,8 @@ export const MOCK_COURSES: ICourse[] = [
   {
     id: '3',
     title: 'Node.js API Development Masterclass',
-    description: 'Build scalable REST APIs with Node.js, Express, and MongoDB with authentication and testing.',
+    description:
+      'Build scalable REST APIs with Node.js, Express, and MongoDB with authentication and testing.',
     slug: 'nodejs-api-development',
     thumbnail: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=800&h=450&fit=crop',
     category: CourseCategory.Development,
@@ -127,7 +133,8 @@ export const MOCK_COURSES: ICourse[] = [
     instructor: {
       id: 'i3',
       name: 'Michael Brown',
-      avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face',
       title: 'Backend Engineer',
       bio: 'Specialized in scalable backend systems.',
     },
@@ -146,24 +153,25 @@ export const MOCK_COURSES: ICourse[] = [
     imageAlt: 'Node.js API Development course thumbnail',
     author: {
       name: 'Michael Brown',
-      avatarSrc: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face',
+      avatarSrc:
+        'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face',
       avatarAlt: 'Michael Brown avatar',
-      category: 'Backend Development'
+      category: 'Backend Development',
     },
     meta: {
       duration: '18 Hours',
       lessonCount: 36,
       studentCount: 7600,
-      level: CourseLevel.Intermediate
+      level: CourseLevel.Intermediate,
     },
     priceObject: {
       current: 79.99,
       old: 109.99,
-      currency: '$'
+      currency: '$',
     },
     seoTitle: 'Node.js API Development - Complete Course',
     seoDescription: 'Build scalable REST APIs with Node.js',
-    keywords: ['Node.js', 'Express', 'MongoDB', 'REST API']
+    keywords: ['Node.js', 'Express', 'MongoDB', 'REST API'],
   },
 
   // ─────────────────────────────────────────────
@@ -172,7 +180,8 @@ export const MOCK_COURSES: ICourse[] = [
   {
     id: '4',
     title: 'UI/UX Design Fundamentals',
-    description: 'Master user experience principles and modern UI design with Figma and user research.',
+    description:
+      'Master user experience principles and modern UI design with Figma and user research.',
     slug: 'ui-ux-design-fundamentals',
     thumbnail: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=450&fit=crop',
     category: CourseCategory.Design,
@@ -181,7 +190,8 @@ export const MOCK_COURSES: ICourse[] = [
     instructor: {
       id: 'i4',
       name: 'Emily Davis',
-      avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face',
       title: 'Senior UI/UX Designer',
       bio: 'Design consultant with 8 years of experience.',
     },
@@ -200,24 +210,25 @@ export const MOCK_COURSES: ICourse[] = [
     imageAlt: 'UI/UX Design Fundamentals course thumbnail',
     author: {
       name: 'Emily Davis',
-      avatarSrc: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face',
+      avatarSrc:
+        'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face',
       avatarAlt: 'Emily Davis avatar',
-      category: 'UI/UX Design'
+      category: 'UI/UX Design',
     },
     meta: {
       duration: '15 Hours',
       lessonCount: 30,
       studentCount: 5400,
-      level: CourseLevel.Beginner
+      level: CourseLevel.Beginner,
     },
     priceObject: {
       current: 69.99,
       old: 99.99,
-      currency: '$'
+      currency: '$',
     },
     seoTitle: 'UI/UX Design Fundamentals Course',
     seoDescription: 'Learn user experience and interface design',
-    keywords: ['UI Design', 'UX Design', 'Figma', 'User Research']
+    keywords: ['UI Design', 'UX Design', 'Figma', 'User Research'],
   },
 
   // ─────────────────────────────────────────────
@@ -226,7 +237,8 @@ export const MOCK_COURSES: ICourse[] = [
   {
     id: '5',
     title: 'Python for Beginners',
-    description: 'Start programming with Python through practical projects and real-world examples.',
+    description:
+      'Start programming with Python through practical projects and real-world examples.',
     slug: 'python-for-beginners',
     thumbnail: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=450&fit=crop',
     category: CourseCategory.Development,
@@ -235,7 +247,8 @@ export const MOCK_COURSES: ICourse[] = [
     instructor: {
       id: 'i5',
       name: 'David Lee',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
       title: 'Python Instructor',
       bio: 'Passionate about teaching Python.',
     },
@@ -253,24 +266,25 @@ export const MOCK_COURSES: ICourse[] = [
     imageAlt: 'Python for Beginners course thumbnail',
     author: {
       name: 'David Lee',
-      avatarSrc: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
+      avatarSrc:
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
       avatarAlt: 'David Lee avatar',
-      category: 'Programming'
+      category: 'Programming',
     },
     meta: {
       duration: '20 Hours',
       lessonCount: 40,
       studentCount: 15400,
-      level: CourseLevel.Beginner
+      level: CourseLevel.Beginner,
     },
     priceObject: {
       current: 0,
       old: 0,
-      currency: '$'
+      currency: '$',
     },
     seoTitle: 'Python for Beginners - Free Course',
     seoDescription: 'Learn Python programming from scratch',
-    keywords: ['Python', 'Programming', 'Beginners', 'Coding']
+    keywords: ['Python', 'Programming', 'Beginners', 'Coding'],
   },
 
   // ─────────────────────────────────────────────
@@ -279,7 +293,8 @@ export const MOCK_COURSES: ICourse[] = [
   {
     id: '6',
     title: 'Machine Learning Essentials',
-    description: 'Introduction to machine learning algorithms using Python and scikit-learn with hands-on projects.',
+    description:
+      'Introduction to machine learning algorithms using Python and scikit-learn with hands-on projects.',
     slug: 'machine-learning-essentials',
     thumbnail: 'https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?w=800&h=450&fit=crop',
     category: CourseCategory.DataScience,
@@ -288,7 +303,8 @@ export const MOCK_COURSES: ICourse[] = [
     instructor: {
       id: 'i6',
       name: 'Sophia Martinez',
-      avatar: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200&h=200&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200&h=200&fit=crop&crop=face',
       title: 'AI Researcher',
       bio: 'PhD in Artificial Intelligence.',
     },
@@ -307,24 +323,25 @@ export const MOCK_COURSES: ICourse[] = [
     imageAlt: 'Machine Learning Essentials course thumbnail',
     author: {
       name: 'Sophia Martinez',
-      avatarSrc: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200&h=200&fit=crop&crop=face',
+      avatarSrc:
+        'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200&h=200&fit=crop&crop=face',
       avatarAlt: 'Sophia Martinez avatar',
-      category: 'Data Science'
+      category: 'Data Science',
     },
     meta: {
       duration: '30 Hours',
       lessonCount: 60,
       studentCount: 6800,
-      level: CourseLevel.Advanced
+      level: CourseLevel.Advanced,
     },
     priceObject: {
       current: 149.99,
       old: 199.99,
-      currency: '$'
+      currency: '$',
     },
     seoTitle: 'Machine Learning Essentials - Advanced Course',
     seoDescription: 'Master machine learning with Python',
-    keywords: ['Machine Learning', 'Python', 'AI', 'Data Science']
+    keywords: ['Machine Learning', 'Python', 'AI', 'Data Science'],
   },
 
   // ─────────────────────────────────────────────
@@ -333,7 +350,8 @@ export const MOCK_COURSES: ICourse[] = [
   {
     id: '7',
     title: 'Digital Marketing Bootcamp',
-    description: 'Learn SEO, Google Ads, email marketing, and analytics for modern digital marketing.',
+    description:
+      'Learn SEO, Google Ads, email marketing, and analytics for modern digital marketing.',
     slug: 'digital-marketing-bootcamp',
     thumbnail: 'https://images.unsplash.com/photo-1571485778080-d8e31af6f19a?w=800&h=450&fit=crop',
     category: CourseCategory.Marketing,
@@ -342,7 +360,8 @@ export const MOCK_COURSES: ICourse[] = [
     instructor: {
       id: 'i7',
       name: 'Olivia White',
-      avatar: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=200&h=200&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=200&h=200&fit=crop&crop=face',
       title: 'Marketing Strategist',
       bio: 'Digital marketing consultant.',
     },
@@ -360,24 +379,25 @@ export const MOCK_COURSES: ICourse[] = [
     imageAlt: 'Digital Marketing Bootcamp course thumbnail',
     author: {
       name: 'Olivia White',
-      avatarSrc: 'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=200&h=200&fit=crop&crop=face',
+      avatarSrc:
+        'https://images.unsplash.com/photo-1485968579580-b6d095142e6e?w=200&h=200&fit=crop&crop=face',
       avatarAlt: 'Olivia White avatar',
-      category: 'Marketing'
+      category: 'Marketing',
     },
     meta: {
       duration: '16 Hours',
       lessonCount: 32,
       studentCount: 4700,
-      level: CourseLevel.Beginner
+      level: CourseLevel.Beginner,
     },
     priceObject: {
       current: 59.99,
       old: 79.99,
-      currency: '$'
+      currency: '$',
     },
     seoTitle: 'Digital Marketing Bootcamp - Complete Course',
     seoDescription: 'Learn digital marketing strategies',
-    keywords: ['Digital Marketing', 'SEO', 'Google Ads', 'Analytics']
+    keywords: ['Digital Marketing', 'SEO', 'Google Ads', 'Analytics'],
   },
 
   // ─────────────────────────────────────────────
@@ -386,7 +406,8 @@ export const MOCK_COURSES: ICourse[] = [
   {
     id: '8',
     title: 'AWS Cloud Practitioner',
-    description: 'Prepare for the AWS Cloud Practitioner certification with hands-on labs and practice exams.',
+    description:
+      'Prepare for the AWS Cloud Practitioner certification with hands-on labs and practice exams.',
     slug: 'aws-cloud-practitioner',
     thumbnail: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=450&fit=crop',
     category: CourseCategory.Cloud,
@@ -395,7 +416,8 @@ export const MOCK_COURSES: ICourse[] = [
     instructor: {
       id: 'i8',
       name: 'James Anderson',
-      avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face',
       title: 'Cloud Solutions Architect',
       bio: 'AWS certified professional.',
     },
@@ -413,24 +435,25 @@ export const MOCK_COURSES: ICourse[] = [
     imageAlt: 'AWS Cloud Practitioner course thumbnail',
     author: {
       name: 'James Anderson',
-      avatarSrc: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face',
+      avatarSrc:
+        'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face',
       avatarAlt: 'James Anderson avatar',
-      category: 'Cloud Computing'
+      category: 'Cloud Computing',
     },
     meta: {
       duration: '19 Hours',
       lessonCount: 38,
       studentCount: 7200,
-      level: CourseLevel.Intermediate
+      level: CourseLevel.Intermediate,
     },
     priceObject: {
       current: 119.99,
       old: 159.99,
-      currency: '$'
+      currency: '$',
     },
     seoTitle: 'AWS Cloud Practitioner - Certification Course',
     seoDescription: 'Prepare for AWS Cloud Practitioner exam',
-    keywords: ['AWS', 'Cloud', 'Certification', 'Cloud Computing']
+    keywords: ['AWS', 'Cloud', 'Certification', 'Cloud Computing'],
   },
 
   // ─────────────────────────────────────────────
@@ -448,7 +471,8 @@ export const MOCK_COURSES: ICourse[] = [
     instructor: {
       id: 'i9',
       name: 'Emma Taylor',
-      avatar: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&h=200&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&h=200&fit=crop&crop=face',
       title: 'Mobile Developer',
       bio: 'Cross-platform application expert.',
     },
@@ -467,24 +491,25 @@ export const MOCK_COURSES: ICourse[] = [
     imageAlt: 'Flutter Mobile Development course thumbnail',
     author: {
       name: 'Emma Taylor',
-      avatarSrc: 'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&h=200&fit=crop&crop=face',
+      avatarSrc:
+        'https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=200&h=200&fit=crop&crop=face',
       avatarAlt: 'Emma Taylor avatar',
-      category: 'Mobile Development'
+      category: 'Mobile Development',
     },
     meta: {
       duration: '24 Hours',
       lessonCount: 48,
       studentCount: 5100,
-      level: CourseLevel.Intermediate
+      level: CourseLevel.Intermediate,
     },
     priceObject: {
       current: 109.99,
       old: 149.99,
-      currency: '$'
+      currency: '$',
     },
     seoTitle: 'Flutter Mobile Development - Complete Course',
     seoDescription: 'Build cross-platform mobile apps with Flutter',
-    keywords: ['Flutter', 'Dart', 'Mobile Development', 'iOS', 'Android']
+    keywords: ['Flutter', 'Dart', 'Mobile Development', 'iOS', 'Android'],
   },
 
   // ─────────────────────────────────────────────
@@ -502,7 +527,8 @@ export const MOCK_COURSES: ICourse[] = [
     instructor: {
       id: 'i10',
       name: 'Daniel Clark',
-      avatar: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face',
       title: 'Cybersecurity Consultant',
       bio: 'Certified ethical hacker and security consultant.',
     },
@@ -521,24 +547,25 @@ export const MOCK_COURSES: ICourse[] = [
     imageAlt: 'Cybersecurity Fundamentals course thumbnail',
     author: {
       name: 'Daniel Clark',
-      avatarSrc: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face',
+      avatarSrc:
+        'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face',
       avatarAlt: 'Daniel Clark avatar',
-      category: 'Security'
+      category: 'Security',
     },
     meta: {
       duration: '28 Hours',
       lessonCount: 56,
       studentCount: 4300,
-      level: CourseLevel.Advanced
+      level: CourseLevel.Advanced,
     },
     priceObject: {
       current: 129.99,
       old: 179.99,
-      currency: '$'
+      currency: '$',
     },
     seoTitle: 'Cybersecurity Fundamentals - Advanced Course',
     seoDescription: 'Learn cybersecurity and ethical hacking',
-    keywords: ['Cybersecurity', 'Ethical Hacking', 'Network Security', 'Cyber Defense']
+    keywords: ['Cybersecurity', 'Ethical Hacking', 'Network Security', 'Cyber Defense'],
   },
 
   // ─────────────────────────────────────────────
@@ -556,7 +583,8 @@ export const MOCK_COURSES: ICourse[] = [
     instructor: {
       id: 'i11',
       name: 'Robert Chen',
-      avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
       title: 'Full Stack Developer',
       bio: 'Vue.js core team member.',
     },
@@ -574,21 +602,22 @@ export const MOCK_COURSES: ICourse[] = [
     imageAlt: 'Vue.js Masterclass course thumbnail',
     author: {
       name: 'Robert Chen',
-      avatarSrc: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
+      avatarSrc:
+        'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face',
       avatarAlt: 'Robert Chen avatar',
-      category: 'Web Development'
+      category: 'Web Development',
     },
     meta: {
       duration: '20 Hours',
       lessonCount: 40,
       studentCount: 3500,
-      level: CourseLevel.Intermediate
+      level: CourseLevel.Intermediate,
     },
     priceObject: {
       current: 89.99,
       old: 119.99,
-      currency: '$'
-    }
+      currency: '$',
+    },
   },
 
   // ─────────────────────────────────────────────
@@ -597,7 +626,8 @@ export const MOCK_COURSES: ICourse[] = [
   {
     id: '12',
     title: 'GraphQL with Apollo',
-    description: 'Build efficient APIs with GraphQL and Apollo Server with client-side integration.',
+    description:
+      'Build efficient APIs with GraphQL and Apollo Server with client-side integration.',
     slug: 'graphql-with-apollo',
     thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop',
     category: CourseCategory.Development,
@@ -606,7 +636,8 @@ export const MOCK_COURSES: ICourse[] = [
     instructor: {
       id: 'i12',
       name: 'Lisa Park',
-      avatar: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200&h=200&fit=crop&crop=face',
+      avatar:
+        'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200&h=200&fit=crop&crop=face',
       title: 'API Engineer',
       bio: 'GraphQL specialist and REST API expert.',
     },
@@ -624,21 +655,21 @@ export const MOCK_COURSES: ICourse[] = [
     imageAlt: 'GraphQL with Apollo course thumbnail',
     author: {
       name: 'Lisa Park',
-      avatarSrc: 'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200&h=200&fit=crop&crop=face',
+      avatarSrc:
+        'https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200&h=200&fit=crop&crop=face',
       avatarAlt: 'Lisa Park avatar',
-      category: 'API Development'
+      category: 'API Development',
     },
     meta: {
       duration: '14 Hours',
       lessonCount: 28,
       studentCount: 2800,
-      level: CourseLevel.Intermediate
+      level: CourseLevel.Intermediate,
     },
     priceObject: {
       current: 74.99,
       old: 99.99,
-      currency: '$'
-    }
-  }
+      currency: '$',
+    },
+  },
 ];
-

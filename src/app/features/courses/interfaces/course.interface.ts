@@ -1,3 +1,4 @@
+import { Gender } from "@app/shared";
 import { CourseCategory, CourseLevel } from "../enums";
 
 export interface IInstructor {
@@ -6,6 +7,7 @@ export interface IInstructor {
   readonly avatar: string;
   readonly title: string;
   readonly bio: string;
+  readonly gender?: Gender;
 }
 
 export interface IAuthor {

@@ -5,7 +5,11 @@
     <!-- Loading State -->
     @if (facade.loading()) {
       <!-- TODO: Replace with <app-course-loading /> -->
-      <p>Loading courses...</p>
+      <section class="course-list">
+        @for (item of [1, 2, 3, 4, 5, 6]; track $index) {
+          <app-course-skeleton />
+        }
+      </section>
     }
 
     <!-- Courses List -->

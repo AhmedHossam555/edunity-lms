@@ -1,0 +1,97 @@
+.course-card-skeleton {
+  overflow: hidden;
+  border-radius: 1rem;
+  background: #fff;
+  box-shadow: 0 .5rem 2rem rgba(0,0,0,.08);
+
+  &__body {
+    padding: 1.5rem;
+  }
+
+  &__meta,
+  &__footer,
+  &__author {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-top: 1rem;
+  }
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #ececec;
+  border-radius: .5rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.7),
+      transparent
+    );
+    animation: skeleton-loading 1.2s infinite;
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+  }
+
+  &__category {
+    width: 30%;
+    height: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  &__title {
+    height: 1.6rem;
+    margin-bottom: .8rem;
+
+    &.short {
+      width: 70%;
+    }
+  }
+
+  &__description {
+    height: 1rem;
+    margin-bottom: .6rem;
+  }
+
+  &__meta-item {
+    width: 22%;
+    height: 1rem;
+  }
+
+  &__avatar {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+  }
+
+  &__author-name {
+    flex: 1;
+    height: 1rem;
+  }
+
+  &__price {
+    width: 40%;
+    height: 2rem;
+  }
+
+  &__button {
+    width: 35%;
+    height: 2rem;
+  }
+}
+
+@keyframes skeleton-loading {
+  to {
+    transform: translateX(100%);
+  }
+}
