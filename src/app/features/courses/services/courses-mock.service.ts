@@ -1,9 +1,11 @@
 import { Injectable } from '@angular/core';
-import { MOCK_COURSES } from '../data';
+import { MOCK_COURSES } from '../mocks';
 import { CoursesRepository } from '../repositories';
 import { of, delay } from 'rxjs';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class CoursesMockService implements CoursesRepository {
   getCourses() {
     return of(MOCK_COURSES).pipe(delay(500));

@@ -1,73 +1,245 @@
-import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy, input, output, computed, Injector, inject } from '@angular/core';
+import { RouterLink } from '@angular/router';
+import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ICourse } from '../../interfaces';
-import { CourseLevel } from '../../enums';
-import { CurrencyPipe, DecimalPipe } from '@angular/common';
-import { TruncateTextPipe } from "../../../../shared";
+import { COURSE_SVG_ICONS } from '../../constants';
 
 @Component({
   selector: 'app-course-card',
   templateUrl: './course-card.html',
   styleUrls: ['./course-card.scss'],
-  imports: [
-    DecimalPipe,
-    CurrencyPipe,
-    TruncateTextPipe
-],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  standalone: true,
+  imports: [ RouterLink],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CourseCard {
-  private _course!: ICourse;
+   // ─────────────────────────────────────────────────────────────
+  // Inputs
+  // ─────────────────────────────────────────────────────────────
 
-  @Input()
-  public set course(value: ICourse) {
-    this._course = value;
-    this.durationFormatted = this.formatDuration(value.duration);
-    this.levelLabel = this.getLevelLabel(value.level);
-  }
+  readonly course = input.required<ICourse>();
+  readonly variant = input<'default' | 'featured'>('default');
 
-  public get course(): ICourse {
-    return this._course;
-  }
+  // ─────────────────────────────────────────────────────────────
+  // Outputs
+  // ─────────────────────────────────────────────────────────────
 
-  @Input() public showSkeleton: boolean = false;
-  @Input() public priority: boolean = false;
-  @Input() public isDetailed: boolean = false;
+  readonly addToCart = output<ICourse>();
 
-  @Output() public courseClick = new EventEmitter<string>();
-  @Output() public enrollClick = new EventEmitter<ICourse>();
+  // ─────────────────────────────────────────────────────────────
+  // Dependencies
+  // ─────────────────────────────────────────────────────────────
 
-  public durationFormatted: string = '';
-  public levelLabel: string = '';
+  private readonly sanitizer = inject(DomSanitizer);
 
-  private formatDuration(hours: number): string {
-    if (hours >= 24) {
-      const days = Math.floor(hours / 24);
-      const remainingHours = hours % 24;
-      return remainingHours > 0 ? `${days}d ${remainingHours}h` : `${days}d`;
+  // ─────────────────────────────────────────────────────────────
+  // Computed Icons
+  // ─────────────────────────────────────────────────────────────
+
+  protected readonly icons = computed<Record<string, SafeHtml>>(() =>
+    Object.fromEntries(
+      Object.entries(COURSE_SVG_ICONS).map(([key, svg]) => [
+        key,
+        this.sanitizer.bypassSecurityTrustHtml(svg),
+      ])
+    )
+  );
+
+  // ─────────────────────────────────────────────────────────────
+  // Computed Properties
+  // ─────────────────────────────────────────────────────────────
+
+  protected readonly displayPrice = computed(() => {
+    const course = this.course();
+
+    // Use priceObject if available (featured card)
+    if (course.priceObject) {
+      return `${course.priceObject.currency}${course.priceObject.current}`;
     }
-    return `${hours}h`;
+
+    // Default price display
+    if (course.isFree) {
+      return 'Free';
+    }
+
+    return `${this.getCurrencySymbol()}${course.price}`;
+  });
+
+  protected readonly displayOldPrice = computed(() => {
+    const course = this.course();
+
+    // Use priceObject if available (featured card)
+    if (course.priceObject?.old) {
+      return `${course.priceObject.currency}${course.priceObject.old}`;
+    }
+
+    // Default old price
+    if (course.oldPrice) {
+      return `${this.getCurrencySymbol()}${course.oldPrice}`;
+    }
+
+    return null;
+  });
+
+  protected readonly formattedRating = computed(() => {
+    return this.course().rating.toFixed(1);
+  });
+
+  protected readonly ratingLabel = computed(() => {
+    const course = this.course();
+    return course.ratingLabel || `${course.rating} out of 5`;
+  });
+
+  protected readonly lessonLabel = computed(() => {
+    const course = this.course();
+
+    // Use meta if available (featured card)
+    if (course.meta?.lessonCount) {
+      return `Lesson ${course.meta.lessonCount}`;
+    }
+
+    return `Lesson ${course.totalLessons || 0}`;
+  });
+
+  protected readonly studentLabel = computed(() => {
+    const course = this.course();
+
+    // Use meta if available (featured card)
+    if (course.meta?.studentCount) {
+      return `Students ${course.meta.studentCount}`;
+    }
+
+    return `Students ${course.totalStudents || 0}`;
+  });
+
+  protected readonly durationLabel = computed(() => {
+    const course = this.course();
+
+    // Use meta if available (featured card)
+    if (course.meta?.duration) {
+      return course.meta.duration;
+    }
+
+    return `${course.duration} hrs`;
+  });
+
+  protected readonly authorName = computed(() => {
+    const course = this.course();
+
+    // Use author if available (featured card)
+    if (course.author) {
+      return course.author.name;
+    }
+
+    return course.instructor?.name || '';
+  });
+
+  protected readonly authorAvatar = computed(() => {
+    const course = this.course();
+
+    // Use author if available (featured card)
+    if (course.author?.avatarSrc) {
+      return course.author.avatarSrc;
+    }
+
+    return course.instructor?.avatar || '';
+  });
+
+  protected readonly authorAvatarAlt = computed(() => {
+    const course = this.course();
+
+    // Use author if available (featured card)
+    if (course.author?.avatarAlt) {
+      return course.author.avatarAlt;
+    }
+
+    return `Avatar of ${this.authorName()}`;
+  });
+
+  protected readonly authorCategory = computed(() => {
+    const course = this.course();
+
+    // Use author if available (featured card)
+    if (course.author?.category) {
+      return course.author.category;
+    }
+
+    return course.category || '';
+  });
+
+  protected readonly badgeText = computed(() => {
+    const course = this.course();
+
+    // Use badge if available (featured card)
+    if (course.badge) {
+      return course.badge;
+    }
+
+    // Generate badge from level
+    if (course.level) {
+      return course.level;
+    }
+
+    return null;
+  });
+
+  protected readonly imageSource = computed(() => {
+    const course = this.course();
+
+    // Use imageSrc if available (featured card)
+    if (course.imageSrc) {
+      return course.imageSrc;
+    }
+
+    return course.thumbnail;
+  });
+
+  protected readonly imageAltText = computed(() => {
+    const course = this.course();
+
+    // Use imageAlt if available (featured card)
+    if (course.imageAlt) {
+      return course.imageAlt;
+    }
+
+    return course.title;
+  });
+
+  protected readonly isInCart = computed(() => {
+    return this.course().isInCart || false;
+  });
+
+  // ─────────────────────────────────────────────────────────────
+  // Private Methods
+  // ─────────────────────────────────────────────────────────────
+
+  private getCurrencySymbol(): string {
+    // This could be extended to support different currencies
+    return '$';
   }
 
-  private getLevelLabel(level: CourseLevel): string {
-    const labels: Record<CourseLevel, string> = {
-      [CourseLevel.Beginner]: 'Beginner',
-      [CourseLevel.Intermediate]: 'Intermediate',
-      [CourseLevel.Advanced]: 'Advanced',
-      [CourseLevel.AllLevels]: 'All Levels'
-    };
-    return labels[level] || 'All Levels';
-  }
+  // ─────────────────────────────────────────────────────────────
+  // Public Methods
+  // ─────────────────────────────────────────────────────────────
 
-  public onCourseClick(): void {
-    this.courseClick.emit(this.course.id);
-  }
-
-  public onEnrollClick(event: Event): void {
+  protected onAddToCart(event: Event): void {
+    event.preventDefault();
     event.stopPropagation();
-    this.enrollClick.emit(this.course);
+
+    // Create a new course object with updated cart status
+    const updatedCourse = {
+      ...this.course(),
+      isInCart: true,
+    };
+
+    this.addToCart.emit(updatedCourse);
   }
 
-  public getStarArray(rating: number): number[] {
-    return Array(5).fill(0).map((_, i) => i < Math.floor(rating) ? 1 : (i < Math.ceil(rating) ? 0.5 : 0));
+  protected getAriaLabel(): string {
+    return `View course: ${this.course().title}`;
+  }
+
+  protected formatPrice(amount: number, currency: string = '$'): string {
+    return `${currency}${amount}`;
   }
 }

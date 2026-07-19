@@ -1,97 +1,190 @@
-<article 
-  class="course-card" 
-  (click)="onCourseClick()"
-  [attr.aria-label]="course.title"
-  [class.skeleton]="showSkeleton"
+<!-- ========================================= -->
+<!-- Course Card                               -->
+<!-- ========================================= -->
+<article
+  class="course-card"
+  [class.course-card--featured]="variant() === 'featured'"
+  [attr.itemscope]="true"
+  [attr.itemtype]="'https://schema.org/Course'"
+  [attr.aria-labelledby]="'course-title-' + course().id"
 >
-  <!-- Skeleton Loader -->
-  @if (showSkeleton) {
-    <div class="skeleton-container" aria-hidden="true">
-      <div class="skeleton-thumbnail"></div>
-      <div class="skeleton-content">
-        <div class="skeleton-title"></div>
-        <div class="skeleton-text"></div>
-        <div class="skeleton-text short"></div>
-        <div class="skeleton-footer">
-          <div class="skeleton-avatar"></div>
-          <div class="skeleton-name"></div>
-        </div>
-      </div>
-    </div>
-  } @else {
-    <!-- Course Content -->
-    <figure class="course-thumbnail">
-      <img 
-        [src]="course.thumbnail" 
-        [alt]="'Thumbnail for ' + course.title"
-        [loading]="priority ? 'eager' : 'lazy'"
-        [width]="300"
-        [height]="168"
-        class="thumbnail-image"
+
+  <!-- ========================================= -->
+  <!-- Course Image                              -->
+  <!-- ========================================= -->
+  <div class="course-card__media">
+    <a
+      class="course-card__image-link"
+      [routerLink]="['/courses', course().id]"
+      [attr.aria-label]="getAriaLabel()"
+      [attr.aria-describedby]="'course-description-' + course().id"
+    >
+      <img
+        class="course-card__image"
+        [src]="imageSource()"
+        [alt]="imageAltText()"
+        loading="lazy"
+        decoding="async"
+        width="400"
+        height="260"
+        [attr.itemprop]="'image'"
       />
-      @if (course.isFree) {
-        <span class="free-badge" aria-label="Free course">FREE</span>
+    </a>
+
+    <!-- Badge -->
+    @if (badgeText()) {
+      <span class="course-card__badge" role="status">
+        {{ badgeText() }}
+      </span>
+    }
+  </div>
+
+  <!-- ========================================= -->
+  <!-- Course Content                            -->
+  <!-- ========================================= -->
+  <div class="course-card__body">
+
+    <!-- Category -->
+    <span class="course-card__category" aria-hidden="true">
+      {{ course().category }}
+    </span>
+
+    <!-- Title -->
+    <h2
+      class="course-card__title"
+      [id]="'course-title-' + course().id"
+      [attr.itemprop]="'name'"
+    >
+      <a
+        class="course-card__title-link"
+        [routerLink]="['/courses', course().id]"
+        [attr.aria-describedby]="'course-description-' + course().id"
+      >
+        {{ course().title }}
+      </a>
+    </h2>
+
+    <!-- Description -->
+    <p
+      class="course-card__description"
+      [id]="'course-description-' + course().id"
+      [attr.itemprop]="'description'"
+    >
+      {{ course().description }}
+    </p>
+
+    <!-- Meta Information -->
+    <ul class="course-card__meta" role="list">
+      <!-- Rating -->
+      <li class="course-card__meta-item">
+        <span class="course-card__meta-icon" aria-hidden="true">
+          <span [innerHTML]="icons()['ratingStars']"></span>
+        </span>
+        <span class="course-card__meta-text" [attr.itemprop]="'ratingValue'">
+          {{ formattedRating() }}
+        </span>
+        <span class="course-card__meta-text--muted" aria-hidden="true">
+          @if (course().totalReviews) {
+            ({{ course().totalReviews }})
+          }
+        </span>
+      </li>
+
+      <!-- Duration -->
+      <li class="course-card__meta-item">
+        <span class="course-card__meta-icon" aria-hidden="true">
+          <span [innerHTML]="icons()['clockIcon']"></span>
+        </span>
+        <span class="course-card__meta-text">
+          {{ durationLabel() }}
+        </span>
+      </li>
+
+      <!-- Students -->
+      <li class="course-card__meta-item">
+        <span class="course-card__meta-icon" aria-hidden="true">
+          <span [innerHTML]="icons()['personIcon']"></span>
+        </span>
+        <span class="course-card__meta-text">
+          {{ studentLabel() }}
+        </span>
+      </li>
+
+      <!-- Lessons -->
+      @if (course().totalLessons || course().meta?.lessonCount) {
+        <li class="course-card__meta-item">
+          <span class="course-card__meta-icon" aria-hidden="true">
+            <span [innerHTML]="icons()['lessonIcon']"></span>
+          </span>
+          <span class="course-card__meta-text">
+            {{ lessonLabel() }}
+          </span>
+        </li>
       }
-      <span class="duration-badge" aria-label="Course duration">{{ durationFormatted }}</span>
-    </figure>
+    </ul>
 
-    <div class="course-content">
-      <header>
-        <h3 class="course-title">{{ course.title }}</h3>
-        <div class="course-meta">
-          <span class="level-badge" [attr.data-level]="course.level">
-            {{ levelLabel }}
-          </span>
-          <span class="category-badge">{{ course.category }}</span>
-        </div>
-      </header>
-
-      <p class="course-description">{{ course.description | truncateText:100 }}</p>
-
-      <footer class="course-footer">
-        <div class="instructor-info">
-          <img 
-            [src]="course.instructor.avatar" 
-            [alt]="'Instructor ' + course.instructor.name"
-            class="instructor-avatar"
+    <!-- Instructor / Author -->
+    @if (authorName()) {
+      <div class="course-card__instructor">
+        @if (authorAvatar()) {
+          <img
+            class="course-card__avatar"
+            [src]="authorAvatar()"
+            [alt]="authorAvatarAlt()"
             loading="lazy"
+            width="30"
+            height="30"
           />
-          <span class="instructor-name">{{ course.instructor.name }}</span>
-        </div>
-        
-        <div class="course-stats">
-          <span class="rating" aria-label="Course rating">
-            <span class="stars">
-              @for (star of getStarArray(course.rating); track $index) {
-                <span class="star" [class.full]="star === 1" [class.half]="star === 0.5">
-                  ★
-                </span>
-              }
+        }
+        <span class="course-card__instructor-name">
+          By <strong>{{ authorName() }}</strong>
+          @if (authorCategory()) {
+            <span class="course-card__instructor-title">
+              in {{ authorCategory() }}
             </span>
-            <span class="rating-number">{{ course.rating | number:'1.1-1' }}</span>
-          </span>
-          <span class="students" aria-label="Number of students">
-            👨‍🎓 {{ course.totalStudents | number }}
-          </span>
-        </div>
+          }
+        </span>
+      </div>
+    }
 
-        <div class="course-actions">
-          <span class="price">
-            @if (course.isFree) {
-              <span class="free">Free</span>
-            } @else {
-              <span class="amount">{{ course.price | currency:'USD' }}</span>
-            }
+    <!-- Footer -->
+    <footer class="course-card__footer">
+      <!-- Price -->
+      <div class="course-card__price">
+        @if (course().isFree) {
+          <span class="course-card__price--free" aria-label="Free course">
+            Free
           </span>
-          <button 
-            class="enroll-btn"
-            (click)="onEnrollClick($event)"
-            aria-label="Enroll in {{ course.title }}"
-          >
-            Enroll Now
-          </button>
-        </div>
-      </footer>
-    </div>
-  }
+        } @else {
+          <span class="course-card__price--current" [attr.itemprop]="'price'">
+            {{ displayPrice() }}
+          </span>
+          @if (displayOldPrice()) {
+            <span class="course-card__price--old" aria-label="Original price">
+              {{ displayOldPrice() }}
+            </span>
+          }
+        }
+      </div>
+
+      <!-- Add to Cart Button -->
+      <button
+        type="button"
+        class="course-card__button"
+        (click)="onAddToCart($event)"
+        [attr.aria-label]="'Add ' + course().title + ' to cart'"
+        [disabled]="isInCart()"
+      >
+        @if (isInCart()) {
+          <span class="course-card__button-text">In Cart</span>
+        } @else {
+          <span class="course-card__button-icon" aria-hidden="true">
+            <span [innerHTML]="icons()['cartIcon']"></span>
+          </span>
+          <span class="course-card__button-text">Add to Cart</span>
+        }
+      </button>
+    </footer>
+
+  </div>
 </article>

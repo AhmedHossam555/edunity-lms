@@ -1,1 +1,26 @@
-<p>Hello</p>
+<app-page-banner [title]="'Courses'" [currentPage]="'Courses'" />
+
+<main class="section-padding">
+  <div class="container">
+    <!-- Loading State -->
+    @if (facade.loading()) {
+      <!-- TODO: Replace with <app-course-loading /> -->
+      <p>Loading courses...</p>
+    }
+
+    <!-- Courses List -->
+    @else if (facade.filteredCourses().length) {
+      <section class="course-list" aria-labelledby="courses-heading">
+        @for (course of facade.filteredCourses(); track course.id) {
+          <app-course-card [course]="course" />
+        }
+      </section>
+    }
+
+    <!-- Empty State -->
+    @else {
+      <!-- TODO: Replace with <app-course-empty-state /> -->
+      <p>No courses available.</p>
+    }
+  </div>
+</main>
