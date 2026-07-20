@@ -1,10 +1,41 @@
-import { Component } from '@angular/core';
+// course-details.ts
+import {
+  ChangeDetectionStrategy,
+  Component,
+  computed,
+  inject,
+} from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { map, tap } from 'rxjs';
+
+import { PageBanner } from '@app/shared';
+import { CoursesFacade } from '../../facades';
 
 @Component({
   selector: 'app-course-details',
-  imports: [],
+  standalone: true,
+  imports: [PageBanner],
   templateUrl: './course-details.html',
   styleUrl: './course-details.scss',
-  standalone: true,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CourseDetails {}
+export class CourseDetails {
+  private readonly route = inject(ActivatedRoute);
+  protected readonly facade = inject(CoursesFacade);
+
+  private readonly courseId = toSignal(
+    this.route.paramMap.pipe(
+      map(params => params.get('id')),
+      tap(id => {
+        if (id) {
+          this.facade.loadCourse(id);
+        }
+      })
+    ),
+    { initialValue: null }
+  );
+
+  protected readonly course = computed(() => this.facade.selectedCourse());
+  protected readonly loading = this.facade.loading;
+}

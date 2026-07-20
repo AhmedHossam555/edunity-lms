@@ -1,1 +1,159 @@
-<p>course-details works!</p>
+<app-page-banner [title]="'Course Details'" [currentPage]="'Course Details'" />
+<!-- course-details.html -->
+@if (loading()) {
+  <div class="loading-state">
+    <p>Loading...</p>
+  </div>
+} @else if (course(); as course) {
+  <section class="course-details section-padding">
+    <div class="container">
+      <!-- Hero Image (similar to image.png) -->
+      <div class="course-details__hero">
+        <img
+          class="course-details__hero-image"
+          [src]="course.thumbnail"
+          [alt]="course.title"
+          width="1200"
+          height="400"
+          loading="lazy"
+        />
+        <div class="course-details__hero-overlay">
+          <div class="course-details__hero-content container">
+            <span class="course-details__hero-badge">
+              {{ course.badge || 'Course' }}
+            </span>
+            <h1 class="course-details__hero-title">
+              {{ course.title }}
+            </h1>
+            <p class="course-details__hero-description">
+              {{ course.description }}
+            </p>
+            <div class="course-details__hero-meta">
+              <span class="course-details__hero-rating">
+                ⭐ {{ course.rating }} ({{ course.ratingLabel }})
+              </span>
+              <span>{{ course.totalStudents }} students</span>
+              <span>{{ course.totalLessons }} lessons</span>
+              <span>{{ course.duration }}h</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Content -->
+      <div class="container course-details__container">
+        <div class="course-details__content">
+          <!-- Tabs -->
+          <div class="course-details__tabs">
+            <button class="course-details__tab course-details__tab--active">Overview</button>
+            <button class="course-details__tab">Curriculum</button>
+            <button class="course-details__tab">Instructor</button>
+            <button class="course-details__tab">Reviews</button>
+          </div>
+
+          <!-- Overview Section -->
+          <div class="course-details__section">
+            <h3 class="course-details__section-title">Course Description</h3>
+            <p class="course-details__section-text">
+              {{ course.description }}
+            </p>
+            <p class="course-details__section-text">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+          </div>
+
+          <!-- What You Will Learn -->
+          <div class="course-details__section">
+            <h3 class="course-details__section-title">What will I learn from this course?</h3>
+            <ul class="course-details__learn-list">
+              <li>Build real-world Angular applications</li>
+              <li>Master reactive programming with RxJS</li>
+              <li>Implement state management with NgRx</li>
+              <li>Optimize performance for production</li>
+              <li>Write clean, maintainable code</li>
+            </ul>
+          </div>
+
+          <!-- Instructor -->
+          <div class="course-details__section">
+            <h3 class="course-details__section-title">Instructor</h3>
+            <div class="course-details__instructor">
+              <img
+                class="course-details__instructor-avatar"
+                [src]="course.instructor.avatar"
+                [alt]="course.instructor.name"
+                width="64"
+                height="64"
+              />
+              <div class="course-details__instructor-info">
+                <h4 class="course-details__instructor-name">
+                  {{ course.instructor.name }}
+                </h4>
+                <p class="course-details__instructor-title">
+                  {{ course.instructor.title }}
+                </p>
+                <p class="course-details__instructor-bio">
+                  {{ course.instructor.bio }}
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sidebar -->
+        <aside class="course-details__sidebar">
+          <div class="course-details__card">
+            <img
+              class="course-details__card-image"
+              [src]="course.thumbnail"
+              [alt]="course.title"
+              width="400"
+              height="250"
+            />
+            <div class="course-details__card-body">
+              <div class="course-details__price">
+                <span class="course-details__price-current">
+                  {{ course.isFree ? 'Free' : '$' + course.price }}
+                </span>
+                @if (course.oldPrice) {
+                  <del class="course-details__price-old"> ${{ course.oldPrice }} </del>
+                }
+              </div>
+
+              <button class="course-details__button">Enroll Now</button>
+
+              <ul class="course-details__info">
+                <li>
+                  <strong>Instructor</strong>
+                  <span>{{ course.instructor.name }}</span>
+                </li>
+                <li>
+                  <strong>Title</strong>
+                  <span>{{ course.instructor.title }}</span>
+                </li>
+                <li>
+                  <strong>Lessons</strong>
+                  <span>{{ course.totalLessons }}</span>
+                </li>
+                <li>
+                  <strong>Students</strong>
+                  <span>{{ course.totalStudents }}</span>
+                </li>
+                <li>
+                  <strong>Rating</strong>
+                  <span>⭐ {{ course.rating }}</span>
+                </li>
+                <li>
+                  <strong>Level</strong>
+                  <span>{{ course.level }}</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+  </section>
+}
