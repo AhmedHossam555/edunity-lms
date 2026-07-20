@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { CoursesFacade } from '../../facades';
@@ -17,12 +17,13 @@ export class CourseFilter {
   private readonly facade = inject(CoursesFacade);
 
   // Local filter state - use the enum types
-  readonly category = signal<CourseCategory | null>(null);
-  readonly level = signal<CourseLevel | null>(null);
-  readonly isFree = signal<boolean | null>(null);
-  readonly minRating = signal<number | null>(null);
-  readonly sortBy = signal<string>('latest');
+  readonly filter = this.facade.filter;
 
+  readonly category = computed(() => this.filter().category);
+  readonly level = computed(() => this.filter().level);
+  readonly isFree = computed(() => this.filter().isFree);
+  readonly minRating = computed(() => this.filter().minRating);
+  readonly sortBy = computed(() => this.filter().sortBy);
   // Filter options with proper enum values
   categories: { value: CourseCategory | null; label: string }[] = [
     { value: null, label: 'All Categories' },
@@ -64,41 +65,45 @@ export class CourseFilter {
   // Helper methods for labels
   getCategoryLabel(value: CourseCategory | null): string {
     if (!value) return 'All Categories';
-    const option = this.categories.find(c => c.value === value);
+    const option = this.categories.find((c) => c.value === value);
     return option ? option.label : 'Unknown';
   }
 
   getLevelLabel(value: CourseLevel | null): string {
     if (!value) return 'All Levels';
-    const option = this.levels.find(l => l.value === value);
+    const option = this.levels.find((l) => l.value === value);
     return option ? option.label : 'Unknown';
   }
 
-  // Apply individual filters
-  onCategoryChange(value: CourseCategory | null): void {
-    this.category.set(value);
-    this.applyFilters();
-  }
+onCategoryChange(value: CourseCategory | null): void {
+  this.facade.updateFilter({
+    category: value,
+  });
+}
 
-  onLevelChange(value: CourseLevel | null): void {
-    this.level.set(value);
-    this.applyFilters();
-  }
+onLevelChange(value: CourseLevel | null): void {
+  this.facade.updateFilter({
+    level: value,
+  });
+}
 
-  onPriceChange(value: boolean | null): void {
-    this.isFree.set(value);
-    this.applyFilters();
-  }
+onPriceChange(value: boolean | null): void {
+  this.facade.updateFilter({
+    isFree: value,
+  });
+}
 
-  onRatingChange(value: number | null): void {
-    this.minRating.set(value);
-    this.applyFilters();
-  }
+onRatingChange(value: number | null): void {
+  this.facade.updateFilter({
+    minRating: value,
+  });
+}
 
-  onSortChange(value: string): void {
-    this.sortBy.set(value);
-    this.applyFilters();
-  }
+onSortChange(value: ICourseFilter['sortBy']): void {
+  this.facade.updateFilter({
+    sortBy: value,
+  });
+}
 
   // Apply all filters to facade
   private applyFilters(): void {
@@ -108,35 +113,30 @@ export class CourseFilter {
       level: this.level(),
       isFree: this.isFree(),
       minRating: this.minRating(),
-      sortBy: this.sortBy()
+      sortBy: this.sortBy(),
     };
 
     this.facade.filter.set(filter);
   }
 
   // Clear all filters
-  clearFilters(): void {
-    this.category.set(null);
-    this.level.set(null);
-    this.isFree.set(null);
-    this.minRating.set(null);
-    this.sortBy.set('latest');
-
-    const filter: ICourseFilter = {
-      search: this.facade.filter().search, // Preserve search
-      category: null,
-      level: null,
-      isFree: null,
-      minRating: null,
-      sortBy: 'latest'
-    };
-
-    this.facade.filter.set(filter);
-  }
+clearFilters(): void {
+  this.facade.updateFilter({
+    category: null,
+    level: null,
+    isFree: null,
+    minRating: null,
+    sortBy: 'latest',
+  });
+}
 
   // Check if any filters are active (except search)
   hasActiveFilters(): boolean {
-    return !!(this.category() || this.level() || 
-              this.isFree() !== null || this.minRating() !== null);
+    return !!(
+      this.category() ||
+      this.level() ||
+      this.isFree() !== null ||
+      this.minRating() !== null
+    );
   }
 }

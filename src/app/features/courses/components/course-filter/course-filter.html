@@ -19,7 +19,7 @@
         class="filter-select"
       >
         @for (option of categories; track option.value) {
-          <option [value]="option.value">{{ option.label }}</option>
+          <option [ngValue]="option.value">{{ option.label }}</option>
         }
       </select>
     </div>
@@ -34,7 +34,7 @@
         class="filter-select"
       >
         @for (option of levels; track option.value) {
-          <option [value]="option.value">{{ option.label }}</option>
+          <option [ngValue]="option.value">{{ option.label }}</option>
         }
       </select>
     </div>
@@ -49,7 +49,7 @@
         class="filter-select"
       >
         @for (option of priceOptions; track option.value) {
-          <option [value]="option.value">{{ option.label }}</option>
+          <option [ngValue]="option.value">{{ option.label }}</option>
         }
       </select>
     </div>
@@ -64,7 +64,7 @@
         class="filter-select"
       >
         @for (option of ratingOptions; track option.value) {
-          <option [value]="option.value">{{ option.label }}</option>
+          <option [ngValue]="option.value">{{ option.label }}</option>
         }
       </select>
     </div>
@@ -79,7 +79,7 @@
         class="filter-select"
       >
         @for (option of sortOptions; track option.value) {
-          <option [value]="option.value">{{ option.label }}</option>
+          <option [ngValue]="option.value">{{ option.label }}</option>
         }
       </select>
     </div>

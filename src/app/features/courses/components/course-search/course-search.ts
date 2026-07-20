@@ -1,10 +1,19 @@
 import {
   ChangeDetectionStrategy,
   Component,
+  DestroyRef,
   inject,
+  OnInit,
   signal,
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import {
+  debounceTime,
+  distinctUntilChanged,
+  Subject,
+} from 'rxjs';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+
 import { CoursesFacade } from '../../facades';
 
 @Component({
@@ -15,35 +24,37 @@ import { CoursesFacade } from '../../facades';
   styleUrl: './course-search.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class CourseSearch {
+export class CourseSearch implements OnInit {
   private readonly facade = inject(CoursesFacade);
-  
-  // Local search input value
-  searchTerm = signal('');
+  private readonly destroyRef = inject(DestroyRef);
 
-  // Update search when user types (with debounce)
-  onSearchInput(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    this.searchTerm.set(input.value);
-    this.applySearch();
+  protected search = '';
+  private readonly searchSubject = new Subject<string>();
+
+  ngOnInit(): void {
+    this.searchSubject
+      .pipe(
+        debounceTime(300),
+        distinctUntilChanged(),
+        takeUntilDestroyed(this.destroyRef)
+      )
+      .subscribe(value => {
+        this.facade.updateSearch(value);
+      });
   }
 
-  // Apply search to facade
-  private applySearch(): void {
-    const currentFilter = this.facade.filter();
-    this.facade.filter.set({
-      ...currentFilter,
-      search: this.searchTerm().trim()
-    });
+  onSearch(value: string): void {
+    this.search = value;
+    this.searchSubject.next(value);
   }
 
-  // Clear search
-  clearSearch(): void {
-    this.searchTerm.set('');
-    const currentFilter = this.facade.filter();
-    this.facade.filter.set({
-      ...currentFilter,
-      search: ''
-    });
+  clear(): void {
+    this.search = '';
+    this.facade.updateSearch('');
+    // Focus input after clear
+    const input = document.querySelector('.course-search__input') as HTMLInputElement;
+    if (input) {
+      input.focus();
+    }
   }
 }

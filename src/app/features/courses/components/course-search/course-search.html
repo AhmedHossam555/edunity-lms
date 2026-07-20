@@ -1,23 +1,55 @@
-<div class="search-container">
-  <div class="search-wrapper">
-    <i class="search-icon">🔍</i>
-    <input
-      type="text"
-      [(ngModel)]="searchTerm"
-      (input)="onSearchInput($event)"
-      placeholder="Search courses..."
-      class="search-input"
-      aria-label="Search courses"
-    />
-    @if (searchTerm()) {
-      <button 
-        class="clear-button" 
-        (click)="clearSearch()"
-        aria-label="Clear search"
-        type="button"
+<div class="course-search">
+  <div class="course-search__container">
+    <div class="course-search__wrapper">
+      <!-- Search Icon -->
+      <svg 
+        class="course-search__icon course-search__icon--search"
+        width="20" 
+        height="20" 
+        viewBox="0 0 24 24" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="2" 
+        stroke-linecap="round" 
+        stroke-linejoin="round"
+        aria-hidden="true"
       >
-        ✕
-      </button>
-    }
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+
+      <input
+        type="search"
+        class="course-search__input"
+        [ngModel]="search"
+        (ngModelChange)="onSearch($event)"
+        placeholder="Search courses..."
+        aria-label="Search courses"
+      />
+
+      @if (search) {
+        <button
+          type="button"
+          class="course-search__clear-btn"
+          (click)="clear()"
+          aria-label="Clear search"
+        >
+          <svg 
+            width="18" 
+            height="18" 
+            viewBox="0 0 24 24" 
+            fill="none" 
+            stroke="currentColor" 
+            stroke-width="2" 
+            stroke-linecap="round" 
+            stroke-linejoin="round"
+            aria-hidden="true"
+          >
+            <line x1="18" y1="6" x2="6" y2="18"/>
+            <line x1="6" y1="6" x2="18" y2="18"/>
+          </svg>
+        </button>
+      }
+    </div>
   </div>
 </div>
