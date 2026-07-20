@@ -4,7 +4,6 @@
   <div class="container">
     <!-- Loading State -->
     @if (facade.loading()) {
-      <!-- TODO: Replace with <app-course-loading /> -->
       <section class="course-list">
         @for (item of [1, 2, 3, 4, 5, 6]; track $index) {
           <app-course-skeleton />
@@ -14,17 +13,40 @@
 
     <!-- Courses List -->
     @else if (facade.filteredCourses().length) {
+      <!-- Course Grid -->
       <section class="course-list" aria-labelledby="courses-heading">
-        @for (course of facade.filteredCourses(); track course.id) {
+        @for (course of facade.paginatedCourses(); track course.id) {
           <app-course-card [course]="course" />
         }
       </section>
+
+      <!-- Pagination -->
+      @if (facade.totalItems() > 6) {
+        <div class="pagination-wrapper">
+          <app-pagination
+            [currentPage]="facade.currentPage()"
+            [totalItems]="facade.totalItems()"
+            [itemsPerPage]="facade.itemsPerPage()"
+            [totalPages]="facade.totalPages()"
+            [maxVisiblePages]="5"
+            [showFirstLast]="true"
+            [showPrevNext]="true"
+            [showPageSize]="false"
+            [showSummary]="false"
+            [pageSizeOptions]="[3, 6, 9, 12, 24]"
+            [disabled]="facade.loading()"
+            (pageChange)="onPageChange($event)"
+            (pageSizeChange)="onPageSizeChange($event)"
+          />
+        </div>
+      }
     }
 
     <!-- Empty State -->
     @else {
-      <!-- TODO: Replace with <app-course-empty-state /> -->
-      <p>No courses available.</p>
+      <div class="empty-state">
+        <p>No courses available.</p>
+      </div>
     }
   </div>
 </main>

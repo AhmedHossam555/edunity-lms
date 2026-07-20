@@ -2,5 +2,15 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(21rem, 1fr));
   gap: 2rem;
+  margin-bottom: 3rem;
+}
 
+.pagination-wrapper {
+  padding-top: 3rem;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+  color: var(--text-muted, #64748b);
 }
