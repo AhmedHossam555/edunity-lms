@@ -14,7 +14,7 @@
   <div class="course-card__media">
     <a
       class="course-card__image-link"
-      [routerLink]="['/courses', course().id]"
+      [routerLink]="courseLink()"
       [attr.aria-label]="getAriaLabel()"
       [attr.aria-describedby]="'course-description-' + course().id"
     >

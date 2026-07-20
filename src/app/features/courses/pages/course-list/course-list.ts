@@ -1,8 +1,8 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { CoursesFacade } from '../../facades';
-import { PageBanner, CourseSkeleton } from '@app/shared';
+import { PageBanner } from '@app/shared';
 import { CourseCard } from '../../components/course-card/course-card';
-import { ICourse } from '../../interfaces';
+import { CourseSkeleton } from '../../components/course-skeleton/course-skeleton';
 
 @Component({
   selector: 'app-course-list',

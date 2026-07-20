@@ -60,7 +60,11 @@ export class CourseCard {
   // ─────────────────────────────────────────────────────────────
   // Computed Properties
   // ─────────────────────────────────────────────────────────────
+  protected readonly courseLink = computed(() => {
+    const course = this.course();
 
+    return course.slug ? ['/courses', course.id, course.slug] : ['/courses', course.id];
+  });
   protected readonly displayPrice = computed(() => {
     const course = this.course();
 
@@ -155,7 +159,6 @@ export class CourseCard {
 
     return course.instructor?.avatar || '';
   });
-
 
   protected readonly authorCategory = computed(() => {
     const course = this.course();
