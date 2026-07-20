@@ -13,7 +13,7 @@ export const MOCK_COURSES: ICourse[] = [
     slug: 'angular-mastery-from-zero-to-hero',
     thumbnail: 'https://images.unsplash.com/photo-1581276170525-94f1f9b6a6dd?w=800&h=450&fit=crop',
     category: CourseCategory.Development,
-    level: CourseLevel.Intermediate,
+    level: CourseLevel.INTERMEDIATE,
     duration: 25.5,
     instructor: {
       id: 'i1',
@@ -48,7 +48,7 @@ export const MOCK_COURSES: ICourse[] = [
       duration: '25.5 Hours',
       lessonCount: 48,
       studentCount: 12500,
-      level: CourseLevel.Intermediate,
+      level: CourseLevel.INTERMEDIATE,
     },
     priceObject: {
       current: 99.99,
@@ -71,7 +71,7 @@ export const MOCK_COURSES: ICourse[] = [
     slug: 'react-complete-guide',
     thumbnail: 'https://images.unsplash.com/photo-1633356122102-3fe601e05bd2?w=800&h=450&fit=crop',
     category: CourseCategory.Development,
-    level: CourseLevel.Beginner,
+    level: CourseLevel.BEGINNER,
     duration: 22,
     instructor: {
       id: 'i2',
@@ -105,7 +105,7 @@ export const MOCK_COURSES: ICourse[] = [
       duration: '22 Hours',
       lessonCount: 42,
       studentCount: 9800,
-      level: CourseLevel.Beginner,
+      level: CourseLevel.BEGINNER,
     },
     priceObject: {
       current: 89.99,
@@ -128,7 +128,7 @@ export const MOCK_COURSES: ICourse[] = [
     slug: 'nodejs-api-development',
     thumbnail: 'https://images.unsplash.com/photo-1627398242454-45a1465c2479?w=800&h=450&fit=crop',
     category: CourseCategory.Development,
-    level: CourseLevel.Intermediate,
+    level: CourseLevel.INTERMEDIATE,
     duration: 18,
     instructor: {
       id: 'i3',
@@ -162,7 +162,7 @@ export const MOCK_COURSES: ICourse[] = [
       duration: '18 Hours',
       lessonCount: 36,
       studentCount: 7600,
-      level: CourseLevel.Intermediate,
+      level: CourseLevel.INTERMEDIATE,
     },
     priceObject: {
       current: 79.99,
@@ -185,7 +185,7 @@ export const MOCK_COURSES: ICourse[] = [
     slug: 'ui-ux-design-fundamentals',
     thumbnail: 'https://images.unsplash.com/photo-1561070791-2526d30994b5?w=800&h=450&fit=crop',
     category: CourseCategory.Design,
-    level: CourseLevel.Beginner,
+    level: CourseLevel.BEGINNER,
     duration: 15,
     instructor: {
       id: 'i4',
@@ -219,7 +219,7 @@ export const MOCK_COURSES: ICourse[] = [
       duration: '15 Hours',
       lessonCount: 30,
       studentCount: 5400,
-      level: CourseLevel.Beginner,
+      level: CourseLevel.BEGINNER,
     },
     priceObject: {
       current: 69.99,
@@ -242,7 +242,7 @@ export const MOCK_COURSES: ICourse[] = [
     slug: 'python-for-beginners',
     thumbnail: 'https://images.unsplash.com/photo-1526379095098-d400fd0bf935?w=800&h=450&fit=crop',
     category: CourseCategory.Development,
-    level: CourseLevel.Beginner,
+    level: CourseLevel.BEGINNER,
     duration: 20,
     instructor: {
       id: 'i5',
@@ -275,7 +275,7 @@ export const MOCK_COURSES: ICourse[] = [
       duration: '20 Hours',
       lessonCount: 40,
       studentCount: 15400,
-      level: CourseLevel.Beginner,
+      level: CourseLevel.BEGINNER,
     },
     priceObject: {
       current: 0,
@@ -298,7 +298,7 @@ export const MOCK_COURSES: ICourse[] = [
     slug: 'machine-learning-essentials',
     thumbnail: 'https://images.unsplash.com/photo-1509228627152-72ae9ae6848d?w=800&h=450&fit=crop',
     category: CourseCategory.DataScience,
-    level: CourseLevel.Advanced,
+    level: CourseLevel.ADVANCED,
     duration: 30,
     instructor: {
       id: 'i6',
@@ -332,7 +332,7 @@ export const MOCK_COURSES: ICourse[] = [
       duration: '30 Hours',
       lessonCount: 60,
       studentCount: 6800,
-      level: CourseLevel.Advanced,
+      level: CourseLevel.ADVANCED,
     },
     priceObject: {
       current: 149.99,
@@ -355,7 +355,7 @@ export const MOCK_COURSES: ICourse[] = [
     slug: 'digital-marketing-bootcamp',
     thumbnail: 'https://images.unsplash.com/photo-1571485778080-d8e31af6f19a?w=800&h=450&fit=crop',
     category: CourseCategory.Marketing,
-    level: CourseLevel.Beginner,
+    level: CourseLevel.BEGINNER,
     duration: 16,
     instructor: {
       id: 'i7',
@@ -388,7 +388,7 @@ export const MOCK_COURSES: ICourse[] = [
       duration: '16 Hours',
       lessonCount: 32,
       studentCount: 4700,
-      level: CourseLevel.Beginner,
+      level: CourseLevel.BEGINNER,
     },
     priceObject: {
       current: 59.99,
@@ -411,7 +411,7 @@ export const MOCK_COURSES: ICourse[] = [
     slug: 'aws-cloud-practitioner',
     thumbnail: 'https://images.unsplash.com/photo-1544197150-b99a580bb7a8?w=800&h=450&fit=crop',
     category: CourseCategory.Cloud,
-    level: CourseLevel.Intermediate,
+    level: CourseLevel.INTERMEDIATE,
     duration: 19,
     instructor: {
       id: 'i8',
@@ -444,7 +444,7 @@ export const MOCK_COURSES: ICourse[] = [
       duration: '19 Hours',
       lessonCount: 38,
       studentCount: 7200,
-      level: CourseLevel.Intermediate,
+      level: CourseLevel.INTERMEDIATE,
     },
     priceObject: {
       current: 119.99,
@@ -466,7 +466,7 @@ export const MOCK_COURSES: ICourse[] = [
     slug: 'flutter-mobile-development',
     thumbnail: 'https://images.unsplash.com/photo-1551650975-87deedd944c3?w=800&h=450&fit=crop',
     category: CourseCategory.MobileDevelopment,
-    level: CourseLevel.Intermediate,
+    level: CourseLevel.INTERMEDIATE,
     duration: 24,
     instructor: {
       id: 'i9',
@@ -500,7 +500,7 @@ export const MOCK_COURSES: ICourse[] = [
       duration: '24 Hours',
       lessonCount: 48,
       studentCount: 5100,
-      level: CourseLevel.Intermediate,
+      level: CourseLevel.INTERMEDIATE,
     },
     priceObject: {
       current: 109.99,
@@ -522,7 +522,7 @@ export const MOCK_COURSES: ICourse[] = [
     slug: 'cybersecurity-fundamentals',
     thumbnail: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?w=800&h=450&fit=crop',
     category: CourseCategory.Security,
-    level: CourseLevel.Advanced,
+    level: CourseLevel.ADVANCED,
     duration: 28,
     instructor: {
       id: 'i10',
@@ -556,7 +556,7 @@ export const MOCK_COURSES: ICourse[] = [
       duration: '28 Hours',
       lessonCount: 56,
       studentCount: 4300,
-      level: CourseLevel.Advanced,
+      level: CourseLevel.ADVANCED,
     },
     priceObject: {
       current: 129.99,
@@ -578,7 +578,7 @@ export const MOCK_COURSES: ICourse[] = [
     slug: 'vuejs-masterclass',
     thumbnail: 'https://images.unsplash.com/photo-1586953208448-b95a79798f07?w=800&h=450&fit=crop',
     category: CourseCategory.Development,
-    level: CourseLevel.Intermediate,
+    level: CourseLevel.INTERMEDIATE,
     duration: 20,
     instructor: {
       id: 'i11',
@@ -611,7 +611,7 @@ export const MOCK_COURSES: ICourse[] = [
       duration: '20 Hours',
       lessonCount: 40,
       studentCount: 3500,
-      level: CourseLevel.Intermediate,
+      level: CourseLevel.INTERMEDIATE,
     },
     priceObject: {
       current: 89.99,
@@ -631,7 +631,7 @@ export const MOCK_COURSES: ICourse[] = [
     slug: 'graphql-with-apollo',
     thumbnail: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&h=450&fit=crop',
     category: CourseCategory.Development,
-    level: CourseLevel.Intermediate,
+    level: CourseLevel.INTERMEDIATE,
     duration: 14,
     instructor: {
       id: 'i12',
@@ -664,7 +664,7 @@ export const MOCK_COURSES: ICourse[] = [
       duration: '14 Hours',
       lessonCount: 28,
       studentCount: 2800,
-      level: CourseLevel.Intermediate,
+      level: CourseLevel.INTERMEDIATE,
     },
     priceObject: {
       current: 74.99,

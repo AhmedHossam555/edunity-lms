@@ -24,5 +24,10 @@ export enum CourseCategory {
   Engineering = 'engineering',
   Science = 'science',
   PersonalDevelopment = 'personal-development',
-  Security = 'security'
+  Security = 'security',
+  PROGRAMMING = 'programming',
+  DESIGN = 'design',
+  BUSINESS = 'business',
+  MARKETING = 'marketing',
+  DATA_SCIENCE = 'data-science',
 }

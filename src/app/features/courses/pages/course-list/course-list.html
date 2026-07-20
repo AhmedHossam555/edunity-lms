@@ -11,8 +11,12 @@
       </section>
     }
 
-    <!-- Courses List -->
+    <!-- Courses Content -->
     @else if (facade.filteredCourses().length) {
+      <!-- Search and Filter -->
+      <app-course-search />
+      <app-course-filter />
+
       <!-- Course Grid -->
       <section class="course-list" aria-labelledby="courses-heading">
         @for (course of facade.paginatedCourses(); track course.id) {
@@ -21,7 +25,7 @@
       </section>
 
       <!-- Pagination -->
-      @if (facade.totalItems() > 6) {
+      @if (facade.totalItems() > facade.itemsPerPage()) {
         <div class="pagination-wrapper">
           <app-pagination
             [currentPage]="facade.currentPage()"
@@ -45,7 +49,17 @@
     <!-- Empty State -->
     @else {
       <div class="empty-state">
-        <p>No courses available.</p>
+        <p>No courses match your filters.</p>
+        @if (facade.filter().search || facade.filter().category || 
+            facade.filter().level || facade.filter().isFree !== null || 
+            facade.filter().minRating) {
+          <button 
+            class="clear-filters-btn" 
+            (click)="clearAllFilters()"
+          >
+            Clear all filters
+          </button>
+        }
       </div>
     }
   </div>

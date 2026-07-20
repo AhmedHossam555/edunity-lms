@@ -1,0 +1,118 @@
+<div class="filter-container">
+  <div class="filter-header">
+    <h3 class="filter-title">Filters</h3>
+    @if (hasActiveFilters()) {
+      <button class="clear-filters-btn" (click)="clearFilters()">
+        Clear All
+      </button>
+    }
+  </div>
+
+  <div class="filter-grid">
+    <!-- Category Filter -->
+    <div class="filter-group">
+      <label for="category" class="filter-label">Category</label>
+      <select
+        id="category"
+        [ngModel]="category()"
+        (ngModelChange)="onCategoryChange($event)"
+        class="filter-select"
+      >
+        @for (option of categories; track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Level Filter -->
+    <div class="filter-group">
+      <label for="level" class="filter-label">Level</label>
+      <select
+        id="level"
+        [ngModel]="level()"
+        (ngModelChange)="onLevelChange($event)"
+        class="filter-select"
+      >
+        @for (option of levels; track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Price Filter -->
+    <div class="filter-group">
+      <label for="price" class="filter-label">Price</label>
+      <select
+        id="price"
+        [ngModel]="isFree()"
+        (ngModelChange)="onPriceChange($event)"
+        class="filter-select"
+      >
+        @for (option of priceOptions; track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Rating Filter -->
+    <div class="filter-group">
+      <label for="rating" class="filter-label">Rating</label>
+      <select
+        id="rating"
+        [ngModel]="minRating()"
+        (ngModelChange)="onRatingChange($event)"
+        class="filter-select"
+      >
+        @for (option of ratingOptions; track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+        }
+      </select>
+    </div>
+
+    <!-- Sort By -->
+    <div class="filter-group">
+      <label for="sort" class="filter-label">Sort By</label>
+      <select
+        id="sort"
+        [ngModel]="sortBy()"
+        (ngModelChange)="onSortChange($event)"
+        class="filter-select"
+      >
+        @for (option of sortOptions; track option.value) {
+          <option [value]="option.value">{{ option.label }}</option>
+        }
+      </select>
+    </div>
+  </div>
+
+  <!-- Active Filters Display -->
+  @if (hasActiveFilters()) {
+    <div class="active-filters">
+      <span class="active-filters-label">Active filters:</span>
+      @if (category()) {
+        <span class="filter-tag">
+          {{ getCategoryLabel(category()) }}
+          <button class="filter-tag-remove" (click)="onCategoryChange(null)">✕</button>
+        </span>
+      }
+      @if (level()) {
+        <span class="filter-tag">
+          {{ getLevelLabel(level()) }}
+          <button class="filter-tag-remove" (click)="onLevelChange(null)">✕</button>
+        </span>
+      }
+      @if (isFree() !== null) {
+        <span class="filter-tag">
+          {{ isFree() ? 'Free' : 'Paid' }}
+          <button class="filter-tag-remove" (click)="onPriceChange(null)">✕</button>
+        </span>
+      }
+      @if (minRating()) {
+        <span class="filter-tag">
+          {{ minRating() }}+ Stars
+          <button class="filter-tag-remove" (click)="onRatingChange(null)">✕</button>
+        </span>
+      }
+    </div>
+  }
+</div>

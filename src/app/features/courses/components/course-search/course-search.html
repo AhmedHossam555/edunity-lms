@@ -1,100 +1,23 @@
-<div 
-  #searchContainer
-  class="search-wrapper"
-  [class]="getContainerClass()"
-  role="search"
-  aria-label="Course search"
->
-  <div class="search-input-wrapper">
-    <span class="search-icon" aria-hidden="true">
-      {{ getSearchIcon() }}
-    </span>
-
+<div class="search-container">
+  <div class="search-wrapper">
+    <i class="search-icon">🔍</i>
     <input
-      #searchInput
-      type="search"
-      class="search-input"
-      [class]="getInputClass()"
-      [placeholder]="placeholder"
-      [value]="searchTerm"
-      [attr.aria-label]="placeholder"
-      [attr.aria-expanded]="showSuggestionsDropdown"
-      [attr.aria-controls]="'suggestions-list'"
-      [attr.aria-autocomplete]="'list'"
-      [attr.autocomplete]="'off'"
-      [disabled]="loading"
+      type="text"
+      [(ngModel)]="searchTerm"
       (input)="onSearchInput($event)"
-      (focus)="onFocus()"
-      (blur)="onBlur()"
-      (keydown)="onKeydown($event)"
-      [attr.aria-busy]="loading"
+      placeholder="Search courses..."
+      class="search-input"
+      aria-label="Search courses"
     />
-
-    @if (searchTerm && !loading) {
-      <button
-        class="clear-btn"
+    @if (searchTerm()) {
+      <button 
+        class="clear-button" 
         (click)="clearSearch()"
         aria-label="Clear search"
         type="button"
       >
-        <span aria-hidden="true">✕</span>
+        ✕
       </button>
-    }
-
-    @if (loading) {
-      <div class="loading-spinner" aria-hidden="true">
-        <div class="spinner"></div>
-      </div>
-    }
-  </div>
-
-  <!-- Suggestions Dropdown -->
-  @if (showSuggestionsDropdown && filteredSuggestions.length > 0) {
-    <div
-      id="suggestions-list"
-      class="suggestions-dropdown"
-      role="listbox"
-      aria-label="Search suggestions"
-      aria-live="polite"
-    >
-      <ul class="suggestions-list">
-        @for (suggestion of filteredSuggestions; track suggestion; let index = $index) {
-          <li
-            class="suggestion-item"
-            [class.active]="selectedSuggestionIndex === index"
-            role="option"
-            [attr.aria-selected]="selectedSuggestionIndex === index"
-            (mousedown)="onSuggestionClick(suggestion)"
-            (mouseenter)="selectedSuggestionIndex = index"
-          >
-            <span class="suggestion-icon" aria-hidden="true">🔍</span>
-            <span class="suggestion-text">{{ suggestion }}</span>
-            @if (selectedSuggestionIndex === index) {
-              <span class="suggestion-hint" aria-hidden="true">↵</span>
-            }
-          </li>
-        }
-      </ul>
-      
-      <div class="suggestions-footer">
-        <span class="suggestions-count">
-          {{ filteredSuggestions.length }} suggestion{{ filteredSuggestions.length > 1 ? 's' : '' }}
-        </span>
-        <span class="suggestions-hint">
-          <kbd>↑↓</kbd> navigate · <kbd>↵</kbd> select · <kbd>Esc</kbd> close
-        </span>
-      </div>
-    </div>
-  }
-
-  <!-- Accessibility: Search status -->
-  <div class="sr-only" aria-live="polite" aria-atomic="true">
-    @if (loading) {
-      Searching for courses...
-    } @else if (searchTerm && filteredSuggestions.length === 0) {
-      No suggestions found for "{{ searchTerm }}"
-    } @else if (filteredSuggestions.length > 0) {
-      {{ filteredSuggestions.length }} suggestions available. Use arrow keys to navigate.
     }
   </div>
 </div>
