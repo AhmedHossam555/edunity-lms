@@ -1,0 +1,72 @@
+<div class="course-sidebar">
+  <article class="course-sidebar__card" aria-label="Course details">
+    <figure class="course-sidebar__figure">
+      <img
+        class="course-sidebar__image"
+        [ngSrc]="course().thumbnail"
+        [alt]="course().title"
+        fallbackSrc="/assets/images/courses/card/default-course.webp"
+        width="800"
+        height="450"
+        loading="lazy"
+      />
+      <figcaption class="course-sidebar__caption sr-only">
+        {{ course().title }} thumbnail
+      </figcaption>
+    </figure>
+
+    <div class="course-sidebar__body">
+      <div class="course-sidebar__price" aria-label="Course price">
+        <span class="course-sidebar__price-current" aria-live="polite">
+          {{ course().isFree ? 'Free' : '$' + course().price }}
+        </span>
+
+        @if (course().oldPrice) {
+          <del class="course-sidebar__price-old" aria-label="Original price">
+            ${{ course().oldPrice }}
+          </del>
+        }
+      </div>
+
+      <button class="course-sidebar__button course-sidebar__button--primary" type="button">
+        Buy Now
+      </button>
+
+      <dl class="course-sidebar__info">
+        <div class="course-sidebar__info-item">
+          <dt class="course-sidebar__info-label">Instructor</dt>
+          <dd class="course-sidebar__info-value">{{ course().instructor.name }}</dd>
+        </div>
+
+        <div class="course-sidebar__info-item">
+          <dt class="course-sidebar__info-label">Title</dt>
+          <dd class="course-sidebar__info-value">{{ course().instructor.title }}</dd>
+        </div>
+
+        <div class="course-sidebar__info-item">
+          <dt class="course-sidebar__info-label">Lessons</dt>
+          <dd class="course-sidebar__info-value">{{ course().totalLessons }}</dd>
+        </div>
+
+        <div class="course-sidebar__info-item">
+          <dt class="course-sidebar__info-label">Students</dt>
+          <dd class="course-sidebar__info-value">{{ course().totalStudents }}</dd>
+        </div>
+
+        <div class="course-sidebar__info-item">
+          <dt class="course-sidebar__info-label">Rating</dt>
+          <dd class="course-sidebar__info-value">
+            <span aria-label="{{ course().rating }} out of 5 stars">
+              ⭐ {{ course().rating }}
+            </span>
+          </dd>
+        </div>
+
+        <div class="course-sidebar__info-item">
+          <dt class="course-sidebar__info-label">Level</dt>
+          <dd class="course-sidebar__info-value">{{ course().level }}</dd>
+        </div>
+      </dl>
+    </div>
+  </article>
+</div>

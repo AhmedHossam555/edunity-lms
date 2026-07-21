@@ -14,8 +14,7 @@
           [ngSrc]="course.thumbnail"
           [alt]="course.title"
           fallbackSrc="/assets/images/courses/card/default-course.webp"
-          width="800"
-          height="450"
+          fill
           loading="lazy"
         />
         <div class="course-details__hero-overlay">
@@ -46,117 +45,130 @@
         <div class="course-details__content">
           <!-- Tabs -->
           <div class="course-details__tabs">
-            <button class="course-details__tab course-details__tab--active">Overview</button>
-            <button class="course-details__tab">Curriculum</button>
-            <button class="course-details__tab">Instructor</button>
-            <button class="course-details__tab">Reviews</button>
+            @for (tab of tabs; track tab.value) {
+              <button
+                type="button"
+                class="course-details__tab"
+                [class.course-details__tab--active]="activeTab() === tab.value"
+                (click)="setActiveTab(tab.value)"
+              >
+                {{ tab.label }}
+              </button>
+            }
           </div>
-
-          <!-- Overview Section -->
-          <div class="course-details__section">
-            <h3 class="course-details__section-title">Course Description</h3>
-            <p class="course-details__section-text">
-              {{ course.description }}
-            </p>
-            <p class="course-details__section-text">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-              incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-              exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-            </p>
-          </div>
-
-          <!-- What You Will Learn -->
-          <div class="course-details__section">
-            <h3 class="course-details__section-title">What will I learn from this course?</h3>
-            <ul class="course-details__learn-list">
-              <li>Build real-world Angular applications</li>
-              <li>Master reactive programming with RxJS</li>
-              <li>Implement state management with NgRx</li>
-              <li>Optimize performance for production</li>
-              <li>Write clean, maintainable code</li>
-            </ul>
-          </div>
-
-          <!-- Instructor -->
-          <div class="course-details__section">
-            <h3 class="course-details__section-title">Instructor</h3>
-            <div class="course-details__instructor">
-              <img
-                class="course-details__instructor-avatar"
-                [ngSrc]="course.instructor.avatar"
-                [alt]="course.instructor.name"
-                fallbackSrc="/assets/images/global/gender/male.webp"
-                width="64"
-                height="64"
-                loading="lazy"
-              />
-              <div class="course-details__instructor-info">
-                <h4 class="course-details__instructor-name">
-                  {{ course.instructor.name }}
-                </h4>
-                <p class="course-details__instructor-title">
-                  {{ course.instructor.title }}
-                </p>
-                <p class="course-details__instructor-bio">
-                  {{ course.instructor.bio }}
-                </p>
+          @if (activeTab() === Tabs.Overview) {
+            <!-- Overview Section -->
+            <div class="course-details__section">
+              <h3 class="course-details__section-title">Course Description</h3>
+              <p class="course-details__section-text">
+                {{ course.description }}
+              </p>
+              <p class="course-details__section-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+            <!-- What You Will Learn -->
+            <div class="course-details__section">
+              <h3 class="course-details__section-title">What will I learn from this course?</h3>
+              <ul class="course-details__learn-list">
+                <li>Build real-world Angular applications</li>
+                <li>Master reactive programming with RxJS</li>
+                <li>Implement state management with NgRx</li>
+                <li>Optimize performance for production</li>
+                <li>Write clean, maintainable code</li>
+              </ul>
+            </div>
+            <!-- Instructor -->
+            <div class="course-details__section">
+              <h3 class="course-details__section-title">Instructor</h3>
+              <div class="course-details__instructor">
+                <img
+                  class="course-details__instructor-avatar"
+                  [ngSrc]="course.instructor.avatar"
+                  [alt]="course.instructor.name"
+                  [fallbackSrc]="instructorFallbackImage()"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                />
+                <div class="course-details__instructor-info">
+                  <h4 class="course-details__instructor-name">
+                    {{ course.instructor.name }}
+                  </h4>
+                  <p class="course-details__instructor-title">
+                    {{ course.instructor.title }}
+                  </p>
+                  <p class="course-details__instructor-bio">
+                    {{ course.instructor.bio }}
+                  </p>
+                </div>
               </div>
             </div>
-          </div>
+          }
+          @if (activeTab() === Tabs.Curriculum) {
+            <!-- Overview Section -->
+            <div class="course-details__section">
+              <h3 class="course-details__section-title">Course Description</h3>
+              <p class="course-details__section-text">
+                {{ course.description }}
+              </p>
+              <p class="course-details__section-text">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+              </p>
+            </div>
+          }
+
+          @if (activeTab() === Tabs.Instructor) {
+            <!-- Instructor -->
+            <div class="course-details__section">
+              <h3 class="course-details__section-title">Instructor</h3>
+              <div class="course-details__instructor">
+                <img
+                  class="course-details__instructor-avatar"
+                  [ngSrc]="course.instructor.avatar"
+                  [alt]="course.instructor.name"
+                  [fallbackSrc]="instructorFallbackImage()"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                />
+                <div class="course-details__instructor-info">
+                  <h4 class="course-details__instructor-name">
+                    {{ course.instructor.name }}
+                  </h4>
+                  <p class="course-details__instructor-title">
+                    {{ course.instructor.title }}
+                  </p>
+                  <p class="course-details__instructor-bio">
+                    {{ course.instructor.bio }}
+                  </p>
+                </div>
+              </div>
+            </div>
+          }
+
+          @if (activeTab() === Tabs.Reviews) {
+            <!-- What You Will Learn -->
+            <div class="course-details__section">
+              <h3 class="course-details__section-title">What will I learn from this course?</h3>
+              <ul class="course-details__learn-list">
+                <li>Build real-world Angular applications</li>
+                <li>Master reactive programming with RxJS</li>
+                <li>Implement state management with NgRx</li>
+                <li>Optimize performance for production</li>
+                <li>Write clean, maintainable code</li>
+              </ul>
+            </div>
+          }
         </div>
 
         <!-- Sidebar -->
         <aside class="course-details__sidebar">
-          <div class="course-details__card">
-            <img
-              class="course-details__card-image"
-              [ngSrc]="course.thumbnail"
-              [alt]="course.title"
-              fallbackSrc="/assets/images/courses/card/default-course.webp"
-              loading="lazy"
-              width="800"
-              height="450"
-            />
-            <div class="course-details__card-body">
-              <div class="course-details__price">
-                <span class="course-details__price-current">
-                  {{ course.isFree ? 'Free' : '$' + course.price }}
-                </span>
-                @if (course.oldPrice) {
-                  <del class="course-details__price-old"> ${{ course.oldPrice }} </del>
-                }
-              </div>
-
-              <button class="course-details__button">Buy Now</button>
-
-              <ul class="course-details__info">
-                <li>
-                  <strong>Instructor</strong>
-                  <span>{{ course.instructor.name }}</span>
-                </li>
-                <li>
-                  <strong>Title</strong>
-                  <span>{{ course.instructor.title }}</span>
-                </li>
-                <li>
-                  <strong>Lessons</strong>
-                  <span>{{ course.totalLessons }}</span>
-                </li>
-                <li>
-                  <strong>Students</strong>
-                  <span>{{ course.totalStudents }}</span>
-                </li>
-                <li>
-                  <strong>Rating</strong>
-                  <span>⭐ {{ course.rating }}</span>
-                </li>
-                <li>
-                  <strong>Level</strong>
-                  <span>{{ course.level }}</span>
-                </li>
-              </ul>
-            </div>
-          </div>
+          <app-course-sidebar [course]="course" />
         </aside>
       </div>
     </div>

@@ -1,0 +1,175 @@
+:host {
+  display: block;
+  position: sticky;
+  top: clamp(2rem, 4vh, 3rem);
+}
+
+// Utility class for screen readers only
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.course-sidebar {
+  &__card {
+    background: #fff;
+    border-radius: clamp(0.75rem, 1.5vw, 1rem);
+    overflow: hidden;
+    box-shadow: 0 0.25rem 1.25rem rgba(0, 0, 0, 0.08);
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+      box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  &__figure {
+    margin: 0;
+  }
+
+  &__image {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+  }
+
+  &__body {
+    padding: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  &__price {
+    display: flex;
+    gap: clamp(0.5rem, 1vw, 0.75rem);
+    align-items: baseline;
+    margin-bottom: clamp(1rem, 1.5vw, 1.25rem);
+  }
+
+  &__price-current {
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 800;
+    color: #7768e5;
+    line-height: 1.2;
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+  }
+
+  &__price-old {
+    color: #94a3b8;
+    font-size: clamp(0.875rem, 1.2vw, 1rem);
+  }
+
+  &__button {
+    width: 100%;
+    border: none;
+    border-radius: clamp(0.5rem, 1vw, 0.75rem);
+    padding: clamp(0.75rem, 1.5vw, 0.9rem);
+    font-weight: 700;
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    cursor: pointer;
+    transition: 
+      background 0.25s ease,
+      transform 0.1s ease,
+      box-shadow 0.25s ease;
+    min-height: 44px; // Touch-friendly
+    line-height: 1.5;
+    
+    &:focus-visible {
+      outline: 0.125rem solid #4a3a9e;
+      outline-offset: 0.125rem;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      transition: none;
+    }
+
+    &--primary {
+      background: #7768e5;
+      color: #fff;
+
+      &:hover {
+        background: #5f4fc7;
+        box-shadow: 0 0.25rem 0.75rem rgba(119, 104, 229, 0.3);
+      }
+
+      &:active {
+        transform: scale(0.98);
+      }
+
+      &:focus-visible {
+        background: #5f4fc7;
+      }
+    }
+  }
+
+  &__info {
+    margin: clamp(1rem, 1.5vw, 1.5rem) 0 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  &__info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    padding: clamp(0.5rem, 1vw, 0.75rem) 0;
+    border-bottom: 0.0625rem solid #f1f5f9;
+    gap: clamp(0.5rem, 1vw, 1rem);
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+
+  &__info-label {
+    font-weight: 600;
+    color: #1e293b;
+    margin: 0;
+    font-size: clamp(0.875rem, 1vw, 0.95rem);
+  }
+
+  &__info-value {
+    margin: 0;
+    color: #475569;
+    font-size: clamp(0.875rem, 1vw, 0.95rem);
+    text-align: right;
+    word-break: break-word;
+  }
+}
+
+// Responsive breakpoints
+@media (max-width: 62rem) { // 992px
+  :host {
+    position: static;
+    max-width: clamp(18.75rem, 80vw, 31.25rem); // 300px to 500px
+    margin-inline: auto;
+  }
+}
+
+// Touch device optimizations
+@media (pointer: coarse) {
+  .course-sidebar__button {
+    min-height: 48px;
+    padding-block: clamp(0.875rem, 1.5vw, 1rem);
+  }
+}
+
+// Reduced motion preferences
+@media (prefers-reduced-motion: reduce) {
+  .course-sidebar__card,
+  .course-sidebar__button {
+    transition: none;
+  }
+}
