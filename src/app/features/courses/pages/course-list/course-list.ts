@@ -2,10 +2,9 @@ import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/cor
 import { CoursesFacade } from '../../facades';
 import { PageBanner, Pagination } from '@app/shared';
 import { CourseCard } from '../../components/course-card/course-card';
-import { CourseSkeleton } from '../../components/course-skeleton/course-skeleton';
 import { CourseSearch } from '../../components/course-search/course-search';
 import { CourseFilter } from '../../components/course-filter/course-filter';
-import { CourseSearchSkeleton, CourseFilterSkeleton } from "../../skeletons";
+import { CourseSearchSkeleton, CourseFilterSkeleton, CourseSkeleton } from "../../skeletons";
 
 @Component({
   selector: 'app-course-list',
