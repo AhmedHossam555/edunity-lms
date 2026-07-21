@@ -1,0 +1,71 @@
+<!-- course-details-skeleton.component.html -->
+<section class="course-details section-padding">
+  <div class="container">
+    <!-- Hero Section Skeleton - Simplified -->
+    <div class="course-details__hero skeleton-hero"></div>
+
+    <!-- Main Content -->
+    <div class="container course-details__container">
+      <!-- Left Content -->
+      <div class="course-details__content">
+        <!-- Tabs Skeleton -->
+        <div class="course-details__tabs">
+          @for (item of [1, 2, 3, 4]; track $index) {
+            <div class="skeleton skeleton--tab"></div>
+          }
+        </div>
+
+        <!-- Content Sections -->
+        <div class="course-details__section">
+          <div class="skeleton skeleton--section-title"></div>
+          @for (line of [1, 2, 3, 4]; track $index) {
+            <div class="skeleton skeleton--text" [class.skeleton--text-short]="$index === 3"></div>
+          }
+        </div>
+
+        <div class="course-details__section">
+          <div class="skeleton skeleton--section-title"></div>
+          <div class="course-details__learn-list">
+            @for (item of [1, 2, 3, 4, 5, 6]; track $index) {
+              <div class="skeleton skeleton--list-item"></div>
+            }
+          </div>
+        </div>
+
+        <div class="course-details__section">
+          <div class="skeleton skeleton--section-title"></div>
+          <div class="course-details__instructor">
+            <div class="skeleton skeleton--avatar"></div>
+            <div class="course-details__instructor-info">
+              <div class="skeleton skeleton--instructor-name"></div>
+              <div class="skeleton skeleton--instructor-title"></div>
+              <div class="skeleton skeleton--instructor-bio"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sidebar Skeleton -->
+      <aside class="course-details__sidebar">
+        <div class="course-details__card">
+          <div class="skeleton skeleton--card-image"></div>
+          <div class="course-details__card-body">
+            <div class="course-details__price">
+              <div class="skeleton skeleton--price-current"></div>
+              <div class="skeleton skeleton--price-old"></div>
+            </div>
+            <div class="skeleton skeleton--button"></div>
+            <ul class="course-details__info">
+              @for (item of [1, 2, 3, 4, 5, 6]; track $index) {
+                <li>
+                  <div class="skeleton skeleton--info-label"></div>
+                  <div class="skeleton skeleton--info-value"></div>
+                </li>
+              }
+            </ul>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

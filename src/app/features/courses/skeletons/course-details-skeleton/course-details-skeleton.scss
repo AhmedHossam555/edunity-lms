@@ -1,0 +1,397 @@
+// course-details-skeleton.component.scss
+:host {
+  display: block;
+}
+
+.course-details {
+  background: #f8fafc;
+  min-height: 100vh;
+
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(1rem, 3vw, 2rem);
+  }
+}
+
+// ─── Skeleton Base ───
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #e5e7eb;
+  border-radius: 0.5rem;
+  animation: pulse 1.5s ease-in-out infinite;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.6),
+      transparent
+    );
+    animation: shimmer 1.8s infinite;
+  }
+
+  // ─── Skeleton Modifiers ───
+  &--tab {
+    width: clamp(70px, 15vw, 100px);
+    height: clamp(32px, 4vh, 40px);
+    border-radius: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  &--section-title {
+    width: clamp(150px, 35vw, 250px);
+    height: clamp(22px, 3vh, 30px);
+    margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+  }
+
+  &--text {
+    width: 100%;
+    height: clamp(14px, 1.5vh, 18px);
+    margin-bottom: 0.75rem;
+    border-radius: 0.25rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &--text-short {
+    width: 70%;
+  }
+
+  &--list-item {
+    height: clamp(18px, 2vh, 24px);
+    border-radius: 0.25rem;
+  }
+
+  &--avatar {
+    width: clamp(48px, 8vw, 64px);
+    height: clamp(48px, 8vw, 64px);
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  &--instructor-name {
+    width: clamp(140px, 30vw, 200px);
+    height: clamp(18px, 2vh, 24px);
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  &--instructor-title {
+    width: clamp(100px, 25vw, 160px);
+    height: clamp(14px, 1.5vh, 18px);
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+  }
+
+  &--instructor-bio {
+    width: 90%;
+    height: clamp(14px, 1.5vh, 18px);
+    border-radius: 0.25rem;
+  }
+
+  &--card-image {
+    width: 100%;
+    aspect-ratio: 16/9;
+    border-radius: 0;
+  }
+
+  &--price-current {
+    width: clamp(80px, 20vw, 120px);
+    height: clamp(30px, 4vh, 40px);
+    border-radius: 0.25rem;
+  }
+
+  &--price-old {
+    width: clamp(50px, 12vw, 80px);
+    height: clamp(16px, 2vh, 22px);
+    border-radius: 0.25rem;
+  }
+
+  &--button {
+    width: 100%;
+    height: clamp(44px, 5vh, 52px);
+    border-radius: 0.75rem;
+    margin-bottom: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  &--info-label {
+    width: clamp(60px, 15vw, 90px);
+    height: clamp(14px, 1.5vh, 18px);
+    border-radius: 0.25rem;
+  }
+
+  &--info-value {
+    width: clamp(40px, 10vw, 60px);
+    height: clamp(14px, 1.5vh, 18px);
+    border-radius: 0.25rem;
+  }
+}
+
+@keyframes shimmer {
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+// ─── Hero Skeleton - Simplified ───
+.skeleton-hero {
+  width: 100%;
+  height: clamp(320px, 50vh, 420px);
+  border-radius: 1rem;
+  background: linear-gradient(135deg, #e5e7eb 0%, #d1d5db 50%, #e5e7eb 100%);
+  animation: pulse 1.5s ease-in-out infinite;
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.4),
+      transparent
+    );
+    animation: shimmer 1.8s infinite;
+  }
+}
+
+// ─── Container ───
+.course-details__container {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) clamp(280px, 25vw, 22rem);
+  gap: clamp(1.5rem, 3vw, 2.5rem);
+  padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+  align-items: start;
+
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    padding: clamp(1.5rem, 3vw, 2.5rem) 0;
+  }
+}
+
+// ─── Content ───
+.course-details__content {
+  background: #fff;
+  border-radius: clamp(0.75rem, 1.5vw, 1rem);
+  padding: clamp(1.25rem, 3vw, 2rem);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+  width: 100%;
+  min-width: 0;
+}
+
+// ─── Tabs ───
+.course-details__tabs {
+  display: flex;
+  gap: clamp(0.25rem, 1vw, 0.5rem);
+  margin-bottom: clamp(1.5rem, 2.5vw, 2rem);
+  border-bottom: 1px solid #e5e7eb;
+  padding-bottom: clamp(0.5rem, 1vw, 0.75rem);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+// ─── Content Sections ───
+.course-details__section {
+  margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+// ─── Learn List ───
+.course-details__learn-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(clamp(180px, 40vw, 250px), 1fr));
+  gap: clamp(0.5rem, 1vw, 1.5rem);
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+// ─── Instructor ───
+.course-details__instructor {
+  display: flex;
+  gap: clamp(1rem, 2vw, 1.25rem);
+  align-items: flex-start;
+  padding: clamp(0.75rem, 1.5vw, 1rem);
+  background: #f8fafc;
+  border-radius: 0.75rem;
+
+  @media (max-width: 480px) {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+}
+
+.course-details__instructor-info {
+  flex: 1;
+  min-width: 0;
+  width: 100%;
+}
+
+// ─── Sidebar ───
+.course-details__sidebar {
+  position: sticky;
+  top: clamp(1.5rem, 3vw, 2rem);
+
+  @media (max-width: 992px) {
+    position: static;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+}
+
+.course-details__card {
+  background: #fff;
+  border-radius: clamp(0.75rem, 1.5vw, 1rem);
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.course-details__card-body {
+  padding: clamp(1rem, 2vw, 1.5rem);
+}
+
+.course-details__price {
+  display: flex;
+  align-items: baseline;
+  gap: clamp(0.5rem, 1.5vw, 0.75rem);
+  margin-bottom: clamp(1rem, 2vw, 1.25rem);
+  flex-wrap: wrap;
+}
+
+.course-details__info {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: clamp(0.5rem, 1vw, 0.7rem) 0;
+    border-bottom: 1px solid #f1f5f9;
+    gap: clamp(0.5rem, 1vw, 0.75rem);
+
+    &:last-child {
+      border-bottom: 0;
+    }
+  }
+}
+
+// ─── Responsive Adjustments ───
+
+// Tablet
+@media (max-width: 992px) {
+  .course-details__container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .course-details__content {
+    padding: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .course-details__sidebar {
+    max-width: 500px;
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+// Mobile
+@media (max-width: 576px) {
+  .course-details {
+    .container {
+      padding: 0 0.5rem;
+    }
+  }
+
+  .course-details__content {
+    padding: 1rem;
+    border-radius: 0.5rem;
+  }
+
+  .course-details__tabs {
+    gap: 0.25rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .course-details__learn-list {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .course-details__instructor {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0.75rem;
+
+    .course-details__instructor-info {
+      .skeleton--instructor-name,
+      .skeleton--instructor-title,
+      .skeleton--instructor-bio {
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+  }
+
+  .course-details__card {
+    .course-details__info {
+      li {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.25rem;
+
+        .skeleton--info-label,
+        .skeleton--info-value {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .skeleton-hero {
+    height: 200px;
+  }
+}
+
+// Small Mobile
+@media (max-width: 400px) {
+  .course-details__content {
+    padding: 0.75rem;
+  }
+
+  .skeleton-hero {
+    height: 150px;
+  }
+}

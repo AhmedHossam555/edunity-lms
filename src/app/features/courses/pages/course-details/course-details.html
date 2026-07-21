@@ -2,7 +2,7 @@
 
 @if (loading()) {
   <div class="loading-state">
-    <p>Loading...</p>
+  <app-course-details-skeleton />
   </div>
 } @else if (course(); as course) {
   <section class="course-details section-padding">

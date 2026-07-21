@@ -22,21 +22,23 @@ import {
 } from "../../components";
 import { CourseDetailsTab } from '../../enums';
 import { COURSE_SVG_ICONS } from '../../constants';
+import { CourseDetailsSkeleton } from "../../skeletons";
 
 
 @Component({
   selector: 'app-course-details',
   standalone: true,
   imports: [
-    PageBanner, 
-    NgOptimizedImage, 
-    FallbackImage, 
-    CourseSidebar, 
-    CourseOverview, 
-    CourseCurriculum, 
-    CourseReviews, 
-    CourseInstructor
-  ],
+    PageBanner,
+    NgOptimizedImage,
+    FallbackImage,
+    CourseSidebar,
+    CourseOverview,
+    CourseCurriculum,
+    CourseReviews,
+    CourseInstructor,
+    CourseDetailsSkeleton
+],
   templateUrl: './course-details.html',
   styleUrl: './course-details.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
