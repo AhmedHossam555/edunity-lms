@@ -4,6 +4,11 @@
   <div class="container">
     <!-- Loading State -->
     @if (facade.loading()) {
+      <!-- Search Skeleton -->
+      <app-course-search-skeleton />
+
+      <!-- Filter Skeleton -->
+      <app-course-filter-skeleton />
       <section class="course-list">
         @for (item of [1, 2, 3, 4, 5, 6]; track $index) {
           <app-course-skeleton />
@@ -50,15 +55,14 @@
     @else {
       <div class="empty-state">
         <p>No courses match your filters.</p>
-        @if (facade.filter().search || facade.filter().category || 
-            facade.filter().level || facade.filter().isFree !== null || 
-            facade.filter().minRating) {
-          <button 
-            class="clear-filters-btn" 
-            (click)="clearAllFilters()"
-          >
-            Clear all filters
-          </button>
+        @if (
+          facade.filter().search ||
+          facade.filter().category ||
+          facade.filter().level ||
+          facade.filter().isFree !== null ||
+          facade.filter().minRating
+        ) {
+          <button class="clear-filters-btn" (click)="clearAllFilters()">Clear all filters</button>
         }
       </div>
     }

@@ -5,18 +5,21 @@ import { CourseCard } from '../../components/course-card/course-card';
 import { CourseSkeleton } from '../../components/course-skeleton/course-skeleton';
 import { CourseSearch } from '../../components/course-search/course-search';
 import { CourseFilter } from '../../components/course-filter/course-filter';
+import { CourseSearchSkeleton, CourseFilterSkeleton } from "../../skeletons";
 
 @Component({
   selector: 'app-course-list',
   standalone: true,
   imports: [
-    PageBanner, 
-    CourseCard, 
-    CourseSkeleton, 
+    PageBanner,
+    CourseCard,
+    CourseSkeleton,
     Pagination,
     CourseSearch,
-    CourseFilter
-  ],
+    CourseFilter,
+    CourseSearchSkeleton,
+    CourseFilterSkeleton
+],
   templateUrl: './course-list.html',
   styleUrls: ['./course-list.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -2,9 +2,8 @@
 // ABSTRACTS
 // ─────────────────────────────────────────────────────────────
 
-
- @use 'abstracts/colors';
- @use 'abstracts/_typography.scss';
+@use 'abstracts/colors';
+@use 'abstracts/_typography.scss';
 // @use 'abstracts/mixins';
 // @use 'abstracts/functions';
 // @use 'abstracts/breakpoints';
@@ -23,15 +22,13 @@
 @use 'base/reset';
 @use 'base/global';
 @use 'base/utilities';
-// @use 'base/animations';
+@use 'base/animations';
 
 // ─────────────────────────────────────────────────────────────
 // LAYOUT
 // ─────────────────────────────────────────────────────────────
 
 @use 'layout/container';
-
-
 
 // ─────────────────────────────────────────────────────────────
 // COMPONENTS
@@ -40,5 +37,3 @@
 // @use 'components/buttons';
 // @use 'components/cards';
 // @use 'components/forms';
-
-

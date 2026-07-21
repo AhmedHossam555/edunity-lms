@@ -2,3 +2,4 @@ export * from './pages';
 export * from './components';
 export * from './routes';
 export * from './interfaces';
+export * from './skeletons';
