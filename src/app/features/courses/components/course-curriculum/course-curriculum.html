@@ -1,0 +1,17 @@
+<div class="course-curriculum">
+  <div class="course-curriculum__section">
+    <h3 class="course-curriculum__section-title">Course Curriculum</h3>
+    <p class="course-curriculum__section-text">
+      {{ course().description }}
+    </p>
+    
+    <!-- Add actual curriculum content here -->
+    <div class="course-curriculum__list">
+      <div class="course-curriculum__item">
+        <span class="course-curriculum__item-number">{{ course().totalLessons }}</span>
+        <span class="course-curriculum__item-title">{{ course().title }}</span>
+        <span class="course-curriculum__item-duration">{{ course().duration }}min</span>
+      </div>
+    </div>
+  </div>
+</div>

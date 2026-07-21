@@ -1,5 +1,5 @@
 <app-page-banner [title]="'Course Details'" [currentPage]="'Course Details'" />
-<!-- course-details.html -->
+
 @if (loading()) {
   <div class="loading-state">
     <p>Loading...</p>
@@ -7,7 +7,7 @@
 } @else if (course(); as course) {
   <section class="course-details section-padding">
     <div class="container">
-      <!-- Hero Image (similar to image.png) -->
+      <!-- Hero Section with SVG Icons -->
       <div class="course-details__hero">
         <img
           class="course-details__hero-image"
@@ -29,12 +29,29 @@
               {{ course.description }}
             </p>
             <div class="course-details__hero-meta">
+              <!-- Rating with SVG Stars -->
               <span class="course-details__hero-rating">
-                ⭐ {{ course.rating }} ({{ course.ratingLabel }})
+                <span [innerHTML]="svgIcons.ratingStars"></span>
+                {{ course.rating }} ({{ course.ratingLabel }})
               </span>
-              <span>{{ course.totalStudents }} students</span>
-              <span>{{ course.totalLessons }} lessons</span>
-              <span>{{ course.duration }}h</span>
+
+              <!-- Students with Person Icon -->
+              <span>
+                <span [innerHTML]="svgIcons.personIcon" style="color: #fff"></span>
+                {{ course.totalStudents }} students
+              </span>
+
+              <!-- Lessons with Lesson Icon -->
+              <span>
+                <span [innerHTML]="svgIcons.lessonIcon"></span>
+                {{ course.totalLessons }} lessons
+              </span>
+
+              <!-- Duration with Clock Icon -->
+              <span>
+                <span [innerHTML]="svgIcons.clockIcon"></span>
+                {{ course.duration }}h
+              </span>
             </div>
           </div>
         </div>
@@ -56,113 +73,20 @@
               </button>
             }
           </div>
-          @if (activeTab() === Tabs.Overview) {
-            <!-- Overview Section -->
-            <div class="course-details__section">
-              <h3 class="course-details__section-title">Course Description</h3>
-              <p class="course-details__section-text">
-                {{ course.description }}
-              </p>
-              <p class="course-details__section-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </div>
-            <!-- What You Will Learn -->
-            <div class="course-details__section">
-              <h3 class="course-details__section-title">What will I learn from this course?</h3>
-              <ul class="course-details__learn-list">
-                <li>Build real-world Angular applications</li>
-                <li>Master reactive programming with RxJS</li>
-                <li>Implement state management with NgRx</li>
-                <li>Optimize performance for production</li>
-                <li>Write clean, maintainable code</li>
-              </ul>
-            </div>
-            <!-- Instructor -->
-            <div class="course-details__section">
-              <h3 class="course-details__section-title">Instructor</h3>
-              <div class="course-details__instructor">
-                <img
-                  class="course-details__instructor-avatar"
-                  [ngSrc]="course.instructor.avatar"
-                  [alt]="course.instructor.name"
-                  [fallbackSrc]="instructorFallbackImage()"
-                  width="64"
-                  height="64"
-                  loading="lazy"
-                />
-                <div class="course-details__instructor-info">
-                  <h4 class="course-details__instructor-name">
-                    {{ course.instructor.name }}
-                  </h4>
-                  <p class="course-details__instructor-title">
-                    {{ course.instructor.title }}
-                  </p>
-                  <p class="course-details__instructor-bio">
-                    {{ course.instructor.bio }}
-                  </p>
-                </div>
-              </div>
-            </div>
-          }
-          @if (activeTab() === Tabs.Curriculum) {
-            <!-- Overview Section -->
-            <div class="course-details__section">
-              <h3 class="course-details__section-title">Course Description</h3>
-              <p class="course-details__section-text">
-                {{ course.description }}
-              </p>
-              <p class="course-details__section-text">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-              </p>
-            </div>
-          }
 
-          @if (activeTab() === Tabs.Instructor) {
-            <!-- Instructor -->
-            <div class="course-details__section">
-              <h3 class="course-details__section-title">Instructor</h3>
-              <div class="course-details__instructor">
-                <img
-                  class="course-details__instructor-avatar"
-                  [ngSrc]="course.instructor.avatar"
-                  [alt]="course.instructor.name"
-                  [fallbackSrc]="instructorFallbackImage()"
-                  width="64"
-                  height="64"
-                  loading="lazy"
-                />
-                <div class="course-details__instructor-info">
-                  <h4 class="course-details__instructor-name">
-                    {{ course.instructor.name }}
-                  </h4>
-                  <p class="course-details__instructor-title">
-                    {{ course.instructor.title }}
-                  </p>
-                  <p class="course-details__instructor-bio">
-                    {{ course.instructor.bio }}
-                  </p>
-                </div>
-              </div>
-            </div>
-          }
-
-          @if (activeTab() === Tabs.Reviews) {
-            <!-- What You Will Learn -->
-            <div class="course-details__section">
-              <h3 class="course-details__section-title">What will I learn from this course?</h3>
-              <ul class="course-details__learn-list">
-                <li>Build real-world Angular applications</li>
-                <li>Master reactive programming with RxJS</li>
-                <li>Implement state management with NgRx</li>
-                <li>Optimize performance for production</li>
-                <li>Write clean, maintainable code</li>
-              </ul>
-            </div>
+          @switch (activeTab()) {
+            @case (Tabs.Overview) {
+              <app-course-overview [course]="course" />
+            }
+            @case (Tabs.Curriculum) {
+              <app-course-curriculum [course]="course" />
+            }
+            @case (Tabs.Instructor) {
+              <app-course-instructor [course]="course" />
+            }
+            @case (Tabs.Reviews) {
+              <app-course-reviews [course]="course" />
+            }
           }
         </div>
 

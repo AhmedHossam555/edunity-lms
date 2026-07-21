@@ -1,0 +1,48 @@
+<div class="course-overview">
+  <div class="course-overview__section">
+    <h3 class="course-overview__section-title">Course Description</h3>
+    <p class="course-overview__section-text">{{ course().description }}</p>
+    <p class="course-overview__section-text">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+      incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
+      exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+    </p>
+  </div>
+
+  <div class="course-overview__section">
+    <h3 class="course-overview__section-title">What will I learn from this course?</h3>
+    <ul class="course-overview__learn-list">
+      <li class="course-overview__learn-item">Build real-world Angular applications</li>
+      <li class="course-overview__learn-item">Master reactive programming with RxJS</li>
+      <li class="course-overview__learn-item">Implement state management with NgRx</li>
+      <li class="course-overview__learn-item">Optimize performance for production</li>
+      <li class="course-overview__learn-item">Write clean, maintainable code</li>
+    </ul>
+  </div>
+
+  <div class="course-overview__section">
+    <h3 class="course-overview__section-title">Instructor</h3>
+    <div class="course-overview__instructor">
+      <img
+        class="course-overview__instructor-avatar"
+        [ngSrc]="course().instructor.avatar"
+        [alt]="course().instructor.name"
+        [fallbackSrc]="instructorFallbackImage()"
+        width="64"
+        height="64"
+        loading="lazy"
+      />
+      <div class="course-overview__instructor-info">
+        <h4 class="course-overview__instructor-name">
+          {{ course().instructor.name }}
+        </h4>
+        <p class="course-overview__instructor-title">
+          {{ course().instructor.title }}
+        </p>
+        <p class="course-overview__instructor-bio">
+          {{ course().instructor.bio }}
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

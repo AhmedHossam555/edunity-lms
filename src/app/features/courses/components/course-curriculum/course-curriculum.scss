@@ -1,0 +1,155 @@
+.course-curriculum {
+  display: block;
+
+  // ─── Sections ───
+  &__section {
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__section-title {
+    font-size: clamp(1.1rem, 1.8vw, 1.25rem);
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+  }
+
+  &__section-text {
+    color: #475569;
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // ─── Curriculum List ───
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-top: 1.5rem;
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: clamp(0.75rem, 1.5vw, 1rem);
+    padding: clamp(0.75rem, 1.5vw, 1rem);
+    background: #f8fafc;
+    border-radius: 0.5rem;
+    transition: background 0.2s;
+
+    &:hover {
+      background: #f1f5f9;
+    }
+
+    @media (max-width: 480px) {
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+  }
+
+  &__item-number {
+    font-weight: 700;
+    color: #7768E5;
+    min-width: 2.5rem;
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+  }
+
+  &__item-title {
+    flex: 1;
+    color: #1e293b;
+    font-weight: 500;
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    word-break: break-word;
+  }
+
+  &__item-duration {
+    color: #64748b;
+    font-size: clamp(0.8rem, 1vw, 0.9rem);
+    background: #e2e8f0;
+    padding: 0.2rem 0.75rem;
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+
+  &__item-status {
+    color: #22c55e;
+    font-size: 1rem;
+
+    &--locked {
+      color: #94a3b8;
+    }
+  }
+
+  // ─── Section Groups ───
+  &__group {
+    margin-bottom: 1.5rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__group-title {
+    font-size: clamp(1rem, 1.3vw, 1.1rem);
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid #e2e8f0;
+  }
+
+  // ─── Progress ───
+  &__progress {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: #f8fafc;
+    border-radius: 0.75rem;
+    margin-bottom: 1.5rem;
+  }
+
+  &__progress-bar {
+    flex: 1;
+    height: 8px;
+    background: #e2e8f0;
+    border-radius: 9999px;
+    overflow: hidden;
+  }
+
+  &__progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #7768E5, #4338ca);
+    border-radius: 9999px;
+    transition: width 0.3s ease;
+  }
+
+  &__progress-text {
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+    color: #475569;
+    font-weight: 500;
+    white-space: nowrap;
+  }
+
+  @media (max-width: 576px) {
+    &__section {
+      margin-bottom: 1.5rem;
+    }
+
+    &__item {
+      padding: 0.75rem;
+    }
+
+    &__item-number {
+      min-width: 2rem;
+    }
+  }
+}

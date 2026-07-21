@@ -1,0 +1,121 @@
+.course-overview {
+  display: block;
+
+  // ─── Sections ───
+  &__section {
+    margin-bottom: clamp(1.5rem, 3vw, 2.5rem);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  &__section-title {
+    font-size: clamp(1.1rem, 1.8vw, 1.25rem);
+    font-weight: 700;
+    color: #1e293b;
+    margin-bottom: clamp(0.75rem, 1.5vw, 1rem);
+  }
+
+  &__section-text {
+    color: #475569;
+    line-height: 1.8;
+    margin-bottom: 0.75rem;
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // ─── Learn List ───
+  &__learn-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(clamp(200px, 40vw, 250px), 1fr));
+    gap: clamp(0.5rem, 1vw, 1.5rem);
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &__learn-item {
+    position: relative;
+    padding-left: clamp(1.25rem, 2vw, 1.5rem);
+    color: #334155;
+    line-height: 1.6;
+    font-size: clamp(0.9rem, 1.2vw, 1rem);
+    word-break: break-word;
+
+    &::before {
+      content: '✓';
+      position: absolute;
+      left: 0;
+      color: #7768E5;
+      font-weight: 700;
+    }
+  }
+
+  // ─── Instructor Preview ───
+  &__instructor {
+    display: flex;
+    gap: clamp(1rem, 2vw, 1.25rem);
+    align-items: flex-start;
+    padding: clamp(0.75rem, 1.5vw, 1rem);
+    background: #f8fafc;
+    border-radius: 0.75rem;
+
+    @media (max-width: 480px) {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  &__instructor-avatar {
+    width: clamp(48px, 8vw, 64px);
+    height: clamp(48px, 8vw, 64px);
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+  }
+
+  &__instructor-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__instructor-name {
+    font-size: clamp(1rem, 1.5vw, 1.1rem);
+    font-weight: 700;
+    color: #1e293b;
+    margin: 0 0 0.1rem;
+    word-break: break-word;
+  }
+
+  &__instructor-title {
+    font-size: clamp(0.85rem, 1.2vw, 0.9rem);
+    color: #7768E5;
+    font-weight: 500;
+    margin: 0 0 0.3rem;
+    word-break: break-word;
+  }
+
+  &__instructor-bio {
+    font-size: clamp(0.85rem, 1.2vw, 0.95rem);
+    color: #475569;
+    line-height: 1.6;
+    margin: 0;
+    word-break: break-word;
+  }
+
+  // ─── Responsive Adjustments ───
+  @media (max-width: 576px) {
+    &__section {
+      margin-bottom: 1.5rem;
+    }
+
+    &__learn-list {
+      grid-template-columns: 1fr;
+    }
+  }
+}

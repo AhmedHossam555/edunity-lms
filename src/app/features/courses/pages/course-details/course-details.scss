@@ -82,10 +82,51 @@
       align-items: center;
       gap: 0.3rem;
     }
-  }
 
-  &__hero-rating {
-    color: #fbbf24;
+    // SVG Icon Styles
+    svg {
+      width: 1.2em;
+      height: 1.2em;
+      fill: currentColor;
+      flex-shrink: 0;
+      display: inline-block;
+    }
+
+    // Special styling for rating stars
+    .course-details__hero-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      
+      svg {
+        width: 78px;
+        height: 15px;
+        fill: #fbbf24;
+      }
+    }
+
+    // Style individual icons
+    svg[fill="black"] {
+      fill: currentColor;
+    }
+
+    // Person icon specific sizing
+    svg:has(path[d*="M8.58594 5.98828"]) {
+      width: 0.9em;
+      height: 1em;
+    }
+
+    // Lesson icon specific sizing
+    svg:has(path[d*="M7.875 7V8.75H2.625V7H7.875Z"]) {
+      width: 0.8em;
+      height: 1em;
+    }
+
+    // Clock icon specific sizing
+    svg:has(path[d*="M1.96875 1.99609"]) {
+      width: 1em;
+      height: 1em;
+    }
   }
 
   // ─── Container ───
@@ -94,7 +135,6 @@
     grid-template-columns: minmax(0, 2fr) clamp(280px, 25vw, 22rem);
     gap: clamp(1.5rem, 3vw, 2.5rem);
     padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1rem, 3vw, 2rem);
-
     align-items: start;
 
     @media (max-width: 992px) {
@@ -110,7 +150,7 @@
     padding: clamp(1.25rem, 3vw, 2rem);
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
     width: 100%;
-    min-width: 0; // Prevents overflow
+    min-width: 0;
   }
 
   // ─── Tabs ───
@@ -248,7 +288,7 @@
 
   &__instructor-info {
     flex: 1;
-    min-width: 0; // Prevents overflow
+    min-width: 0;
   }
 
   &__instructor-name {
@@ -343,7 +383,7 @@
     font-size: clamp(0.9rem, 1.2vw, 1rem);
     cursor: pointer;
     transition: background 0.25s, transform 0.1s;
-    min-height: 44px; // Touch-friendly
+    min-height: 44px;
 
     &:hover {
       background: #4338ca;
@@ -399,7 +439,7 @@
     text-align: center;
   }
 
-  // ─── Additional Small Screen Fixes ───
+  // ─── Responsive Fixes ───
   @media (max-width: 576px) {
     &__container {
       padding: 1rem;
@@ -414,6 +454,11 @@
       flex-direction: column;
       gap: 0.5rem;
       font-size: 0.85rem;
+
+      .course-details__hero-rating svg {
+        width: 60px;
+        height: 12px;
+      }
     }
 
     &__card-body {
@@ -454,6 +499,33 @@
       font-size: 0.75rem;
       padding: 0.3rem 0.6rem;
     }
+
+    &__hero-meta {
+      .course-details__hero-rating svg {
+        width: 50px;
+        height: 10px;
+      }
+    }
   }
 }
 
+.course-details__hero-meta {
+  color: #cbd5e1;
+
+  svg {
+    width: 1rem;
+    height: 1rem;
+    fill: #fff !important;
+  }
+
+  > span {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    color: #fff !important;
+  }
+
+  .course-details__hero-rating {
+    color: #fbbf24;
+  }
+}
