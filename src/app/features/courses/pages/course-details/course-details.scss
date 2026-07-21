@@ -1,4 +1,3 @@
-// course-details.scss
 :host {
   display: block;
 }
@@ -28,6 +27,7 @@
     height: 100%;
     object-fit: cover;
     opacity: 0.7;
+    height: auto;
   }
 
   &__hero-overlay {
@@ -249,6 +249,7 @@
     border-radius: 50%;
     object-fit: cover;
     flex-shrink: 0;
+    height: auto;
   }
 
   &__instructor-info {
@@ -300,9 +301,9 @@
   }
 
   &__card-image {
-    width: 100%;
     display: block;
-    aspect-ratio: 16 / 10;
+    width: 100%;
+    height: auto;
     object-fit: cover;
   }
 
@@ -343,7 +344,9 @@
     font-weight: 700;
     font-size: 1rem;
     cursor: pointer;
-    transition: background 0.25s, transform 0.1s;
+    transition:
+      background 0.25s,
+      transform 0.1s;
 
     &:hover {
       background: #4338ca;

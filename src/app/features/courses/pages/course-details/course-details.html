@@ -11,10 +11,10 @@
       <div class="course-details__hero">
         <img
           class="course-details__hero-image"
-          [src]="course.thumbnail"
+          [ngSrc]="course.thumbnail"
           [alt]="course.title"
-          width="1200"
-          height="400"
+          width="800"
+          height="450"
           loading="lazy"
         />
         <div class="course-details__hero-overlay">
@@ -82,10 +82,11 @@
             <div class="course-details__instructor">
               <img
                 class="course-details__instructor-avatar"
-                [src]="course.instructor.avatar"
+                [ngSrc]="course.instructor.avatar"
                 [alt]="course.instructor.name"
                 width="64"
                 height="64"
+                loading="lazy"
               />
               <div class="course-details__instructor-info">
                 <h4 class="course-details__instructor-name">
@@ -107,10 +108,11 @@
           <div class="course-details__card">
             <img
               class="course-details__card-image"
-              [src]="course.thumbnail"
+              [ngSrc]="course.thumbnail"
               [alt]="course.title"
-              width="400"
-              height="250"
+              loading="lazy"
+              width="800"
+              height="450"
             />
             <div class="course-details__card-body">
               <div class="course-details__price">

@@ -11,11 +11,12 @@ import { map, tap } from 'rxjs';
 
 import { PageBanner } from '@app/shared';
 import { CoursesFacade } from '../../facades';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-course-details',
   standalone: true,
-  imports: [PageBanner],
+  imports: [PageBanner,NgOptimizedImage],
   templateUrl: './course-details.html',
   styleUrl: './course-details.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
