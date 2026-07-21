@@ -9,14 +9,14 @@ import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map, tap } from 'rxjs';
 
-import { PageBanner } from '@app/shared';
+import { FallbackImage, PageBanner } from '@app/shared';
 import { CoursesFacade } from '../../facades';
 import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-course-details',
   standalone: true,
-  imports: [PageBanner,NgOptimizedImage],
+  imports: [PageBanner,NgOptimizedImage, FallbackImage],
   templateUrl: './course-details.html',
   styleUrl: './course-details.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

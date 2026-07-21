@@ -13,6 +13,7 @@
           class="course-details__hero-image"
           [ngSrc]="course.thumbnail"
           [alt]="course.title"
+          fallbackSrc="/assets/images/courses/card/default-course.webp"
           width="800"
           height="450"
           loading="lazy"
@@ -84,6 +85,7 @@
                 class="course-details__instructor-avatar"
                 [ngSrc]="course.instructor.avatar"
                 [alt]="course.instructor.name"
+                fallbackSrc="/assets/images/global/gender/male.webp"
                 width="64"
                 height="64"
                 loading="lazy"
@@ -110,6 +112,7 @@
               class="course-details__card-image"
               [ngSrc]="course.thumbnail"
               [alt]="course.title"
+              fallbackSrc="/assets/images/courses/card/default-course.webp"
               loading="lazy"
               width="800"
               height="450"
@@ -124,7 +127,7 @@
                 }
               </div>
 
-              <button class="course-details__button">Enroll Now</button>
+              <button class="course-details__button">Buy Now</button>
 
               <ul class="course-details__info">
                 <li>

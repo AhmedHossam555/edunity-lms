@@ -3,3 +3,4 @@ export * from './utils';
 export * from './constants';
 export * from './pipes';
 export * from './enums';
+export * from './directives';
