@@ -4,9 +4,7 @@ import {
   input,
   output,
   computed,
-  Injector,
   inject,
-  signal,
   linkedSignal,
 } from '@angular/core';
 import { RouterLink } from '@angular/router';
@@ -14,7 +12,7 @@ import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { ICourse } from '../../interfaces';
 import { COURSE_SVG_ICONS } from '../../constants';
 import { NgOptimizedImage } from '@angular/common';
-import { Gender } from '@app/shared';
+import { DEFAULT_IMAGES, Gender } from '@app/shared';
 
 @Component({
   selector: 'app-course-card',
@@ -236,8 +234,8 @@ export class CourseCard {
 
     this.avatarUrl.set(
       gender === Gender.Female
-        ? '/assets/images/global/gender/female.webp'
-        : '/assets/images/global/gender/male.webp',
+        ? DEFAULT_IMAGES.FEMALE
+        : DEFAULT_IMAGES.MALE,
     );
   }
   // ─────────────────────────────────────────────────────────────

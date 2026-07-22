@@ -2,13 +2,23 @@
 
 <main class="section-padding">
   <div class="container">
-    <!-- Loading State -->
+    <!-- ========================================= -->
+    <!-- Loading State                             -->
+    <!-- ========================================= -->
     @if (facade.loading()) {
-      <!-- Search Skeleton -->
+      <!-- ========================================= -->
+      <!-- Search Skeleton                           -->
+      <!-- ========================================= -->
       <app-course-search-skeleton />
 
-      <!-- Filter Skeleton -->
+      <!-- ========================================= -->
+      <!-- Filter Skeleton                           -->
+      <!-- ========================================= -->
       <app-course-filter-skeleton />
+
+      <!-- ========================================= -->
+      <!-- Course Skeleton Grid                      -->
+      <!-- ========================================= -->
       <section class="course-list">
         @for (item of [1, 2, 3, 4, 5, 6]; track $index) {
           <app-course-skeleton />
@@ -16,20 +26,28 @@
       </section>
     }
 
-    <!-- Courses Content -->
+    <!-- ========================================= -->
+    <!-- Courses Content                            -->
+    <!-- ========================================= -->
     @else if (facade.filteredCourses().length) {
-      <!-- Search and Filter -->
+      <!-- ========================================= -->
+      <!-- Search and Filter                         -->
+      <!-- ========================================= -->
       <app-course-search />
       <app-course-filter />
 
-      <!-- Course Grid -->
+      <!-- ========================================= -->
+      <!-- Course Grid                               -->
+      <!-- ========================================= -->
       <section class="course-list" aria-labelledby="courses-heading">
         @for (course of facade.paginatedCourses(); track course.id) {
           <app-course-card [course]="course" />
         }
       </section>
 
-      <!-- Pagination -->
+      <!-- ========================================= -->
+      <!-- Pagination                                -->
+      <!-- ========================================= -->
       @if (facade.totalItems() > facade.itemsPerPage()) {
         <div class="pagination-wrapper">
           <app-pagination
@@ -51,10 +69,13 @@
       }
     }
 
-    <!-- Empty State -->
+    <!-- ========================================= -->
+    <!-- Empty State                                -->
+    <!-- ========================================= -->
     @else {
       <div class="empty-state">
         <p>No courses match your filters.</p>
+
         @if (
           facade.filter().search ||
           facade.filter().category ||
@@ -62,7 +83,12 @@
           facade.filter().isFree !== null ||
           facade.filter().minRating
         ) {
-          <button class="clear-filters-btn" (click)="clearAllFilters()">Clear all filters</button>
+          <!-- ========================================= -->
+          <!-- Clear Filters Button                       -->
+          <!-- ========================================= -->
+          <button class="clear-filters-btn" (click)="clearAllFilters()">
+            Clear all filters
+          </button>
         }
       </div>
     }

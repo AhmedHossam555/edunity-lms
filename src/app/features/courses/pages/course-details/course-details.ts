@@ -1,29 +1,22 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  computed,
-  inject,
-  signal,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { toSignal } from '@angular/core/rxjs-interop';
 import { map, tap } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgOptimizedImage } from '@angular/common';
 
-import { FallbackImage, Gender, PageBanner, safeSvg } from '@app/shared';
+import { DEFAULT_IMAGES, FallbackImage, Gender, PageBanner, safeSvg } from '@app/shared';
 import { CoursesFacade } from '../../facades';
-import { 
-  CourseSidebar, 
-  CourseOverview, 
-  CourseReviews, 
-  CourseInstructor, 
-  CourseCurriculum 
-} from "../../components";
+import {
+  CourseSidebar,
+  CourseOverview,
+  CourseReviews,
+  CourseInstructor,
+  CourseCurriculum,
+} from '../../components';
 import { CourseDetailsTab } from '../../enums';
 import { COURSE_SVG_ICONS } from '../../constants';
-import { CourseDetailsSkeleton } from "../../skeletons";
-
+import { CourseDetailsSkeleton } from '../../skeletons';
 
 @Component({
   selector: 'app-course-details',
@@ -37,8 +30,8 @@ import { CourseDetailsSkeleton } from "../../skeletons";
     CourseCurriculum,
     CourseReviews,
     CourseInstructor,
-    CourseDetailsSkeleton
-],
+    CourseDetailsSkeleton,
+  ],
   templateUrl: './course-details.html',
   styleUrl: './course-details.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -50,14 +43,14 @@ export class CourseDetails {
 
   private readonly courseId = toSignal(
     this.route.paramMap.pipe(
-      map(params => params.get('id')),
-      tap(id => {
+      map((params) => params.get('id')),
+      tap((id) => {
         if (id) {
           this.facade.loadCourse(id);
         }
-      })
+      }),
     ),
-    { initialValue: null }
+    { initialValue: null },
   );
 
   protected readonly course = computed(() => this.facade.selectedCourse());
@@ -74,9 +67,7 @@ export class CourseDetails {
 
   protected readonly instructorFallbackImage = computed(() => {
     const gender = this.course()?.instructor.gender;
-    return gender === Gender.Female
-      ? '/assets/images/global/gender/female.webp'
-      : '/assets/images/global/gender/male.webp';
+    return gender === Gender.Female ? DEFAULT_IMAGES.FEMALE : DEFAULT_IMAGES.MALE;
   });
 
   protected readonly Tabs = CourseDetailsTab;
