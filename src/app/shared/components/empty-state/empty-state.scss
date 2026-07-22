@@ -1,0 +1,47 @@
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+
+  padding: 4rem 2rem;
+  text-align: center;
+
+  &__icon {
+    font-size: 4rem;
+    line-height: 1;
+  }
+
+  &__title {
+    margin: 0;
+    font-size: 1.75rem;
+    font-weight: 700;
+    color: var(--text-color);
+  }
+
+  &__description {
+    max-width: 36rem;
+    margin: 0;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  &__button {
+    margin-top: 0.5rem;
+    padding: 0.75rem 1.5rem;
+
+    border: none;
+    border-radius: 0.5rem;
+
+    background: var(--color-primary);
+    color: #fff;
+
+    cursor: pointer;
+    transition: opacity .2s ease;
+
+    &:hover {
+      opacity: .9;
+    }
+  }
+}

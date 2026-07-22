@@ -1,0 +1,24 @@
+<section class="empty-state" aria-live="polite">
+  <div class="empty-state__icon">
+    📭
+  </div>
+
+  <h2 class="empty-state__title">
+    {{ title() }}
+  </h2>
+
+  @if (description()) {
+    <p class="empty-state__description">
+      {{ description() }}
+    </p>
+  }
+
+  @if (buttonText()) {
+    <button
+      type="button"
+      class="empty-state__button"
+      (click)="onAction()">
+      {{ buttonText() }}
+    </button>
+  }
+</section>
