@@ -1,4 +1,4 @@
-<app-page-banner [title]="'Course Details'" [currentPage]="'Course Details'" />
+<app-page-banner [title]="pageConfig.banner.title" [currentPage]="pageConfig.banner.currentPage" />
 
 <!-- ========================================= -->
 <!-- Loading State                             -->
@@ -14,9 +14,9 @@
 <!-- ========================================= -->
 @else if (facade.error()) {
   <app-error-state
-    title="Something went wrong"
-    description="We couldn't load the course. Please try again."
-    buttonText="Retry"
+    [title]="pageConfig.errorState.title"
+    [description]="pageConfig.errorState.description"
+    [buttonText]="pageConfig.errorState.buttonText"
     (retry)="retry()"
   />
 }
@@ -26,8 +26,8 @@
 <!-- ========================================= -->
 @else if (!course()) {
   <app-empty-state
-    title="Course not found"
-    description="The course you're looking for doesn't exist or has been removed."
+    [title]="pageConfig.emptyState.title"
+    [description]="pageConfig.emptyState.description"
   />
 }
 
@@ -45,7 +45,7 @@
           class="course-details__hero-image"
           [ngSrc]="course.thumbnail"
           [alt]="course.title"
-          fallbackSrc="/assets/images/courses/card/default-course.webp"
+          [fallbackSrc]="pageConfig.hero.imageFallback"
           fill
           loading="lazy"
         />
@@ -53,7 +53,7 @@
         <div class="course-details__hero-overlay">
           <div class="course-details__hero-content container">
             <span class="course-details__hero-badge">
-              {{ course.badge || 'Course' }}
+              {{ course.badge || pageConfig.hero.defaultBadge }}
             </span>
 
             <h1 class="course-details__hero-title">

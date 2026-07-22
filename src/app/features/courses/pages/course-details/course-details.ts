@@ -5,7 +5,15 @@ import { map, tap } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgOptimizedImage } from '@angular/common';
 
-import { DEFAULT_IMAGES, EmptyState, ErrorState, FallbackImage, Gender, PageBanner, safeSvg } from '@app/shared';
+import {
+  DEFAULT_IMAGES,
+  EmptyState,
+  ErrorState,
+  FallbackImage,
+  Gender,
+  PageBanner,
+  safeSvg,
+} from '@app/shared';
 import { CoursesFacade } from '../../facades';
 import {
   CourseSidebar,
@@ -15,8 +23,9 @@ import {
   CourseCurriculum,
 } from '../../components';
 import { CourseDetailsTab } from '../../enums';
-import { COURSE_SVG_ICONS } from '../../constants';
+import { buildCourseDetailsSvgIcons } from '../../constants';
 import { CourseDetailsSkeleton } from '../../skeletons';
+import { COURSE_DETAILS_PAGE_CONFIG, COURSE_DETAILS_TABS } from '../../configs';
 
 @Component({
   selector: 'app-course-details',
@@ -32,16 +41,24 @@ import { CourseDetailsSkeleton } from '../../skeletons';
     CourseInstructor,
     CourseDetailsSkeleton,
     ErrorState,
-    EmptyState
+    EmptyState,
   ],
   templateUrl: './course-details.html',
   styleUrl: './course-details.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CourseDetails {
+  // ─────────────────────────────────────────────────────────────
+  // Dependencies
+  // ─────────────────────────────────────────────────────────────
+
   private readonly route = inject(ActivatedRoute);
   protected readonly facade = inject(CoursesFacade);
   private readonly sanitizer = inject(DomSanitizer);
+
+  // ─────────────────────────────────────────────────────────────
+  // Route State
+  // ─────────────────────────────────────────────────────────────
 
   private readonly courseId = toSignal(
     this.route.paramMap.pipe(
@@ -55,36 +72,41 @@ export class CourseDetails {
     { initialValue: null },
   );
 
+  // ─────────────────────────────────────────────────────────────
+  // Reactive State
+  // ─────────────────────────────────────────────────────────────
+
   protected readonly course = computed(() => this.facade.selectedCourse());
   protected readonly loading = this.facade.loading;
-
-  // Safe SVG icons for template usage
-  protected readonly svgIcons = {
-    ratingStars: safeSvg(this.sanitizer, COURSE_SVG_ICONS.ratingStars),
-    lessonIcon: safeSvg(this.sanitizer, COURSE_SVG_ICONS.lessonIcon),
-    clockIcon: safeSvg(this.sanitizer, COURSE_SVG_ICONS.clockIcon),
-    personIcon: safeSvg(this.sanitizer, COURSE_SVG_ICONS.personIcon),
-    cartIcon: safeSvg(this.sanitizer, COURSE_SVG_ICONS.cartIcon),
-  };
 
   protected readonly instructorFallbackImage = computed(() => {
     const gender = this.course()?.instructor.gender;
     return gender === Gender.Female ? DEFAULT_IMAGES.FEMALE : DEFAULT_IMAGES.MALE;
   });
 
-  protected readonly Tabs = CourseDetailsTab;
   protected readonly activeTab = signal<CourseDetailsTab>(CourseDetailsTab.Overview);
+
+  // ─────────────────────────────────────────────────────────────
+  // Configuration
+  // ─────────────────────────────────────────────────────────────
+
+  protected readonly pageConfig = COURSE_DETAILS_PAGE_CONFIG;
+  protected readonly tabs = COURSE_DETAILS_TABS;
+  protected readonly Tabs = CourseDetailsTab;
+
+  // ─────────────────────────────────────────────────────────────
+  // Icons
+  // ─────────────────────────────────────────────────────────────
+
+  protected readonly svgIcons = buildCourseDetailsSvgIcons(this.sanitizer);
+
+  // ─────────────────────────────────────────────────────────────
+  // Actions
+  // ─────────────────────────────────────────────────────────────
 
   protected setActiveTab(tab: CourseDetailsTab): void {
     this.activeTab.set(tab);
   }
-
-  protected readonly tabs = [
-    { label: 'Overview', value: CourseDetailsTab.Overview },
-    { label: 'Curriculum', value: CourseDetailsTab.Curriculum },
-    { label: 'Instructor', value: CourseDetailsTab.Instructor },
-    { label: 'Reviews', value: CourseDetailsTab.Reviews },
-  ] as const;
 
   protected retry(): void {
     const id = this.courseId();
