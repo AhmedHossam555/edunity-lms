@@ -1,12 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-import { CoursesApiService } from './courses-api.service';
-import { CoursesMockService } from './courses-mock.service';
+import { CourseApi, CourseMockApi } from '../api';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CoursesDataService {
-  private readonly repository = true ? inject(CoursesMockService) : inject(CoursesApiService);
+  private readonly repository = true ? inject(CourseMockApi) : inject(CourseApi);
 
   getCourses() {
     return this.repository.getCourses();
