@@ -10,6 +10,7 @@ export class CoursesFacade {
 
   readonly courses = signal<ICourse[]>([]);
   readonly loading = signal(false);
+  readonly error = signal<string | null>(null);
   readonly selectedCourse = signal<ICourse | null>(null);
 
   // Pagination
@@ -30,7 +31,7 @@ export class CoursesFacade {
   // ----------------------------
 
   updateSearch(search: string): void {
-    this.filter.update(filter => ({
+    this.filter.update((filter) => ({
       ...filter,
       search: search.trim(),
     }));
@@ -39,7 +40,7 @@ export class CoursesFacade {
   }
 
   updateFilter(partial: Partial<ICourseFilter>): void {
-    this.filter.update(filter => ({
+    this.filter.update((filter) => ({
       ...filter,
       ...partial,
     }));
@@ -54,36 +55,28 @@ export class CoursesFacade {
   readonly filteredCourses = computed(() => {
     let items = this.courses();
 
-    const {
-      search,
-      category,
-      level,
-      isFree,
-      minRating,
-    } = this.filter();
+    const { search, category, level, isFree, minRating } = this.filter();
 
     const normalizedSearch = search.trim().toLowerCase();
 
     if (normalizedSearch) {
-      items = items.filter(course =>
-        course.title.toLowerCase().includes(normalizedSearch)
-      );
+      items = items.filter((course) => course.title.toLowerCase().includes(normalizedSearch));
     }
 
     if (category) {
-      items = items.filter(course => course.category === category);
+      items = items.filter((course) => course.category === category);
     }
 
     if (level) {
-      items = items.filter(course => course.level === level);
+      items = items.filter((course) => course.level === level);
     }
 
     if (isFree !== null) {
-      items = items.filter(course => course.isFree === isFree);
+      items = items.filter((course) => course.isFree === isFree);
     }
 
     if (minRating !== null) {
-      items = items.filter(course => course.rating >= minRating);
+      items = items.filter((course) => course.rating >= minRating);
     }
 
     return items;
@@ -96,17 +89,12 @@ export class CoursesFacade {
   readonly paginatedCourses = computed(() => {
     const start = (this.currentPage() - 1) * this.itemsPerPage();
 
-    return this.filteredCourses().slice(
-      start,
-      start + this.itemsPerPage()
-    );
+    return this.filteredCourses().slice(start, start + this.itemsPerPage());
   });
 
   readonly totalItems = computed(() => this.filteredCourses().length);
 
-  readonly totalPages = computed(() =>
-    Math.ceil(this.totalItems() / this.itemsPerPage())
-  );
+  readonly totalPages = computed(() => Math.ceil(this.totalItems() / this.itemsPerPage()));
 
   // ----------------------------
   // Data
@@ -114,15 +102,17 @@ export class CoursesFacade {
 
   loadCourses(): void {
     this.loading.set(true);
+    this.error.set(null);
 
     this.service.getCourses().subscribe({
-      next: courses => {
+      next: (courses) => {
         this.courses.set(courses);
-        this.loading.set(false);
         this.currentPage.set(1);
+        this.loading.set(false);
       },
       error: () => {
         this.loading.set(false);
+        this.error.set('Unable to load courses.');
       },
     });
   }
@@ -131,7 +121,7 @@ export class CoursesFacade {
     this.loading.set(true);
 
     this.service.getCourse(id).subscribe({
-      next: course => {
+      next: (course) => {
         this.selectedCourse.set(course);
         this.loading.set(false);
       },

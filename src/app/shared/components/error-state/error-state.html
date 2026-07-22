@@ -1,0 +1,20 @@
+<section class="error-state" aria-live="assertive">
+  <div class="error-state__icon">
+    ⚠️
+  </div>
+
+  <h2 class="error-state__title">
+    {{ title() }}
+  </h2>
+
+  <p class="error-state__description">
+    {{ description() }}
+  </p>
+
+  <button
+    type="button"
+    class="error-state__button"
+    (click)="onRetry()">
+    {{ buttonText() }}
+  </button>
+</section>

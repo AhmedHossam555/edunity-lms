@@ -24,8 +24,14 @@
           <app-course-skeleton />
         }
       </section>
+    } @else if (facade.error()) {
+      <app-error-state
+        title="Something went wrong"
+        description="We couldn't load the courses. Please try again."
+        buttonText="Retry"
+        (retry)="retry()"
+      />
     }
-
     <!-- ========================================= -->
     <!-- Courses Content                            -->
     <!-- ========================================= -->
@@ -73,24 +79,12 @@
     <!-- Empty State                                -->
     <!-- ========================================= -->
     @else {
-      <div class="empty-state">
-        <p>No courses match your filters.</p>
-
-        @if (
-          facade.filter().search ||
-          facade.filter().category ||
-          facade.filter().level ||
-          facade.filter().isFree !== null ||
-          facade.filter().minRating
-        ) {
-          <!-- ========================================= -->
-          <!-- Clear Filters Button                       -->
-          <!-- ========================================= -->
-          <button class="clear-filters-btn" (click)="clearAllFilters()">
-            Clear all filters
-          </button>
-        }
-      </div>
+      <app-empty-state
+        [title]="getEmptyStateTitle()"
+        [description]="getEmptyStateDescription()"
+        [buttonText]="getEmptyStateButtonText()"
+        (action)="handleEmptyStateAction()"
+      />
     }
   </div>
 </main>
