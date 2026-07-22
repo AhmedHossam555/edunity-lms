@@ -1,5 +1,6 @@
-import { Gender } from "@app/shared";
-import { CourseCategory, CourseLevel } from "../enums";
+import { Gender } from '@app/shared';
+import { CourseCategory, CourseLevel } from '../enums';
+import { IReview } from './course-details.interface';
 
 export interface IInstructor {
   readonly id: string;
@@ -39,7 +40,9 @@ export interface ICourse {
   readonly slug?: string;
 
   readonly title: string;
-  readonly description: string;
+  readonly shortDescription?: string; // Short summary for cards & previews
+
+  readonly description?: string;
   readonly thumbnail: string;
 
   readonly category: CourseCategory;
@@ -105,4 +108,6 @@ export interface ICourse {
   readonly seoTitle?: string;
   readonly seoDescription?: string;
   readonly keywords?: string[];
+
+  readonly reviews?: readonly IReview[];
 }

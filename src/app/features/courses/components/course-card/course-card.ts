@@ -211,7 +211,7 @@ export class CourseCard {
     return this.course().isInCart || false;
   });
 
-  private readonly fallbackImage = '/assets/images/courses/card/default-course.webp';
+  private readonly fallbackImage = DEFAULT_IMAGES.COURSE;
 
   protected readonly imageUrl = linkedSignal(() => this.imageSource());
   protected readonly avatarUrl = linkedSignal(() => this.authorAvatar());

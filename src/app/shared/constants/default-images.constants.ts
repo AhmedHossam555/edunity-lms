@@ -1,5 +1,5 @@
 export const DEFAULT_IMAGES = {
-  COURSE: 'assets/images/defaults/default-course.webp',
+  COURSE: '/assets/images/courses/card/default-course.webp',
   INSTRUCTOR: 'assets/images/defaults/default-instructor.webp',
   USER: 'assets/images/defaults/default-user.webp',
   AVATAR: 'assets/images/defaults/default-avatar.webp',

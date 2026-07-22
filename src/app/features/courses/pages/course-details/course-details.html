@@ -2,7 +2,7 @@
 
 @if (loading()) {
   <div class="loading-state">
-  <app-course-details-skeleton />
+    <app-course-details-skeleton />
   </div>
 } @else if (course(); as course) {
   <section class="course-details section-padding">
@@ -26,7 +26,7 @@
               {{ course.title }}
             </h1>
             <p class="course-details__hero-description">
-              {{ course.description }}
+              {{ course.shortDescription }}
             </p>
             <div class="course-details__hero-meta">
               <!-- Rating with SVG Stars -->

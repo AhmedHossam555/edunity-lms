@@ -25,4 +25,6 @@ export interface IReview {
   readonly rating: number;
   readonly comment: string;
   readonly createdAt: Date;
+  readonly updatedAt: Date;
+  readonly helpful: number;
 }
