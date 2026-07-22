@@ -1,13 +1,45 @@
 <app-page-banner [title]="'Course Details'" [currentPage]="'Course Details'" />
 
+<!-- ========================================= -->
+<!-- Loading State                             -->
+<!-- ========================================= -->
 @if (loading()) {
   <div class="loading-state">
     <app-course-details-skeleton />
   </div>
-} @else if (course(); as course) {
+}
+
+<!-- ========================================= -->
+<!-- Error State                               -->
+<!-- ========================================= -->
+@else if (facade.error()) {
+  <app-error-state
+    title="Something went wrong"
+    description="We couldn't load the course. Please try again."
+    buttonText="Retry"
+    (retry)="retry()"
+  />
+}
+
+<!-- ========================================= -->
+<!-- Empty State                               -->
+<!-- ========================================= -->
+@else if (!course()) {
+  <app-empty-state
+    title="Course not found"
+    description="The course you're looking for doesn't exist or has been removed."
+  />
+}
+
+<!-- ========================================= -->
+<!-- Course Details                            -->
+<!-- ========================================= -->
+@else if (course(); as course) {
   <section class="course-details section-padding">
     <div class="container">
-      <!-- Hero Section with SVG Icons -->
+      <!-- ========================================= -->
+      <!-- Hero Section                              -->
+      <!-- ========================================= -->
       <div class="course-details__hero">
         <img
           class="course-details__hero-image"
@@ -17,37 +49,44 @@
           fill
           loading="lazy"
         />
+
         <div class="course-details__hero-overlay">
           <div class="course-details__hero-content container">
             <span class="course-details__hero-badge">
               {{ course.badge || 'Course' }}
             </span>
+
             <h1 class="course-details__hero-title">
               {{ course.title }}
             </h1>
+
             <p class="course-details__hero-description">
               {{ course.shortDescription }}
             </p>
+
+            <!-- ========================================= -->
+            <!-- Hero Meta                                 -->
+            <!-- ========================================= -->
             <div class="course-details__hero-meta">
-              <!-- Rating with SVG Stars -->
+              <!-- Rating -->
               <span class="course-details__hero-rating">
                 <span [innerHTML]="svgIcons.ratingStars"></span>
                 {{ course.rating }} ({{ course.ratingLabel }})
               </span>
 
-              <!-- Students with Person Icon -->
+              <!-- Students -->
               <span>
                 <span [innerHTML]="svgIcons.personIcon"></span>
                 {{ course.totalStudents }} students
               </span>
 
-              <!-- Lessons with Lesson Icon -->
+              <!-- Lessons -->
               <span>
                 <span [innerHTML]="svgIcons.lessonIcon"></span>
                 {{ course.totalLessons }} lessons
               </span>
 
-              <!-- Duration with Clock Icon -->
+              <!-- Duration -->
               <span>
                 <span [innerHTML]="svgIcons.clockIcon"></span>
                 {{ course.duration }}h
@@ -57,10 +96,15 @@
         </div>
       </div>
 
-      <!-- Main Content -->
+      <!-- ========================================= -->
+      <!-- Main Content                              -->
+      <!-- ========================================= -->
       <div class="container course-details__container">
         <div class="course-details__content">
-          <!-- Tabs -->
+
+          <!-- ========================================= -->
+          <!-- Tabs                                      -->
+          <!-- ========================================= -->
           <div class="course-details__tabs">
             @for (tab of tabs; track tab.value) {
               <button
@@ -74,23 +118,31 @@
             }
           </div>
 
+          <!-- ========================================= -->
+          <!-- Tab Content                               -->
+          <!-- ========================================= -->
           @switch (activeTab()) {
             @case (Tabs.Overview) {
               <app-course-overview [course]="course" />
             }
+
             @case (Tabs.Curriculum) {
               <app-course-curriculum [course]="course" />
             }
+
             @case (Tabs.Instructor) {
               <app-course-instructor [course]="course" />
             }
+
             @case (Tabs.Reviews) {
               <app-course-reviews [course]="course" />
             }
           }
         </div>
 
-        <!-- Sidebar -->
+        <!-- ========================================= -->
+        <!-- Sidebar                                   -->
+        <!-- ========================================= -->
         <aside class="course-details__sidebar">
           <app-course-sidebar [course]="course" />
         </aside>

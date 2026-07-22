@@ -5,7 +5,7 @@ import { map, tap } from 'rxjs';
 import { DomSanitizer } from '@angular/platform-browser';
 import { NgOptimizedImage } from '@angular/common';
 
-import { DEFAULT_IMAGES, FallbackImage, Gender, PageBanner, safeSvg } from '@app/shared';
+import { DEFAULT_IMAGES, EmptyState, ErrorState, FallbackImage, Gender, PageBanner, safeSvg } from '@app/shared';
 import { CoursesFacade } from '../../facades';
 import {
   CourseSidebar,
@@ -31,6 +31,8 @@ import { CourseDetailsSkeleton } from '../../skeletons';
     CourseReviews,
     CourseInstructor,
     CourseDetailsSkeleton,
+    ErrorState,
+    EmptyState
   ],
   templateUrl: './course-details.html',
   styleUrl: './course-details.scss',
@@ -83,4 +85,12 @@ export class CourseDetails {
     { label: 'Instructor', value: CourseDetailsTab.Instructor },
     { label: 'Reviews', value: CourseDetailsTab.Reviews },
   ] as const;
+
+  protected retry(): void {
+    const id = this.courseId();
+
+    if (id) {
+      this.facade.loadCourse(id);
+    }
+  }
 }

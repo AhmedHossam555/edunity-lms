@@ -119,6 +119,8 @@ export class CoursesFacade {
 
   loadCourse(id: string): void {
     this.loading.set(true);
+    this.error.set(null);
+    this.selectedCourse.set(null);
 
     this.service.getCourse(id).subscribe({
       next: (course) => {
@@ -127,6 +129,7 @@ export class CoursesFacade {
       },
       error: () => {
         this.loading.set(false);
+        this.error.set('Unable to load the course.');
       },
     });
   }
