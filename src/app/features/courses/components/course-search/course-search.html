@@ -4,49 +4,52 @@
       <!-- Search Icon -->
       <svg 
         class="course-search__icon course-search__icon--search"
-        width="20" 
-        height="20" 
-        viewBox="0 0 24 24" 
-        fill="none" 
-        stroke="currentColor" 
-        stroke-width="2" 
-        stroke-linecap="round" 
-        stroke-linejoin="round"
+        [attr.width]="svg.search.width"
+        [attr.height]="svg.search.height"
+        [attr.viewBox]="svg.search.viewBox"
+        fill="none"
+        [attr.stroke]="'currentColor'"
+        [attr.stroke-width]="svg.search.strokeWidth"
+        [attr.stroke-linecap]="svg.search.strokeLinecap"
+        [attr.stroke-linejoin]="svg.search.strokeLinejoin"
         aria-hidden="true"
       >
-        <circle cx="11" cy="11" r="8"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+        @for (path of svg.search.paths; track path) {
+          <path [attr.d]="path"/>
+        }
       </svg>
 
       <input
+        #searchInput
         type="search"
         class="course-search__input"
-        [ngModel]="search"
+        [ngModel]="search()"
         (ngModelChange)="onSearch($event)"
-        placeholder="Search courses..."
-        aria-label="Search courses"
+        [placeholder]="config.placeholder"
+        [attr.aria-label]="config.ariaLabel"
       />
 
-      @if (search) {
+      @if (search()) {
         <button
           type="button"
           class="course-search__clear-btn"
           (click)="clear()"
-          aria-label="Clear search"
+          [attr.aria-label]="config.ariaLabelClear"
         >
           <svg 
-            width="18" 
-            height="18" 
-            viewBox="0 0 24 24" 
-            fill="none" 
-            stroke="currentColor" 
-            stroke-width="2" 
-            stroke-linecap="round" 
-            stroke-linejoin="round"
+            [attr.width]="svg.clear.width"
+            [attr.height]="svg.clear.height"
+            [attr.viewBox]="svg.clear.viewBox"
+            fill="none"
+            [attr.stroke]="'currentColor'"
+            [attr.stroke-width]="svg.clear.strokeWidth"
+            [attr.stroke-linecap]="svg.clear.strokeLinecap"
+            [attr.stroke-linejoin]="svg.clear.strokeLinejoin"
             aria-hidden="true"
           >
-            <line x1="18" y1="6" x2="6" y2="18"/>
-            <line x1="6" y1="6" x2="18" y2="18"/>
+            @for (path of svg.clear.paths; track path) {
+              <path [attr.d]="path"/>
+            }
           </svg>
         </button>
       }
