@@ -22,8 +22,8 @@
         class="course-card__image"
         [ngSrc]="imageUrl()"
         [alt]="imageAltText()"
-        width="400"
-        height="225"
+        [width]="imageWidth"
+        [height]="imageHeight"
         loading="lazy"
         itemprop="image"
         (error)="onImageError()"
@@ -126,8 +126,8 @@
             [src]="avatarUrl()"
             [alt]="authorAvatarAlt()"
             loading="lazy"
-            width="30"
-            height="30"
+            [width]="avatarWidth"
+            [height]="avatarHeight"
             (error)="onAvatarError()"
           />
         }
