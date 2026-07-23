@@ -1,0 +1,75 @@
+<article class="blog-card">
+  <a [routerLink]="['/blog', blog.slug]" class="blog-card__image-link">
+    <img [src]="image" [alt]="imageAlt" class="blog-card__image" loading="lazy" />
+
+    @if (blog.badge) {
+      <span class="blog-card__badge">{{ blog.badge }}</span>
+    } @else if (blog.meta.isFeatured) {
+      <span class="blog-card__badge blog-card__badge--featured">Featured</span>
+    }
+  </a>
+
+  <div class="blog-card__body">
+    <!-- ========================================= -->
+    <!-- Category / Meta                           -->
+    <!-- ========================================= -->
+    <div class="blog-card__meta">
+      @if (categoryLabel) {
+        <span class="blog-card__category">{{ categoryLabel }}</span>
+      }
+      <span class="blog-card__dot">&middot;</span>
+      <span class="blog-card__date">{{ blog.date ?? (publishedDate | date: 'mediumDate') }}</span>
+      <span class="blog-card__dot">&middot;</span>
+      <span class="blog-card__read-time">{{ readTimeLabel }}</span>
+    </div>
+
+    <!-- ========================================= -->
+    <!-- Title / Excerpt                           -->
+    <!-- ========================================= -->
+    <h3 class="blog-card__title">
+      <a [routerLink]="['/blog', blog.slug]">{{ blog.title }}</a>
+    </h3>
+
+    <p class="blog-card__excerpt">{{ blog.excerpt }}</p>
+
+    <!-- ========================================= -->
+    <!-- Footer: Author + Actions                  -->
+    <!-- ========================================= -->
+    <div class="blog-card__footer">
+      <div class="blog-card__author">
+        @if (authorAvatar) {
+          <img [src]="authorAvatar" [alt]="authorName" class="blog-card__author-avatar" />
+        }
+        <span class="blog-card__author-name">{{ authorName }}</span>
+      </div>
+
+      <div class="blog-card__actions">
+        <button
+          type="button"
+          class="blog-card__action"
+          [class.blog-card__action--active]="blog.isLiked"
+          (click)="onLike($event)"
+          [attr.aria-pressed]="blog.isLiked"
+          aria-label="Like this post"
+        >
+          ♥ {{ blog.likeCount ?? 0 }}
+        </button>
+
+        <button
+          type="button"
+          class="blog-card__action"
+          [class.blog-card__action--active]="blog.isSaved"
+          (click)="onSave($event)"
+          [attr.aria-pressed]="blog.isSaved"
+          aria-label="Save this post"
+        >
+          🔖
+        </button>
+
+        <span class="blog-card__comments" aria-label="Comment count">
+          💬 {{ blog.commentCount }}
+        </span>
+      </div>
+    </div>
+  </div>
+</article>
