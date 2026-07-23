@@ -3,7 +3,8 @@ import { EmptyState, ErrorState, PageBanner, Pagination } from '@app/shared';
 
 import { BlogCard } from '../../components';
 import { BlogsFacade } from '../../facades';
-import { BlogCardSkeleton } from "../../skeletons";
+import { BlogCardSkeleton, BlogSearchSkeleton } from "../../skeletons";
+import { BlogSearch } from '../blog-search';
 
 @Component({
   selector: 'app-blog-list',
@@ -13,13 +14,14 @@ import { BlogCardSkeleton } from "../../skeletons";
     BlogCard,
     // BlogSkeleton,
     Pagination,
-    // BlogSearch,
+    BlogSearch,
     // BlogFilter,
     // BlogSearchSkeleton,
     // BlogFilterSkeleton,
     EmptyState,
     ErrorState,
-    BlogCardSkeleton
+    BlogCardSkeleton,
+    BlogSearchSkeleton
 ],
   templateUrl: './blog-list.html',
   styleUrls: ['./blog-list.scss'],

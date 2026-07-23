@@ -1,1 +1,59 @@
-<p>blog-search works!</p>
+<!-- blog-search.html -->
+<div class="blog-search">
+  <div class="blog-search__container">
+    <div class="blog-search__wrapper">
+      <!-- Search Icon -->
+      <svg 
+        class="blog-search__icon blog-search__icon--search"
+        [attr.width]="svg.search.width"
+        [attr.height]="svg.search.height"
+        [attr.viewBox]="svg.search.viewBox"
+        fill="none"
+        [attr.stroke]="'currentColor'"
+        [attr.stroke-width]="svg.search.strokeWidth"
+        [attr.stroke-linecap]="svg.search.strokeLinecap"
+        [attr.stroke-linejoin]="svg.search.strokeLinejoin"
+        aria-hidden="true"
+      >
+        @for (path of svg.search.paths; track path) {
+          <path [attr.d]="path"/>
+        }
+      </svg>
+
+      <input
+        #searchInput
+        type="search"
+        class="blog-search__input"
+        [ngModel]="search()"
+        (ngModelChange)="onSearch($event)"
+        [placeholder]="config.placeholder"
+        [attr.aria-label]="config.ariaLabel"
+      />
+
+      @if (search()) {
+        <button
+          type="button"
+          class="blog-search__clear-btn"
+          (click)="clear()"
+          [attr.aria-label]="config.ariaLabelClear"
+        >
+          <svg 
+            [attr.width]="svg.clear.width"
+            [attr.height]="svg.clear.height"
+            [attr.viewBox]="svg.clear.viewBox"
+            fill="none"
+            [attr.stroke]="'currentColor'"
+            [attr.stroke-width]="svg.clear.strokeWidth"
+            [attr.stroke-linecap]="svg.clear.strokeLinecap"
+            [attr.stroke-linejoin]="svg.clear.strokeLinejoin"
+            aria-hidden="true"
+          >
+            @for (path of svg.clear.paths; track path) {
+              <path [attr.d]="path"/>
+            }
+          </svg>
+        </button>
+      }
+    </div>
+  </div>
+</div>
