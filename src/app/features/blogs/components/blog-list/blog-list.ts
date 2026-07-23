@@ -3,6 +3,7 @@ import { EmptyState, ErrorState, PageBanner, Pagination } from '@app/shared';
 
 import { BlogCard } from '../../components';
 import { BlogsFacade } from '../../facades';
+import { BlogCardSkeleton } from "../../skeletons";
 
 @Component({
   selector: 'app-blog-list',
@@ -17,8 +18,9 @@ import { BlogsFacade } from '../../facades';
     // BlogSearchSkeleton,
     // BlogFilterSkeleton,
     EmptyState,
-    ErrorState
-  ],
+    ErrorState,
+    BlogCardSkeleton
+],
   templateUrl: './blog-list.html',
   styleUrls: ['./blog-list.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

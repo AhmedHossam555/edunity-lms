@@ -1,6 +1,15 @@
 <article class="blog-card">
   <a [routerLink]="['/blog', blog.slug]" class="blog-card__image-link">
-    <img [src]="image" [alt]="imageAlt" class="blog-card__image" loading="lazy" />
+    <img
+      [ngSrc]="image"
+      width="364"
+      height="208"
+      loading="lazy"
+      [alt]="imageAlt"
+      [fallbackSrc]="defaultImage"
+      class="blog-card__image"
+      loading="lazy"
+    />
   </a>
 
   <div class="blog-card__body">

@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
-import { DatePipe } from '@angular/common';
+import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { IBlog } from '../../interfaces';
 import { RouterLink } from '@angular/router';
-import { Button } from "@app/shared";
+import { Button, DEFAULT_IMAGES, FallbackImage } from "@app/shared";
 
 @Component({
   selector: 'app-blog-card',
   standalone: true,
-  imports: [DatePipe, RouterLink, Button],
+  imports: [DatePipe, RouterLink, Button, FallbackImage, NgOptimizedImage],
   templateUrl: './blog-card.html',
   styleUrl: './blog-card.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,11 +21,11 @@ export class BlogCard {
 
   @Output() like = new EventEmitter<string>();
   @Output() save = new EventEmitter<string>();
-
+  
   // ─────────────────────────────────────────────────────────────
   //  Display Helpers
   // ─────────────────────────────────────────────────────────────
-
+  protected readonly defaultImage = DEFAULT_IMAGES.BLOG; 
   protected get image(): string {
     return this.blog.imageSrc ?? this.blog.featuredImage;
   }

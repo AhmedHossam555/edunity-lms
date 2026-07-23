@@ -21,7 +21,7 @@
       <!-- ========================================= -->
       <section class="blog-list">
         @for (item of [1, 2, 3, 4, 5, 6]; track $index) {
-          <!-- <app-blog-skeleton /> -->
+          <app-blog-card-skeleton />
         }
       </section>
     } @else if (facade.error()) {

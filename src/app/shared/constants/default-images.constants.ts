@@ -3,7 +3,7 @@ export const DEFAULT_IMAGES = {
   INSTRUCTOR: 'assets/images/defaults/default-instructor.webp',
   USER: 'assets/images/defaults/default-user.webp',
   AVATAR: 'assets/images/defaults/default-avatar.webp',
-  BLOG: 'assets/images/defaults/default-blog.webp',
+  BLOG: '/assets/images/blogs/default/default-blog-image.webp',
   THUMBNAIL: 'assets/images/defaults/default-thumbnail.webp',
   CATEGORY: 'assets/images/defaults/default-category.webp',
   PLACEHOLDER: 'assets/images/defaults/placeholder.webp',

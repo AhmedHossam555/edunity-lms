@@ -1,0 +1,89 @@
+.blog-card-skeleton {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  background: #ededed;
+  border-radius: 0.3125rem;
+  overflow: hidden;
+  padding: 1.875rem;
+  
+  box-shadow: 0 1.125rem 2.5rem rgba(0, 0, 0, 0.08);
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-top: 1.25rem;
+  }
+
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.875rem;
+  }
+
+  &__bottom {
+    margin-top: auto;
+  }
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background: #e0e0e0;
+  border-radius: 0.25rem;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    transform: translateX(-100%);
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.5),
+      transparent
+    );
+    animation: skeleton-loading 1.2s infinite;
+  }
+
+  &__image {
+    width: 100%;
+    aspect-ratio: 364 / 208;
+    border-radius: 0.625rem;
+  }
+
+  &__meta-item {
+    width: 30%;
+    height: 1.5rem;
+    border-radius: 0.25rem;
+    
+    &:last-child {
+      width: 20%;
+    }
+  }
+
+  &__title {
+    height: 1.6rem;
+    margin-bottom: 0.5rem;
+    border-radius: 0.25rem;
+
+    &.short {
+      width: 70%;
+      margin-bottom: 1.25rem;
+    }
+  }
+
+  &__button {
+    width: 35%;
+    height: 2.5rem;
+    border-radius: 0.3125rem;
+  }
+}
+
+@keyframes skeleton-loading {
+  to {
+    transform: translateX(100%);
+  }
+}
