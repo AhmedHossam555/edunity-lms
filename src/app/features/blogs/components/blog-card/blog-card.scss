@@ -1,0 +1,125 @@
+.blog-card {
+  // Block
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  
+  background: #ededed;
+  border-radius: 0.3125rem;
+  overflow: hidden;
+  padding: 1.875rem;
+  
+  box-shadow: 0 1.125rem 2.5rem rgba(0, 0, 0, 0.08);
+  transition: 
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
+
+  &:hover {
+    transform: translateY(-0.5rem);
+    box-shadow: 0 1.5rem 3rem rgba(0, 0, 0, 0.12);
+    
+    .blog-card__image {
+      transform: scale(1.03);
+    }
+  }
+
+  // Elements
+  &__image-link {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    border-radius: 0.625rem;
+    aspect-ratio: 364 / 208;
+  }
+
+  &__image {
+    width: 100%;
+    height: auto;
+    aspect-ratio: 364 / 208;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    padding-top: 1.25rem;
+  }
+
+  &__meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin-bottom: 0.875rem;
+    font-size: 0.9375rem;
+    line-height: 2rem;
+    color: #4d5756;
+  }
+
+  &__meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3125rem;
+    
+    padding: 0;
+    background: transparent;
+    border-radius: 0;
+    
+    color: #4d5756;
+    font-size: 0.9375rem;
+    font-weight: 400;
+    line-height: 2rem;
+  }
+
+  &__meta-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    width: auto;
+    height: auto;
+    
+    background: transparent;
+    border-radius: 0;
+    
+    transition: none;
+    
+    svg {
+      width: 0.9rem;
+      height: 0.9rem;
+    }
+    
+    svg path {
+      fill: #704fe6;
+    }
+  }
+
+  &__title {
+    margin: 0 0 1.25rem;
+    
+    font-size: 1.1875rem;
+    font-weight: 600;
+    line-height: 1.6625rem;
+    
+    a {
+      display: -webkit-box;
+      overflow: hidden;
+      color: var(--color-secondary);
+      text-decoration: none;
+      -webkit-line-clamp: 2;
+      line-clamp: 2;
+      -webkit-box-orient: vertical;
+      transition: none;
+    }
+  }
+
+  &__bottom {
+    margin-top: auto;
+    
+    app-button {
+      display: inline-block;
+    }
+  }
+}

@@ -2,11 +2,12 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
 import { DatePipe } from '@angular/common';
 import { IBlog } from '../../interfaces';
 import { RouterLink } from '@angular/router';
+import { Button } from "@app/shared";
 
 @Component({
   selector: 'app-blog-card',
   standalone: true,
-  imports: [DatePipe,RouterLink],
+  imports: [DatePipe, RouterLink, Button],
   templateUrl: './blog-card.html',
   styleUrl: './blog-card.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
