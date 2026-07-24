@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, OnInit } from '@angular/core';
-import { EmptyState, ErrorState, PageBanner, Pagination } from '@app/shared';
+import { EmptyState, ErrorState, Pagination } from '@app/shared';
 
 import { BlogCard } from '../../components';
 import { BlogsFacade } from '../../facades';
@@ -10,7 +10,6 @@ import { BlogSearch } from '../blog-search';
   selector: 'app-blog-list',
   standalone: true,
   imports: [
-    PageBanner,
     BlogCard,
     // BlogSkeleton,
     Pagination,

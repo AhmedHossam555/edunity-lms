@@ -1,90 +1,84 @@
-<app-page-banner [title]="'Blogs'" [currentPage]="'Blogs'" />
+<!-- ========================================= -->
+<!-- Loading State                             -->
+<!-- ========================================= -->
+@if (facade.loading()) {
+  <!-- ========================================= -->
+  <!-- Search Skeleton                           -->
+  <!-- ========================================= -->
+  <app-blog-search-skeleton />
 
-<main class="section-padding">
-  <div class="container">
-    <!-- ========================================= -->
-    <!-- Loading State                             -->
-    <!-- ========================================= -->
-    @if (facade.loading()) {
-      <!-- ========================================= -->
-      <!-- Search Skeleton                           -->
-      <!-- ========================================= -->
-      <app-blog-search-skeleton />
+  <!-- ========================================= -->
+  <!-- Filter Skeleton                           -->
+  <!-- ========================================= -->
+  <!-- <app-blog-filter-skeleton /> -->
 
-      <!-- ========================================= -->
-      <!-- Filter Skeleton                           -->
-      <!-- ========================================= -->
-      <!-- <app-blog-filter-skeleton /> -->
+  <!-- ========================================= -->
+  <!-- Blog Skeleton Grid                        -->
+  <!-- ========================================= -->
+  <section class="blog-list">
+    @for (item of [1, 2, 3, 4, 5, 6]; track $index) {
+      <app-blog-card-skeleton />
+    }
+  </section>
+} @else if (facade.error()) {
+  <app-error-state
+    title="Something went wrong"
+    description="We couldn't load the blogs. Please try again."
+    buttonText="Retry"
+    (retry)="retry()"
+  />
+}
+<!-- ========================================= -->
+<!-- Blogs Content                              -->
+<!-- ========================================= -->
+@else if (facade.filteredBlogs().length) {
+  <!-- ========================================= -->
+  <!-- Search and Filter                         -->
+  <!-- ========================================= -->
+  <app-blog-search />
+  <!-- <app-blog-filter />  -->
 
-      <!-- ========================================= -->
-      <!-- Blog Skeleton Grid                        -->
-      <!-- ========================================= -->
-      <section class="blog-list">
-        @for (item of [1, 2, 3, 4, 5, 6]; track $index) {
-          <app-blog-card-skeleton />
-        }
-      </section>
-    } @else if (facade.error()) {
-      <app-error-state
-        title="Something went wrong"
-        description="We couldn't load the blogs. Please try again."
-        buttonText="Retry"
-        (retry)="retry()"
+  <!-- ========================================= -->
+  <!-- Blog Grid                                 -->
+  <!-- ========================================= -->
+  <section class="blog-list" aria-labelledby="blogs-heading">
+    @for (blog of facade.paginatedBlogs(); track blog.id) {
+      <app-blog-card [blog]="blog" />
+    }
+  </section>
+
+  <!-- ========================================= -->
+  <!-- Pagination                                -->
+  <!-- ========================================= -->
+  @if (facade.totalItems() > facade.itemsPerPage()) {
+    <div class="pagination-wrapper">
+      <app-pagination
+        [currentPage]="facade.currentPage()"
+        [totalItems]="facade.totalItems()"
+        [itemsPerPage]="facade.itemsPerPage()"
+        [totalPages]="facade.totalPages()"
+        [maxVisiblePages]="5"
+        [showFirstLast]="true"
+        [showPrevNext]="true"
+        [showPageSize]="false"
+        [showSummary]="false"
+        [pageSizeOptions]="[3, 6, 9, 12, 24]"
+        [disabled]="facade.loading()"
+        (pageChange)="onPageChange($event)"
+        (pageSizeChange)="onPageSizeChange($event)"
       />
-    }
-    <!-- ========================================= -->
-    <!-- Blogs Content                              -->
-    <!-- ========================================= -->
-    @else if (facade.filteredBlogs().length) {
-      <!-- ========================================= -->
-      <!-- Search and Filter                         -->
-      <!-- ========================================= -->
-      <app-blog-search />
-      <!-- <app-blog-filter />  -->
+    </div>
+  }
+}
 
-      <!-- ========================================= -->
-      <!-- Blog Grid                                 -->
-      <!-- ========================================= -->
-      <section class="blog-list" aria-labelledby="blogs-heading">
-        @for (blog of facade.paginatedBlogs(); track blog.id) {
-          <app-blog-card [blog]="blog" />
-        }
-      </section>
-
-      <!-- ========================================= -->
-      <!-- Pagination                                -->
-      <!-- ========================================= -->
-      @if (facade.totalItems() > facade.itemsPerPage()) {
-        <div class="pagination-wrapper">
-          <app-pagination
-            [currentPage]="facade.currentPage()"
-            [totalItems]="facade.totalItems()"
-            [itemsPerPage]="facade.itemsPerPage()"
-            [totalPages]="facade.totalPages()"
-            [maxVisiblePages]="5"
-            [showFirstLast]="true"
-            [showPrevNext]="true"
-            [showPageSize]="false"
-            [showSummary]="false"
-            [pageSizeOptions]="[3, 6, 9, 12, 24]"
-            [disabled]="facade.loading()"
-            (pageChange)="onPageChange($event)"
-            (pageSizeChange)="onPageSizeChange($event)"
-          />
-        </div>
-      }
-    }
-
-    <!-- ========================================= -->
-    <!-- Empty State                                -->
-    <!-- ========================================= -->
-    @else {
-      <app-empty-state
-        [title]="getEmptyStateTitle()"
-        [description]="getEmptyStateDescription()"
-        [buttonText]="getEmptyStateButtonText()"
-        (action)="handleEmptyStateAction()"
-      />
-    }
-  </div>
-</main>
+<!-- ========================================= -->
+<!-- Empty State                                -->
+<!-- ========================================= -->
+@else {
+  <app-empty-state
+    [title]="getEmptyStateTitle()"
+    [description]="getEmptyStateDescription()"
+    [buttonText]="getEmptyStateButtonText()"
+    (action)="handleEmptyStateAction()"
+  />
+}

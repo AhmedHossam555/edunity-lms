@@ -1,13 +1,20 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  EventEmitter,
+  inject,
+  Input,
+  Output,
+} from '@angular/core';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 import { IBlog } from '../../interfaces';
-import { RouterLink } from '@angular/router';
-import { Button, DEFAULT_IMAGES, FallbackImage } from "@app/shared";
+import { Router } from '@angular/router';
+import { Button, DEFAULT_IMAGES, FallbackImage } from '@app/shared';
 
 @Component({
   selector: 'app-blog-card',
   standalone: true,
-  imports: [DatePipe, RouterLink, Button, FallbackImage, NgOptimizedImage],
+  imports: [DatePipe, Button, FallbackImage, NgOptimizedImage],
   templateUrl: './blog-card.html',
   styleUrl: './blog-card.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -21,11 +28,12 @@ export class BlogCard {
 
   @Output() like = new EventEmitter<string>();
   @Output() save = new EventEmitter<string>();
-  
+  private readonly router = inject(Router);
+
   // ─────────────────────────────────────────────────────────────
   //  Display Helpers
   // ─────────────────────────────────────────────────────────────
-  protected readonly defaultImage = DEFAULT_IMAGES.BLOG; 
+  protected readonly defaultImage = DEFAULT_IMAGES.BLOG;
   protected get image(): string {
     return this.blog.imageSrc ?? this.blog.featuredImage;
   }
@@ -39,12 +47,12 @@ export class BlogCard {
   }
 
   protected get authorAvatar(): string | undefined {
-    return this.blog.authorAvatarSrc ;
+    return this.blog.authorAvatarSrc;
   }
 
   protected get categoryLabel(): string {
     const category = this.blog.category;
-    return typeof category === 'string' ? category : category?.name ?? '';
+    return typeof category === 'string' ? category : (category?.name ?? '');
   }
 
   protected get readTimeLabel(): string {
@@ -69,5 +77,9 @@ export class BlogCard {
     event.stopPropagation();
     event.preventDefault();
     this.save.emit(this.blog.id);
+  }
+
+  protected navigateToBlog(): void {
+    this.router.navigate(['/blogs', this.blog.id, this.blog.slug]);
   }
 }
