@@ -79,6 +79,20 @@
     line-height: 1.4;
   }
 
+  &__counter {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 0.5rem;
+    color: #6b7280;
+    font-size: 0.875rem;
+    line-height: 1.4;
+
+    &--warning {
+      color: #d97706;
+      font-weight: 600;
+    }
+  }
+
   &__button {
     width: fit-content;
     padding-inline: 2.1875rem;
@@ -126,6 +140,7 @@
   }
 }
 
+// Global utility class - not part of BEM component
 .visually-hidden {
   position: absolute;
   width: 0.0625rem;

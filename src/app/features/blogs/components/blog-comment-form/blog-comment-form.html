@@ -1,12 +1,12 @@
+<!-- ========================================= -->
+<!-- Comment Form                             -->
+<!-- ========================================= -->
 <section class="blog-comments-form" aria-labelledby="comment-form-title">
   <header class="blog-comments-form__header">
-    <h2 id="comment-form-title" class="blog-comments-form__title">
-      Let's Get in Touch
-    </h2>
+    <h2 id="comment-form-title" class="blog-comments-form__title">Let's Get in Touch</h2>
 
     <p class="blog-comments-form__description">
-      Your email address will not be published.
-      Required fields are marked
+      Your email address will not be published. Required fields are marked
       <span aria-hidden="true">*</span>
     </p>
   </header>
@@ -17,11 +17,11 @@
     (ngSubmit)="submitComment()"
     novalidate
   >
-    <!-- Name -->
+    <!-- ========================================= -->
+    <!-- Name Field                                -->
+    <!-- ========================================= -->
     <div class="blog-comments-form__field">
-      <label for="name" class="visually-hidden">
-        Your Name
-      </label>
+      <label for="name" class="visually-hidden">Your Name</label>
 
       <input
         id="name"
@@ -35,11 +35,7 @@
       />
 
       @if (commentForm.controls.name.invalid && commentForm.controls.name.touched) {
-        <p
-          id="name-error"
-          class="blog-comments-form__error"
-          role="alert"
-        >
+        <p id="name-error" class="blog-comments-form__error" role="alert">
           @if (commentForm.controls.name.errors?.['required']) {
             Name is required.
           } @else if (commentForm.controls.name.errors?.['minlength']) {
@@ -49,11 +45,11 @@
       }
     </div>
 
-    <!-- Email -->
+    <!-- ========================================= -->
+    <!-- Email Field                               -->
+    <!-- ========================================= -->
     <div class="blog-comments-form__field">
-      <label for="email" class="visually-hidden">
-        Email Address
-      </label>
+      <label for="email" class="visually-hidden">Email Address</label>
 
       <input
         id="email"
@@ -62,16 +58,14 @@
         autocomplete="email"
         placeholder="Email Address *"
         class="blog-comments-form__input"
-        [attr.aria-invalid]="commentForm.controls.email.invalid && commentForm.controls.email.touched"
+        [attr.aria-invalid]="
+          commentForm.controls.email.invalid && commentForm.controls.email.touched
+        "
         aria-describedby="email-error"
       />
 
       @if (commentForm.controls.email.invalid && commentForm.controls.email.touched) {
-        <p
-          id="email-error"
-          class="blog-comments-form__error"
-          role="alert"
-        >
+        <p id="email-error" class="blog-comments-form__error" role="alert">
           @if (commentForm.controls.email.errors?.['required']) {
             Email address is required.
           } @else if (commentForm.controls.email.errors?.['email']) {
@@ -81,11 +75,11 @@
       }
     </div>
 
-    <!-- Website -->
+    <!-- ========================================= -->
+    <!-- Website Field                             -->
+    <!-- ========================================= -->
     <div class="blog-comments-form__field blog-comments-form__field--full">
-      <label for="website" class="visually-hidden">
-        Website
-      </label>
+      <label for="website" class="visually-hidden">Website</label>
 
       <input
         id="website"
@@ -97,43 +91,61 @@
       />
     </div>
 
-    <!-- Message -->
+    <!-- ========================================= -->
+    <!-- Message Field                             -->
+    <!-- ========================================= -->
     <div class="blog-comments-form__field blog-comments-form__field--full">
-      <label for="message" class="visually-hidden">
-        Message
-      </label>
+      <label for="message" class="visually-hidden">Message</label>
 
       <textarea
         id="message"
         rows="8"
         formControlName="message"
+        [maxLength]="maxMessageLength"
         placeholder="Write your message..."
         class="blog-comments-form__textarea"
-        [attr.aria-invalid]="commentForm.controls.message.invalid && commentForm.controls.message.touched"
-        aria-describedby="message-error"
+        [attr.aria-invalid]="
+          commentForm.controls.message.invalid && commentForm.controls.message.touched
+        "
+        aria-describedby="message-help message-error"
       ></textarea>
 
+      <div
+        id="message-help"
+        class="blog-comments-form__counter"
+        [class.blog-comments-form__counter--warning]="
+          commentForm.controls.message.value.length >= maxMessageLength * 0.9
+        "
+        aria-live="polite"
+      >
+        {{ commentForm.controls.message.value.length }}
+        /
+        {{ maxMessageLength }}
+        characters
+      </div>
+
       @if (commentForm.controls.message.invalid && commentForm.controls.message.touched) {
-        <p
-          id="message-error"
-          class="blog-comments-form__error"
-          role="alert"
-        >
+        <p id="message-error" class="blog-comments-form__error" role="alert">
           @if (commentForm.controls.message.errors?.['required']) {
             Message is required.
           } @else if (commentForm.controls.message.errors?.['minlength']) {
             Message must be at least 20 characters.
+          } @else if (commentForm.controls.message.errors?.['maxlength']) {
+            Message cannot exceed {{ maxMessageLength }} characters.
           }
         </p>
       }
     </div>
 
-    <button
-      type="submit"
-      class="blog-comments-form__button"
-      [disabled]="commentForm.invalid"
-    >
-      Send Message
+    <!-- ========================================= -->
+    <!-- Submit Button                             -->
+    <!-- ========================================= -->
+    <button type="submit" class="blog-comments-form__button" [disabled]="commentForm.invalid">
+      @if (facade.loading()) {
+        Sending...
+      } @else {
+        Send Message
+      }
     </button>
   </form>
 </section>

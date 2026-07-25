@@ -1,58 +1,62 @@
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { BlogCommentsFacade } from '../../facades';
+import { computed, inject, Injectable, signal } from '@angular/core';
+import { catchError, finalize, tap, throwError } from 'rxjs';
 
-@Component({
-  selector: 'app-blog-comment-form',
-  standalone: true,
-  imports: [ReactiveFormsModule],
-  templateUrl: './blog-comment-form.html',
-  styleUrl: './blog-comment-form.scss',
-  changeDetection: ChangeDetectionStrategy.OnPush,
+import { ToastFacade } from '@app/core/toast';
+
+import { BlogComment } from '../interfaces';
+import { BlogCommentsService } from '../services';
+
+@Injectable({
+  providedIn: 'root',
 })
-export class BlogCommentForm {
+export class BlogCommentsFacade {
   // ─────────────────────────────────────────────────────────────
   // Dependencies
   // ─────────────────────────────────────────────────────────────
-  private readonly fb = inject(FormBuilder);
-  protected readonly facade = inject(BlogCommentsFacade);
+
+  private readonly blogCommentsService = inject(BlogCommentsService);
+  private readonly toast = inject(ToastFacade);
 
   // ─────────────────────────────────────────────────────────────
-  // Constants
+  // State
   // ─────────────────────────────────────────────────────────────
-  protected readonly maxMessageLength = 500;
+
+  private readonly loadingSignal = signal(false);
 
   // ─────────────────────────────────────────────────────────────
-  // Form
+  // Selectors
   // ─────────────────────────────────────────────────────────────
-  protected readonly commentForm = this.fb.nonNullable.group({
-    name: ['', [Validators.required, Validators.minLength(2)]],
-    email: ['', [Validators.required, Validators.email]],
-    website: [''],
-    message: [
-      '',
-      [Validators.required, Validators.minLength(20), Validators.maxLength(this.maxMessageLength)],
-    ],
-  });
+
+  readonly loading = computed(() => this.loadingSignal());
 
   // ─────────────────────────────────────────────────────────────
   // Actions
   // ─────────────────────────────────────────────────────────────
-  protected submitComment(): void {
-    if (this.commentForm.invalid) {
-      this.commentForm.markAllAsTouched();
-      return;
-    }
 
-    this.facade.submitComment(this.commentForm.getRawValue()).subscribe(() => {
-      console.log('Comment submitted successfully.');
+  submitComment(comment: BlogComment) {
+    this.loadingSignal.set(true);
 
-      this.commentForm.reset({
-        name: '',
-        email: '',
-        website: '',
-        message: '',
-      });
-    });
+    return this.blogCommentsService.submitComment(comment).pipe(
+      tap(() => {
+        this.toast.success({
+          title: 'Comment Submitted',
+          message: 'Your comment has been submitted successfully.',
+        });
+      }),
+
+      catchError((error) => {
+        this.toast.error({
+          title: 'Submission Failed',
+          message: 'Unable to submit your comment. Please try again.',
+          duration: 0,
+        });
+
+        return throwError(() => error);
+      }),
+
+      finalize(() => {
+        this.loadingSignal.set(false);
+      }),
+    );
   }
 }
