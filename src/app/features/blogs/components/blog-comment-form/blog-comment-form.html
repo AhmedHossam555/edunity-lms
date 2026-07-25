@@ -1,0 +1,139 @@
+<section class="blog-comments-form" aria-labelledby="comment-form-title">
+  <header class="blog-comments-form__header">
+    <h2 id="comment-form-title" class="blog-comments-form__title">
+      Let's Get in Touch
+    </h2>
+
+    <p class="blog-comments-form__description">
+      Your email address will not be published.
+      Required fields are marked
+      <span aria-hidden="true">*</span>
+    </p>
+  </header>
+
+  <form
+    class="blog-comments-form__form"
+    [formGroup]="commentForm"
+    (ngSubmit)="submitComment()"
+    novalidate
+  >
+    <!-- Name -->
+    <div class="blog-comments-form__field">
+      <label for="name" class="visually-hidden">
+        Your Name
+      </label>
+
+      <input
+        id="name"
+        type="text"
+        formControlName="name"
+        autocomplete="name"
+        placeholder="Your Name *"
+        class="blog-comments-form__input"
+        [attr.aria-invalid]="commentForm.controls.name.invalid && commentForm.controls.name.touched"
+        aria-describedby="name-error"
+      />
+
+      @if (commentForm.controls.name.invalid && commentForm.controls.name.touched) {
+        <p
+          id="name-error"
+          class="blog-comments-form__error"
+          role="alert"
+        >
+          @if (commentForm.controls.name.errors?.['required']) {
+            Name is required.
+          } @else if (commentForm.controls.name.errors?.['minlength']) {
+            Name must be at least 2 characters.
+          }
+        </p>
+      }
+    </div>
+
+    <!-- Email -->
+    <div class="blog-comments-form__field">
+      <label for="email" class="visually-hidden">
+        Email Address
+      </label>
+
+      <input
+        id="email"
+        type="email"
+        formControlName="email"
+        autocomplete="email"
+        placeholder="Email Address *"
+        class="blog-comments-form__input"
+        [attr.aria-invalid]="commentForm.controls.email.invalid && commentForm.controls.email.touched"
+        aria-describedby="email-error"
+      />
+
+      @if (commentForm.controls.email.invalid && commentForm.controls.email.touched) {
+        <p
+          id="email-error"
+          class="blog-comments-form__error"
+          role="alert"
+        >
+          @if (commentForm.controls.email.errors?.['required']) {
+            Email address is required.
+          } @else if (commentForm.controls.email.errors?.['email']) {
+            Please enter a valid email address.
+          }
+        </p>
+      }
+    </div>
+
+    <!-- Website -->
+    <div class="blog-comments-form__field blog-comments-form__field--full">
+      <label for="website" class="visually-hidden">
+        Website
+      </label>
+
+      <input
+        id="website"
+        type="url"
+        formControlName="website"
+        autocomplete="url"
+        placeholder="Website"
+        class="blog-comments-form__input"
+      />
+    </div>
+
+    <!-- Message -->
+    <div class="blog-comments-form__field blog-comments-form__field--full">
+      <label for="message" class="visually-hidden">
+        Message
+      </label>
+
+      <textarea
+        id="message"
+        rows="8"
+        formControlName="message"
+        placeholder="Write your message..."
+        class="blog-comments-form__textarea"
+        [attr.aria-invalid]="commentForm.controls.message.invalid && commentForm.controls.message.touched"
+        aria-describedby="message-error"
+      ></textarea>
+
+      @if (commentForm.controls.message.invalid && commentForm.controls.message.touched) {
+        <p
+          id="message-error"
+          class="blog-comments-form__error"
+          role="alert"
+        >
+          @if (commentForm.controls.message.errors?.['required']) {
+            Message is required.
+          } @else if (commentForm.controls.message.errors?.['minlength']) {
+            Message must be at least 20 characters.
+          }
+        </p>
+      }
+    </div>
+
+    <button
+      type="submit"
+      class="blog-comments-form__button"
+      [disabled]="commentForm.invalid"
+    >
+      Send Message
+    </button>
+  </form>
+</section>

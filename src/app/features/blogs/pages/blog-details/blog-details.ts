@@ -3,21 +3,15 @@ import { ActivatedRoute, RouterLink } from '@angular/router';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DatePipe, NgOptimizedImage } from '@angular/common';
 
-import { DEFAULT_IMAGES, EmptyState, ErrorState, FallbackImage, PageBanner } from '@app/shared';
+import { DEFAULT_IMAGES, EmptyState, ErrorState, FallbackImage, PageBanner, safeSvg } from '@app/shared';
 
 import { BlogsFacade } from '../../facades';
 import { BlogDetailsSkeleton } from '../../skeletons';
 import { IBlogCategory, IBlogTag } from '../../interfaces';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-
-// Helper functions for type checking
-function isBlogCategory(obj: any): obj is IBlogCategory {
-  return obj && typeof obj === 'object' && 'slug' in obj && 'name' in obj;
-}
-
-function isBlogTag(obj: any): obj is IBlogTag {
-  return obj && typeof obj === 'object' && 'slug' in obj && 'name' in obj;
-}
+import { SVG_ICONS } from '../../constants';
+import { isBlogCategory, isBlogTag } from '../../helpers';
+import { BlogCommentForm } from "../../components";
 
 @Component({
   selector: 'app-blog-details',
@@ -28,24 +22,41 @@ function isBlogTag(obj: any): obj is IBlogTag {
     ErrorState,
     BlogDetailsSkeleton,
     RouterLink,
-    DatePipe, // ✅ Import DatePipe
+    DatePipe,
     NgOptimizedImage,
     FallbackImage,
-  ],
+    BlogCommentForm
+],
   templateUrl: './blog-details.html',
   styleUrl: './blog-details.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BlogDetails implements OnInit {
-  readonly facade = inject(BlogsFacade);
+  // ─────────────────────────────────────────────────────────────
+  // Injected Dependencies
+  // ─────────────────────────────────────────────────────────────
+
+  protected readonly facade = inject(BlogsFacade);
 
   private readonly route = inject(ActivatedRoute);
   private readonly destroyRef = inject(DestroyRef);
   private readonly sanitizer = inject(DomSanitizer);
-  readonly blog = this.facade.selectedBlog;
-  readonly loading = this.facade.loading;
 
-  readonly pageConfig = {
+  // ─────────────────────────────────────────────────────────────
+  // Signals
+  // ─────────────────────────────────────────────────────────────
+
+  protected readonly blog = this.facade.selectedBlog;
+  protected readonly loading = this.facade.loading;
+
+  // ─────────────────────────────────────────────────────────────
+  // Constants
+  // ─────────────────────────────────────────────────────────────
+
+  protected readonly defaultBlogImage = DEFAULT_IMAGES.BLOG;
+  protected readonly icons = SVG_ICONS;
+
+  protected readonly pageConfig = {
     emptyState: {
       title: 'Blog not found',
       description: 'The requested blog could not be found.',
@@ -57,50 +68,61 @@ export class BlogDetails implements OnInit {
     },
   };
 
+  // ─────────────────────────────────────────────────────────────
+  // State
+  // ─────────────────────────────────────────────────────────────
+
   private blogId = '';
 
-  protected readonly defaultBlogImage = DEFAULT_IMAGES.BLOG;
-
   ngOnInit(): void {
-    this.route.paramMap.pipe(takeUntilDestroyed(this.destroyRef)).subscribe((params) => {
-      this.blogId = params.get('id') ?? '';
+    this.route.paramMap
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((params) => {
+        this.blogId = params.get('id') ?? '';
 
-      if (this.blogId) {
-        this.facade.loadBlog(this.blogId);
-      }
-    });
+        if (this.blogId) {
+          this.facade.loadBlog(this.blogId);
+        }
+      });
   }
 
-  retry(): void {
+  protected retry(): void {
     if (this.blogId) {
       this.facade.loadBlog(this.blogId);
     }
   }
 
-  // Helper methods for template
-  getCategoryName(category: string | IBlogCategory | undefined): string {
+  // ─────────────────────────────────────────────────────────────
+  // Template Helpers
+  // ─────────────────────────────────────────────────────────────
+
+  protected getCategoryName(category: string | IBlogCategory | undefined): string {
     if (!category) return '';
     return isBlogCategory(category) ? category.name : category;
   }
 
-  getCategorySlug(category: string | IBlogCategory | undefined): string {
+  protected getCategorySlug(category: string | IBlogCategory | undefined): string {
     if (!category) return '';
     return isBlogCategory(category) ? category.slug : category;
   }
 
-  getTagId(tag: string | IBlogTag): string {
+  protected getTagId(tag: string | IBlogTag): string {
     return isBlogTag(tag) ? tag.id : tag;
   }
 
-  getTagSlug(tag: string | IBlogTag): string {
+  protected getTagSlug(tag: string | IBlogTag): string {
     return isBlogTag(tag) ? tag.slug : tag;
   }
 
-  getTagName(tag: string | IBlogTag): string {
+  protected getTagName(tag: string | IBlogTag): string {
     return isBlogTag(tag) ? tag.name : tag;
   }
 
-  getSafeContent(content: string | undefined): SafeHtml {
-  return this.sanitizer.bypassSecurityTrustHtml(content ?? '');
-}
+  protected getSafeContent(content: string | undefined): SafeHtml {
+    return this.sanitizer.bypassSecurityTrustHtml(content ?? '');
+  }
+
+  protected getSafeSvg(svg: string): SafeHtml {
+    return safeSvg(this.sanitizer, svg);
+  }
 }
