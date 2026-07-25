@@ -1,9 +1,10 @@
-<!-- blog-search.html -->
 <div class="blog-search">
   <div class="blog-search__container">
     <div class="blog-search__wrapper">
-      <!-- Search Icon -->
-      <svg 
+      <!-- ========================================= -->
+      <!-- Search Icon                               -->
+      <!-- ========================================= -->
+      <svg
         class="blog-search__icon blog-search__icon--search"
         [attr.width]="svg.search.width"
         [attr.height]="svg.search.height"
@@ -16,10 +17,13 @@
         aria-hidden="true"
       >
         @for (path of svg.search.paths; track path) {
-          <path [attr.d]="path"/>
+          <path [attr.d]="path" />
         }
       </svg>
 
+      <!-- ========================================= -->
+      <!-- Search Input                              -->
+      <!-- ========================================= -->
       <input
         #searchInput
         type="search"
@@ -30,6 +34,9 @@
         [attr.aria-label]="config.ariaLabel"
       />
 
+      <!-- ========================================= -->
+      <!-- Clear Search Button                       -->
+      <!-- ========================================= -->
       @if (search()) {
         <button
           type="button"
@@ -37,7 +44,7 @@
           (click)="clear()"
           [attr.aria-label]="config.ariaLabelClear"
         >
-          <svg 
+          <svg
             [attr.width]="svg.clear.width"
             [attr.height]="svg.clear.height"
             [attr.viewBox]="svg.clear.viewBox"
@@ -49,7 +56,7 @@
             aria-hidden="true"
           >
             @for (path of svg.clear.paths; track path) {
-              <path [attr.d]="path"/>
+              <path [attr.d]="path" />
             }
           </svg>
         </button>
