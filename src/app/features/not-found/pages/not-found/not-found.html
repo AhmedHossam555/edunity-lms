@@ -1,0 +1,53 @@
+<!-- ========================================= -->
+<!-- Page Banner                              -->
+<!-- ========================================= -->
+<app-page-banner [title]="'404 Page'" [currentPage]="'Pages'" />
+
+<!-- ========================================= -->
+<!-- Main Content                             -->
+<!-- ========================================= -->
+<main class="error-page container section-padding" aria-labelledby="not-found-title">
+  <article class="error-page__content">
+
+    <!-- ========================================= -->
+    <!-- Header                                   -->
+    <!-- ========================================= -->
+    <header class="error-page__header">
+      <h1 id="not-found-title" class="error-page__title">
+        {{ content.title }}
+      </h1>
+
+      <p class="error-page__description">
+        {{ content.description }}
+      </p>
+    </header>
+
+    <!-- ========================================= -->
+    <!-- Actions                                  -->
+    <!-- ========================================= -->
+    <nav class="error-page__actions" aria-label="404 page actions">
+      <a
+        routerLink="/"
+        class="error-page__button error-page__button--primary"
+        aria-label="Return to the homepage"
+      >
+        <span
+          class="error-page__button-icon"
+          aria-hidden="true"
+          [innerHTML]="safeArrowIcon"
+        ></span>
+
+        <span class="error-page__button-text">
+          {{ content.buttonText }}
+        </span>
+      </a>
+    </nav>
+  </article>
+
+  <!-- ========================================= -->
+  <!-- Illustration                             -->
+  <!-- ========================================= -->
+  <figure class="error-page__illustration" aria-hidden="true">
+    <app-error-illustration />
+  </figure>
+</main>

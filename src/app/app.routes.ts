@@ -13,7 +13,7 @@ export const routes: Routes = [
     path: 'courses',
     loadChildren: () => import('./features/courses/routes').then((m) => m.COURSES_ROUTES),
   },
-    {
+  {
     path: 'blogs',
     loadChildren: () => import('./features/blogs/routes').then((m) => m.BLOGS_ROUTES),
   },
@@ -22,8 +22,9 @@ export const routes: Routes = [
     loadChildren: () => import('./features/contact/routes').then((m) => m.CONTACT_ROUTES),
   },
 
+  // 404 Page
   {
     path: '**',
-    redirectTo: '',
+    loadChildren: () => import('./features/not-found/routes').then((m) => m.NOT_FOUND_ROUTES),
   },
 ];
