@@ -14,8 +14,8 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 
 import { BlogsFacade } from '../../facades';
 import { BLOG_SEARCH_CONFIG } from '../../configs';
-import { BLOG_SEARCH_SVG_ICONS } from '../../constants/blog-search.constants';
 import { IBlogSearchConfig, ISvgIconsConfig } from '../../interfaces';
+import { BLOG_SEARCH_SVG_ICONS } from '../../constants';
 
 @Component({
   selector: 'app-blog-search',

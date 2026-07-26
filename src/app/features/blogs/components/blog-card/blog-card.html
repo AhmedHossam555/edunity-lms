@@ -1,43 +1,44 @@
+<!-- ========================================= -->
+<!-- Blog Card                                -->
+<!-- ========================================= -->
 <article class="blog-card">
+  <!-- Blog Image -->
   <a (click)="navigateToBlog()" class="blog-card__image-link">
     <img
-      [ngSrc]="image"
-      width="364"
-      height="208"
-      loading="lazy"
-      [alt]="imageAlt"
+      [ngSrc]="image()"
+      [width]="config.image.width"
+      [height]="config.image.height"
+      [loading]="config.image.loading"
+      [alt]="imageAlt()"
       [fallbackSrc]="defaultImage"
       class="blog-card__image"
     />
   </a>
 
   <div class="blog-card__body">
+    <!-- Blog Meta -->
     <div class="blog-card__meta">
       <span class="blog-card__meta-item">
-        <span 
-          class="blog-card__meta-icon" 
-          [innerHTML]="calendarIcon"
-        ></span>
-        {{ blog.date ?? (publishedDate | date: 'dd MMMM yyyy') }}
+        <span class="blog-card__meta-icon" [innerHTML]="calendarIcon"></span>
+        {{ blog().date ?? (publishedDate() | date: config.dateFormat) }}
       </span>
 
       <span class="blog-card__meta-item">
-        <span 
-          class="blog-card__meta-icon" 
-          [innerHTML]="commentIcon"
-        ></span>
-        Comment ({{ blog.commentCount }})
+        <span class="blog-card__meta-icon" [innerHTML]="commentIcon"></span>
+        {{ config.labels.commentPrefix }} ({{ blog().commentCount }})
       </span>
     </div>
 
+    <!-- Blog Title -->
     <h3 class="blog-card__title">
       <a (click)="navigateToBlog()">
-        {{ blog.title }}
+        {{ blog().title }}
       </a>
     </h3>
 
+    <!-- Blog Action -->
     <div class="blog-card__bottom" (click)="navigateToBlog()">
-      <app-button text="Read More"></app-button>
+      <app-button [text]="config.labels.readMore"></app-button>
     </div>
   </div>
 </article>
