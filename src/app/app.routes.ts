@@ -21,7 +21,10 @@ export const routes: Routes = [
     path: 'contact-us',
     loadChildren: () => import('./features/contact/routes').then((m) => m.CONTACT_ROUTES),
   },
-
+  {
+    path: 'auth',
+    loadChildren: () => import('./features/auth/routes').then((m) => m.AUTH_ROUTES),
+  },
   // 404 Page
   {
     path: '**',

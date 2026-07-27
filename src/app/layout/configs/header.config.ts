@@ -15,7 +15,7 @@ export const HEADER_CONFIG: IHeaderConfig = {
     alt: 'Edunity',
     width: 237,
     height: 54,
-    href: '#',
+    href: '/',
   },
 
   // ─────────────────────────────────────────────────────────────
@@ -45,10 +45,14 @@ export const HEADER_CONFIG: IHeaderConfig = {
     //  Authentication Link
     // ─────────────────────────────────────────────────────────────
     loginLink: {
-      label: 'Login / Register',
-      href: '#',
+      label: 'Login',
+      href: '/auth/login', // Changed to login path
       externalRef:
         'https://www.figma.com/design/5NFuduWyIWOjRg87SYmccq/CourseHub---University--Online-Courses--School---Education-Figma-Template--Community-?node-id=6-1519',
+    },
+    registerLink: {
+      label: 'Register',
+      href: '/auth/register', // Added register path
     },
 
     // ─────────────────────────────────────────────────────────────

@@ -22,6 +22,11 @@ export interface ILoginLink {
   externalRef?: string;
 }
 
+export interface IRegisterLink {
+  label: string;
+  href: string;
+}
+
 export interface ISocialLink {
   platform: SocialPlatform;
   href: string;
@@ -68,6 +73,7 @@ export interface IHeaderConfig {
   topBar: {
     infoItems: ITopBarInfoItem[];
     loginLink: ILoginLink;
+    registerLink: IRegisterLink; // Added register link
     socials: ISocialLink[];
   };
 

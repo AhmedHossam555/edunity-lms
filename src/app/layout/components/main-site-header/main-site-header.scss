@@ -29,7 +29,7 @@
 .header__top-bar-right {
   display: flex;
   align-items: center;
-  gap: clamp(0.75rem, 2vw, 1.5rem);
+  gap: clamp(0.5rem, 1.5vw, 1rem);
 }
 
 .header__top-bar-info-item {

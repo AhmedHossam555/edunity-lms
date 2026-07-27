@@ -38,9 +38,10 @@
       </div>
 
       <div class="header__top-bar-right">
+        <!-- Login Link -->
         <a
           class="header__top-bar-login"
-          [href]="config().topBar.loginLink.href"
+          [routerLink]="config().topBar.loginLink.href"
           [attr.aria-label]="config().topBar.loginLink.label"
         >
           <span
@@ -49,6 +50,18 @@
             [innerHTML]="loginIconSafe()"
           ></span>
           <span class="header__top-bar-login-label">{{ config().topBar.loginLink.label }}</span>
+        </a>
+
+        <!-- Separator -->
+        <span class="header__top-bar-separator">|</span>
+
+        <!-- Register Link -->
+        <a
+          class="header__top-bar-register"
+          [routerLink]="config().topBar.registerLink.href"
+          [attr.aria-label]="config().topBar.registerLink.label"
+        >
+          <span class="header__top-bar-register-label">{{ config().topBar.registerLink.label }}</span>
         </a>
 
         <div class="header__top-bar-socials">
