@@ -1,9 +1,9 @@
 import { Component } from '@angular/core';
-import { PageBanner } from "@app/shared";
+import { PageBanner, Button } from "@app/shared";
 
 @Component({
   selector: 'app-register',
-  imports: [PageBanner],
+  imports: [PageBanner, Button],
   templateUrl: './register.html',
   styleUrl: './register.scss',
 })
