@@ -1,5 +1,5 @@
 <button
-  type="button"
+  [attr.type]="type()"
   class="button"
   [disabled]="disabled()"
   [style.background]="background()"
@@ -9,7 +9,7 @@
     {{ text() }}
   </span>
 
-  <span class="button__icon"  [style.background]="backgroundIcon()"  aria-hidden="true">
+  <span class="button__icon" [style.background]="backgroundIcon()" aria-hidden="true">
     <svg
       class="button__icon-svg"
       width="17"

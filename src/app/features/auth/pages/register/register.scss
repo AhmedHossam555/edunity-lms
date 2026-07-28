@@ -10,27 +10,27 @@
     grid-template-columns: 1fr 1fr;
     align-items: start;
     overflow: hidden;
-    background: #fff;
-    border-radius: 1rem;
-    box-shadow: 0 12px 30px rgb(0 0 0 / 0.08);
-    min-height: 38rem;
+    background: #f2f2f2;
+    box-shadow: 0 0.75rem 1.875rem rgb(0 0 0 / 0.08);
   }
 
   &__content {
     display: flex;
     flex-direction: column;
     justify-content: center;
+    background-color: #f2f2f2 !important;
+    padding: clamp(1.875rem, 1.2rem + 3.4vw, 6.875rem) clamp(1.25rem, 0.6rem + 3.4vw, 4.375rem);
   }
 
   &__header {
-    padding-bottom: 20px;
-    border-bottom: 1px solid #e2e1e1;
+    padding-bottom: 1.25rem;
+    border-bottom: 0.0625rem solid #e2e1e1;
   }
 
   &__title {
     color: #0a0909;
-    font-size: 30px;
-    line-height: 30px;
+    font-size: clamp(1.5rem, 1.3rem + 1vw, 1.875rem);
+    line-height: 1;
     text-transform: uppercase;
     margin: 0;
   }
@@ -38,22 +38,48 @@
   &__form {
     display: flex;
     flex-direction: column;
-    gap: 20px;
-    margin-top: 30px;
+    gap: 1.25rem;
+    margin-top: 1.875rem;
   }
 
+  &__form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
 
+  // Accessible label kept visually hidden so existing placeholder-driven
+  // visual design is unaffected, while inputs gain a real programmatic name.
+  &__label {
+    &--visually-hidden {
+      position: absolute;
+      width: 0.0625rem;
+      height: 0.0625rem;
+      padding: 0;
+      margin: -0.0625rem;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+  }
+
+  // Password wrapper styles
+  &__password-wrapper {
+    position: relative;
+    width: 100%;
+  }
 
   &__input {
     width: 100%;
-    padding: 18px 20px;
-    border: 1px solid transparent;
-    border-radius: 5px;
+    padding: clamp(0.875rem, 0.75rem + 0.4vw, 1.125rem) clamp(1rem, 0.9rem + 0.3vw, 1.25rem);
+    border: 0.0625rem solid #d7d7d7;
+    border-radius: 0.3125rem;
     background-color: #fff;
-    color: #0E2A46;
-    font-size:16px;
+    color: #0e2a46;
+    font-size: clamp(0.875rem, 0.8rem + 0.2vw, 1rem);
     font-weight: 400;
-    line-height: auto;
+    line-height: normal;
     outline: none;
     transition:
       border-color 0.25s ease,
@@ -69,7 +95,15 @@
     &:focus {
       background-color: #fff;
       border-color: #7c58f2;
-      box-shadow: 0 0 0 4px rgb(124 88 242 / 12%);
+      box-shadow: 0 0 0 0.25rem rgb(124 88 242 / 12%);
+    }
+
+    &.ng-invalid.ng-touched {
+      border-color: #dc2626;
+    }
+
+    &.ng-valid.ng-touched {
+      border-color: #16a34a;
     }
 
     &--required {
@@ -84,12 +118,50 @@
 
       &:focus {
         border-color: #ef4444;
-        box-shadow: 0 0 0 4px rgb(239 68 68 / 12%);
+        box-shadow: 0 0 0 0.25rem rgb(239 68 68 / 12%);
       }
     }
   }
 
+  // Password toggle button styles
+  &__password-toggle {
+    position: absolute;
+    right: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    cursor: pointer;
+    color: #6b7280;
+    border-radius: 0.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
 
+    &:hover {
+      color: #0e2a46;
+      background-color: rgba(0, 0, 0, 0.05);
+    }
+
+    &:focus-visible {
+      outline: 0.125rem solid #7c58f2;
+      outline-offset: 0.125rem;
+    }
+  }
+
+  &__toggle-icon {
+    display: block;
+  }
+
+  &__error-message {
+    color: #dc2626;
+    font-size: 0.875rem;
+    font-weight: 500;
+    line-height: 1.4;
+    min-height: 1.25rem;
+  }
 
   &__hint {
     font-size: 0.75rem;
@@ -110,7 +182,7 @@
   &__footer {
     display: flex;
     align-items: center;
-    margin-block: 40px;
+    margin-block: 2.5rem;
     gap: 1rem;
     flex-wrap: wrap;
   }
@@ -137,16 +209,16 @@
     text-decoration: none;
     transition: transform 0.25s ease;
     border-radius: 50%;
-    font-size: 16px;
-    line-height: 32px;
+    font-size: 1rem;
+    line-height: 2rem;
 
     &:hover {
       transform: scale(1.1);
     }
 
     &:focus-visible {
-      outline: 2px solid #7c58f2;
-      outline-offset: 2px;
+      outline: 0.125rem solid #7c58f2;
+      outline-offset: 0.125rem;
     }
   }
 
@@ -156,14 +228,14 @@
   }
 
   &__signin {
-    font-size: 16px;
-    line-height: 16px;
+    font-size: 1rem;
+    line-height: 1;
     font-weight: 400;
-    color: #4D5756;
+    color: #4d5756;
   }
 
   &__signin-link {
-    color: #0E2A46;
+    color: #0e2a46;
     font-weight: 600;
     text-decoration: none;
 
@@ -172,24 +244,31 @@
     }
 
     &:focus-visible {
-      outline: 2px solid #7c58f2;
-      outline-offset: 2px;
+      outline: 0.125rem solid #7c58f2;
+      outline-offset: 0.125rem;
       border-radius: 0.25rem;
     }
   }
 
-  @media (max-width: 992px) {
+  &__submit {
+    border: 0;
+    background: transparent;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  @media (max-width: 62rem) {
     &__card {
       grid-template-columns: 1fr;
     }
 
     &__image-wrapper {
       order: -1;
-      height: 22rem;
+      height: clamp(18rem, 15rem + 10vw, 22rem);
     }
   }
 
-  @media (max-width: 768px) {
+  @media (max-width: 48rem) {
     &__footer {
       flex-direction: column;
       align-items: flex-start;
@@ -200,20 +279,9 @@
     }
   }
 
-  @media (max-width: 576px) {
-    &__content {
-      padding: 1.5rem;
-    }
-
+  @media (max-width: 36rem) {
     &__image-wrapper {
       height: 18rem;
     }
   }
 }
-
-.register__content {
-  background-color: #f2f2f2 !important;
-  padding: 110px 70px;
-}
-
-

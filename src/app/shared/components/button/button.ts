@@ -8,6 +8,7 @@ import { ChangeDetectionStrategy, Component, input } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class Button {
+  readonly type = input<'button' | 'submit' | 'reset'>('button');
   readonly text = input.required<string>();
   readonly background = input('#2FC7A1');
   readonly backgroundIcon = input('#35d7ae');
