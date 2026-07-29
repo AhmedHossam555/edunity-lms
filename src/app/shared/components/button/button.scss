@@ -41,6 +41,20 @@
 
   &__text {
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__spinner {
+    display: inline-block;
+    width: 1.125rem; // 18px
+    height: 1.125rem; // 18px
+    border: 0.125rem solid currentColor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    opacity: 0.7;
   }
 
   &__icon {
@@ -62,5 +76,14 @@
   &__icon-svg {
     inline-size: 1.0625rem; // 17px
     block-size: 0.875rem; // 14px
+  }
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
   }
 }

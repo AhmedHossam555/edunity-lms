@@ -14,5 +14,5 @@ export class Button {
   readonly backgroundIcon = input('#35d7ae');
   readonly textColor = input('#ffffff');
   readonly disabled = input(false);
-
+  readonly loading = input(false); // New loading input
 }

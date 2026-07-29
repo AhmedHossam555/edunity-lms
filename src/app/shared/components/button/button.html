@@ -1,11 +1,14 @@
 <button
   [attr.type]="type()"
   class="button"
-  [disabled]="disabled()"
+  [disabled]="disabled() || loading()"
   [style.background]="background()"
   [style.color]="textColor()"
 >
   <span class="button__text">
+    @if (loading()) {
+      <span class="button__spinner" aria-hidden="true"></span>
+    }
     {{ text() }}
   </span>
 
