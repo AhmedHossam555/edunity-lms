@@ -131,6 +131,75 @@
 }
 
 /* ========================================= */
+/* User Profile Section                      */
+/* ========================================= */
+
+.sidebar__user-profile {
+  padding: 1.25rem 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  border-bottom: 1px solid rgba(23, 37, 78, 0.08);
+  background: rgba(53, 215, 174, 0.05);
+  flex-shrink: 0;
+}
+
+.sidebar__user-avatar-wrapper {
+  position: relative;
+  flex-shrink: 0;
+}
+
+.sidebar__user-avatar {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: #704fe6;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: clamp(1rem, 1.2vw, 1.25rem);
+  user-select: none;
+  box-shadow: 0 4px 12px rgba(112, 79, 230, 0.3);
+}
+
+.sidebar__user-status {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  background: #35d7ae;
+  border: 2px solid white;
+  display: block;
+}
+
+.sidebar__user-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.sidebar__user-name {
+  display: block;
+  font-weight: 600;
+  font-size: clamp(0.875rem, 0.84rem + 0.2vw, 0.9375rem);
+  color: #17254e;
+  margin-bottom: 0.125rem;
+  line-height: 1.2;
+}
+
+.sidebar__user-email {
+  display: block;
+  font-size: clamp(0.75rem, 0.72rem + 0.2vw, 0.8125rem);
+  color: #666;
+  line-height: 1.2;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ========================================= */
 /* Sidebar Search                            */
 /* ========================================= */
 
@@ -331,6 +400,7 @@
   font-size: clamp(0.75rem, 0.72rem + 0.2vw, 0.8125rem);
   color: #17254e;
   padding: 0.25rem 0;
+  
   &--clickable {
     cursor: pointer;
     text-decoration: none;
@@ -427,6 +497,94 @@
 
 .sidebar__login-label {
   flex: 1;
+}
+
+/* Register Link */
+.sidebar__register {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  border-radius: 30px;
+  text-decoration: none;
+  color: #17254e;
+  font-size: clamp(0.8125rem, 0.78rem + 0.2vw, 0.875rem);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(23, 37, 78, 0.1);
+
+  &:hover {
+    background: rgba(53, 215, 174, 0.08);
+    border-color: #35d7ae;
+    transform: translateX(4px);
+  }
+}
+
+.sidebar__register-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  inline-size: 1rem; /* width: 1rem */
+  block-size: 1rem; /* height: 1rem */
+  color: #35d7ae;
+
+  svg {
+    display: block;
+    inline-size: 100%; /* width: 100% */
+    block-size: 100%; /* height: 100% */
+  }
+}
+
+.sidebar__register-label {
+  flex: 1;
+}
+
+/* Logout Button */
+.sidebar__logout-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.625rem 1rem;
+  border-radius: 30px;
+  border: 1px solid rgba(255, 93, 93, 0.3);
+  background: rgba(255, 93, 93, 0.05);
+  color: #ff5d5d;
+  cursor: pointer;
+  font-size: clamp(0.8125rem, 0.78rem + 0.2vw, 0.875rem);
+  font-weight: 500;
+  transition: all 0.3s ease;
+  width: 100%;
+
+  &:hover {
+    background: rgba(255, 93, 93, 0.1);
+    border-color: #ff5d5d;
+    transform: translateX(4px);
+  }
+
+  &:active {
+    transform: scale(0.97);
+  }
+}
+
+.sidebar__logout-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  inline-size: 1.25rem; /* width: 1.25rem */
+  block-size: 1.25rem; /* height: 1.25rem */
+
+  svg {
+    display: block;
+    inline-size: 100%; /* width: 100% */
+    block-size: 100%; /* height: 100% */
+  }
+}
+
+.sidebar__logout-label {
+  flex: 1;
+  text-align: left;
 }
 
 /* Contact Button */
@@ -542,6 +700,21 @@
 
   .sidebar__logo-image {
     block-size: 2rem; /* height: 2rem */
+  }
+
+  .sidebar__user-profile {
+    padding: 1rem;
+  }
+
+  .sidebar__user-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.875rem;
+  }
+
+  .sidebar__user-status {
+    width: 0.625rem;
+    height: 0.625rem;
   }
 
   .sidebar__search {

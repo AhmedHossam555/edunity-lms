@@ -9,7 +9,7 @@ import {
   effect,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { HEADER_CONFIG } from '@app/layout/configs';
 import {
   ARROW_ICON,
@@ -21,6 +21,8 @@ import {
 import { NavLinkId } from '@app/layout/enums';
 import { IHeaderConfig, INavLink } from '@app/layout/interfaces';
 import { safeSvg } from '@app/shared/utils/svg.util';
+import { AuthFacade } from '@app/features/auth/facades';
+import { AuthState } from '@app/features/auth/services';
 
 @Component({
   selector: 'app-sidebar',
@@ -32,6 +34,9 @@ import { safeSvg } from '@app/shared/utils/svg.util';
 })
 export class Sidebar {
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly authState = inject(AuthState);
+  private readonly authFacade = inject(AuthFacade);
+  private readonly router = inject(Router);
 
   // ─────────────────────────────────────────────────────────────
   //  Inputs
@@ -61,6 +66,15 @@ export class Sidebar {
   // ─────────────────────────────────────────────────────────────
 
   protected readonly isMobileMenuOpen = signal(false);
+
+  // ─────────────────────────────────────────────────────────────
+  //  Computed - User
+  // ─────────────────────────────────────────────────────────────
+  protected readonly user = this.authState.user;
+  protected readonly isAuthenticated = this.authFacade.isAuthenticated;
+  protected readonly userInitial = computed(
+    () => this.user()?.fullName?.charAt(0)?.toUpperCase() ?? '?',
+  );
 
   // ─────────────────────────────────────────────────────────────
   //  Effects
@@ -161,4 +175,11 @@ export class Sidebar {
       rel: item.clickType === 'location' ? 'noopener noreferrer' : undefined,
     }));
   });
+
+  /** Logout user */
+  protected logout(): void {
+    this.authFacade.logout();
+    this.closeSidebar.emit();
+    this.router.navigateByUrl('/');
+  }
 }

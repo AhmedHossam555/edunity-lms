@@ -32,12 +32,17 @@ import { safeSvg } from '@app/shared/utils/svg.util';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class MainSiteHeader {
+  // ─────────────────────────────────────────────────────────────
+  //  Dependencies
+  // ─────────────────────────────────────────────────────────────
   private readonly sanitizer = inject(DomSanitizer);
+  private readonly authState = inject(AuthState);
+  private readonly authFacade = inject(AuthFacade);
+  private readonly router = inject(Router);
 
   // ─────────────────────────────────────────────────────────────
   //  Inputs
   // ─────────────────────────────────────────────────────────────
-
   /** Current page path for active link detection */
   currentPath = input<string>('');
 
@@ -47,33 +52,32 @@ export class MainSiteHeader {
   // ─────────────────────────────────────────────────────────────
   //  Outputs
   // ─────────────────────────────────────────────────────────────
-
   /** Emitted when a navigation link is clicked */
   navigate = output<INavLink>();
 
   // ─────────────────────────────────────────────────────────────
-  //  Component state
+  //  State
   // ─────────────────────────────────────────────────────────────
-  private readonly authState = inject(AuthState);
-  private readonly authFacade = inject(AuthFacade);
-  private readonly router = inject(Router);
+  /** Controls mobile menu visibility and aria-expanded state. */
+  protected readonly isMobileMenuOpen = signal(false);
 
+  // ─────────────────────────────────────────────────────────────
+  //  Computed - User
+  // ─────────────────────────────────────────────────────────────
   protected readonly user = this.authState.user;
   protected readonly isAuthenticated = this.authFacade.isAuthenticated;
   protected readonly userInitial = computed(
     () => this.user()?.fullName?.charAt(0)?.toUpperCase() ?? '?',
   );
-  logout(): void {
-    this.authFacade.logout();
-    this.closeSidebar();
-    this.router.navigateByUrl('/');
-  }
-  /** Controls mobile menu visibility and aria-expanded state. */
-  protected readonly isMobileMenuOpen = signal(false);
 
   // ─────────────────────────────────────────────────────────────
-  //  Sanitized top bar icons
+  //  Computed - Sanitized Icons
   // ─────────────────────────────────────────────────────────────
+  protected readonly loginIconSafe = computed<SafeHtml>(() => safeSvg(this.sanitizer, LOGIN_ICON));
+  protected readonly searchIconSafe = computed<SafeHtml>(() =>
+    safeSvg(this.sanitizer, SEARCH_ICON),
+  );
+  protected readonly arrowIconSafe = computed<SafeHtml>(() => safeSvg(this.sanitizer, ARROW_ICON));
 
   protected readonly topBarIconsSafe = computed<Record<string, SafeHtml>>(() => {
     const result: Record<string, SafeHtml> = {};
@@ -84,10 +88,6 @@ export class MainSiteHeader {
 
     return result;
   });
-
-  // ─────────────────────────────────────────────────────────────
-  //  Sanitized social media icons
-  // ─────────────────────────────────────────────────────────────
 
   protected readonly socialIconsSafe = computed<Record<string, SafeHtml>>(() => {
     const result: Record<string, SafeHtml> = {};
@@ -100,23 +100,13 @@ export class MainSiteHeader {
   });
 
   // ─────────────────────────────────────────────────────────────
-  //  Sanitized standalone icons
-  // ─────────────────────────────────────────────────────────────
-  protected readonly loginIconSafe = computed<SafeHtml>(() => safeSvg(this.sanitizer, LOGIN_ICON));
-  protected readonly searchIconSafe = computed<SafeHtml>(() =>
-    safeSvg(this.sanitizer, SEARCH_ICON),
-  );
-  protected readonly arrowIconSafe = computed<SafeHtml>(() => safeSvg(this.sanitizer, ARROW_ICON));
-
-  // ─────────────────────────────────────────────────────────────
-  //  Derived navigation data
+  //  Computed - Navigation
   // ─────────────────────────────────────────────────────────────
   protected readonly navLinks = computed<INavLink[]>(() => this.config().navbar.links);
 
   // ─────────────────────────────────────────────────────────────
-  //  Public methods
+  //  Public Methods
   // ─────────────────────────────────────────────────────────────
-
   /** Toggle mobile menu open/closed state */
   protected toggleMobileMenu(): void {
     this.isMobileMenuOpen.update((open) => !open);
@@ -148,5 +138,12 @@ export class MainSiteHeader {
     if (item.clickType === 'location' && item.href) {
       window.open(item.href, '_blank');
     }
+  }
+
+  /** Logout user */
+  logout(): void {
+    this.authFacade.logout();
+    this.closeSidebar();
+    this.router.navigateByUrl('/');
   }
 }
