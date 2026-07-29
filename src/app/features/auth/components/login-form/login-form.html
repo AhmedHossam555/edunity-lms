@@ -1,0 +1,137 @@
+<!-- Form Section -->
+<div class="login__content">
+  <header class="login__header">
+    <h1 id="login-title" class="login__title">Sign In</h1>
+  </header>
+
+  @if (error) {
+    <div class="login__error-banner" role="alert">
+      <span class="login__error-icon">⚠️</span>
+      <span>{{ error }}</span>
+    </div>
+  }
+
+  <form
+    class="login__form"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    novalidate
+    aria-label="Login form"
+  >
+    <div class="login__form-group">
+      <label for="email" class="login__label login__label--visually-hidden"> Email </label>
+      <input
+        id="email"
+        type="email"
+        placeholder="Email *"
+        class="login__input"
+        formControlName="email"
+        autocomplete="email"
+        [disabled]="isLoading"
+        [attr.aria-invalid]="f.email.touched && f.email.invalid ? true : null"
+        [attr.aria-describedby]="f.email.touched && f.email.invalid ? 'email-error' : null"
+      />
+
+      @if (f.email.touched && f.email.invalid) {
+        <span id="email-error" class="login__error-message" role="alert">
+          @if (f.email.errors?.['required']) {
+            Email is required.
+          }
+
+          @if (f.email.errors?.['email']) {
+            Enter a valid email address.
+          }
+        </span>
+      }
+    </div>
+
+    <div class="login__form-group">
+      <label for="password" class="login__label login__label--visually-hidden"> Password </label>
+      <div class="login__password-wrapper">
+        <input
+          id="password"
+          [type]="showPassword ? 'text' : 'password'"
+          placeholder="Password *"
+          class="login__input"
+          formControlName="password"
+          autocomplete="current-password"
+          [disabled]="isLoading"
+          [attr.aria-invalid]="f.password.touched && f.password.invalid ? true : null"
+          [attr.aria-describedby]="
+            f.password.touched && f.password.invalid ? 'password-error' : null
+          "
+        />
+        <button
+          type="button"
+          class="login__password-toggle"
+          (click)="togglePasswordVisibility()"
+          [disabled]="isLoading"
+          [attr.aria-label]="showPassword ? 'Hide password' : 'Show password'"
+          [attr.aria-pressed]="showPassword"
+          aria-controls="password"
+        >
+          <span [innerHTML]="showPassword ? eyeClosedIcon : eyeOpenIcon" aria-hidden="true"></span>
+        </button>
+      </div>
+
+      @if (f.password.touched && f.password.invalid) {
+        <span id="password-error" class="login__error-message" role="alert">
+          @if (f.password.errors?.['required']) {
+            Password is required.
+          }
+
+          @if (f.password.errors?.['minlength']) {
+            Password must be at least 8 characters.
+          }
+        </span>
+      }
+    </div>
+
+    <div class="login__footer">
+      <app-button
+        [type]="'submit'"
+        [text]="isLoading ? 'Signing in...' : 'Sign In'"
+        [background]="'#704FE6'"
+        [backgroundIcon]="'#785DD7'"
+        [disabled]="isLoading"
+        [loading]="isLoading"
+      />
+
+      <div class="login__social">
+        <span class="login__social-text">or sign in with</span>
+
+        <a
+          href="#"
+          class="login__social-link"
+          aria-label="Sign in with Apple"
+          [class.disabled]="isLoading"
+        >
+          <span [innerHTML]="appleIcon" aria-hidden="true"></span>
+        </a>
+
+        <a
+          href="#"
+          class="login__social-link"
+          aria-label="Sign in with Google"
+          [class.disabled]="isLoading"
+        >
+          <span [innerHTML]="googleIcon" aria-hidden="true"></span>
+        </a>
+
+        <a
+          href="#"
+          class="login__social-link"
+          aria-label="Sign in with Facebook"
+          [class.disabled]="isLoading"
+        >
+          <span [innerHTML]="facebookIcon" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </form>
+
+  <p class="login__signin">
+    Don't have an account?
+    <a routerLink="/auth/register" class="login__signin-link"> Sign Up </a>
+  </p>
+</div>
