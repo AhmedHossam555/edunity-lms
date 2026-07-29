@@ -37,7 +37,9 @@
               autocomplete="name"
               [disabled]="isLoading"
               [attr.aria-invalid]="f.fullName.touched && f.fullName.invalid ? true : null"
-              [attr.aria-describedby]="f.fullName.touched && f.fullName.invalid ? 'fullName-error' : null"
+              [attr.aria-describedby]="
+                f.fullName.touched && f.fullName.invalid ? 'fullName-error' : null
+              "
             />
 
             @if (f.fullName.touched && f.fullName.invalid) {
@@ -126,7 +128,9 @@
                 autocomplete="new-password"
                 [disabled]="isLoading"
                 [attr.aria-invalid]="f.password.touched && f.password.invalid ? true : null"
-                [attr.aria-describedby]="f.password.touched && f.password.invalid ? 'password-error' : null"
+                [attr.aria-describedby]="
+                  f.password.touched && f.password.invalid ? 'password-error' : null
+                "
               />
               <button
                 type="button"
@@ -137,7 +141,10 @@
                 [attr.aria-pressed]="showPassword"
                 aria-controls="password"
               >
-                <span [innerHTML]="showPassword ? eyeClosedIcon : eyeOpenIcon" aria-hidden="true"></span>
+                <span
+                  [innerHTML]="showPassword ? eyeClosedIcon : eyeOpenIcon"
+                  aria-hidden="true"
+                ></span>
               </button>
             </div>
 
@@ -161,20 +168,36 @@
               [background]="'#704FE6'"
               [backgroundIcon]="'#785DD7'"
               [disabled]="isLoading"
+              [loading]="isLoading"
             />
 
             <div class="register__social">
               <span class="register__social-text">or sign up with</span>
 
-              <a href="#" class="register__social-link" aria-label="Sign up with Apple" [class.disabled]="isLoading">
+              <a
+                href="#"
+                class="register__social-link"
+                aria-label="Sign up with Apple"
+                [class.disabled]="isLoading"
+              >
                 <span [innerHTML]="appleIcon" aria-hidden="true"></span>
               </a>
 
-              <a href="#" class="register__social-link" aria-label="Sign up with Google" [class.disabled]="isLoading">
+              <a
+                href="#"
+                class="register__social-link"
+                aria-label="Sign up with Google"
+                [class.disabled]="isLoading"
+              >
                 <span [innerHTML]="googleIcon" aria-hidden="true"></span>
               </a>
 
-              <a href="#" class="register__social-link" aria-label="Sign up with Facebook" [class.disabled]="isLoading">
+              <a
+                href="#"
+                class="register__social-link"
+                aria-label="Sign up with Facebook"
+                [class.disabled]="isLoading"
+              >
                 <span [innerHTML]="facebookIcon" aria-hidden="true"></span>
               </a>
             </div>
@@ -183,7 +206,7 @@
 
         <p class="register__signin">
           Already have an account?
-          <a routerLink="/login" class="register__signin-link"> Sign In </a>
+          <a routerLink="/auth/login" class="register__signin-link"> Sign In </a>
         </p>
       </div>
 

@@ -82,10 +82,9 @@ export class Register implements OnDestroy {
         next: (response) => {
           // Handle successful registration
           console.log('Registration successful:', response);
-          
+
           // Navigate to login page after successful registration
-          this.router.navigate(['/login']);
-          
+          this.router.navigateByUrl('/auth/login');
           // Optionally reset form
           // this.registerForm.reset();
         },
@@ -93,8 +92,8 @@ export class Register implements OnDestroy {
           // Error is already handled in facade
           // but you can add additional error handling here
           console.error('Registration failed:', error);
-        }
-      })
+        },
+      }),
     );
   }
 
