@@ -87,5 +87,6 @@ export class Login implements OnDestroy {
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
+    this.authFacade.clearError();
   }
 }

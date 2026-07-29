@@ -8,7 +8,9 @@ import {
   output,
 } from '@angular/core';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
+import { AuthFacade } from '@app/features/auth/facades';
+import { AuthState } from '@app/features/auth/services';
 import { Sidebar } from '@app/layout/components/sidebar/sidebar';
 import { HEADER_CONFIG } from '@app/layout/configs';
 import {
@@ -52,7 +54,20 @@ export class MainSiteHeader {
   // ─────────────────────────────────────────────────────────────
   //  Component state
   // ─────────────────────────────────────────────────────────────
+  private readonly authState = inject(AuthState);
+  private readonly authFacade = inject(AuthFacade);
+  private readonly router = inject(Router);
 
+  protected readonly user = this.authState.user;
+  protected readonly isAuthenticated = this.authFacade.isAuthenticated;
+  protected readonly userInitial = computed(
+    () => this.user()?.fullName?.charAt(0)?.toUpperCase() ?? '?',
+  );
+  logout(): void {
+    this.authFacade.logout();
+    this.closeSidebar();
+    this.router.navigateByUrl('/');
+  }
   /** Controls mobile menu visibility and aria-expanded state. */
   protected readonly isMobileMenuOpen = signal(false);
 

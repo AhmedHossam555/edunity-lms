@@ -37,3 +37,4 @@ export const SVG_AUTH_ICONS = {
 
 
 export const AUTH_STORAGE_KEY = 'edunity_users';
+export const CURRENT_USER_KEY = 'current_user';

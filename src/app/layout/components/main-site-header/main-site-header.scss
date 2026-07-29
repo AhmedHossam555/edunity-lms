@@ -374,3 +374,51 @@
     display: none;
   }
 }
+/* ========================================= */
+/* User (authenticated state)                */
+/* ========================================= */
+
+.header__user {
+  display: inline-flex;
+  align-items: center;
+  gap: clamp(0.5rem, 1.2vw, 0.75rem);
+  line-height: 1;
+}
+
+.header__user-avatar {
+  width: clamp(1.75rem, 3vw, 2.5rem);
+  height: clamp(1.75rem, 3vw, 2.5rem);
+  border-radius: 50%;
+  background: #704fe6;
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-weight: 700;
+  font-size: clamp(0.75rem, 1.2vw, 0.9375rem);
+  flex-shrink: 0;
+  user-select: none;
+}
+
+.header__user-logout {
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  padding: 0;
+  color: inherit;
+  font: inherit;
+  font-size: clamp(0.8125rem, 1.3vw, 0.9375rem);
+  line-height: 1;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: opacity 0.2s ease;
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &:focus-visible {
+    outline: 2px solid #29d6bf;
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+}

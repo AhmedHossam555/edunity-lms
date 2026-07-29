@@ -38,31 +38,40 @@
       </div>
 
       <div class="header__top-bar-right">
-        <!-- Login Link -->
-        <a
-          class="header__top-bar-login"
-          [routerLink]="config().topBar.loginLink.href"
-          [attr.aria-label]="config().topBar.loginLink.label"
-        >
-          <span
-            class="header__top-bar-icon"
-            aria-hidden="true"
-            [innerHTML]="loginIconSafe()"
-          ></span>
-          <span class="header__top-bar-login-label">{{ config().topBar.loginLink.label }}</span>
-        </a>
+        @if (isAuthenticated()) {
+          <div class="header__user">
+            <span class="header__user-avatar" aria-hidden="true">{{ userInitial() }}</span>
+            <button type="button" class="header__user-logout" (click)="logout()">Logout</button>
+          </div>
+        } @else {
+          <!-- Login Link -->
+          <a
+            class="header__top-bar-login"
+            [routerLink]="config().topBar.loginLink.href"
+            [attr.aria-label]="config().topBar.loginLink.label"
+          >
+            <span
+              class="header__top-bar-icon"
+              aria-hidden="true"
+              [innerHTML]="loginIconSafe()"
+            ></span>
+            <span class="header__top-bar-login-label">{{ config().topBar.loginLink.label }}</span>
+          </a>
 
-        <!-- Separator -->
-        <span class="header__top-bar-separator">|</span>
+          <!-- Separator -->
+          <span class="header__top-bar-separator">|</span>
 
-        <!-- Register Link -->
-        <a
-          class="header__top-bar-register"
-          [routerLink]="config().topBar.registerLink.href"
-          [attr.aria-label]="config().topBar.registerLink.label"
-        >
-          <span class="header__top-bar-register-label">{{ config().topBar.registerLink.label }}</span>
-        </a>
+          <!-- Register Link -->
+          <a
+            class="header__top-bar-register"
+            [routerLink]="config().topBar.registerLink.href"
+            [attr.aria-label]="config().topBar.registerLink.label"
+          >
+            <span class="header__top-bar-register-label">{{
+              config().topBar.registerLink.label
+            }}</span>
+          </a>
+        }
 
         <div class="header__top-bar-socials">
           @for (social of config().topBar.socials; track social.platform) {
