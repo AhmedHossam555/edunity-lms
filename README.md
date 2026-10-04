@@ -1,184 +1,157 @@
-# EDUNITY-LMS
+# 🎓 EDUNITY LMS
 
-A modern Learning Management System (LMS) built with Angular 21, designed to deliver a seamless online learning experience. The platform includes course management, instructor profiles, interactive quizzes, student dashboards, progress tracking, and responsive UI components.
+> A modern, SEO-optimized Learning Management System built with **Angular 21**, **Server-Side Rendering**, and a scalable **Domain-Driven Design** architecture.
 
-The application leverages Angular 21 with Server-Side Rendering (SSR) for improved performance, SEO, and faster initial page loads, powered by an Express.js server. It follows a scalable Domain-Driven Design (DDD) architecture, with barrel index files for clean and maintainable imports, along with modern Angular best practices. The architecture promotes clear separation of concerns, modularity, reusability, and maintainability while ensuring accessibility and an optimized user experience across all devices.
+[![Angular](https://img.shields.io/badge/Angular-21-DD0031?logo=angular&logoColor=white)](https://angular.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org)
+[![Express](https://img.shields.io/badge/Express.js-SSR-000000?logo=express&logoColor=white)](https://expressjs.com)
+[![SCSS](https://img.shields.io/badge/SCSS-Design%20System-CC6699?logo=sass&logoColor=white)](https://sass-lang.com)
+[![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com)
 
-## Tech Stack
+**🔗 Live Demo:** `<add-your-live-url-here>`  
+**👤 Author:** `Ahmed Hossam` · [LinkedIn](https://www.linkedin.com/in/ahmed-hossam-ab7114328) · [Portfolio](https://portfolio-self-theta-83.vercel.app/)
 
-- **Angular** (standalone app build via `@angular/build:application`)
-- **SSR** via Angular SSR + server entry at `src/server.ts`
-- **Express** (see `server/`)
-- **Node/TypeScript**
+---
+
+## 📖 Overview
+
+EDUNITY is a front-end-focused LMS that delivers a smooth online learning experience: browsing courses, viewing instructor profiles, taking interactive quizzes, and tracking progress from a student dashboard.
+
+The project was built to demonstrate **production-grade front-end engineering**: clean architecture, performance, SEO, accessibility, and maintainable code, not just a UI that looks good.
+
+## ✨ Highlights
+
+| Area | What was built |
+| --- | --- |
+| **Architecture** | Domain-Driven Design (`DDD`) with feature-based folders and barrel (`index.ts`) files for clean imports |
+| **Performance** | Angular SSR + Express for fast first paint; benchmarked with GTmetrix (see below) |
+| **SEO** | Server-rendered pages, dynamic sitemap generation with caching and pagination, `robots.txt` |
+| **Scalability** | Separate `core`, `features`, `layout`, and `shared` layers with clear responsibilities |
+| **Multi-environment** | Five build presets: local, test, development, UAT, live |
+| **Deployment** | Vercel-ready with serverless API rewrites and SSR output |
+| **UX** | Responsive across devices, with accessibility in mind |
+
+## 🧩 Features
+
+- 📚 **Course management**: browse and explore courses
+- 👩‍🏫 **Instructor profiles**
+- 📝 **Interactive quizzes**
+- 📊 **Student dashboard and progress tracking**
+- 🔐 **Authentication area**
+- 📰 **Blogs, About, and Contact pages**
+- 🌍 **i18n-ready core**, with SEO, logging, storage, toast notifications, and connectivity services
+- 📱 **Responsive UI components**
 
 ## 🚀 Performance
 
-The application was tested using GTmetrix to evaluate its performance, structure, and Core Web Vitals.
+The application was tested with **GTmetrix** to evaluate structure and Core Web Vitals.
 
 ![GTmetrix Performance](./src/assets/images/global/perf/gtmetrix-performance.png)
 
-## Folder Structure
+## 🛠 Tech Stack
+
+- **Framework:** Angular 21 (standalone components, built with `@angular/build:application`)
+- **Rendering:** Angular SSR with entry point at `src/server.ts`
+- **Server:** Express.js (`server/`)
+- **Language:** TypeScript / Node.js
+- **Styling:** SCSS design system (abstracts, base, components, themes)
+- **Hosting:** Vercel
+
+## 🏗 Architecture
+
+The codebase follows a layered, feature-first structure:
+
+```text
+src/app/
+├── core/       # Cross-cutting concerns: i18n, interceptors, SEO, routing,
+│               # navigation, storage, logging, toast, connectivity, platform
+├── features/   # Business domains: about, auth, blogs, contact,
+│               # courses, home, not-found
+├── layout/     # App shell: header, footer, sidebar + their configs/enums/interfaces
+└── shared/     # Reusable utilities and components
+```
+
+Each feature is self-contained and follows the same internal convention:
+
+```text
+feature/
+├── components/
+├── configs/
+├── constants/
+├── enums/
+├── interfaces/
+├── pages/
+├── routes/
+└── index.ts      # barrel file, the feature's public API
+```
+
+<details>
+<summary><b>📂 Full project structure</b></summary>
 
 ```text
 EDUNITY-LMS/
-├── .angular/
-├── api/
+├── api/                    # Serverless entry (Vercel)
 │   └── index.js
-├── node_modules/
-├── public/
-│   ├── favicon.ico
-│   ├── robots.txt
-│   ├── sitemap-pages.xml
-│   └── sitemap.xml
-├── server/
-│   ├── core/
-│   │   ├── fetch.service.ts
-│   │   └── sitemap-cache.service.ts
-│   ├── routes/
-│   │   └── sitemap.routes.ts
-│   └── sitemap/
-│       ├── sitemap.generator.ts
-│       ├── sitemap.paginator.ts
-│       └── sitemap.service.ts
+├── public/                 # Static assets (favicon, robots, sitemaps)
+├── server/                 # Express server
+│   ├── core/               # fetch + sitemap cache services
+│   ├── routes/             # sitemap routes
+│   └── sitemap/            # generator, paginator, service
 ├── src/
 │   ├── app/
 │   │   ├── core/
-│   │   │   ├── connectivity/
-│   │   │   ├── current-route/
-│   │   │   ├── i18n/
-│   │   │   ├── interceptors/
-│   │   │   ├── logging/
-│   │   │   ├── navigation/
-│   │   │   ├── platform/
-│   │   │   ├── routing/
-│   │   │   ├── seo/
-│   │   │   ├── seo2/
-│   │   │   ├── storage/
-│   │   │   └── toast/
 │   │   ├── features/
-│   │   │   ├── about/
-│   │   │   │   ├── components/
-│   │   │   │   ├── configs/
-│   │   │   │   ├── constants/
-│   │   │   │   ├── enums/
-│   │   │   │   ├── interfaces/
-│   │   │   │   ├── pages/
-│   │   │   │   ├── routes/
-│   │   │   │   └── index.ts
-│   │   │   ├── auth/
-│   │   │   ├── blogs/
-│   │   │   ├── contact/
-│   │   │   ├── courses/
-│   │   │   ├── home/
-│   │   │   └── not-found/
 │   │   ├── layout/
-│   │   │   ├── components/
-│   │   │   │   ├── main-site-footer/
-│   │   │   │   ├── main-site-header/
-│   │   │   │   ├── sidebar/
-│   │   │   │   └── index.ts
-│   │   │   ├── configs/
-│   │   │   │   ├── footer.config.ts
-│   │   │   │   ├── header.config.ts
-│   │   │   │   ├── index.ts
-│   │   │   │   └── navbar.config.ts
-│   │   │   ├── constants/
-│   │   │   │   ├── footer.constants.ts
-│   │   │   │   ├── header.constants.ts
-│   │   │   │   └── index.ts
-│   │   │   ├── enums/
-│   │   │   │   ├── footer.enum.ts
-│   │   │   │   ├── header.enum.ts
-│   │   │   │   └── index.ts
-│   │   │   └── interfaces/
-│   │   │       ├── footer.interface.ts
-│   │   │       ├── header.interface.ts
-│   │   │       ├── index.ts
-│   │   │       └── sidebar.interface.ts
 │   │   ├── shared/
-│   │   ├── app.config.server.ts
 │   │   ├── app.config.ts
-│   │   ├── app.html
-│   │   ├── app.routes.server.ts
+│   │   ├── app.config.server.ts
 │   │   ├── app.routes.ts
-│   │   ├── app.scss
-│   │   ├── app.spec.ts
-│   │   ├── app.ts
+│   │   ├── app.routes.server.ts
 │   │   └── prerender-routes-server.ts
-│   ├── assets/
-│   │   ├── fonts/
-│   │   └── images/
-│   ├── environments/
-│   ├── styles/
-│   ├── index.html
-│   ├── main.server.ts
+│   ├── assets/             # fonts, images
+│   ├── environments/       # local / test / dev / uat / live presets
+│   ├── styles/             # SCSS design system
 │   ├── main.ts
-│   ├── server.ts
-│   └── styles.scss
-├── .editorconfig
-├── .gitignore
+│   ├── main.server.ts
+│   └── server.ts           # SSR entry
 ├── angular.json
-├── clear-cache.sh
-├── package-lock.json
 ├── package.json
-├── README.md
-├── robots.txt
-├── TODO.md
-├── tsconfig.app.json
-├── tsconfig.json
-├── tsconfig.spec.json
+├── tsconfig*.json
 └── vercel.json
 ```
 
-High-level structure:
+</details>
 
-- `src/`
-  - Angular application (components, features, routing, styles)
-  - SSR entry points (`src/main.server.ts`, `src/server.ts`)
-- `server/`
-  - Express server implementation (API/sitemap/etc.)
-- `api/`
-  - API entry / serverless integration points (see `api/index.js`)
-- `public/`
-  - Static assets served as-is (favicon, sitemap files, etc.)
-- `src/environments/`
-  - Environment presets (local/test/dev/uat/live)
-- `src/styles/`
-  - Shared SCSS design system (abstracts, base, components, themes)
-- `src/assets/`
-  - Fonts + images used by the UI
+## ⚡ Getting Started
 
-Application code areas:
+### Prerequisites
 
-- `src/app/core/`
-  - Cross-cutting concerns (i18n, interceptors, navigation, routing helpers, SEO, etc.)
-- `src/app/features/`
-  - Feature modules (example: `home/`)
-- `src/app/layout/`
-  - App shell/layout components (header/footer configs/constants)
-- `src/app/shared/`
-  - Shared utilities (e.g., `svg.util.ts`)
-
-## Prerequisites
-
-- Node.js (LTS recommended)
+- [Node.js](https://nodejs.org) (LTS recommended)
 - npm
 
-## Install
+### Installation
 
 ```bash
+git clone <your-repo-url>
+cd EDUNITY-LMS
 npm install
 ```
 
-## Development (client/server dev build)
+### Run in development
 
 ```bash
 npm start
 ```
 
-## Build commands
+Then open `http://localhost:4200`.
 
-The app defines multiple build configurations (from `angular.json` / `package.json`).
+### Run tests
+
+```bash
+npm test
+```
+
+## 📦 Build & Run
 
 ### Standard builds
 
@@ -201,15 +174,13 @@ npm run build:ssr:uat
 npm run build:ssr:live
 ```
 
-### Serve SSR output
-
-After building SSR, start the server bundle:
+### Serve the SSR output
 
 ```bash
 npm run serve:ssr
 ```
 
-### One-shot SSR (build + serve)
+### Build and serve in one step
 
 ```bash
 npm run ssr:local
@@ -219,39 +190,57 @@ npm run ssr:uat
 npm run ssr:live
 ```
 
-## Test
+### Utilities
 
 ```bash
-npm test
+npm run watch        # build in watch mode
+npm run clean:cache  # clear build cache/artifacts
 ```
 
-## Environments
+## 🌍 Environments
 
-Environment files are swapped via Angular build configurations:
+Environment files are swapped automatically by Angular build configurations:
 
-- `src/environments/presets/environment.local.ts`
-- `src/environments/presets/environment.test.ts`
-- `src/environments/presets/environment.dev.ts`
-- `src/environments/presets/environment.uat.ts`
-- `src/environments/presets/environment.live.ts`
+| Environment | File |
+| --- | --- |
+| Local | `src/environments/presets/environment.local.ts` |
+| Test | `src/environments/presets/environment.test.ts` |
+| Development | `src/environments/presets/environment.dev.ts` |
+| UAT | `src/environments/presets/environment.uat.ts` |
+| Live | `src/environments/presets/environment.live.ts` |
 
-## Server and API
+## 🌐 Server, API & SEO
 
-- Express server code lives in `server/`
-- The project also includes sitemap generation under `server/sitemap/`
+- The Express server lives in `server/`.
+- **Sitemap generation** (`server/sitemap/`) builds paginated sitemaps, with caching handled in `server/core/sitemap-cache.service.ts`.
+- Static `robots.txt` and sitemap files are served from `public/`.
 
-## Deployment (Vercel)
+## ☁️ Deployment (Vercel)
 
-Configuration is provided by `vercel.json`:
+Configured through `vercel.json`:
 
-- Rewrites all `/api` requests to the project `api` directory.
-- Builds and deploys SSR server output from `dist/edunity-lms/**`.
+- Rewrites all `/api` requests to the project's `api` directory.
+- Builds and deploys the SSR server output from `dist/edunity-lms/**`.
 
-## Useful scripts
+## 🎯 What This Project Demonstrates
 
-- Clean build cache/artifacts:
-  - `npm run clean:cache`
-- Build/watch:
-  - `npm run watch`
+- Building and structuring a **large-scale Angular application** with clear separation of concerns
+- Implementing **SSR** for performance and SEO in a real deployment pipeline
+- Writing **maintainable, modular, reusable** TypeScript code
+- Working with **multiple environments** and CI/CD-style build configurations
+- Designing a **responsive, accessible** user interface with a reusable SCSS design system
+- Full-stack awareness: Express server, sitemap services, and serverless deployment
 
-  ***
+
+## 📬 Contact
+
+I'm open to opportunities and happy to talk about this project.
+
+- 📧 Email: `ahmedhossam66600@gmail.com`
+- 💼 LinkedIn: `https://www.linkedin.com/in/ahmed-hossam-ab7114328`
+- 🌐 Portfolio: `https://portfolio-self-theta-83.vercel.app/`
+- 🐙 GitHub: `https://github.com/AhmedHossam555`
+
+---
+
+<p align="center">Built with ❤️ using Angular</p>
