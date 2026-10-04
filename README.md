@@ -1,17 +1,134 @@
-# edunity-lms
+# EDUNITY-LMS
 
 A modern Learning Management System (LMS) built with Angular 21, designed to deliver a seamless online learning experience. The platform includes course management, instructor profiles, interactive quizzes, student dashboards, progress tracking, and responsive UI components.
 
-The application leverages Angular 21 with Server-Side Rendering (SSR) for improved performance, SEO, and faster initial page loads, powered by an Express.js server. It follows a scalable, component-based architecture and modern Angular best practices to ensure maintainability, accessibility, and an optimized user experience across all devices.
+The application leverages Angular 21 with Server-Side Rendering (SSR) for improved performance, SEO, and faster initial page loads, powered by an Express.js server. It follows a scalable Domain-Driven Design (DDD) architecture, with barrel index files for clean and maintainable imports, along with modern Angular best practices. The architecture promotes clear separation of concerns, modularity, reusability, and maintainability while ensuring accessibility and an optimized user experience across all devices.
 
-## Tech stack
+## Tech Stack
 
 - **Angular** (standalone app build via `@angular/build:application`)
 - **SSR** via Angular SSR + server entry at `src/server.ts`
 - **Express** (see `server/`)
 - **Node/TypeScript**
 
-## Folder structure
+## 🚀 Performance
+
+The application was tested using GTmetrix to evaluate its performance, structure, and Core Web Vitals.
+
+![GTmetrix Performance](./src/assets/images/global/perf/gtmetrix-performance.png)
+
+## Folder Structure
+
+```text
+EDUNITY-LMS/
+├── .angular/
+├── api/
+│   └── index.js
+├── node_modules/
+├── public/
+│   ├── favicon.ico
+│   ├── robots.txt
+│   ├── sitemap-pages.xml
+│   └── sitemap.xml
+├── server/
+│   ├── core/
+│   │   ├── fetch.service.ts
+│   │   └── sitemap-cache.service.ts
+│   ├── routes/
+│   │   └── sitemap.routes.ts
+│   └── sitemap/
+│       ├── sitemap.generator.ts
+│       ├── sitemap.paginator.ts
+│       └── sitemap.service.ts
+├── src/
+│   ├── app/
+│   │   ├── core/
+│   │   │   ├── connectivity/
+│   │   │   ├── current-route/
+│   │   │   ├── i18n/
+│   │   │   ├── interceptors/
+│   │   │   ├── logging/
+│   │   │   ├── navigation/
+│   │   │   ├── platform/
+│   │   │   ├── routing/
+│   │   │   ├── seo/
+│   │   │   ├── seo2/
+│   │   │   ├── storage/
+│   │   │   └── toast/
+│   │   ├── features/
+│   │   │   ├── about/
+│   │   │   │   ├── components/
+│   │   │   │   ├── configs/
+│   │   │   │   ├── constants/
+│   │   │   │   ├── enums/
+│   │   │   │   ├── interfaces/
+│   │   │   │   ├── pages/
+│   │   │   │   ├── routes/
+│   │   │   │   └── index.ts
+│   │   │   ├── auth/
+│   │   │   ├── blogs/
+│   │   │   ├── contact/
+│   │   │   ├── courses/
+│   │   │   ├── home/
+│   │   │   └── not-found/
+│   │   ├── layout/
+│   │   │   ├── components/
+│   │   │   │   ├── main-site-footer/
+│   │   │   │   ├── main-site-header/
+│   │   │   │   ├── sidebar/
+│   │   │   │   └── index.ts
+│   │   │   ├── configs/
+│   │   │   │   ├── footer.config.ts
+│   │   │   │   ├── header.config.ts
+│   │   │   │   ├── index.ts
+│   │   │   │   └── navbar.config.ts
+│   │   │   ├── constants/
+│   │   │   │   ├── footer.constants.ts
+│   │   │   │   ├── header.constants.ts
+│   │   │   │   └── index.ts
+│   │   │   ├── enums/
+│   │   │   │   ├── footer.enum.ts
+│   │   │   │   ├── header.enum.ts
+│   │   │   │   └── index.ts
+│   │   │   └── interfaces/
+│   │   │       ├── footer.interface.ts
+│   │   │       ├── header.interface.ts
+│   │   │       ├── index.ts
+│   │   │       └── sidebar.interface.ts
+│   │   ├── shared/
+│   │   ├── app.config.server.ts
+│   │   ├── app.config.ts
+│   │   ├── app.html
+│   │   ├── app.routes.server.ts
+│   │   ├── app.routes.ts
+│   │   ├── app.scss
+│   │   ├── app.spec.ts
+│   │   ├── app.ts
+│   │   └── prerender-routes-server.ts
+│   ├── assets/
+│   │   ├── fonts/
+│   │   └── images/
+│   ├── environments/
+│   ├── styles/
+│   ├── index.html
+│   ├── main.server.ts
+│   ├── main.ts
+│   ├── server.ts
+│   └── styles.scss
+├── .editorconfig
+├── .gitignore
+├── angular.json
+├── clear-cache.sh
+├── package-lock.json
+├── package.json
+├── README.md
+├── robots.txt
+├── TODO.md
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.spec.json
+└── vercel.json
+```
 
 High-level structure:
 
