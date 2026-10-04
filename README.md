@@ -8,7 +8,7 @@
 [![SCSS](https://img.shields.io/badge/SCSS-Design%20System-CC6699?logo=sass&logoColor=white)](https://sass-lang.com)
 [![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?logo=vercel&logoColor=white)](https://vercel.com)
 
-**🔗 Live Demo:** `https://edunity-lms.vercel.app/`  
+**🔗 Live Demo:** https://edunity-lms.vercel.app/
 **👤 Author:** `Ahmed Hossam` · [LinkedIn](https://www.linkedin.com/in/ahmed-hossam-ab7114328) · [Portfolio](https://portfolio-self-theta-83.vercel.app/)
 
 ---
