@@ -9,7 +9,7 @@ import { IAppEnvironment, EnvironmentName } from '@env/schema';
 
 export const BASE_ENVIRONMENT: IAppEnvironment = {
   name: EnvironmentName.Base,
-  publicUrl: 'https://agrotebaint.com',
+  publicUrl: 'https://edunity-lms.com',
   production: false,
   port: PORTS_BY_ENV[EnvironmentName.Base],
   api: API_CONFIG_BY_ENV[EnvironmentName.Base],

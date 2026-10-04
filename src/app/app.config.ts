@@ -3,12 +3,13 @@ import {
   importProvidersFrom,
   provideBrowserGlobalErrorListeners,
   provideZonelessChangeDetection,
-  APP_INITIALIZER,
+
   inject,
   LOCALE_ID,
+  APP_INITIALIZER,
 } from '@angular/core';
 
-import { provideRouter, UrlSerializer, withInMemoryScrolling } from '@angular/router';
+import { provideRouter, UrlSerializer, withComponentInputBinding, withInMemoryScrolling } from '@angular/router';
 import {
   provideClientHydration,
   withEventReplay,
@@ -22,6 +23,8 @@ import { languageInterceptor } from './core/interceptors/language/language-inter
 import { LowerCaseUrlSerializer } from './core/routing/application/lower-case-url.serializer';
 import { SeoUrlService } from './core/seo/infrastructure/seo-url.service';
 import { routes } from './app.routes';
+import { provideSeo } from './core/seo2/provide-seo';
+import { SITE } from './core/seo2/seo.config';
 
 export function initializeLanguage() {
   const languageManager = inject(LanguageManagerService);
@@ -51,17 +54,14 @@ export const appConfig: ApplicationConfig = {
         scrollPositionRestoration: 'enabled',
         anchorScrolling: 'enabled',
       }),
+      withComponentInputBinding()
     ),
 
     provideClientHydration(withEventReplay(), withIncrementalHydration()),
     provideHttpClient(withFetch(), withInterceptors([languageInterceptor])),
-
+    provideSeo(SITE),
     // 2. Language init BEFORE SeoModule
-    {
-      provide: APP_INITIALIZER,
-      useFactory: initializeLanguage,
-      multi: true,
-    },
+
     {
       provide: APP_INITIALIZER,
       useFactory: initializeSeo,
